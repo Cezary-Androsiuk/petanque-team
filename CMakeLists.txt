@@ -21,7 +21,7 @@ qt_add_qml_module(appPetanqueTeam
     SOURCES cpp/Backend.h cpp/Backend.cpp
     SOURCES cpp/support/Log.h cpp/support/Log.cpp
     SOURCES cpp/support/LogQML.h cpp/support/LogQML.cpp
-    SOURCES cpp/Event.h cpp/Event.cpp
+    SOURCES cpp/objects/Event.h cpp/objects/Event.cpp
 
     QML_FILES qml/Main.qml
     QML_FILES qml/Gameplay.qml
