@@ -15,7 +15,20 @@ qt_add_executable(appPetanqueTeam
 qt_add_qml_module(appPetanqueTeam
     URI PetanqueTeam
     VERSION 1.0
+
+    SOURCES cpp/Login.h cpp/Login.cpp
+    SOURCES cpp/DoubleStartProtection.h cpp/DoubleStartProtection.cpp
+    SOURCES cpp/Backend.h cpp/Backend.cpp
+    SOURCES cpp/support/Log.h cpp/support/Log.cpp
+    SOURCES cpp/support/LogQML.h cpp/support/LogQML.cpp
+    SOURCES cpp/Event.h cpp/Event.cpp
+
     QML_FILES qml/Main.qml
+    QML_FILES qml/Gameplay.qml
+    QML_FILES qml/AppAlreadyRunning.qml
+    QML_FILES qml/LoginForm.qml
+    QML_FILES qml/Gameplay/Configure.qml
+    QML_FILES qml/Gameplay/Continue.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
