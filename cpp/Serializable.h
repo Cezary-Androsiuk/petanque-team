@@ -1,15 +1,14 @@
 #ifndef SERIALIZABLE_H
 #define SERIALIZABLE_H
 
-#include <QObject>
+#include <QJsonObject>
 
-class Serializable : public QObject
+class Serializable
 {
-    Q_OBJECT
 public:
-    explicit Serializable(QObject *parent = nullptr);
-
-signals:
+    virtual QJsonObject serialize() const = 0;
+    virtual void deserialize(const QJsonObject& data) = 0;
+    virtual ~Serializable() = default;
 };
 
 #endif // SERIALIZABLE_H
