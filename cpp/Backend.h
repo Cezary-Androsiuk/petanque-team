@@ -14,6 +14,7 @@ class Backend : public QObject
 
 public:
     explicit Backend(QObject *parent = nullptr);
+    ~Backend();
 
     QSharedPointer<Event> getEventPtr();
 

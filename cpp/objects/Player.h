@@ -30,6 +30,7 @@ class Player : public QObject, public Serializable
 
 public:
     explicit Player(QObject *parent = nullptr);
+    ~Player();
 
     QJsonObject serialize() const override;
     void deserialize(const QJsonObject &playerJson) override;

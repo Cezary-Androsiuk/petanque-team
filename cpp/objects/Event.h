@@ -5,6 +5,7 @@
 #include <QVector>
 #include <QSharedPointer>
 
+#include "cpp/support/Log.h"
 #include "cpp/Serializable.h"
 #include "cpp/objects/Team.h"
 #include "cpp/objects/Phase.h"
@@ -18,10 +19,11 @@ class Event : public QObject, public Serializable
 {
     Q_OBJECT
     Q_PROPERTY(QString name READ getName WRITE setName NOTIFY nameChanged FINAL)
-    Q_PROPERTY(PhasePtrVector phases READ getPhases NOTIFY phasesChanged FINAL)
+    Q_PROPERTY(PhasePtr currentPhase READ getCurrentPhasePtr NOTIFY phasesChanged FINAL)
 
 public:
     explicit Event(QObject *parent = nullptr);
+    ~Event();
 
     QJsonObject serialize() const override;
     void deserialize(const QJsonObject &eventJson) override;
@@ -34,7 +36,8 @@ private:
 
 public:
     QString getName() const;
-    PhasePtrVector getPhases() const;
+    PhasePtr getCurrentPhasePtr() const;
+    // PhasePtrVector getPhases() const;
 
     void setName(const QString &name);
     

@@ -5,7 +5,14 @@ Player::Player(QObject *parent)
     , m_ageGroup{AgeGroup::Junior}
     , m_gender{Gender::Male}
     , m_isTeamLeader{false}
-{}
+{
+    I(QAPF("Creating player: %p", this));
+}
+
+Player::~Player()
+{
+    I(QAPF("Destroying player: %p", this));
+}
 
 QJsonObject Player::serialize() const
 {

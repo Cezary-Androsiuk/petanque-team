@@ -9,6 +9,11 @@ class SubPhase : public QObject
 public:
     explicit SubPhase(QObject *parent = nullptr);
 
+    // QJsonObject serialize() const override;
+    // void deserialize(const QJsonObject &data) override;
+
+    // void clear();
+
 signals:
 };
 

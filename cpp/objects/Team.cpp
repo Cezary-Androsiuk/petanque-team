@@ -2,7 +2,14 @@
 
 Team::Team(QObject *parent)
     : QObject{parent}
-{}
+{
+    I(QAPF("Creating Team: %p", this));
+}
+
+Team::~Team()
+{
+    I(QAPF("Destroying Team: %p", this));
+}
 
 QJsonObject Team::serialize() const
 {

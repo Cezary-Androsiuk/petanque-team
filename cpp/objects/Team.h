@@ -18,6 +18,7 @@ class Team : public QObject, public Serializable
     Q_OBJECT
 public:
     explicit Team(QObject *parent = nullptr);
+    ~Team();
 
     QJsonObject serialize() const override;
     void deserialize(const QJsonObject &teamJson) override;
