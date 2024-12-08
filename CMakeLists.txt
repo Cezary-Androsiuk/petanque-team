@@ -35,8 +35,8 @@ qt_add_qml_module(appPetanqueTeam
     SOURCES cpp/objects/SubPhase.h cpp/objects/SubPhase.cpp
     SOURCES cpp/objects/Team.h cpp/objects/Team.cpp
     SOURCES cpp/objects/Player.h cpp/objects/Player.cpp
-    SOURCES cpp/enums/Gender.h
-    SOURCES cpp/enums/AgeGroup.h
+    SOURCES cpp/enums/Gender.h cpp/enums/Gender.cpp
+    SOURCES cpp/enums/AgeGroup.h cpp/enums/AgeGroup.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
