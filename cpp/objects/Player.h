@@ -2,6 +2,8 @@
 #define PLAYER_H
 
 #include <QObject>
+#include <QList>
+#include <QSharedPointer>
 
 #include "cpp/support/Log.h"
 #include "cpp/enums/Gender.h"
@@ -52,5 +54,8 @@ private:
     Gender m_gender;
     bool m_isTeamLeader;
 };
+
+typedef QSharedPointer<Player> PlayerPtr;
+typedef QList<PlayerPtr> PlayerPtrList;
 
 #endif // PLAYER_H
