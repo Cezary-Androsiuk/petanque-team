@@ -23,15 +23,51 @@ QJsonObject Player::serialize() const
 
 void Player::deserialize(const QJsonObject &playerJson)
 {
+    this->clear(false);
+
     /// read from json
     m_firstName = playerJson[ SERL_FIRST_NAME_KEY ].toString();
+    emit this->firstNameChanged();
+
     m_lastName = playerJson[ SERL_LAST_NAME_KEY ].toString();
+    emit this->lastNameChanged();
+
     m_license = playerJson[ SERL_LICENSE_KEY ].toString();
+    emit this->licenseChanged();
+
     QString ageGroupStr = playerJson[ SERL_AGE_GROUP_KEY ].toString();
     m_ageGroup = EnumConvert::QStringToAgeGroup( ageGroupStr );
+    emit this->ageGroupChanged();
+
     QString genderStr = playerJson[ SERL_GENDER_KEY ].toString();
     m_gender = EnumConvert::QStringToGender( genderStr );
+    emit this->genderChanged();
+
     m_isTeamLeader = playerJson[ SERL_IS_TEAM_LEADER_KEY ].toBool();
+    emit this->isTeamLeaderChanged();
+
+}
+
+void Player::clear(bool emitting)
+{
+    m_firstName.clear();
+    if(emitting) emit this->firstNameChanged();
+
+    m_lastName.clear();
+    if(emitting) emit this->lastNameChanged();
+
+    m_license.clear();
+    if(emitting) emit this->licenseChanged();
+
+    m_ageGroup = AgeGroup::Junior;
+    if(emitting) emit this->ageGroupChanged();
+
+    m_gender = Gender::Male;
+    if(emitting) emit this->genderChanged();
+
+    m_isTeamLeader = false;
+    if(emitting) emit this->isTeamLeaderChanged();
+
 }
 
 void Player::copyFromOtherPlayer(const Player &sourcePlayer)
