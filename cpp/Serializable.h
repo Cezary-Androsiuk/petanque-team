@@ -2,6 +2,7 @@
 #define SERIALIZABLE_H
 
 #include <QJsonObject>
+#include <QJsonArray>
 
 class Serializable
 {

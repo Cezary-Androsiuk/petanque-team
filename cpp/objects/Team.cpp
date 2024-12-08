@@ -4,6 +4,53 @@ Team::Team(QObject *parent)
     : QObject{parent}
 {}
 
+QJsonObject Team::serialize() const
+{
+    QJsonObject teamJson;
+    teamJson[ SERL_NAME_KEY ] = m_name;
+
+    QJsonArray playersJson;
+    for(const auto &player : m_players)
+    {
+        playersJson.append( player->serialize() );
+    }
+    teamJson[ SERL_PLAYERS_KEY ] = playersJson;
+
+    return teamJson;
+}
+
+void Team::deserialize(const QJsonObject &teamJson)
+{
+    this->clear(false);
+
+    m_name = teamJson[ SERL_NAME_KEY ].toString();
+    emit this->nameChanged();
+
+    m_detachedPlayer.clear();
+    emit this->detachedPlayerChanged();
+
+    QJsonArray playersJson = teamJson[ SERL_PLAYERS_KEY ].toArray();
+    for(const auto &playerJson : playersJson)
+    {
+        PlayerPtr playerPtr = PlayerPtr::create();
+        playerPtr->deserialize( playerJson.toObject() );
+        m_players.append( playerPtr );
+    }
+    emit this->playersChanged();
+}
+
+void Team::clear(bool emitting)
+{
+    m_name.clear();
+    if(emitting) emit this->nameChanged();
+
+    m_detachedPlayer.clear();
+    if(emitting) emit this->detachedPlayerChanged();
+
+    m_players.clear();
+    if(emitting) emit this->playersChanged();
+}
+
 void Team::createDetachedPlayer()
 {
     if(!m_detachedPlayer.isNull())
