@@ -7,6 +7,33 @@ Player::Player(QObject *parent)
     , m_isTeamLeader{false}
 {}
 
+QJsonObject Player::serialize() const
+{
+    /// save to json
+    QJsonObject playerObject;
+    playerObject[ SERL_FIRST_NAME_KEY ] = m_firstName;
+    playerObject[ SERL_LAST_NAME_KEY ] = m_lastName;
+    playerObject[ SERL_LICENSE_KEY ] = m_license;
+    playerObject[ SERL_AGE_GROUP_KEY ] = EnumConvert::AgeGroupToQString(m_ageGroup);
+    playerObject[ SERL_GENDER_KEY ] = EnumConvert::GenderToQString(m_gender);
+    playerObject[ SERL_IS_TEAM_LEADER_KEY ] = m_isTeamLeader;
+
+    return playerObject;
+}
+
+void Player::deserialize(const QJsonObject &data)
+{
+    /// read from json
+    m_firstName = data[ SERL_FIRST_NAME_KEY ].toString();
+    m_lastName = data[ SERL_LAST_NAME_KEY ].toString();
+    m_license = data[ SERL_LICENSE_KEY ].toString();
+    QString ageGroupStr = data[ SERL_AGE_GROUP_KEY ].toString();
+    m_ageGroup = EnumConvert::QStringToAgeGroup( ageGroupStr );
+    QString genderStr = data[ SERL_GENDER_KEY ].toString();
+    m_gender = EnumConvert::QStringToGender( genderStr );
+    m_isTeamLeader = data[ SERL_IS_TEAM_LEADER_KEY ].toBool();
+}
+
 void Player::copyFromOtherPlayer(const Player &sourcePlayer)
 {
     if(this == &sourcePlayer)
@@ -15,29 +42,29 @@ void Player::copyFromOtherPlayer(const Player &sourcePlayer)
         return;
     }
 
-    m_fname = sourcePlayer.m_fname;
-    m_lname = sourcePlayer.m_lname;
+    m_firstName = sourcePlayer.m_firstName;
+    m_lastName = sourcePlayer.m_lastName;
     m_license = sourcePlayer.m_license;
     m_ageGroup = sourcePlayer.m_ageGroup;
     m_gender = sourcePlayer.m_gender;
     m_isTeamLeader = sourcePlayer.m_isTeamLeader;
 
-    emit this->fnameChanged();
-    emit this->lnameChanged();
+    emit this->firstNameChanged();
+    emit this->lastNameChanged();
     emit this->licenseChanged();
     emit this->ageGroupChanged();
     emit this->genderChanged();
     emit this->isTeamLeaderChanged();
 }
 
-QString Player::getFname() const
+QString Player::getFirstName() const
 {
-    return m_fname;
+    return m_firstName;
 }
 
-QString Player::getLname() const
+QString Player::getLastName() const
 {
-    return m_lname;
+    return m_lastName;
 }
 
 QString Player::getLicense() const
@@ -60,20 +87,20 @@ bool Player::getIsTeamLeader() const
     return m_isTeamLeader;
 }
 
-void Player::setFname(const QString &fname)
+void Player::setFirstName(const QString &firstName)
 {
-    if (m_fname == fname)
+    if (m_firstName == firstName)
         return;
-    m_fname = fname;
-    emit fnameChanged();
+    m_firstName = firstName;
+    emit firstNameChanged();
 }
 
-void Player::setLname(const QString &lname)
+void Player::setLastName(const QString &lastName)
 {
-    if (m_lname == lname)
+    if (m_lastName == lastName)
         return;
-    m_lname = lname;
-    emit lnameChanged();
+    m_lastName = lastName;
+    emit lastNameChanged();
 }
 
 void Player::setLicense(const QString &license)
