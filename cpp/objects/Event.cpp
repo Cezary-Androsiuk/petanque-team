@@ -1,8 +1,7 @@
 #include "Event.h"
 
 Event::Event(QObject *parent)
-    : QObject{parent}
-    , Serializable{parent}
+    : Serializable{parent}
 {}
 
 QJsonObject Event::serialize() const

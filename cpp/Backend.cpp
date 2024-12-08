@@ -7,5 +7,5 @@ Backend::Backend(QObject *parent)
 
 Event *Backend::getEventPtr()
 {
-    return dynamic_cast<Event*>(m_eventPtr.data());
+    return m_eventPtr.data();
 }

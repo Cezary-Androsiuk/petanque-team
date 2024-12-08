@@ -5,7 +5,7 @@
 
 #include "cpp/Serializable.h"
 
-class Event : virtual public QObject, public Serializable
+class Event : public Serializable
 {
     Q_OBJECT
 

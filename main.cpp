@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     QPointer<Backend> backend(new Backend(&app));
     QPointer<Login> login(new Login(&app));
     QPointer<Memory> memory(new Memory(&app));
-    memory->setSerializablePtr(backend->getEventPtr());
+    memory->setSerializableObject(backend->getEventPtr());
     QPointer<LogQML> logQML(new LogQML(&app));
 
     engine.rootContext()->setContextProperty("DoubleStartProtection", DoubleStartProtection::getInstance());

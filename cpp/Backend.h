@@ -18,7 +18,7 @@ public:
     Event *getEventPtr();
 
 private:
-    QPointer<QObject> m_eventPtr;
+    QPointer<Event> m_eventPtr;
 };
 
 #endif // BACKEND_H

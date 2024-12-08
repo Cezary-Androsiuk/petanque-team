@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QJsonObject>
 
-class Serializable: virtual public QObject
+class Serializable: public QObject
 {
     Q_OBJECT
 public:
