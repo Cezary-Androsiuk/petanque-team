@@ -25,7 +25,7 @@ class Memory : public QObject
 public:
     explicit Memory(QObject *parent = nullptr);
 
-    void setSerializableObject(const QPointer<Serializable> &serializableObject);
+    void setSerializablePtr(const QPointer<Serializable> &serializablePtr);
 
 public slots:
     void load();
@@ -44,7 +44,7 @@ signals:
     void memoryLoadError(const QString &message);
 
 private:
-    QPointer<Serializable> m_serializableObject;
+    QPointer<QObject> m_serializablePtr;
 };
 
 #endif // MEMORY_H
