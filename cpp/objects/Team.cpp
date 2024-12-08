@@ -7,7 +7,7 @@ Team::Team(QObject *parent)
 QJsonObject Team::serialize() const
 {
     QJsonObject teamJson;
-    teamJson[ SERL_NAME_KEY ] = m_name;
+    teamJson[ SERL_TEAM_NAME_KEY ] = m_name;
 
     QJsonArray playersJson;
     for(const auto &player : m_players)
@@ -23,7 +23,7 @@ void Team::deserialize(const QJsonObject &teamJson)
 {
     this->clear(false);
 
-    m_name = teamJson[ SERL_NAME_KEY ].toString();
+    m_name = teamJson[ SERL_TEAM_NAME_KEY ].toString();
     emit this->nameChanged();
 
     m_detachedPlayer.clear();

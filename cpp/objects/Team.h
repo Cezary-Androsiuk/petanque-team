@@ -10,7 +10,7 @@
 #include "cpp/Serializable.h"
 
 /// KEYS FOR JSON - SERIALIZE AND DESERIALIZE PURPOSES
-#define SERL_NAME_KEY       "name"
+#define SERL_TEAM_NAME_KEY       "name"
 #define SERL_PLAYERS_KEY    "players"
 
 class Team : public QObject, public Serializable
@@ -50,8 +50,8 @@ private:
     PlayerPtrList m_players;
 };
 
-typedef QSharedPointer<Player> PlayerPtr;
-typedef QList<PlayerPtr> PlayerPtrList;
+typedef QSharedPointer<Team> TeamPtr;
+typedef QList<TeamPtr> TeamPtrList;
 
 
 

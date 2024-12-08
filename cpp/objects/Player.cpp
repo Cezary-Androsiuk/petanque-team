@@ -45,7 +45,6 @@ void Player::deserialize(const QJsonObject &playerJson)
 
     m_isTeamLeader = playerJson[ SERL_IS_TEAM_LEADER_KEY ].toBool();
     emit this->isTeamLeaderChanged();
-
 }
 
 void Player::clear(bool emitting)
@@ -67,7 +66,6 @@ void Player::clear(bool emitting)
 
     m_isTeamLeader = false;
     if(emitting) emit this->isTeamLeaderChanged();
-
 }
 
 void Player::copyFromOtherPlayer(const Player &sourcePlayer)
