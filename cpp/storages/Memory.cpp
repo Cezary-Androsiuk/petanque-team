@@ -8,12 +8,12 @@ Memory::Memory(QObject *parent)
 #endif
 }
 
-void Memory::setSerializableObject(const QPointer<Serializable> &serializableObject)
+void Memory::setSerializablePtr(const QSharedPointer<Serializable> &serializablePtr)
 {
-    if(!m_serializableObject.isNull())
+    if(!m_serializablePtr.isNull())
         W("overwriting serializable object");
 
-    m_serializableObject = serializableObject;
+    m_serializablePtr = serializablePtr;
 }
 
 void Memory::load()
@@ -25,7 +25,7 @@ void Memory::load()
         return;
     }
 
-    if(m_serializableObject.isNull())
+    if(m_serializablePtr.isNull())
     {
         W("cannot load memory to non existing serializable object")
         return;
@@ -60,7 +60,8 @@ void Memory::load()
     }
 
     QJsonObject serializedData = jsonDocument.object();
-    m_serializableObject->deserialize(serializedData);
+    QSharedPointer<Serializable> serializablePtr = m_serializablePtr.toStrongRef();
+    serializablePtr->deserialize(serializedData);
 
     I("Memory loaded");
     emit this->memoryLoaded();
@@ -68,7 +69,7 @@ void Memory::load()
 
 void Memory::save()
 {
-    if(m_serializableObject.isNull())
+    if(m_serializablePtr.isNull())
     {
         W("cannot save memory from non existing serializable object")
         return;
@@ -83,7 +84,8 @@ void Memory::save()
         return;
     }
 
-    QJsonObject serializedData = m_serializableObject->serialize();
+    QSharedPointer<Serializable> serializablePtr = m_serializablePtr.toStrongRef();
+    QJsonObject serializedData = serializablePtr->serialize();
     QJsonDocument jsonDocument(serializedData);
 
     file.write(jsonDocument.toJson());

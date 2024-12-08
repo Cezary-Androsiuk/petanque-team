@@ -2,7 +2,7 @@
 #define BACKEND_H
 
 #include <QObject>
-#include <QPointer>
+#include <QSharedPointer>
 
 #include "cpp/support/Log.h"
 #include "cpp/objects/Event.h"
@@ -10,15 +10,15 @@
 class Backend : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(Event *event READ getEventPtr CONSTANT FINAL)
+    Q_PROPERTY(QSharedPointer<Event> event READ getEventPtr CONSTANT FINAL)
 
 public:
     explicit Backend(QObject *parent = nullptr);
 
-    Event *getEventPtr();
+    QSharedPointer<Event> getEventPtr();
 
 private:
-    QPointer<Event> m_eventPtr;
+    QSharedPointer<Event> m_eventPtr;
 };
 
 #endif // BACKEND_H

@@ -3,7 +3,8 @@
 
 #include <QObject>
 
-#include <QPointer>
+#include <QSharedPointer>
+#include <QWeakPointer>
 #include <QFile>
 #include <QFileInfo>
 
@@ -25,7 +26,7 @@ class Memory : public QObject
 public:
     explicit Memory(QObject *parent = nullptr);
 
-    void setSerializableObject(const QPointer<Serializable> &serializableObject);
+    void setSerializablePtr(const QSharedPointer<Serializable> &serializablePtr);
 
 public slots:
     void load();
@@ -44,7 +45,7 @@ signals:
     void memoryLoadError(const QString &message);
 
 private:
-    QPointer<Serializable> m_serializableObject;
+    QWeakPointer<Serializable> m_serializablePtr;
 };
 
 #endif // MEMORY_H

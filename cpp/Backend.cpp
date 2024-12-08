@@ -2,10 +2,10 @@
 
 Backend::Backend(QObject *parent)
     : QObject{parent}
-    , m_eventPtr(new Event(this))
+    , m_eventPtr(QSharedPointer<Event>::create(nullptr))
 {}
 
-Event *Backend::getEventPtr()
+QSharedPointer<Event> Backend::getEventPtr()
 {
-    return m_eventPtr.data();
+    return m_eventPtr;
 }
