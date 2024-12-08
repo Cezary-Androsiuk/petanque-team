@@ -10,28 +10,28 @@ Player::Player(QObject *parent)
 QJsonObject Player::serialize() const
 {
     /// save to json
-    QJsonObject playerObject;
-    playerObject[ SERL_FIRST_NAME_KEY ] = m_firstName;
-    playerObject[ SERL_LAST_NAME_KEY ] = m_lastName;
-    playerObject[ SERL_LICENSE_KEY ] = m_license;
-    playerObject[ SERL_AGE_GROUP_KEY ] = EnumConvert::AgeGroupToQString(m_ageGroup);
-    playerObject[ SERL_GENDER_KEY ] = EnumConvert::GenderToQString(m_gender);
-    playerObject[ SERL_IS_TEAM_LEADER_KEY ] = m_isTeamLeader;
+    QJsonObject playerJson;
+    playerJson[ SERL_FIRST_NAME_KEY ] = m_firstName;
+    playerJson[ SERL_LAST_NAME_KEY ] = m_lastName;
+    playerJson[ SERL_LICENSE_KEY ] = m_license;
+    playerJson[ SERL_AGE_GROUP_KEY ] = EnumConvert::AgeGroupToQString(m_ageGroup);
+    playerJson[ SERL_GENDER_KEY ] = EnumConvert::GenderToQString(m_gender);
+    playerJson[ SERL_IS_TEAM_LEADER_KEY ] = m_isTeamLeader;
 
-    return playerObject;
+    return playerJson;
 }
 
-void Player::deserialize(const QJsonObject &data)
+void Player::deserialize(const QJsonObject &playerJson)
 {
     /// read from json
-    m_firstName = data[ SERL_FIRST_NAME_KEY ].toString();
-    m_lastName = data[ SERL_LAST_NAME_KEY ].toString();
-    m_license = data[ SERL_LICENSE_KEY ].toString();
-    QString ageGroupStr = data[ SERL_AGE_GROUP_KEY ].toString();
+    m_firstName = playerJson[ SERL_FIRST_NAME_KEY ].toString();
+    m_lastName = playerJson[ SERL_LAST_NAME_KEY ].toString();
+    m_license = playerJson[ SERL_LICENSE_KEY ].toString();
+    QString ageGroupStr = playerJson[ SERL_AGE_GROUP_KEY ].toString();
     m_ageGroup = EnumConvert::QStringToAgeGroup( ageGroupStr );
-    QString genderStr = data[ SERL_GENDER_KEY ].toString();
+    QString genderStr = playerJson[ SERL_GENDER_KEY ].toString();
     m_gender = EnumConvert::QStringToGender( genderStr );
-    m_isTeamLeader = data[ SERL_IS_TEAM_LEADER_KEY ].toBool();
+    m_isTeamLeader = playerJson[ SERL_IS_TEAM_LEADER_KEY ].toBool();
 }
 
 void Player::copyFromOtherPlayer(const Player &sourcePlayer)

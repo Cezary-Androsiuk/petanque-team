@@ -32,7 +32,7 @@ public:
     explicit Player(QObject *parent = nullptr);
 
     QJsonObject serialize() const override;
-    void deserialize(const QJsonObject &data) override;
+    void deserialize(const QJsonObject &playerJson) override;
 
     void copyFromOtherPlayer(const Player &sourcePlayer);
 
