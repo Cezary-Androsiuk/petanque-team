@@ -41,8 +41,8 @@ public:
 
 signals:
     void nameChanged();
-    void playersChanged();
     void detachedPlayerChanged();
+    void playersChanged();
 
 private:
     QString m_name;
@@ -53,6 +53,7 @@ private:
 
 typedef QSharedPointer<Team> TeamPtr;
 typedef QList<TeamPtr> TeamPtrList;
+typedef QVector<const Team *> QmlTeamPtrVector;
 
 
 

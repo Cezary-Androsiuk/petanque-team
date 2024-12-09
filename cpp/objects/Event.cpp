@@ -90,6 +90,26 @@ void Event::goToPrevStage()
     emit this->currentStageChanged();
 }
 
+void Event::createDetachedTeam()
+{
+
+}
+
+void Event::deleteDetachedTeam()
+{
+
+}
+
+void Event::addDetachedTeam()
+{
+
+}
+
+void Event::deleteTeam(int index)
+{
+
+}
+
 void Event::initialize()
 {
     this->createPhases();
@@ -120,9 +140,19 @@ StageEnum Event::getCurrentStage() const
     return m_currentStage;
 }
 
-PhasePtrVector Event::getPhases() const
+const PhasePtrVector &Event::getPhases() const
 {
     return m_phases;
+}
+
+const TeamPtr &Event::getDetachedTeam() const
+{
+    return m_detachedTeam;
+}
+
+const TeamPtrList &Event::getTeams() const
+{
+    return m_teams;
 }
 
 QmlPhasePtrVector Event::getPhasesQml() const
@@ -131,6 +161,20 @@ QmlPhasePtrVector Event::getPhasesQml() const
     retVec.reserve( m_phases.size() );
     for(const auto &phasePtr : m_phases)
         retVec.append(phasePtr.data());
+    return retVec;
+}
+
+const Team *Event::getDetachedTeamQml() const
+{
+    return m_detachedTeam.data();
+}
+
+QmlTeamPtrVector Event::getTeamsQml() const
+{
+    QmlTeamPtrVector retVec;
+    retVec.reserve( m_teams.size() );
+    for(const auto &teamPtr : m_teams)
+        retVec.append(teamPtr.data());
     return retVec;
 }
 

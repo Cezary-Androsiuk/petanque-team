@@ -13,7 +13,6 @@
 #include "cpp/enums/PhaseEnum.h"
 #include "cpp/enums/StageEnum.h"
 
-
 /// KEYS FOR JSON - SERIALIZE AND DESERIALIZE PURPOSES
 #define SERL_EVENT_NAME_KEY     "name"
 #define SERL_CURRENT_PHASE_KEY  "current phase"
@@ -28,11 +27,11 @@ class Event : public QObject, public Serializable
     Q_PROPERTY(PhaseEnum currentPhase READ getCurrentPhase NOTIFY currentPhaseChanged FINAL)
     Q_PROPERTY(StageEnum currentStage READ getCurrentStage NOTIFY currentStageChanged FINAL)
     Q_PROPERTY(QmlPhasePtrVector phases READ getPhasesQml NOTIFY phasesChanged FINAL)
+    Q_PROPERTY(QmlTeamPtrVector teams READ getTeamsQml NOTIFY teamsChanged FINAL)
 
 public:
     explicit Event(QObject *parent = nullptr);
     ~Event();
-
 
     QJsonObject serialize() const override;
     void deserialize(const QJsonObject &eventJson) override;
@@ -43,6 +42,12 @@ public slots:
     void goToNextStage();
     void goToPrevStage();
 
+    void createDetachedTeam();
+    void deleteDetachedTeam();
+    void addDetachedTeam();
+
+    void deleteTeam(int index);
+
 private:
     void initialize();
     void createPhases();
@@ -52,10 +57,15 @@ public:
     QString getName() const;
     PhaseEnum getCurrentPhase() const;
     StageEnum getCurrentStage() const;
-    PhasePtrVector getPhases() const;
+
+    const PhasePtrVector &getPhases() const;
+    const TeamPtr &getDetachedTeam() const;
+    const TeamPtrList &getTeams() const;
 
     /// QML LIST GETTERS
     QmlPhasePtrVector getPhasesQml() const;
+    const Team *getDetachedTeamQml() const;
+    QmlTeamPtrVector getTeamsQml() const;
 
     /// SETTERS
     void setName(const QString &name);
@@ -65,15 +75,20 @@ signals:
     void nameChanged();
     void currentPhaseChanged();
     void currentStageChanged();
+
     void phasesChanged();
+    void teamsChanged();
+    void detachedTeamChanged();
 
 private:
     QString m_name;
     PhaseEnum m_currentPhase;
     StageEnum m_currentStage;
+
     PhasePtrVector m_phases;
 
-
+    TeamPtr m_detachedTeam;
+    TeamPtrList m_teams;
 };
 
 #endif // EVENT_H
