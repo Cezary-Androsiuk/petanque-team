@@ -17,9 +17,9 @@ Item {
             "event/Configure.qml";
         }
         else
-        if(Backend.event.stage === 2) // Continue
+        if(Backend.event.stage === 2) // Play
         {
-            "event/Continue.qml";
+            "event/Play.qml";
         }
         else
         if(Backend.event.stage === 3) // Finish
