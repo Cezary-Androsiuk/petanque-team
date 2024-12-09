@@ -2,8 +2,8 @@
 
 Player::Player(QObject *parent)
     : QObject{parent}
-    , m_ageGroup{AgeGroup::Junior}
-    , m_gender{Gender::Male}
+    , m_ageGroup{AgeGroupEnum::Junior}
+    , m_gender{GenderEnum::Male}
     , m_isTeamLeader{false}
 {
     I(QAPF("Creating player: %p", this));
@@ -65,10 +65,10 @@ void Player::clear(bool emitting)
     m_license.clear();
     if(emitting) emit this->licenseChanged();
 
-    m_ageGroup = AgeGroup::Junior;
+    m_ageGroup = AgeGroupEnum::Junior;
     if(emitting) emit this->ageGroupChanged();
 
-    m_gender = Gender::Male;
+    m_gender = GenderEnum::Male;
     if(emitting) emit this->genderChanged();
 
     m_isTeamLeader = false;
@@ -113,12 +113,12 @@ QString Player::getLicense() const
     return m_license;
 }
 
-AgeGroup Player::getAgeGroup() const
+AgeGroupEnum Player::getAgeGroup() const
 {
     return m_ageGroup;
 }
 
-Gender Player::getGender() const
+GenderEnum Player::getGender() const
 {
     return m_gender;
 }
@@ -152,7 +152,7 @@ void Player::setLicense(const QString &license)
     emit licenseChanged();
 }
 
-void Player::setAgeGroup(AgeGroup ageGroup)
+void Player::setAgeGroup(AgeGroupEnum ageGroup)
 {
     if (m_ageGroup == ageGroup)
         return;
@@ -160,7 +160,7 @@ void Player::setAgeGroup(AgeGroup ageGroup)
     emit ageGroupChanged();
 }
 
-void Player::setGender(Gender gender)
+void Player::setGender(GenderEnum gender)
 {
     if (m_gender == gender)
         return;

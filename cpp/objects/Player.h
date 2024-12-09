@@ -6,8 +6,8 @@
 #include <QSharedPointer>
 
 #include "cpp/support/Log.h"
-#include "cpp/enums/Gender.h"
-#include "cpp/enums/AgeGroup.h"
+#include "cpp/enums/GenderEnum.h"
+#include "cpp/enums/AgeGroupEnum.h"
 #include "cpp/Serializable.h"
 
 /// KEYS FOR JSON - SERIALIZE AND DESERIALIZE PURPOSES
@@ -24,8 +24,8 @@ class Player : public QObject, public Serializable
     Q_PROPERTY(QString firstName READ getFirstName WRITE setFirstName NOTIFY firstNameChanged FINAL)
     Q_PROPERTY(QString lastName READ getLastName WRITE setLastName NOTIFY lastNameChanged FINAL)
     Q_PROPERTY(QString license READ getLicense WRITE setLicense NOTIFY licenseChanged FINAL)
-    Q_PROPERTY(AgeGroup ageGroup READ getAgeGroup WRITE setAgeGroup NOTIFY ageGroupChanged FINAL)
-    Q_PROPERTY(Gender gender READ getGender WRITE setGender NOTIFY genderChanged FINAL)
+    Q_PROPERTY(AgeGroupEnum ageGroup READ getAgeGroup WRITE setAgeGroup NOTIFY ageGroupChanged FINAL)
+    Q_PROPERTY(GenderEnum gender READ getGender WRITE setGender NOTIFY genderChanged FINAL)
     Q_PROPERTY(bool isTeamLeader READ getIsTeamLeader WRITE setIsTeamLeader NOTIFY isTeamLeaderChanged FINAL)
 
 public:
@@ -45,15 +45,15 @@ public:
     QString getFirstName() const;
     QString getLastName() const;
     QString getLicense() const;
-    AgeGroup getAgeGroup() const;
-    Gender getGender() const;
+    AgeGroupEnum getAgeGroup() const;
+    GenderEnum getGender() const;
     bool getIsTeamLeader() const;
 
     void setFirstName(const QString &firstName);
     void setLastName(const QString &lastName);
     void setLicense(const QString &license);
-    void setAgeGroup(AgeGroup ageGroup);
-    void setGender(Gender gender);
+    void setAgeGroup(AgeGroupEnum ageGroup);
+    void setGender(GenderEnum gender);
     void setIsTeamLeader(bool isTeamLeader);
 
 signals:
@@ -68,8 +68,8 @@ private:
     QString m_firstName;
     QString m_lastName;
     QString m_license;
-    AgeGroup m_ageGroup;
-    Gender m_gender;
+    AgeGroupEnum m_ageGroup;
+    GenderEnum m_gender;
     bool m_isTeamLeader;
 };
 

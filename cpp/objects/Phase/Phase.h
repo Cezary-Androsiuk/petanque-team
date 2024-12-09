@@ -12,16 +12,14 @@ class Phase : public QObject, public Serializable
 {
     Q_OBJECT
 public:
-    explicit Phase(int subPhasesCount, QObject *parent = nullptr);
+    explicit Phase(QObject *parent = nullptr);
     ~Phase();
 
-    QJsonObject serialize() const override;
-    void deserialize(const QJsonObject &data) override;
-
-    void clear();
+    virtual void clear() = 0;
 };
 
 typedef QSharedPointer<Phase> PhasePtr;
 typedef QVector<PhasePtr> PhasePtrVector;
+typedef QVector<const Phase *> QmlPhasePtrVector;
 
 #endif // PHASE_H

@@ -42,11 +42,11 @@ ApplicationWindow {
         target: Memory
         function onMemoryFileNotExist(){
             Backend.event.goToNextStage() // from Stage None to Configure
-            rootLoader.source = "Play.qml"
+            rootLoader.source = "Gameplay.qml"
         }
 
         function onMemoryLoaded(){
-            rootLoader.source = "Play.qml"
+            rootLoader.source = "Gameplay.qml"
         }
 
         function onMemoryLoadError(message){

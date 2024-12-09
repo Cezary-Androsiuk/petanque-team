@@ -17,13 +17,12 @@ QJsonObject Event::serialize() const
 {
     QJsonObject eventJson;
     eventJson[ SERL_EVENT_NAME_KEY ] = m_name;
-    eventJson[ SERL_CURRENT_PHASE_KEY ] = m_currentPhase;
-    QJsonArray phasesJson;
-    for(const auto &phase : m_phases)
-    {
-        phasesJson.append( phase->serialize() );
-    }
-    eventJson[ SERL_PHASES_KEY ] = phasesJson;
+    int currentPhaseInt = static_cast<int>(m_currentPhase);
+    eventJson[ SERL_CURRENT_PHASE_KEY ] = currentPhaseInt;
+    int currentStageInt = static_cast<int>(m_currentStage);
+    eventJson[ SERL_CURRENT_STAGE_KEY ] = currentStageInt;
+    eventJson[ SERL_PHASE_FIRST_KEY ] = m_phases[PhaseEnum::First]->serialize();
+    eventJson[ SERL_PHASE_SECOND_KEY ] = m_phases[PhaseEnum::Second]->serialize();
 
     return eventJson;
 }
@@ -31,29 +30,26 @@ QJsonObject Event::serialize() const
 void Event::deserialize(const QJsonObject &eventJson)
 {
     this->clear(false);
+    D("cleared to deserialize");
 
     m_name = eventJson[ SERL_EVENT_NAME_KEY ].toString();
     emit this->nameChanged();
 
-    m_currentPhase = eventJson[ SERL_CURRENT_PHASE_KEY ].toInt();
+    int currentPhaseInt = eventJson[ SERL_CURRENT_PHASE_KEY ].toInt();
+    m_currentPhase = static_cast<PhaseEnum>(currentPhaseInt);
     emit this->currentPhaseChanged();
 
-    QJsonArray phasesJson = eventJson[ SERL_PHASES_KEY ].toArray();
-    if(phasesJson.size() >= m_phases.size())
-    {
-        for(int i=0; i<m_phases.size(); i++)
-        {
-            PhasePtr phasePtr = PhasePtr::create(0);
-            phasePtr->deserialize( phasesJson[i].toObject() );
-            m_phases[i] = phasePtr ;
-        }
-        emit this->phasesChanged();
-    }
-    else
-    {
-        E("phasesJson has less phases than expected - skipping step")
-    }
+    int currentStageInt = eventJson[ SERL_CURRENT_STAGE_KEY ].toInt();
+    m_currentStage = static_cast<StageEnum>(currentStageInt);
+    emit this->currentStageChanged();
 
+    QJsonObject firstPhaseObject = eventJson[ SERL_PHASE_FIRST_KEY ].toObject();
+    QJsonObject secondPhaseObject = eventJson[ SERL_PHASE_SECOND_KEY ].toObject();
+    m_phases[PhaseEnum::First]->deserialize( firstPhaseObject );
+    m_phases[PhaseEnum::Second]->deserialize( secondPhaseObject );
+    emit this->phasesChanged();
+
+    D("deserialized event")
 }
 
 void Event::clear(bool emitting)
@@ -61,28 +57,50 @@ void Event::clear(bool emitting)
     m_name.clear();
     if(emitting) emit this->nameChanged();
 
-    m_currentPhase = 0;
+    m_currentPhase = PhaseEnum::First;
     if(emitting) emit this->currentPhaseChanged();
 
-    m_phases[0].clear();
-    m_phases[1].clear();
+    m_currentStage = StageEnum::None;
+    if(emitting) emit this->currentStageChanged();
+
+    m_phases[PhaseEnum::First]->clear();
+    m_phases[PhaseEnum::Second]->clear();
     if(emitting) emit this->phasesChanged();
+}
+
+void Event::goToNextStage()
+{
+    if(m_currentStage >= lastStageEnum)
+    {
+        W("trying to exceed the highest stage!");
+        return;
+    }
+    m_currentStage = static_cast<StageEnum>(m_currentStage +1);
+    emit this->currentStageChanged();
+}
+
+void Event::goToPrevStage()
+{
+    if(m_currentStage <= firstStageEnum)
+    {
+        W("trying to exceed the lowest stage!");
+        return;
+    }
+    m_currentStage =  static_cast<StageEnum>(m_currentStage -1);
+    emit this->currentStageChanged();
 }
 
 void Event::initialize()
 {
     this->createPhases();
-    m_currentPhase = 0;
+    m_currentPhase = PhaseEnum::First;
+    m_currentStage = StageEnum::None;
 }
 
 void Event::createPhases()
 {
-    int subPhasesCount;
-    subPhasesCount = 1;
-    m_phases[0] = PhasePtr::create(subPhasesCount) ;
-
-    subPhasesCount = 2;
-    m_phases[1] = PhasePtr::create(subPhasesCount);
+    m_phases[0] = FirstPhasePtr::create();
+    m_phases[1] = SecondPhasePtr::create();
 
     emit this->phasesChanged();
 }
@@ -92,19 +110,29 @@ QString Event::getName() const
     return m_name;
 }
 
-PhasePtr Event::getCurrentPhasePtr() const
+PhaseEnum Event::getCurrentPhase() const
 {
-    if(m_phases.size() > m_currentPhase)
-        return m_phases[m_currentPhase];
-
-    W("cannot return phase that is out of range: " + QString::number(m_currentPhase));
-    return nullptr;
+    return m_currentPhase;
 }
 
-// PhasePtrVector Event::getPhases() const
-// {
-//     return m_phases;
-// }
+StageEnum Event::getCurrentStage() const
+{
+    return m_currentStage;
+}
+
+PhasePtrVector Event::getPhases() const
+{
+    return m_phases;
+}
+
+QmlPhasePtrVector Event::getPhasesQml() const
+{
+    QmlPhasePtrVector retVec;
+    retVec.reserve( m_phases.size() );
+    for(const auto &phasePtr : m_phases)
+        retVec.append(phasePtr.data());
+    return retVec;
+}
 
 void Event::setName(const QString &name)
 {

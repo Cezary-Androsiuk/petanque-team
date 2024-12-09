@@ -31,12 +31,16 @@ qt_add_qml_module(appPetanqueTeam
     QML_FILES qml/Gameplay/Continue.qml
     SOURCES cpp/Serializable.h cpp/Serializable.cpp
     SOURCES cpp/storages/Memory.h cpp/storages/Memory.cpp
-    SOURCES cpp/objects/Phase.h cpp/objects/Phase.cpp
+    SOURCES cpp/objects/Phase/Phase.h cpp/objects/Phase/Phase.cpp
     SOURCES cpp/objects/SubPhase.h cpp/objects/SubPhase.cpp
     SOURCES cpp/objects/Team.h cpp/objects/Team.cpp
     SOURCES cpp/objects/Player.h cpp/objects/Player.cpp
-    SOURCES cpp/enums/Gender.h cpp/enums/Gender.cpp
-    SOURCES cpp/enums/AgeGroup.h cpp/enums/AgeGroup.cpp
+    SOURCES cpp/enums/GenderEnum.h cpp/enums/GenderEnum.cpp
+    SOURCES cpp/enums/AgeGroupEnum.h cpp/enums/AgeGroupEnum.cpp
+    SOURCES cpp/objects/Phase/FirstPhase.h cpp/objects/Phase/FirstPhase.cpp
+    SOURCES cpp/objects/Phase/SecondPhase.h cpp/objects/Phase/SecondPhase.cpp
+    SOURCES cpp/enums/StageEnum.h cpp/enums/StageEnum.cpp
+    SOURCES cpp/enums/PhaseEnum.h cpp/enums/PhaseEnum.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
