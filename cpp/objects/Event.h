@@ -33,24 +33,30 @@ public:
     explicit Event(QObject *parent = nullptr);
     ~Event();
 
+private:
+    /// INIT STUFF
+    void initialize();
+    void createPhases();
+
+public:
+    /// SERIALIZABLE STUFF
     QJsonObject serialize() const override;
     void deserialize(const QJsonObject &eventJson) override;
 
+    /// SUPPORT STUFF
     void clear(bool emitting = true);
 
 public slots:
+    /// STAGE STUFF
     void goToNextStage();
     void goToPrevStage();
 
+    /// TEAM STUFF
     void createDetachedTeam();
     void deleteDetachedTeam();
     void addDetachedTeam();
 
     void deleteTeam(int index);
-
-private:
-    void initialize();
-    void createPhases();
 
 public:
     /// GETTERS
@@ -59,11 +65,13 @@ public:
     StageEnum getCurrentStage() const;
 
     const PhasePtrVector &getPhases() const;
+
     const TeamPtr &getDetachedTeam() const;
     const TeamPtrList &getTeams() const;
 
     /// QML LIST GETTERS
     QmlPhasePtrVector getPhasesQml() const;
+
     const Team *getDetachedTeamQml() const;
     QmlTeamPtrVector getTeamsQml() const;
 
@@ -77,6 +85,7 @@ signals:
     void currentStageChanged();
 
     void phasesChanged();
+
     void teamsChanged();
     void detachedTeamChanged();
 

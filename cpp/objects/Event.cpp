@@ -13,6 +13,21 @@ Event::~Event()
     I(QAPF("Destroying Event: %p", this));
 }
 
+void Event::initialize()
+{
+    this->createPhases();
+    m_currentPhase = PhaseEnum::First;
+    m_currentStage = StageEnum::None;
+}
+
+void Event::createPhases()
+{
+    m_phases[0] = PhasePtr::create(1);
+    m_phases[1] = PhasePtr::create(2);
+
+    emit this->phasesChanged();
+}
+
 QJsonObject Event::serialize() const
 {
     QJsonObject eventJson;
@@ -108,21 +123,6 @@ void Event::addDetachedTeam()
 void Event::deleteTeam(int index)
 {
 
-}
-
-void Event::initialize()
-{
-    this->createPhases();
-    m_currentPhase = PhaseEnum::First;
-    m_currentStage = StageEnum::None;
-}
-
-void Event::createPhases()
-{
-    m_phases[0] = PhasePtr::create(1);
-    m_phases[1] = PhasePtr::create(2);
-
-    emit this->phasesChanged();
 }
 
 QString Event::getName() const
