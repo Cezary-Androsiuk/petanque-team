@@ -19,19 +19,11 @@ qt_add_qml_module(appPetanqueTeam
     SOURCES cpp/Login.h cpp/Login.cpp
     SOURCES cpp/DoubleStartProtection.h cpp/DoubleStartProtection.cpp
     SOURCES cpp/Backend.h cpp/Backend.cpp
+    SOURCES cpp/Serializable.h cpp/Serializable.cpp
+    SOURCES cpp/storages/Memory.h cpp/storages/Memory.cpp
     SOURCES cpp/support/Log.h cpp/support/Log.cpp
     SOURCES cpp/support/LogQML.h cpp/support/LogQML.cpp
     SOURCES cpp/objects/Event.h cpp/objects/Event.cpp
-
-    QML_FILES qml/Main.qml
-    QML_FILES qml/Gameplay.qml
-    QML_FILES qml/AppAlreadyRunning.qml
-    QML_FILES qml/LoginForm.qml
-    QML_FILES qml/Gameplay/Configure.qml
-    QML_FILES qml/Gameplay/Play.qml
-
-    SOURCES cpp/Serializable.h cpp/Serializable.cpp
-    SOURCES cpp/storages/Memory.h cpp/storages/Memory.cpp
     SOURCES cpp/objects/Phase.h cpp/objects/Phase.cpp
     SOURCES cpp/objects/SubPhase.h cpp/objects/SubPhase.cpp
     SOURCES cpp/objects/Team.h cpp/objects/Team.cpp
@@ -40,6 +32,20 @@ qt_add_qml_module(appPetanqueTeam
     SOURCES cpp/enums/AgeGroupEnum.h cpp/enums/AgeGroupEnum.cpp
     SOURCES cpp/enums/StageEnum.h cpp/enums/StageEnum.cpp
     SOURCES cpp/enums/PhaseEnum.h cpp/enums/PhaseEnum.cpp
+
+    QML_FILES qml/Main.qml
+    QML_FILES qml/Gameplay.qml
+    QML_FILES qml/AppAlreadyRunning.qml
+    QML_FILES qml/LoginForm.qml
+    QML_FILES qml/Gameplay/Configure.qml
+    QML_FILES qml/Gameplay/Configure/Event.qml
+    QML_FILES qml/Gameplay/Configure/Event/InfoField.qml
+    QML_FILES qml/Gameplay/Configure/Event/TeamsList.qml
+    QML_FILES qml/Gameplay/Configure/Player.qml
+    QML_FILES qml/Gameplay/Configure/PlayerDelegate.qml
+    QML_FILES qml/Gameplay/Configure/Team.qml
+    QML_FILES qml/Gameplay/Configure/TeamDelegate.qml
+    QML_FILES qml/Gameplay/Play.qml
     QML_FILES qml/Gameplay/Play/Phase.qml
 )
 
