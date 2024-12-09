@@ -99,8 +99,8 @@ void Event::initialize()
 
 void Event::createPhases()
 {
-    m_phases[0] = FirstPhasePtr::create();
-    m_phases[1] = SecondPhasePtr::create();
+    m_phases[0] = PhasePtr::create(1);
+    m_phases[1] = PhasePtr::create(2);
 
     emit this->phasesChanged();
 }

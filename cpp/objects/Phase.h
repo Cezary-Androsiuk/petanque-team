@@ -7,15 +7,22 @@
 
 #include "cpp/support/Log.h"
 #include "cpp/Serializable.h"
+#include "cpp/objects/SubPhase.h"
 
 class Phase : public QObject, public Serializable
 {
     Q_OBJECT
 public:
-    explicit Phase(QObject *parent = nullptr);
+    explicit Phase(int subPhasesCount, QObject *parent = nullptr);
     ~Phase();
 
-    virtual void clear() = 0;
+    QJsonObject serialize() const override;
+    void deserialize(const QJsonObject &phaseJson) override;
+
+    void clear();
+
+private:
+    SubPhasePtrVector m_subPhases;
 };
 
 typedef QSharedPointer<Phase> PhasePtr;

@@ -6,25 +6,25 @@ Item {
     anchors.fill: parent
 
     property string loaderSource: {
-        if(Backend.event.stage === 0) // None
+        if(Backend.event.currentStage === 0) // None
         {
             log.e("none stage was reached");
             "";
         }
         else
-        if(Backend.event.stage === 1) // Configure
+        if(Backend.event.currentStage === 1) // Configure
         {
-            "event/Configure.qml";
+            "Gameplay/Configure.qml";
         }
         else
-        if(Backend.event.stage === 2) // Play
+        if(Backend.event.currentStage === 2) // Play
         {
-            "event/Play.qml";
+            "Gameplay/Play.qml";
         }
         else
-        if(Backend.event.stage === 3) // Finish
+        if(Backend.event.currentStage === 3) // Finish
         {
-            "event/Finish.qml";
+            "Gameplay/Finish.qml";
         }
     }
 

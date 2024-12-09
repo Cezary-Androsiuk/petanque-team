@@ -8,20 +8,18 @@
 #include "cpp/support/Log.h"
 #include "cpp/Serializable.h"
 #include "cpp/objects/Team.h"
+#include "cpp/objects/Phase.h"
 
 #include "cpp/enums/PhaseEnum.h"
 #include "cpp/enums/StageEnum.h"
 
-#include "cpp/objects/Phase/Phase.h"
-#include "cpp/objects/Phase/FirstPhase.h"
-#include "cpp/objects/Phase/SecondPhase.h"
 
 /// KEYS FOR JSON - SERIALIZE AND DESERIALIZE PURPOSES
 #define SERL_EVENT_NAME_KEY     "name"
 #define SERL_CURRENT_PHASE_KEY  "current phase"
 #define SERL_CURRENT_STAGE_KEY  "current stage"
-#define SERL_PHASE_FIRST_KEY         "phase first"
-#define SERL_PHASE_SECOND_KEY         "phase second"
+#define SERL_PHASE_FIRST_KEY    "phase first"
+#define SERL_PHASE_SECOND_KEY   "phase second"
 
 class Event : public QObject, public Serializable
 {
