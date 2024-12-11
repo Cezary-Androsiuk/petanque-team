@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include <QObject>
+#include <QVector>
 #include <QList>
 #include <QSharedPointer>
 
@@ -75,5 +76,6 @@ private:
 
 typedef QSharedPointer<Player> PlayerPtr;
 typedef QList<PlayerPtr> PlayerPtrList;
+typedef QVector<const Player *> QmlPlayerPtrVector;
 
 #endif // PLAYER_H

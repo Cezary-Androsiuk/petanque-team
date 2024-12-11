@@ -2,6 +2,7 @@
 #define TEAM_H
 
 #include <QObject>
+#include <QVector>
 #include <QList>
 #include <QSharedPointer>
 
@@ -10,12 +11,16 @@
 #include "cpp/Serializable.h"
 
 /// KEYS FOR JSON - SERIALIZE AND DESERIALIZE PURPOSES
-#define SERL_TEAM_NAME_KEY       "name"
+#define SERL_TEAM_NAME_KEY  "name"
 #define SERL_PLAYERS_KEY    "players"
 
 class Team : public QObject, public Serializable
 {
     Q_OBJECT
+    Q_PROPERTY(QString name READ getName WRITE setName NOTIFY nameChanged FINAL)
+    Q_PROPERTY(const Player *detachedPlayer READ getDetachedPlayerQml NOTIFY detachedPlayerChanged FINAL)
+    Q_PROPERTY(QmlPlayerPtrVector players READ getPlayersQml NOTIFY playersChanged FINAL)
+
 public:
     explicit Team(QObject *parent = nullptr);
     ~Team();
@@ -32,12 +37,21 @@ public slots:
 
     void deletePlayer(int index);
 
+    /// EXAMPLE
+    void createExamplePlayers();
+
 public:
-    QString getName() const;
+    /// GETTERS
+    const QString &getName() const;
     const PlayerPtr &getDetachedPlayer() const;
     const PlayerPtrList &getPlayers() const;
 
-    void setName(QString name);
+    /// SETTERS
+    void setName(const QString &name);
+
+    /// QML LIST GETTERS
+    const Player *getDetachedPlayerQml() const;
+    QmlPlayerPtrVector getPlayersQml() const;
 
 signals:
     void nameChanged();

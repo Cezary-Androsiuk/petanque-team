@@ -61,6 +61,8 @@ public slots:
 
     /// VERIFICATION
     void validateTeams();
+
+    /// EXAMPLE
     void createExampleTeams();
 
 public:

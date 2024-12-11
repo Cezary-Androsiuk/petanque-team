@@ -34,7 +34,7 @@ Item {
 
     function saveAddedTeam(){
         parentStackView.pop();
-        event.addTeamUsingDetachedTeam();
+        event.addDetachedTeam();
     }
 
     Rectangle{ // required because of stack view animation
@@ -138,7 +138,7 @@ Item {
             }
 
             TextField{
-                id: teamNameTextField
+                id: nameTextField
                 anchors{
                     top: parent.top
                     topMargin: 10
@@ -147,11 +147,11 @@ Item {
                 width: 230
 
                 placeholderText: qsTr("Team Name")
-                text: (!configureTeam.team)?text: configureTeam.team.teamName
+                text: (!configureTeam.team)?text: configureTeam.team.name
                 onTextEdited: {
                     if(configureTeam.team)
                     {
-                        configureTeam.team.teamName = text
+                        configureTeam.team.name = text
                     }
                 }
             }

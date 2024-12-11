@@ -10,9 +10,7 @@ Item {
     readonly property int delegateHeight: 50
 
     function addNewTeam(){
-        console.log("dt1: ", Backend.event.detachedTeam)
         Backend.event.createDetachedTeam()
-        console.log("dt2: ", Backend.event.detachedTeam)
         const args = {
             parentStackView: teamsList.parentStackView,
             team: Backend.event.detachedTeam
@@ -43,11 +41,7 @@ Item {
                 width: parent.width
 
                 defaultHeight: teamsList.delegateHeight
-                team: {
-                    console.log("team: ", Backend.event.teams[index]);
-                    console.log("teams: ", Backend.event.teams);
-                    Backend.event.teams[index]
-                }
+                team: Backend.event.teams[index]
 
                 parentStackView: teamsList.parentStackView
             }

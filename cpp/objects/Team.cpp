@@ -98,11 +98,24 @@ void Team::addDetachedPlayer()
 
 void Team::deletePlayer(int index)
 {
+    if(m_players.size() <= index)
+    {
+        QString sSize = QString::number(m_players.size());
+        QString sIndex = QString::number(index);
+        E("trying to delete not existing player("+sIndex+") from list("+sSize+")");
+        return;
+    }
 
+    m_players.remove(index);
     emit this->playersChanged();
 }
 
-QString Team::getName() const
+void Team::createExamplePlayers()
+{
+    E("NOT FINISHED");
+}
+
+const QString &Team::getName() const
 {
     return m_name;
 }
@@ -117,10 +130,24 @@ const PlayerPtrList &Team::getPlayers() const
     return m_players;
 }
 
-void Team::setName(QString name)
+void Team::setName(const QString &name)
 {
     if(m_name == name)
         return;
     m_name = name;
     emit this->nameChanged();
+}
+
+const Player *Team::getDetachedPlayerQml() const
+{
+    return m_detachedPlayer.data();
+}
+
+QmlPlayerPtrVector Team::getPlayersQml() const
+{
+    QmlPlayerPtrVector retVec;
+    retVec.reserve( m_players.size() );
+    for(const auto &playerPtr : m_players)
+        retVec.append(playerPtr.data());
+    return retVec;
 }

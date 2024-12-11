@@ -107,22 +107,56 @@ void Event::goToPrevStage()
 
 void Event::createDetachedTeam()
 {
+    // I("Creating detached Team")
+    if(!m_detachedTeam.isNull())
+    {
+        W("Creating new detached Team, while old wasn't deleted")
+    }
 
+    m_detachedTeam = TeamPtr::create();
+    emit this->detachedTeamChanged();
 }
 
 void Event::deleteDetachedTeam()
 {
+    // I("Deleting detached Team")
+    if(m_detachedTeam.isNull())
+    {
+        E("trying to delete aleady deleted detached Team")
+        return;
+    }
 
+    m_detachedTeam.clear();
 }
 
 void Event::addDetachedTeam()
 {
+    // I("Adding detached Team to Event")
+    if(m_detachedTeam.isNull())
+    {
+        E("cannot add not existing detached team to list")
+        return;
+    }
 
+    m_teams.append(m_detachedTeam);
+    emit this->teamsChanged();
+
+    m_detachedTeam.clear();
+    emit this->detachedTeamChanged();
 }
 
 void Event::deleteTeam(int index)
 {
+    if(m_teams.size() <= index)
+    {
+        QString sSize = QString::number(m_teams.size());
+        QString sIndex = QString::number(index);
+        E("trying to delete not existing team("+sIndex+") from list("+sSize+")");
+        return;
+    }
 
+    m_teams.remove(index);
+    emit this->teamsChanged();
 }
 
 void Event::validateTeams()
@@ -132,7 +166,8 @@ void Event::validateTeams()
 
 void Event::createExampleTeams()
 {
-
+    E("NOT FINISHED");
+    /// call Team::createExamplePlayers()
 }
 
 const QString &Event::getName() const

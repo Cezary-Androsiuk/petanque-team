@@ -24,7 +24,7 @@ Item {
 
     function saveAddedPlayer(){
         parentStackView.pop();
-        team.addPlayerUsingDetachedPlayer();
+        team.addDetachedPlayer();
     }
 
     Rectangle{ // required because of stack view animation
