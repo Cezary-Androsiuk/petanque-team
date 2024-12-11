@@ -125,7 +125,17 @@ void Event::deleteTeam(int index)
 
 }
 
-QString Event::getName() const
+void Event::validateTeams()
+{
+    emit this->teamsDataValid();
+}
+
+void Event::createExampleTeams()
+{
+
+}
+
+const QString &Event::getName() const
 {
     return m_name;
 }
