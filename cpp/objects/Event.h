@@ -65,7 +65,7 @@ public slots:
     void deleteTeam(int index);
 
     /// VERIFICATION
-    void validateTeams();
+    void validateEvent();
 
     /// EXAMPLE
     void createExampleTeams();
@@ -102,8 +102,8 @@ signals:
     void detachedTeamChanged();
 
     /// VERIFICATION SIGNALS
-    void teamsDataValid();
-    void teamsValidationFailed(QString message);
+    void eventValid();
+    void eventValidationFailed(QString message);
 
     /// TEAMS SIGNALS
     void detachedTeamIsValid();
@@ -111,6 +111,7 @@ signals:
 
 private:
     QString m_name;
+
     PhaseEnum m_currentPhase;
     StageEnum m_currentStage;
 

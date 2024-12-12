@@ -199,9 +199,10 @@ void Event::deleteTeam(int index)
     emit this->teamsChanged();
 }
 
-void Event::validateTeams()
+void Event::validateEvent()
 {
-    emit this->teamsDataValid();
+    E("NOT FINISHED");
+    emit this->eventValidationFailed();
 }
 
 void Event::createExampleTeams()

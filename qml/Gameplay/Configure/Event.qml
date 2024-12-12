@@ -14,15 +14,15 @@ Item {
 
     Connections{
         target: Backend.event
-        function onTeamsDataValid(){
-            log.i("data are valid")
+        function eventValid(){
+            log.i("event is valid")
 
             // confirm popup
             onConfirmed()
         }
 
-        function onTeamsValidationFailed(description){
-            log.i("data are NOT valid")
+        function eventValidationFailed(description){
+            log.i("event is NOT valid")
         }
 
     }
