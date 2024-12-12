@@ -79,7 +79,7 @@ public:
     /// QML LIST GETTERS
     QmlPhasePtrVector getPhasesQml() const;
 
-    const Team *getDetachedTeamQml() const;
+    Team *getDetachedTeamQml() const;
     QmlTeamPtrVector getTeamsQml() const;
 
     /// SETTERS

@@ -138,7 +138,7 @@ void Team::setName(const QString &name)
     emit this->nameChanged();
 }
 
-const Player *Team::getDetachedPlayerQml() const
+Player *Team::getDetachedPlayerQml() const
 {
     return m_detachedPlayer.data();
 }

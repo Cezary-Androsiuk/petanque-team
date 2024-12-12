@@ -98,17 +98,17 @@ void Player::copyFromOtherPlayer(const Player &sourcePlayer)
     emit this->isTeamLeaderChanged();
 }
 
-QString Player::getFirstName() const
+const QString &Player::getFirstName() const
 {
     return m_firstName;
 }
 
-QString Player::getLastName() const
+const QString &Player::getLastName() const
 {
     return m_lastName;
 }
 
-QString Player::getLicense() const
+const QString &Player::getLicense() const
 {
     return m_license;
 }

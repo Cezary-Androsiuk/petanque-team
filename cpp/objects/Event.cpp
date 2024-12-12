@@ -209,7 +209,7 @@ QmlPhasePtrVector Event::getPhasesQml() const
     return retVec;
 }
 
-const Team *Event::getDetachedTeamQml() const
+Team *Event::getDetachedTeamQml() const
 {
     return m_detachedTeam.data();
 }

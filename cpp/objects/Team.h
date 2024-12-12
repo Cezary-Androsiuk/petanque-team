@@ -18,7 +18,7 @@ class Team : public QObject, public Serializable
 {
     Q_OBJECT
     Q_PROPERTY(QString name READ getName WRITE setName NOTIFY nameChanged FINAL)
-    Q_PROPERTY(const Player *detachedPlayer READ getDetachedPlayerQml NOTIFY detachedPlayerChanged FINAL)
+    Q_PROPERTY(Player *detachedPlayer READ getDetachedPlayerQml NOTIFY detachedPlayerChanged FINAL)
     Q_PROPERTY(QmlPlayerPtrVector players READ getPlayersQml NOTIFY playersChanged FINAL)
 
 public:
@@ -50,7 +50,7 @@ public:
     void setName(const QString &name);
 
     /// QML LIST GETTERS
-    const Player *getDetachedPlayerQml() const;
+    Player *getDetachedPlayerQml() const;
     QmlPlayerPtrVector getPlayersQml() const;
 
 signals:
@@ -67,7 +67,7 @@ private:
 
 typedef QSharedPointer<Team> TeamPtr;
 typedef QList<TeamPtr> TeamPtrList;
-typedef QVector<const Team *> QmlTeamPtrVector;
+typedef QVector<Team *> QmlTeamPtrVector;
 
 
 

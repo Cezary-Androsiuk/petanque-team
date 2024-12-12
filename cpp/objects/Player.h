@@ -22,9 +22,9 @@
 class Player : public QObject, public Serializable
 {
     Q_OBJECT
-    Q_PROPERTY(QString firstName READ getFirstName WRITE setFirstName NOTIFY firstNameChanged FINAL)
-    Q_PROPERTY(QString lastName READ getLastName WRITE setLastName NOTIFY lastNameChanged FINAL)
-    Q_PROPERTY(QString license READ getLicense WRITE setLicense NOTIFY licenseChanged FINAL)
+    Q_PROPERTY(const QString &firstName READ getFirstName WRITE setFirstName NOTIFY firstNameChanged FINAL)
+    Q_PROPERTY(const QString &lastName READ getLastName WRITE setLastName NOTIFY lastNameChanged FINAL)
+    Q_PROPERTY(const QString &license READ getLicense WRITE setLicense NOTIFY licenseChanged FINAL)
     Q_PROPERTY(AgeGroupEnum ageGroup READ getAgeGroup WRITE setAgeGroup NOTIFY ageGroupChanged FINAL)
     Q_PROPERTY(GenderEnum gender READ getGender WRITE setGender NOTIFY genderChanged FINAL)
     Q_PROPERTY(bool isTeamLeader READ getIsTeamLeader WRITE setIsTeamLeader NOTIFY isTeamLeaderChanged FINAL)
@@ -43,9 +43,9 @@ public:
 private:
 
 public:
-    QString getFirstName() const;
-    QString getLastName() const;
-    QString getLicense() const;
+    const QString &getFirstName() const;
+    const QString &getLastName() const;
+    const QString &getLicense() const;
     AgeGroupEnum getAgeGroup() const;
     GenderEnum getGender() const;
     bool getIsTeamLeader() const;
@@ -76,6 +76,6 @@ private:
 
 typedef QSharedPointer<Player> PlayerPtr;
 typedef QList<PlayerPtr> PlayerPtrList;
-typedef QVector<const Player *> QmlPlayerPtrVector;
+typedef QVector<Player *> QmlPlayerPtrVector;
 
 #endif // PLAYER_H
