@@ -17,40 +17,40 @@ Player::~Player()
 QJsonObject Player::serialize() const
 {
     /// save to json
-    QJsonObject playerJson;
-    playerJson[ SERL_FIRST_NAME_KEY ] = m_firstName;
-    playerJson[ SERL_LAST_NAME_KEY ] = m_lastName;
-    playerJson[ SERL_LICENSE_KEY ] = m_license;
-    playerJson[ SERL_AGE_GROUP_KEY ] = EnumConvert::AgeGroupToQString(m_ageGroup);
-    playerJson[ SERL_GENDER_KEY ] = EnumConvert::GenderToQString(m_gender);
-    playerJson[ SERL_IS_TEAM_LEADER_KEY ] = m_isTeamLeader;
+    QJsonObject jPlayer;
+    jPlayer[ SERL_FIRST_NAME_KEY ] = m_firstName;
+    jPlayer[ SERL_LAST_NAME_KEY ] = m_lastName;
+    jPlayer[ SERL_LICENSE_KEY ] = m_license;
+    jPlayer[ SERL_AGE_GROUP_KEY ] = EnumConvert::AgeGroupToQString(m_ageGroup);
+    jPlayer[ SERL_GENDER_KEY ] = EnumConvert::GenderToQString(m_gender);
+    jPlayer[ SERL_IS_TEAM_LEADER_KEY ] = m_isTeamLeader;
 
-    return playerJson;
+    return jPlayer;
 }
 
-void Player::deserialize(const QJsonObject &playerJson)
+void Player::deserialize(const QJsonObject &jPlayer)
 {
     this->clear(false);
 
     /// read from json
-    m_firstName = playerJson[ SERL_FIRST_NAME_KEY ].toString();
+    m_firstName = jPlayer[ SERL_FIRST_NAME_KEY ].toString();
     emit this->firstNameChanged();
 
-    m_lastName = playerJson[ SERL_LAST_NAME_KEY ].toString();
+    m_lastName = jPlayer[ SERL_LAST_NAME_KEY ].toString();
     emit this->lastNameChanged();
 
-    m_license = playerJson[ SERL_LICENSE_KEY ].toString();
+    m_license = jPlayer[ SERL_LICENSE_KEY ].toString();
     emit this->licenseChanged();
 
-    QString ageGroupStr = playerJson[ SERL_AGE_GROUP_KEY ].toString();
+    QString ageGroupStr = jPlayer[ SERL_AGE_GROUP_KEY ].toString();
     m_ageGroup = EnumConvert::QStringToAgeGroup( ageGroupStr );
     emit this->ageGroupChanged();
 
-    QString genderStr = playerJson[ SERL_GENDER_KEY ].toString();
+    QString genderStr = jPlayer[ SERL_GENDER_KEY ].toString();
     m_gender = EnumConvert::QStringToGender( genderStr );
     emit this->genderChanged();
 
-    m_isTeamLeader = playerJson[ SERL_IS_TEAM_LEADER_KEY ].toBool();
+    m_isTeamLeader = jPlayer[ SERL_IS_TEAM_LEADER_KEY ].toBool();
     emit this->isTeamLeaderChanged();
 }
 

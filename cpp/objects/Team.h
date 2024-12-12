@@ -27,7 +27,7 @@ public:
     ~Team();
 
     QJsonObject serialize() const override;
-    void deserialize(const QJsonObject &teamJson) override;
+    void deserialize(const QJsonObject &jTeam) override;
 
     void clear(bool emitting = true);
 

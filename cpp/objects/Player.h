@@ -34,7 +34,7 @@ public:
     ~Player();
 
     QJsonObject serialize() const override;
-    void deserialize(const QJsonObject &playerJson) override;
+    void deserialize(const QJsonObject &jPlayer) override;
 
     void clear(bool emitting = true);
 

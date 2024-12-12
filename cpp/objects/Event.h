@@ -20,6 +20,7 @@
 #define SERL_CURRENT_STAGE_KEY  "current stage"
 #define SERL_PHASE_FIRST_KEY    "phase first"
 #define SERL_PHASE_SECOND_KEY   "phase second"
+#define SERL_TEAMS_KEY          "teams"
 
 class Event : public QObject, public Serializable
 {
@@ -43,7 +44,7 @@ private:
 public:
     /// SERIALIZABLE STUFF
     QJsonObject serialize() const override;
-    void deserialize(const QJsonObject &eventJson) override;
+    void deserialize(const QJsonObject &jEvent) override;
 
     /// SUPPORT STUFF
     void clear(bool emitting = true);

@@ -13,34 +13,34 @@ Team::~Team()
 
 QJsonObject Team::serialize() const
 {
-    QJsonObject teamJson;
-    teamJson[ SERL_TEAM_NAME_KEY ] = m_name;
+    QJsonObject jTeam;
+    jTeam[ SERL_TEAM_NAME_KEY ] = m_name;
 
-    QJsonArray playersJson;
-    for(const auto &player : m_players)
+    QJsonArray jPlayers;
+    for(const auto &playerPtr : m_players)
     {
-        playersJson.append( player->serialize() );
+        jPlayers.append( playerPtr->serialize() );
     }
-    teamJson[ SERL_PLAYERS_KEY ] = playersJson;
+    jTeam[ SERL_PLAYERS_KEY ] = jPlayers;
 
-    return teamJson;
+    return jTeam;
 }
 
-void Team::deserialize(const QJsonObject &teamJson)
+void Team::deserialize(const QJsonObject &jTeam)
 {
     this->clear(false);
 
-    m_name = teamJson[ SERL_TEAM_NAME_KEY ].toString();
+    m_name = jTeam[ SERL_TEAM_NAME_KEY ].toString();
     emit this->nameChanged();
 
     m_detachedPlayer.clear();
     emit this->detachedPlayerChanged();
 
-    QJsonArray playersJson = teamJson[ SERL_PLAYERS_KEY ].toArray();
-    for(const auto &playerJson : playersJson)
+    QJsonArray jPlayers = jTeam[ SERL_PLAYERS_KEY ].toArray();
+    for(const auto &jPlayer : jPlayers)
     {
         PlayerPtr playerPtr = PlayerPtr::create();
-        playerPtr->deserialize( playerJson.toObject() );
+        playerPtr->deserialize( jPlayer.toObject() );
         m_players.append( playerPtr );
     }
     emit this->playersChanged();

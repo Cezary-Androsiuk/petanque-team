@@ -31,39 +31,57 @@ void Event::createPhases()
 
 QJsonObject Event::serialize() const
 {
-    QJsonObject eventJson;
-    eventJson[ SERL_EVENT_NAME_KEY ] = m_name;
+    QJsonObject jEvent;
+    jEvent[ SERL_EVENT_NAME_KEY ] = m_name;
     int currentPhaseInt = static_cast<int>(m_currentPhase);
-    eventJson[ SERL_CURRENT_PHASE_KEY ] = currentPhaseInt;
+    jEvent[ SERL_CURRENT_PHASE_KEY ] = currentPhaseInt;
     int currentStageInt = static_cast<int>(m_currentStage);
-    eventJson[ SERL_CURRENT_STAGE_KEY ] = currentStageInt;
-    eventJson[ SERL_PHASE_FIRST_KEY ] = m_phases[PhaseEnum::First]->serialize();
-    eventJson[ SERL_PHASE_SECOND_KEY ] = m_phases[PhaseEnum::Second]->serialize();
+    jEvent[ SERL_CURRENT_STAGE_KEY ] = currentStageInt;
+    jEvent[ SERL_PHASE_FIRST_KEY ] = m_phases[PhaseEnum::First]->serialize();
+    jEvent[ SERL_PHASE_SECOND_KEY ] = m_phases[PhaseEnum::Second]->serialize();
 
-    return eventJson;
+
+    QJsonArray jTeams;
+    for(const auto &teamPtr : m_teams)
+    {
+        jTeams.append( teamPtr->serialize() );
+    }
+    jEvent[ SERL_TEAMS_KEY ] = jTeams;
+
+    return jEvent;
 }
 
-void Event::deserialize(const QJsonObject &eventJson)
+void Event::deserialize(const QJsonObject &jEvent)
 {
     this->clear(false);
-    D("cleared to deserialize");
+    // D("cleared to deserialize");
 
-    m_name = eventJson[ SERL_EVENT_NAME_KEY ].toString();
+    m_name = jEvent[ SERL_EVENT_NAME_KEY ].toString();
     emit this->nameChanged();
 
-    int currentPhaseInt = eventJson[ SERL_CURRENT_PHASE_KEY ].toInt();
+    int currentPhaseInt = jEvent[ SERL_CURRENT_PHASE_KEY ].toInt();
     m_currentPhase = static_cast<PhaseEnum>(currentPhaseInt);
     emit this->currentPhaseChanged();
 
-    int currentStageInt = eventJson[ SERL_CURRENT_STAGE_KEY ].toInt();
+    int currentStageInt = jEvent[ SERL_CURRENT_STAGE_KEY ].toInt();
     m_currentStage = static_cast<StageEnum>(currentStageInt);
     emit this->currentStageChanged();
 
-    QJsonObject firstPhaseObject = eventJson[ SERL_PHASE_FIRST_KEY ].toObject();
-    QJsonObject secondPhaseObject = eventJson[ SERL_PHASE_SECOND_KEY ].toObject();
+    QJsonObject firstPhaseObject = jEvent[ SERL_PHASE_FIRST_KEY ].toObject();
+    QJsonObject secondPhaseObject = jEvent[ SERL_PHASE_SECOND_KEY ].toObject();
     m_phases[PhaseEnum::First]->deserialize( firstPhaseObject );
     m_phases[PhaseEnum::Second]->deserialize( secondPhaseObject );
     emit this->phasesChanged();
+
+    QJsonArray jTeams = jEvent[ SERL_TEAMS_KEY ].toArray();
+    for(const auto &jTeam : jTeams)
+    {
+        TeamPtr teamPtr = TeamPtr::create();
+        teamPtr->deserialize( jTeam.toObject() );
+        m_teams.append(teamPtr);
+    }
+
+    emit this->teamsChanged();
 
     D("deserialized event")
 }
