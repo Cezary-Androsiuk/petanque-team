@@ -13,6 +13,31 @@ Item {
     property int footerHeight: 70
     property int delegateHeight: 50
 
+    function generateRandomLicense(length) {
+        /// Claude AI stuff
+        // const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+        let result = '';
+
+        for (let i = 0; i < length; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            result += characters[randomIndex];
+        }
+
+        return result;
+    }
+
+    function setExamplePlayerDataIfNeeded(){
+        if(player.firstName === "")
+            player.firstName = "Jan"
+        if(player.lastName === "")
+            player.lastName = "Kowalski"
+        if(player.license === "")
+            player.license = generateRandomLicense(7) // 3521614606208 options
+            // I am 250,000 times more likely to win the Lotto than to have the license number repeated here.
+    }
+
     function goBack(){
         parentStackView.pop();
     }
@@ -23,6 +48,9 @@ Item {
     }
 
     function saveAddedPlayer(){
+        if(Backend.isDebugMode)
+            setExamplePlayerDataIfNeeded();
+
         team.validateDetachedPlayer();
     }
 

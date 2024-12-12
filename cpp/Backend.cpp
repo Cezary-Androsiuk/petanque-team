@@ -21,3 +21,8 @@ Event *Backend::getEventPtrQml() const
 {
     return m_eventPtr.data();
 }
+
+bool Backend::getIsDebugMode() const
+{
+    return DEBUG_MODE;
+}
