@@ -85,7 +85,7 @@ void Team::validateDetachedPlayer()
 {
     if(m_detachedPlayer.isNull())
     {
-        const char *message = "Detached player not exist";
+        const char *message = "Detached Player not exist";
         E(message);
         emit this->detachedPlayerValidationFailed(message);
         return;
@@ -113,7 +113,7 @@ void Team::validateDetachedPlayer()
     {
         if(m_detachedPlayer->getLicense() == playerPtr->getLicense())
         {
-            emit this->detachedPlayerValidationFailed("License is not unique in this team!");
+            emit this->detachedPlayerValidationFailed("Player's license is not unique in this team!");
             return;
         }
     }

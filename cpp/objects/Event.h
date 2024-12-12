@@ -59,6 +59,7 @@ public slots:
     /// TEAM STUFF
     void createDetachedTeam();
     void deleteDetachedTeam();
+    void validateDetachedTeam();
     void addDetachedTeam();
 
     void deleteTeam(int index);
@@ -103,6 +104,10 @@ signals:
     /// VERIFICATION SIGNALS
     void teamsDataValid();
     void teamsValidationFailed(QString message);
+
+    /// TEAMS SIGNALS
+    void detachedTeamIsValid();
+    void detachedTeamValidationFailed(QString message);
 
 private:
     QString m_name;

@@ -13,6 +13,27 @@ Item {
     property int footerHeight: 70
     property int delegateHeight: 50
 
+    function generateRandomTeamName(prefix, length) {
+        /// Claude AI stuff
+        // const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+        let result = '';
+
+        for (let i = 0; i < length; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            result += characters[randomIndex];
+        }
+
+        return prefix + result;
+    }
+
+    function setExampleTeamDataIfNeeded(){
+        if(team.name === "")
+            team.name = generateRandomTeamName("Team Nr=", 7) // 3521614606208 options
+            // I am 250,000 times more likely to win the Lotto than to have the license number repeated here.
+    }
+
     function addNewPlayer(){
         configureTeam.team.createDetachedPlayer();
         const args = {
@@ -33,8 +54,22 @@ Item {
     }
 
     function saveAddedTeam(){
-        parentStackView.pop();
-        event.addDetachedTeam();
+        if(Backend.isDebugMode)
+            setExampleTeamDataIfNeeded();
+
+        event.validateDetachedTeam();
+    }
+
+    Connections{
+        target: event
+        function onDetachedTeamIsValid(){
+            parentStackView.pop();
+            event.addDetachedTeam();
+        }
+
+        function onDetachedTeamValidationFailed(message){
+            log.i(message, "Team.qml->onDetachedTeamValidationFailed")
+        }
     }
 
     Rectangle{ // required because of stack view animation

@@ -139,6 +139,36 @@ void Event::deleteDetachedTeam()
     m_detachedTeam.clear();
 }
 
+void Event::validateDetachedTeam()
+{
+    if(m_detachedTeam.isNull())
+    {
+        const char *message = "Detached Team not exist";
+        E(message);
+        emit this->detachedTeamValidationFailed(message);
+        return;
+    }
+
+    /// Check if the fields are empty
+    if(m_detachedTeam->getName().isEmpty())
+    {
+        emit this->detachedTeamValidationFailed("Team required name");
+        return;
+    }
+
+    /// Check unique parameter
+    for(const auto &teamPtr : m_teams)
+    {
+        if(m_detachedTeam->getName() == teamPtr->getName())
+        {
+            emit this->detachedTeamValidationFailed("Team name is not unique in this event!");
+            return;
+        }
+    }
+
+    emit this->detachedTeamIsValid();
+}
+
 void Event::addDetachedTeam()
 {
     // I("Adding detached Team to Event")

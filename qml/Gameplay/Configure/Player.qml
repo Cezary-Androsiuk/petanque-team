@@ -13,6 +13,12 @@ Item {
     property int footerHeight: 70
     property int delegateHeight: 50
 
+    function randomNumber(topRange){
+        // [0, topRange) - topRange value is not included
+        return Math.floor(Math.random() * topRange);
+    }
+
+
     function generateRandomLicense(length) {
         /// Claude AI stuff
         // const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
@@ -21,7 +27,7 @@ Item {
         let result = '';
 
         for (let i = 0; i < length; i++) {
-            const randomIndex = Math.floor(Math.random() * characters.length);
+            const randomIndex = randomNumber(characters.length);
             result += characters[randomIndex];
         }
 
@@ -29,13 +35,31 @@ Item {
     }
 
     function setExamplePlayerDataIfNeeded(){
+        var allImportantFieldsWereEmpty = true;
         if(player.firstName === "")
             player.firstName = "Jan"
+        else
+            allImportantFieldsWereEmpty = false;
+
         if(player.lastName === "")
             player.lastName = "Kowalski"
+        else
+            allImportantFieldsWereEmpty = false;
+
         if(player.license === "")
             player.license = generateRandomLicense(7) // 3521614606208 options
             // I am 250,000 times more likely to win the Lotto than to have the license number repeated here.
+        else
+            allImportantFieldsWereEmpty = false;
+
+        if(allImportantFieldsWereEmpty)
+        {
+            if(team.players.length === 0) // first player is added
+                player.isTeamLeader = true
+
+            player.ageGroup = randomNumber(2);
+            player.gender = randomNumber(4);
+        }
     }
 
     function goBack(){
@@ -62,7 +86,7 @@ Item {
         }
 
         function onDetachedPlayerValidationFailed(message){
-            log.i(message, "player.qml->onDetachedPlayerValidationFailed")
+            log.i(message, "Player.qml->onDetachedPlayerValidationFailed")
         }
 
     }
