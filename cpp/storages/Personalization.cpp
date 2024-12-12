@@ -67,7 +67,18 @@ void Personalization::load()
     auto jp = jsonData.object();
     QString key;
 
-    // try to load data, but if key is missing then, notify and leave default value
+    if(jp[KEY_PERSONALIZATION_VERSION].toInt() != personalizationVersion)
+    {
+        W("Personalization data version changed")
+        W("After exiting the application new version will override personalization json file")
+        W("Using new Default personalization data")
+
+        /// do not read deprecated personalization file, exit method (use new default data)
+        emit this->loaded();
+        return;
+    }
+
+    /// try to load data, but if key is missing then, notify and leave default value
     key = KEY_MINIMUM_PLAYERS_IN_TEA;
     if(jp.contains(key)) m_minimumPlayersInTeam = jp[key].toInt();
     else KEY_NOT_FOUND_MESSAGE;
@@ -98,6 +109,8 @@ void Personalization::save()
 {
     QJsonObject jsonObject;
     jsonObject[KEY_NOTE] = QString(DEFAULT_NOTE);
+    jsonObject[KEY_PERSONALIZATION_VERSION] = personalizationVersion;
+
     jsonObject[KEY_MINIMUM_PLAYERS_IN_TEA] = this->getMinimumPlayersInTeam();
     jsonObject[KEY_REQUIRED_TEAMS_COUNT] = this->getRequiredTeamsCount();
     jsonObject[KEY_REQUIRED_JUNIORS] = this->getRequiresJuniors();

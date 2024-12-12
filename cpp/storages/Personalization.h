@@ -27,6 +27,7 @@
 
 /// KEYS FOR VALUES
 #define KEY_NOTE "!NOTE"
+#define KEY_PERSONALIZATION_VERSION "personalization version"
 #define KEY_EXAMPLE_DATA "example data"
 #define KEY_MINIMUM_PLAYERS_IN_TEA "minimum players in team"
 #define KEY_REQUIRED_TEAMS_COUNT "required teams count"
