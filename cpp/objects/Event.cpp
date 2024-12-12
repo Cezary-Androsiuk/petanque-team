@@ -5,6 +5,7 @@ Event::Event(QObject *parent)
     , m_phases(2, PhasePtr())
 {
     I(QAPF("Creating Event: %p", this));
+
     this->initialize();
 }
 
@@ -105,12 +106,12 @@ void Event::goToPrevStage()
     emit this->currentStageChanged();
 }
 
-void Event::goToFirstPhase()
+void Event::initFirstPhase()
 {
 
 }
 
-void Event::goToSecondPhase()
+void Event::initSecondPhase()
 {
 
 }
@@ -202,7 +203,10 @@ void Event::deleteTeam(int index)
 void Event::validateEvent()
 {
     E("NOT FINISHED");
-    emit this->eventValidationFailed();
+    emit this->eventValidationFailed("");
+    return;
+
+    emit this->eventValid();
 }
 
 void Event::createExampleTeams()

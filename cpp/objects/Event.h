@@ -53,8 +53,8 @@ public slots:
     void goToPrevStage();
 
     /// PHASE STUFF
-    void goToFirstPhase();
-    void goToSecondPhase();
+    void initFirstPhase();
+    void initSecondPhase();
 
     /// TEAM STUFF
     void createDetachedTeam();
