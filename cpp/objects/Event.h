@@ -69,7 +69,7 @@ public slots:
     void validateEvent();
 
     /// EXAMPLE
-    void createExampleTeams();
+    void assignExampleData();
 
 public:
     /// GETTERS

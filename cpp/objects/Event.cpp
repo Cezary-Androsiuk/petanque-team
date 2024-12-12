@@ -71,17 +71,17 @@ void Event::deserialize(const QJsonObject &eventJson)
 void Event::clear(bool emitting)
 {
     m_name.clear();
-    if(emitting) emit this->nameChanged();
+    if(emitting) { emit this->nameChanged(); }
 
     m_currentPhase = PhaseEnum::First;
-    if(emitting) emit this->currentPhaseChanged();
+    if(emitting) { emit this->currentPhaseChanged(); }
 
     m_currentStage = StageEnum::None;
-    if(emitting) emit this->currentStageChanged();
+    if(emitting) { emit this->currentStageChanged(); }
 
     m_phases[PhaseEnum::First]->clear();
     m_phases[PhaseEnum::Second]->clear();
-    if(emitting) emit this->phasesChanged();
+    if(emitting) { emit this->phasesChanged(); }
 }
 
 void Event::goToNextStage()
@@ -138,6 +138,7 @@ void Event::deleteDetachedTeam()
     }
 
     m_detachedTeam.clear();
+    // emit this->detachedTeamChanged();
 }
 
 void Event::validateDetachedTeam()
@@ -305,14 +306,31 @@ void Event::validateEvent()
         }
     }
 
-
     emit this->eventValid();
 }
 
-void Event::createExampleTeams()
+void Event::assignExampleData()
 {
-    E("NOT FINISHED");
-    /// call Team::createExamplePlayers()
+    QJsonObject jEvent = Personalization::getInstance()->getExampleData();
+
+    this->setName(jEvent["name"].toString());
+    /// judges
+    /// place
+    /// etc.
+
+    QJsonArray jTeams = jEvent["teams"].toArray();
+    m_teams.clear();
+    for(int i=0; i<jTeams.size(); i++)
+    {
+        QJsonObject jTeam = jTeams[i].toObject();
+
+        TeamPtr team = TeamPtr::create();
+        team->assignExampleData(jTeam);
+
+        m_teams.append(team);
+    }
+
+    emit this->teamsChanged();
 }
 
 const QString &Event::getName() const

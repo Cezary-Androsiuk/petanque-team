@@ -98,6 +98,11 @@ void Player::copyFromOtherPlayer(const Player &sourcePlayer)
     emit this->isTeamLeaderChanged();
 }
 
+void Player::assignExampleData(const QJsonObject &jPlayer)
+{
+    m_firstName = jPlayer["first name"].toString();
+}
+
 const QString &Player::getFirstName() const
 {
     return m_firstName;

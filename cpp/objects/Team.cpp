@@ -150,9 +150,22 @@ void Team::deletePlayer(int index)
     emit this->playersChanged();
 }
 
-void Team::createExamplePlayers()
+void Team::assignExampleData(const QJsonObject &jTeam)
 {
-    E("NOT FINISHED");
+    m_name = jTeam["name"].toString();
+
+    QJsonArray jPlayers = jTeam["players"].toArray();
+    for(int i=0; i<jPlayers.size(); i++)
+    {
+        QJsonObject jPlayer = jPlayers[i].toObject();
+
+        PlayerPtr player = PlayerPtr::create();
+        player->assignExampleData(jPlayer);
+
+        m_players.append(player);
+    }
+
+    // emit this->playersChanged();
 }
 
 void Team::uncheckAllLeaders()

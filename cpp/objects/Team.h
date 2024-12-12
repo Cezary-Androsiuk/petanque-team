@@ -7,6 +7,7 @@
 #include <QSharedPointer>
 
 #include "cpp/support/Log.h"
+#include "cpp/storages/Personalization.h"
 #include "cpp/objects/Player.h"
 #include "cpp/Serializable.h"
 
@@ -39,7 +40,7 @@ public slots:
     void deletePlayer(int index);
 
     /// EXAMPLE
-    void createExamplePlayers();
+    void assignExampleData(const QJsonObject &jTeam);
 
     /// SUPPORT
     void uncheckAllLeaders();

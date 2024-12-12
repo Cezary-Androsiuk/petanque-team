@@ -171,7 +171,7 @@ Item {
 
             text: "start event"
             onClicked: {
-                Backend.event.validateTeams();
+                Backend.event.validateEvent();
             }
         }
 
@@ -184,7 +184,7 @@ Item {
             }
             text: "create example data"
             onClicked:{
-                Backend.event.createExampleTeams();
+                Backend.event.assignExampleData();
             }
         }
     }

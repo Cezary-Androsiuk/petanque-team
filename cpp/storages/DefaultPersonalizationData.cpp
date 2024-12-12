@@ -51,428 +51,429 @@ R"(
 const char *defaultExampleData =
 R"(
 {
+    "name": "Mistrzostwa Polski",
     "teams": [
         {
-            "team name": "Boule Masters",
+            "name": "Boule Masters",
             "players": [
                 {
-                    "fname": "Michael",
-                    "lname": "Brown",
+                    "first name": "Michael",
+                    "last name": "Brown",
                     "license": "L1828",
                     "age group": 3,
                     "gender": 0,
-                    "isTeamLeader": true
+                    "is team leader": true
                 },
                 {
-                    "fname": "James",
-                    "lname": "Williams",
+                    "first name": "James",
+                    "last name": "Williams",
                     "license": "L3119",
                     "age group": 0,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "John",
-                    "lname": "Anderson",
+                    "first name": "John",
+                    "last name": "Anderson",
                     "license": "L4000",
                     "age group": 3,
                     "gender": 1,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "Emma",
-                    "lname": "Wilson",
+                    "first name": "Emma",
+                    "last name": "Wilson",
                     "license": "L3017",
                     "age group": 0,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "Daniel",
-                    "lname": "Davis",
+                    "first name": "Daniel",
+                    "last name": "Davis",
                     "license": "L2472",
                     "age group": 3,
                     "gender": 1,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "John",
-                    "lname": "Brown",
+                    "first name": "John",
+                    "last name": "Brown",
                     "license": "L8923",
                     "age group": 2,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 }
             ]
         },
         {
-            "team name": "Srebrne Kule",
+            "name": "Srebrne Kule",
             "players": [
                 {
-                    "fname": "Isabella",
-                    "lname": "Williams",
+                    "first name": "Isabella",
+                    "last name": "Williams",
                     "license": "L7277",
                     "age group": 2,
                     "gender": 0,
-                    "isTeamLeader": true
+                    "is team leader": true
                 },
                 {
-                    "fname": "Emma",
-                    "lname": "Thomas",
+                    "first name": "Emma",
+                    "last name": "Thomas",
                     "license": "L1581",
                     "age group": 0,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "Sophia",
-                    "lname": "Johnson",
+                    "first name": "Sophia",
+                    "last name": "Johnson",
                     "license": "L1022",
                     "age group": 3,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "James",
-                    "lname": "Thomas",
+                    "first name": "James",
+                    "last name": "Thomas",
                     "license": "L3601",
                     "age group": 1,
                     "gender": 1,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "James",
-                    "lname": "Williams",
+                    "first name": "James",
+                    "last name": "Williams",
                     "license": "L1060",
                     "age group": 2,
                     "gender": 1,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "Sophia",
-                    "lname": "Thomas",
+                    "first name": "Sophia",
+                    "last name": "Thomas",
                     "license": "L2403",
                     "age group": 3,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 }
             ]
         },
         {
-            "team name": "Petanque Pasja",
+            "name": "Petanque Pasja",
             "players": [
                 {
-                    "fname": "Emma",
-                    "lname": "Williams",
+                    "first name": "Emma",
+                    "last name": "Williams",
                     "license": "L3286",
                     "age group": 3,
                     "gender": 1,
-                    "isTeamLeader": true
+                    "is team leader": true
                 },
                 {
-                    "fname": "David",
-                    "lname": "Davis",
+                    "first name": "David",
+                    "last name": "Davis",
                     "license": "L7003",
                     "age group": 0,
                     "gender": 1,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "Olivia",
-                    "lname": "Johnson",
+                    "first name": "Olivia",
+                    "last name": "Johnson",
                     "license": "L7275",
                     "age group": 3,
                     "gender": 1,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "James",
-                    "lname": "Miller",
+                    "first name": "James",
+                    "last name": "Miller",
                     "license": "L2834",
                     "age group": 2,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "David",
-                    "lname": "Brown",
+                    "first name": "David",
+                    "last name": "Brown",
                     "license": "L9907",
                     "age group": 0,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "Chris",
-                    "lname": "Anderson",
+                    "first name": "Chris",
+                    "last name": "Anderson",
                     "license": "L4332",
                     "age group": 3,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 }
             ]
         },
         {
-            "team name": "Stalowe Rzuty",
+            "name": "Stalowe Rzuty",
             "players": [
                 {
-                    "fname": "John",
-                    "lname": "Moore",
+                    "first name": "John",
+                    "last name": "Moore",
                     "license": "L9791",
                     "age group": 2,
                     "gender": 1,
-                    "isTeamLeader": true
+                    "is team leader": true
                 },
                 {
-                    "fname": "John",
-                    "lname": "Williams",
+                    "first name": "John",
+                    "last name": "Williams",
                     "license": "L3168",
                     "age group": 0,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "Chris",
-                    "lname": "Davis",
+                    "first name": "Chris",
+                    "last name": "Davis",
                     "license": "L3581",
                     "age group": 3,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "John",
-                    "lname": "Miller",
+                    "first name": "John",
+                    "last name": "Miller",
                     "license": "L6838",
                     "age group": 2,
                     "gender": 1,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "Sophia",
-                    "lname": "Moore",
+                    "first name": "Sophia",
+                    "last name": "Moore",
                     "license": "L4738",
                     "age group": 1,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "Olivia",
-                    "lname": "Miller",
+                    "first name": "Olivia",
+                    "last name": "Miller",
                     "license": "L7759",
                     "age group": 3,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 }
             ]
         },
         {
-            "team name": "Mistrzowie Klasyki",
+            "name": "Mistrzowie Klasyki",
             "players": [
                 {
-                    "fname": "Emily",
-                    "lname": "Davis",
+                    "first name": "Emily",
+                    "last name": "Davis",
                     "license": "L9489",
                     "age group": 3,
                     "gender": 0,
-                    "isTeamLeader": true
+                    "is team leader": true
                 },
                 {
-                    "fname": "James",
-                    "lname": "Miller",
+                    "first name": "James",
+                    "last name": "Miller",
                     "license": "L6546",
                     "age group": 2,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "Ava",
-                    "lname": "Taylor",
+                    "first name": "Ava",
+                    "last name": "Taylor",
                     "license": "L9274",
                     "age group": 0,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "Sophia",
-                    "lname": "Smith",
+                    "first name": "Sophia",
+                    "last name": "Smith",
                     "license": "L8696",
                     "age group": 3,
                     "gender": 1,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "Daniel",
-                    "lname": "Smith",
+                    "first name": "Daniel",
+                    "last name": "Smith",
                     "license": "L4830",
                     "age group": 2,
                     "gender": 1,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "James",
-                    "lname": "Thomas",
+                    "first name": "James",
+                    "last name": "Thomas",
                     "license": "L5877",
                     "age group": 1,
                     "gender": 1,
-                    "isTeamLeader": false
+                    "is team leader": false
                 }
             ]
         },
         {
-            "team name": "Kule i Stal",
+            "name": "Kule i Stal",
             "players": [
                 {
-                    "fname": "David",
-                    "lname": "Anderson",
+                    "first name": "David",
+                    "last name": "Anderson",
                     "license": "L5177",
                     "age group": 2,
                     "gender": 0,
-                    "isTeamLeader": true
+                    "is team leader": true
                 },
                 {
-                    "fname": "Olivia",
-                    "lname": "Miller",
+                    "first name": "Olivia",
+                    "last name": "Miller",
                     "license": "L9196",
                     "age group": 3,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "Emma",
-                    "lname": "Brown",
+                    "first name": "Emma",
+                    "last name": "Brown",
                     "license": "L2400",
                     "age group": 0,
                     "gender": 1,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "Chris",
-                    "lname": "Johnson",
+                    "first name": "Chris",
+                    "last name": "Johnson",
                     "license": "L2216",
                     "age group": 3,
                     "gender": 1,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "James",
-                    "lname": "Williams",
+                    "first name": "James",
+                    "last name": "Williams",
                     "license": "L8053",
                     "age group": 1,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "Emma",
-                    "lname": "Moore",
+                    "first name": "Emma",
+                    "last name": "Moore",
                     "license": "L4951",
                     "age group": 2,
                     "gender": 1,
-                    "isTeamLeader": false
+                    "is team leader": false
                 }
             ]
         },
         {
-            "team name": "Słońce Prowansji",
+            "name": "Słońce Prowansji",
             "players": [
                 {
-                    "fname": "Daniel",
-                    "lname": "Moore",
+                    "first name": "Daniel",
+                    "last name": "Moore",
                     "license": "L3530",
                     "age group": 3,
                     "gender": 0,
-                    "isTeamLeader": true
+                    "is team leader": true
                 },
                 {
-                    "fname": "Daniel",
-                    "lname": "Moore",
+                    "first name": "Daniel",
+                    "last name": "Moore",
                     "license": "L7605",
                     "age group": 1,
                     "gender": 1,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "James",
-                    "lname": "Brown",
+                    "first name": "James",
+                    "last name": "Brown",
                     "license": "L8251",
                     "age group": 3,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "James",
-                    "lname": "Brown",
+                    "first name": "James",
+                    "last name": "Brown",
                     "license": "L5737",
                     "age group": 0,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "Emma",
-                    "lname": "Smith",
+                    "first name": "Emma",
+                    "last name": "Smith",
                     "license": "L5452",
                     "age group": 3,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "Chris",
-                    "lname": "Miller",
+                    "first name": "Chris",
+                    "last name": "Miller",
                     "license": "L6121",
                     "age group": 0,
                     "gender": 1,
-                    "isTeamLeader": false
+                    "is team leader": false
                 }
             ]
         },
         {
-            "team name": "Bouliści",
+            "name": "Bouliści",
             "players": [
                 {
-                    "fname": "Ava",
-                    "lname": "Miller",
+                    "first name": "Ava",
+                    "last name": "Miller",
                     "license": "L5907",
                     "age group": 3,
                     "gender": 1,
-                    "isTeamLeader": true
+                    "is team leader": true
                 },
                 {
-                    "fname": "Ava",
-                    "lname": "Miller",
+                    "first name": "Ava",
+                    "last name": "Miller",
                     "license": "L7026",
                     "age group": 0,
                     "gender": 1,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "Michael",
-                    "lname": "Williams",
+                    "first name": "Michael",
+                    "last name": "Williams",
                     "license": "L7350",
                     "age group": 2,
                     "gender": 1,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "Ava",
-                    "lname": "Smith",
+                    "first name": "Ava",
+                    "last name": "Smith",
                     "license": "L8990",
                     "age group": 2,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "David",
-                    "lname": "Johnson",
+                    "first name": "David",
+                    "last name": "Johnson",
                     "license": "L1413",
                     "age group": 0,
                     "gender": 0,
-                    "isTeamLeader": false
+                    "is team leader": false
                 },
                 {
-                    "fname": "Olivia",
-                    "lname": "Thomas",
+                    "first name": "Olivia",
+                    "last name": "Thomas",
                     "license": "L4110",
                     "age group": 2,
                     "gender": 1,
-                    "isTeamLeader": false
+                    "is team leader": false
                 }
             ]
         }

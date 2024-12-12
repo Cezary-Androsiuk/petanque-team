@@ -40,7 +40,8 @@ public:
 
     void copyFromOtherPlayer(const Player &sourcePlayer);
 
-private:
+public slots:
+    void assignExampleData(const QJsonObject &jPlayer);
 
 public:
     const QString &getFirstName() const;
