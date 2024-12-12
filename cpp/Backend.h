@@ -10,14 +10,14 @@
 class Backend : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(const Event *event READ getEventPtrQml CONSTANT FINAL)
+    Q_PROPERTY(Event *event READ getEventPtrQml CONSTANT FINAL)
 
 public:
     explicit Backend(QObject *parent = nullptr);
     ~Backend();
 
     QSharedPointer<Event> getEventPtr();
-    const Event *getEventPtrQml() const;
+    Event *getEventPtrQml() const;
 
 private:
     QSharedPointer<Event> m_eventPtr;

@@ -52,7 +52,7 @@ Item {
         }
 
         TextField{
-            id: fnameTextField
+            id: firstNameTextField
             anchors{
                 top: parent.top
                 topMargin: 10
@@ -61,34 +61,34 @@ Item {
             width: 230
 
             placeholderText: qsTr("First Name")
-            text: (!configurePlayer.player)?text: configurePlayer.player.fname
+            text: (!configurePlayer.player)?text: configurePlayer.player.firstName
             onTextEdited: {
                 if(configurePlayer.player)
-                    configurePlayer.player.fname = text
+                    configurePlayer.player.firstName = text
             }
         }
 
         TextField{
-            id: lnameTextField
+            id: lastNameTextField
             anchors{
-                top: fnameTextField.bottom
+                top: firstNameTextField.bottom
                 topMargin: 10
             }
             height: 60
             width: 230
 
             placeholderText: qsTr("Last Name")
-            text: (!configurePlayer.player)?text: configurePlayer.player.lname
+            text: (!configurePlayer.player)?text: configurePlayer.player.lastName
             onTextEdited: {
                 if(configurePlayer.player)
-                    configurePlayer.player.lname = text
+                    configurePlayer.player.lastName = text
             }
         }
 
         TextField{
             id: licenseTextField
             anchors{
-                top: lnameTextField.bottom
+                top: lastNameTextField.bottom
                 topMargin: 10
             }
             height: 60

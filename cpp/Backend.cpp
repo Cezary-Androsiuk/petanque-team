@@ -17,7 +17,7 @@ QSharedPointer<Event> Backend::getEventPtr()
     return m_eventPtr;
 }
 
-const Event *Backend::getEventPtrQml() const
+Event *Backend::getEventPtrQml() const
 {
     return m_eventPtr.data();
 }
