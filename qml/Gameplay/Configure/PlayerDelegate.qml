@@ -67,7 +67,7 @@ Item{
                 right: editPlayerButton.left
                 top: parent.top
             }
-            height: defaultHeight
+            height: playerDelegate.height
             width: height * 2
 
             text: "delete"
@@ -83,7 +83,7 @@ Item{
                 top: parent.top
                 right: parent.right
             }
-            height: defaultHeight
+            height: playerDelegate.height
             width: height * 2
 
             text: "edit"

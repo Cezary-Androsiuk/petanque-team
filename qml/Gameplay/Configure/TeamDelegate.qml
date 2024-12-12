@@ -67,7 +67,7 @@ Item{
                     leftMargin: 10
                 }
                 height: defaultHeight
-                text: (!teamDelegate.team)?"": teamDelegate.team.teamName
+                text: (!teamDelegate.team)?"": teamDelegate.team.name
 
                 verticalAlignment: Text.AlignVCenter
             }
