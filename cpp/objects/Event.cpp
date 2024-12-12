@@ -202,9 +202,109 @@ void Event::deleteTeam(int index)
 
 void Event::validateEvent()
 {
-    E("NOT FINISHED");
-    emit this->eventValidationFailed("");
-    return;
+    Personalization *p = Personalization::getInstance();
+
+    /// check if required amount of teams was registered
+    if(m_teams.size() != p->getRequiredTeamsCount())
+    {
+        QString message = tr("Event requires %1 teams").arg(p->getRequiredTeamsCount());
+        I(message);
+        emit this->eventValidationFailed(message);
+        return;
+    }
+
+    /// check data for teams:
+    for(const auto &teamPtr : m_teams)
+    {
+        const QString &teamName = teamPtr->getName();
+        const PlayerPtrList &players = teamPtr->getPlayers();
+
+        /// check if team has at least 6 players
+        if(players.size() < p->getMinimumPlayersInTeam())
+        {
+            /// team has least than 6 players
+            QString message = tr("Team %1 has less than %2 players")
+                                  .arg(teamName)
+                                  .arg(p->getMinimumPlayersInTeam());
+            I(message);
+            emit this->eventValidationFailed(message);
+            return;
+        }
+
+        /// check if team has both genders
+        bool foundMale = false;
+        bool foundFemale = false;
+        for(const auto &playerPtr : players)
+        {
+            if(playerPtr->getGender() == GenderEnum::Male)
+                foundMale = true;
+
+            if(playerPtr->getGender() == GenderEnum::Female)
+                foundFemale = true;
+        }
+        if(!foundMale || !foundFemale)
+        {
+            /// one gender is missing in team
+            QString message = tr("Team %1 doesn't contain players of either gender")
+                                  .arg(teamName);
+            I(message);
+            emit this->eventValidationFailed(message);
+            return;
+        }
+
+        /// check if team has a junior
+        if(p->getRequiresJuniors())
+        {
+            bool foundJunior = false;
+            for(const auto &playerPtr : players)
+            {
+                if(playerPtr->getAgeGroup() == AgeGroupEnum::Junior)
+                {
+                    foundJunior = true;
+                    break;
+                }
+            }
+
+            if(!foundJunior)
+            {
+                /// junior player is missing in team
+                QString message = tr("Team %1 doesn't contain any junior player")
+                                      .arg(teamName);
+                I(message);
+                emit this->eventValidationFailed(message);
+                return;
+            }
+        }
+
+        /// check if team has one leader
+        int foundLeaders = 0;
+        for(const auto &playerPtr : players)
+        {
+            if(playerPtr->getIsTeamLeader())
+                ++ foundLeaders;
+        }
+
+        if(foundLeaders == 0)
+        {
+            /// team has no leader
+            QString message = tr("In team %1, no leader was selected (each team requires leader)")
+                                  .arg(teamName);
+            I(message);
+            emit this->eventValidationFailed(message);
+            return;
+        }
+        else if(foundLeaders > 1)
+        {
+            /// team contains few leaders
+            QString message = tr("Team %1 has %2 leaders, but should be only one")
+                                  .arg(teamName)
+                                  .arg(foundLeaders);
+            I(message);
+            emit this->eventValidationFailed(message);
+            return;
+        }
+    }
+
 
     emit this->eventValid();
 }

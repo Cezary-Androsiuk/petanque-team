@@ -6,6 +6,7 @@
 #include <QSharedPointer>
 
 #include "cpp/support/Log.h"
+#include "cpp/storages/Personalization.h"
 #include "cpp/Serializable.h"
 #include "cpp/objects/Team.h"
 #include "cpp/objects/Phase.h"
