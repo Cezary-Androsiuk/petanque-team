@@ -101,6 +101,11 @@ void Player::copyFromOtherPlayer(const Player &sourcePlayer)
 void Player::assignExampleData(const QJsonObject &jPlayer)
 {
     m_firstName = jPlayer["first name"].toString();
+    m_lastName = jPlayer["last name"].toString();
+    m_license = jPlayer["license"].toString();
+    m_ageGroup = EnumConvert::QStringToAgeGroup(jPlayer["age group"].toString());
+    m_gender = EnumConvert::QStringToGender(jPlayer["gender"].toString());
+    m_isTeamLeader = jPlayer["is team leader"].toBool();
 }
 
 const QString &Player::getFirstName() const

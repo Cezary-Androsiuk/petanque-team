@@ -164,8 +164,6 @@ void Team::assignExampleData(const QJsonObject &jTeam)
 
         m_players.append(player);
     }
-
-    // emit this->playersChanged();
 }
 
 void Team::uncheckAllLeaders()
