@@ -49,14 +49,14 @@ Item{
                 {
                     let player = playerDelegate.player;
 
-                    let fname = player.fname;
-                    let lname = player.lname;
+                    let firstName = player.firstName;
+                    let lastName = player.lastName;
                     let license = "[" + player.license + "]";
                     let ageGroup = "("+ player.ageGroup +")";
                     let gender = player.gender ? "F" : "M";
                     let isTeamLeader = player.isTeamLeader ? " 👑" : "";
 
-                    fname + " " + lname + "    " + license + " " + ageGroup + " " + gender + " " + isTeamLeader;
+                    firstName + " " + lastName + "    " + license + " " + ageGroup + " " + gender + " " + isTeamLeader;
                 }
             }
         }
