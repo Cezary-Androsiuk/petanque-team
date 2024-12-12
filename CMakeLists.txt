@@ -21,6 +21,8 @@ qt_add_qml_module(appPetanqueTeam
     SOURCES cpp/Backend.h cpp/Backend.cpp
     SOURCES cpp/Serializable.h cpp/Serializable.cpp
     SOURCES cpp/storages/Memory.h cpp/storages/Memory.cpp
+    SOURCES cpp/storages/DefaultPersonalizationData.h cpp/storages/DefaultPersonalizationData.cpp
+    SOURCES cpp/storages/Personalization.h cpp/storages/Personalization.cpp
     SOURCES cpp/support/Log.h cpp/support/Log.cpp
     SOURCES cpp/support/LogQML.h cpp/support/LogQML.cpp
     SOURCES cpp/objects/Event.h cpp/objects/Event.cpp
