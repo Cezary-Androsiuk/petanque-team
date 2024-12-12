@@ -27,7 +27,7 @@ class Event : public QObject, public Serializable
     Q_PROPERTY(PhaseEnum currentPhase READ getCurrentPhase NOTIFY currentPhaseChanged FINAL)
     Q_PROPERTY(StageEnum currentStage READ getCurrentStage NOTIFY currentStageChanged FINAL)
     Q_PROPERTY(QmlPhasePtrVector phases READ getPhasesQml NOTIFY phasesChanged FINAL)
-    Q_PROPERTY(const Team *detachedTeam READ getDetachedTeamQml NOTIFY detachedTeamChanged FINAL)
+    Q_PROPERTY(Team *detachedTeam READ getDetachedTeamQml NOTIFY detachedTeamChanged FINAL)
     Q_PROPERTY(QmlTeamPtrVector teams READ getTeamsQml NOTIFY teamsChanged FINAL)
 
 public:
@@ -51,6 +51,10 @@ public slots:
     /// STAGE STUFF
     void goToNextStage();
     void goToPrevStage();
+
+    /// PHASE STUFF
+    void goToFirstPhase();
+    void goToSecondPhase();
 
     /// TEAM STUFF
     void createDetachedTeam();

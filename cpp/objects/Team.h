@@ -33,12 +33,16 @@ public:
 public slots:
     void createDetachedPlayer();
     void deleteDetachedPlayer();
+    void validateDetachedPlayer();
     void addDetachedPlayer();
 
     void deletePlayer(int index);
 
     /// EXAMPLE
     void createExamplePlayers();
+
+    /// SUPPORT
+    void uncheckAllLeaders();
 
 public:
     /// GETTERS
@@ -54,9 +58,14 @@ public:
     QmlPlayerPtrVector getPlayersQml() const;
 
 signals:
+    /// VARIABLE SIGNALS
     void nameChanged();
     void detachedPlayerChanged();
     void playersChanged();
+
+    /// PLAYERS SIGNALS
+    void detachedPlayerIsValid();
+    void detachedPlayerValidationFailed(QString message);
 
 private:
     QString m_name;

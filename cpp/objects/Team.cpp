@@ -81,6 +81,46 @@ void Team::deleteDetachedPlayer()
     emit this->detachedPlayerChanged();
 }
 
+void Team::validateDetachedPlayer()
+{
+    if(m_detachedPlayer.isNull())
+    {
+        const char *message = "Detached player not exist";
+        E(message);
+        emit this->detachedPlayerValidationFailed(message);
+        return;
+    }
+
+    /// Check if the fields are empty
+    if(m_detachedPlayer->getFirstName().isEmpty())
+    {
+        emit this->detachedPlayerValidationFailed("Player required first name");
+        return;
+    }
+    if(m_detachedPlayer->getLastName().isEmpty())
+    {
+        emit this->detachedPlayerValidationFailed("Player required last name");
+        return;
+    }
+    if(m_detachedPlayer->getLicense().isEmpty())
+    {
+        emit this->detachedPlayerValidationFailed("Player required license");
+        return;
+    }
+
+    /// Check unique parameter
+    for(const auto &playerPtr : m_players)
+    {
+        if(m_detachedPlayer->getLicense() == playerPtr->getLicense())
+        {
+            emit this->detachedPlayerValidationFailed("License is not unique in this team!");
+            return;
+        }
+    }
+
+    emit this->detachedPlayerIsValid();
+}
+
 void Team::addDetachedPlayer()
 {
     if(m_detachedPlayer.isNull())
@@ -113,6 +153,12 @@ void Team::deletePlayer(int index)
 void Team::createExamplePlayers()
 {
     E("NOT FINISHED");
+}
+
+void Team::uncheckAllLeaders()
+{
+    for(auto &playerPtr : m_players)
+        playerPtr->setIsTeamLeader(false);
 }
 
 const QString &Team::getName() const

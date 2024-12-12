@@ -23,8 +23,20 @@ Item {
     }
 
     function saveAddedPlayer(){
-        parentStackView.pop();
-        team.addDetachedPlayer();
+        team.validateDetachedPlayer();
+    }
+
+    Connections{
+        target: team
+        function onDetachedPlayerIsValid(){
+            parentStackView.pop();
+            team.addDetachedPlayer();
+        }
+
+        function onDetachedPlayerValidationFailed(message){
+            log.i(message, "player.qml->onDetachedPlayerValidationFailed")
+        }
+
     }
 
     Rectangle{ // required because of stack view animation

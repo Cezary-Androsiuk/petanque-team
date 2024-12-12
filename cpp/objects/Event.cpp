@@ -105,6 +105,16 @@ void Event::goToPrevStage()
     emit this->currentStageChanged();
 }
 
+void Event::goToFirstPhase()
+{
+
+}
+
+void Event::goToSecondPhase()
+{
+
+}
+
 void Event::createDetachedTeam()
 {
     // I("Creating detached Team")
