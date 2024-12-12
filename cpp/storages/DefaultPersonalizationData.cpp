@@ -60,48 +60,48 @@ R"(
                     "first name": "Michael",
                     "last name": "Brown",
                     "license": "L1828",
-                    "age group": 3,
-                    "gender": 0,
+                    "age group": "veteran",
+                    "gender": "male",
                     "is team leader": true
                 },
                 {
                     "first name": "James",
                     "last name": "Williams",
                     "license": "L3119",
-                    "age group": 0,
-                    "gender": 0,
+                    "age group": "junior",
+                    "gender": "male",
                     "is team leader": false
                 },
                 {
                     "first name": "John",
                     "last name": "Anderson",
                     "license": "L4000",
-                    "age group": 3,
-                    "gender": 1,
+                    "age group": "veteran",
+                    "gender": "female",
                     "is team leader": false
                 },
                 {
                     "first name": "Emma",
                     "last name": "Wilson",
                     "license": "L3017",
-                    "age group": 0,
-                    "gender": 0,
+                    "age group": "junior",
+                    "gender": "male",
                     "is team leader": false
                 },
                 {
                     "first name": "Daniel",
                     "last name": "Davis",
                     "license": "L2472",
-                    "age group": 3,
-                    "gender": 1,
+                    "age group": "veteran",
+                    "gender": "female",
                     "is team leader": false
                 },
                 {
                     "first name": "John",
                     "last name": "Brown",
                     "license": "L8923",
-                    "age group": 2,
-                    "gender": 0,
+                    "age group": "senior",
+                    "gender": "male",
                     "is team leader": false
                 }
             ]
@@ -113,48 +113,48 @@ R"(
                     "first name": "Isabella",
                     "last name": "Williams",
                     "license": "L7277",
-                    "age group": 2,
-                    "gender": 0,
+                    "age group": "senior",
+                    "gender": "male",
                     "is team leader": true
                 },
                 {
                     "first name": "Emma",
                     "last name": "Thomas",
                     "license": "L1581",
-                    "age group": 0,
-                    "gender": 0,
+                    "age group": "junior",
+                    "gender": "male",
                     "is team leader": false
                 },
                 {
                     "first name": "Sophia",
                     "last name": "Johnson",
                     "license": "L1022",
-                    "age group": 3,
-                    "gender": 0,
+                    "age group": "veteran",
+                    "gender": "male",
                     "is team leader": false
                 },
                 {
                     "first name": "James",
                     "last name": "Thomas",
                     "license": "L3601",
-                    "age group": 1,
-                    "gender": 1,
+                    "age group": "youth",
+                    "gender": "female",
                     "is team leader": false
                 },
                 {
                     "first name": "James",
                     "last name": "Williams",
                     "license": "L1060",
-                    "age group": 2,
-                    "gender": 1,
+                    "age group": "senior",
+                    "gender": "female",
                     "is team leader": false
                 },
                 {
                     "first name": "Sophia",
                     "last name": "Thomas",
                     "license": "L2403",
-                    "age group": 3,
-                    "gender": 0,
+                    "age group": "veteran",
+                    "gender": "male",
                     "is team leader": false
                 }
             ]
@@ -166,48 +166,48 @@ R"(
                     "first name": "Emma",
                     "last name": "Williams",
                     "license": "L3286",
-                    "age group": 3,
-                    "gender": 1,
+                    "age group": "veteran",
+                    "gender": "female",
                     "is team leader": true
                 },
                 {
                     "first name": "David",
                     "last name": "Davis",
                     "license": "L7003",
-                    "age group": 0,
-                    "gender": 1,
+                    "age group": "junior",
+                    "gender": "female",
                     "is team leader": false
                 },
                 {
                     "first name": "Olivia",
                     "last name": "Johnson",
                     "license": "L7275",
-                    "age group": 3,
-                    "gender": 1,
+                    "age group": "veteran",
+                    "gender": "female",
                     "is team leader": false
                 },
                 {
                     "first name": "James",
                     "last name": "Miller",
                     "license": "L2834",
-                    "age group": 2,
-                    "gender": 0,
+                    "age group": "senior",
+                    "gender": "male",
                     "is team leader": false
                 },
                 {
                     "first name": "David",
                     "last name": "Brown",
                     "license": "L9907",
-                    "age group": 0,
-                    "gender": 0,
+                    "age group": "junior",
+                    "gender": "male",
                     "is team leader": false
                 },
                 {
                     "first name": "Chris",
                     "last name": "Anderson",
                     "license": "L4332",
-                    "age group": 3,
-                    "gender": 0,
+                    "age group": "veteran",
+                    "gender": "male",
                     "is team leader": false
                 }
             ]
@@ -219,48 +219,48 @@ R"(
                     "first name": "John",
                     "last name": "Moore",
                     "license": "L9791",
-                    "age group": 2,
-                    "gender": 1,
+                    "age group": "senior",
+                    "gender": "female",
                     "is team leader": true
                 },
                 {
                     "first name": "John",
                     "last name": "Williams",
                     "license": "L3168",
-                    "age group": 0,
-                    "gender": 0,
+                    "age group": "junior",
+                    "gender": "male",
                     "is team leader": false
                 },
                 {
                     "first name": "Chris",
                     "last name": "Davis",
                     "license": "L3581",
-                    "age group": 3,
-                    "gender": 0,
+                    "age group": "veteran",
+                    "gender": "male",
                     "is team leader": false
                 },
                 {
                     "first name": "John",
                     "last name": "Miller",
                     "license": "L6838",
-                    "age group": 2,
-                    "gender": 1,
+                    "age group": "senior",
+                    "gender": "female",
                     "is team leader": false
                 },
                 {
                     "first name": "Sophia",
                     "last name": "Moore",
                     "license": "L4738",
-                    "age group": 1,
-                    "gender": 0,
+                    "age group": "youth",
+                    "gender": "male",
                     "is team leader": false
                 },
                 {
                     "first name": "Olivia",
                     "last name": "Miller",
                     "license": "L7759",
-                    "age group": 3,
-                    "gender": 0,
+                    "age group": "veteran",
+                    "gender": "male",
                     "is team leader": false
                 }
             ]
@@ -272,48 +272,48 @@ R"(
                     "first name": "Emily",
                     "last name": "Davis",
                     "license": "L9489",
-                    "age group": 3,
-                    "gender": 0,
+                    "age group": "veteran",
+                    "gender": "male",
                     "is team leader": true
                 },
                 {
                     "first name": "James",
                     "last name": "Miller",
                     "license": "L6546",
-                    "age group": 2,
-                    "gender": 0,
+                    "age group": "senior",
+                    "gender": "male",
                     "is team leader": false
                 },
                 {
                     "first name": "Ava",
                     "last name": "Taylor",
                     "license": "L9274",
-                    "age group": 0,
-                    "gender": 0,
+                    "age group": "junior",
+                    "gender": "male",
                     "is team leader": false
                 },
                 {
                     "first name": "Sophia",
                     "last name": "Smith",
                     "license": "L8696",
-                    "age group": 3,
-                    "gender": 1,
+                    "age group": "veteran",
+                    "gender": "female",
                     "is team leader": false
                 },
                 {
                     "first name": "Daniel",
                     "last name": "Smith",
                     "license": "L4830",
-                    "age group": 2,
-                    "gender": 1,
+                    "age group": "senior",
+                    "gender": "female",
                     "is team leader": false
                 },
                 {
                     "first name": "James",
                     "last name": "Thomas",
                     "license": "L5877",
-                    "age group": 1,
-                    "gender": 1,
+                    "age group": "youth",
+                    "gender": "female",
                     "is team leader": false
                 }
             ]
@@ -325,48 +325,48 @@ R"(
                     "first name": "David",
                     "last name": "Anderson",
                     "license": "L5177",
-                    "age group": 2,
-                    "gender": 0,
+                    "age group": "senior",
+                    "gender": "male",
                     "is team leader": true
                 },
                 {
                     "first name": "Olivia",
                     "last name": "Miller",
                     "license": "L9196",
-                    "age group": 3,
-                    "gender": 0,
+                    "age group": "veteran",
+                    "gender": "male",
                     "is team leader": false
                 },
                 {
                     "first name": "Emma",
                     "last name": "Brown",
                     "license": "L2400",
-                    "age group": 0,
-                    "gender": 1,
+                    "age group": "junior",
+                    "gender": "female",
                     "is team leader": false
                 },
                 {
                     "first name": "Chris",
                     "last name": "Johnson",
                     "license": "L2216",
-                    "age group": 3,
-                    "gender": 1,
+                    "age group": "veteran",
+                    "gender": "female",
                     "is team leader": false
                 },
                 {
                     "first name": "James",
                     "last name": "Williams",
                     "license": "L8053",
-                    "age group": 1,
-                    "gender": 0,
+                    "age group": "youth",
+                    "gender": "male",
                     "is team leader": false
                 },
                 {
                     "first name": "Emma",
                     "last name": "Moore",
                     "license": "L4951",
-                    "age group": 2,
-                    "gender": 1,
+                    "age group": "senior",
+                    "gender": "female",
                     "is team leader": false
                 }
             ]
@@ -378,48 +378,48 @@ R"(
                     "first name": "Daniel",
                     "last name": "Moore",
                     "license": "L3530",
-                    "age group": 3,
-                    "gender": 0,
+                    "age group": "veteran",
+                    "gender": "male",
                     "is team leader": true
                 },
                 {
                     "first name": "Daniel",
                     "last name": "Moore",
                     "license": "L7605",
-                    "age group": 1,
-                    "gender": 1,
+                    "age group": "youth",
+                    "gender": "female",
                     "is team leader": false
                 },
                 {
                     "first name": "James",
                     "last name": "Brown",
                     "license": "L8251",
-                    "age group": 3,
-                    "gender": 0,
+                    "age group": "veteran",
+                    "gender": "male",
                     "is team leader": false
                 },
                 {
                     "first name": "James",
                     "last name": "Brown",
                     "license": "L5737",
-                    "age group": 0,
-                    "gender": 0,
+                    "age group": "junior",
+                    "gender": "male",
                     "is team leader": false
                 },
                 {
                     "first name": "Emma",
                     "last name": "Smith",
                     "license": "L5452",
-                    "age group": 3,
-                    "gender": 0,
+                    "age group": "veteran",
+                    "gender": "male",
                     "is team leader": false
                 },
                 {
                     "first name": "Chris",
                     "last name": "Miller",
                     "license": "L6121",
-                    "age group": 0,
-                    "gender": 1,
+                    "age group": "junior",
+                    "gender": "female",
                     "is team leader": false
                 }
             ]
@@ -431,48 +431,48 @@ R"(
                     "first name": "Ava",
                     "last name": "Miller",
                     "license": "L5907",
-                    "age group": 3,
-                    "gender": 1,
+                    "age group": "veteran",
+                    "gender": "female",
                     "is team leader": true
                 },
                 {
                     "first name": "Ava",
                     "last name": "Miller",
                     "license": "L7026",
-                    "age group": 0,
-                    "gender": 1,
+                    "age group": "junior",
+                    "gender": "female",
                     "is team leader": false
                 },
                 {
                     "first name": "Michael",
                     "last name": "Williams",
                     "license": "L7350",
-                    "age group": 2,
-                    "gender": 1,
+                    "age group": "senior",
+                    "gender": "female",
                     "is team leader": false
                 },
                 {
                     "first name": "Ava",
                     "last name": "Smith",
                     "license": "L8990",
-                    "age group": 2,
-                    "gender": 0,
+                    "age group": "senior",
+                    "gender": "male",
                     "is team leader": false
                 },
                 {
                     "first name": "David",
                     "last name": "Johnson",
                     "license": "L1413",
-                    "age group": 0,
-                    "gender": 0,
+                    "age group": "junior",
+                    "gender": "male",
                     "is team leader": false
                 },
                 {
                     "first name": "Olivia",
                     "last name": "Thomas",
                     "license": "L4110",
-                    "age group": 2,
-                    "gender": 1,
+                    "age group": "senior",
+                    "gender": "female",
                     "is team leader": false
                 }
             ]
