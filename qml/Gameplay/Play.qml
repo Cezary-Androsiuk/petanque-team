@@ -6,9 +6,7 @@ Item {
     id: play
     anchors.fill: parent
 
-    readonly property var event: Backend.event
-
     Phase{
-        phaseIndex: 1
+        phaseIndex: Backend.event.currentPhase
     }
 }

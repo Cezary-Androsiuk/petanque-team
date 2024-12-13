@@ -4,7 +4,7 @@
 enum StageEnum{
     None = 0,
     Configure,
-    Continue,
+    Play,
     Finish,
 };
 

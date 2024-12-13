@@ -3,9 +3,21 @@ import QtQuick.Controls.Material
 
 Item {
     id: phase
+    anchors.fill: parent
 
     required property int phaseIndex;
     readonly property var phaseVar: Backend.event.phases[phaseIndex];
+
+    // Rectangle{
+    //     anchors{
+    //         top: parent.top
+    //         left: parent.left
+    //         right: parent.right
+    //     }
+    //     height: parent.height/2
+
+    //     color: Qt.rgba(0.2, 0.8, 0.2, 0.4)
+    // }
 
     Item{
         id: header
@@ -16,17 +28,23 @@ Item {
         }
         height: parent.height *0.5
 
-
-        TabBar{
+        Rectangle{
             anchors.fill: parent
+            height: parent.height/2
 
-            Repeater{
-                model: phaseVar.subPhases
-                TabButton{
-                    text: modelData.name
-
-                }
-            }
+            color: Qt.rgba(0.2, 0.8, 0.2, 0.4)
         }
+
+        // TabBar{
+        //     anchors.fill: parent
+
+        //     Repeater{
+        //         model: phaseVar.subPhases
+        //         TabButton{
+        //             text: modelData.name
+
+        //         }
+        //     }
+        // }
     }
 }

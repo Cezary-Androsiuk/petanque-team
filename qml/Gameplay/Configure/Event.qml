@@ -11,17 +11,16 @@ Item {
     readonly property int headerHeight: 70
     readonly property int footerHeight: 70
 
-
     Connections{
         target: Backend.event
-        function eventValid(){
+        function onEventValid(){
             log.i("event is valid")
 
             // confirm popup
             onConfirmed()
         }
 
-        function eventValidationFailed(description){
+        function onEventValidationFailed(description){
             log.i("event is NOT valid")
         }
 
@@ -30,7 +29,7 @@ Item {
     /////////////////// onEventStartConfirmed
     function onConfirmed(){
         Memory.save(); // saves data
-        Backend.event.goToNextStage() // changes stage from Configure to Continue
+        Backend.event.goToNextStage() // changes stage from Configure to Play(Continue)
         // Memory.save(); // saves changed stage // exiting doing it as well // and timer will be
     }
 
