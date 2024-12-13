@@ -1,8 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
-import ".."
-
 Item {
     id: teamsList
 

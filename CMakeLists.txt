@@ -41,8 +41,8 @@ qt_add_qml_module(appPetanqueTeam
     QML_FILES qml/LoginForm.qml
     QML_FILES qml/Gameplay/Configure.qml
     QML_FILES qml/Gameplay/Configure/Event.qml
-    QML_FILES qml/Gameplay/Configure/Event/InfoField.qml
-    QML_FILES qml/Gameplay/Configure/Event/TeamsList.qml
+    QML_FILES qml/Gameplay/Configure/InfoField.qml
+    QML_FILES qml/Gameplay/Configure/TeamsList.qml
     QML_FILES qml/Gameplay/Configure/Player.qml
     QML_FILES qml/Gameplay/Configure/PlayerDelegate.qml
     QML_FILES qml/Gameplay/Configure/Team.qml
