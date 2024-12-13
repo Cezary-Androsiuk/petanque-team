@@ -1,5 +1,7 @@
 #include "Team.h"
 
+TeamPtrList globalTeams;
+
 Team::Team(QObject *parent)
     : QObject{parent}
 {

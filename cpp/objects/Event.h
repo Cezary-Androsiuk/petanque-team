@@ -120,7 +120,7 @@ private:
     PhasePtrVector m_phases;
 
     TeamPtr m_detachedTeam;
-    TeamPtrList m_teams;
+    TeamPtrList &m_teams;
 };
 
 #endif // EVENT_H

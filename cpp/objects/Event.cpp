@@ -2,6 +2,7 @@
 
 Event::Event(QObject *parent)
     : QObject{parent}
+    , m_teams{globalTeams}
     , m_phases(2, PhasePtr())
 {
     I(QAPF("Creating Event: %p", this));
