@@ -8,7 +8,6 @@
 #include "cpp/Login.h"
 #include "cpp/Backend.h"
 #include "cpp/support/LogQML.h"
-#include "cpp/storages/Memory.h"
 
 int main(int argc, char *argv[])
 {
@@ -17,14 +16,11 @@ int main(int argc, char *argv[])
 
     QPointer<Backend> backend(new Backend(&app));
     QPointer<Login> login(new Login(&app));
-    QPointer<Memory> memory(new Memory(&app));
-    memory->setSerializablePtr(backend->getEventPtr());
     QPointer<LogQML> logQML(new LogQML(&app));
 
     engine.rootContext()->setContextProperty("DoubleStartProtection", DoubleStartProtection::getInstance());
     engine.rootContext()->setContextProperty("Backend", backend);
     engine.rootContext()->setContextProperty("Login", login);
-    engine.rootContext()->setContextProperty("Memory", memory);
     engine.rootContext()->setContextProperty("log", logQML);
 
     QObject::connect(

@@ -2,34 +2,37 @@ import QtQuick
 import QtQuick.Controls.Material
 
 Item {
-    id: play
+    id: gameplay
     anchors.fill: parent
 
+    property var event: Backend.event
+    property int currentStage: event ? event.currentStage : 0
+
     property string loaderSource: {
-        if(Backend.event.currentStage === 0) // None
+        if(currentStage === 0) // None
         {
-            log.e("none stage was reached");
+            log.e("none stage was reached", "Gameplay.qml");
             "";
         }
         else
-        if(Backend.event.currentStage === 1) // Configure
+        if(currentStage === 1) // Configure
         {
             "Gameplay/Configure.qml";
         }
         else
-        if(Backend.event.currentStage === 2) // Play
+        if(currentStage === 2) // Play
         {
             "Gameplay/Play.qml";
         }
         else
-        if(Backend.event.currentStage === 3) // Finish
+        if(currentStage === 3) // Finish
         {
             "Gameplay/Finish.qml";
         }
     }
 
     Component.onDestruction: {
-        Memory.save();
+        Backend.memory.save();
     }
 
     Loader{

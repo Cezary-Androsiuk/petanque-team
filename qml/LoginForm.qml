@@ -121,11 +121,11 @@ Item {
             bottomMargin: 20
             horizontalCenter: parent.horizontalCenter
         }
-        visible: (!Memory)?false: Memory.debugMemoryFileExist()
+        visible: (!Backend.memory)?false: Backend.memory.debugMemoryFileExist()
         text: "Delete memory - Exist"
         onClicked: {
-            Memory.debugDeleteMemory();
-            visible = Memory.debugMemoryFileExist();
+            Backend.memory.debugDeleteMemory();
+            visible = Backend.memory.debugMemoryFileExist();
         }
     }
 }

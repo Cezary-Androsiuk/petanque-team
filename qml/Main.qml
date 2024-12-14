@@ -31,7 +31,7 @@ ApplicationWindow {
     Connections{
         target: Login
         function onAuthenticated(){
-            Memory.load()
+            Backend.memory.load()
         }
         function onAuthenticationFailed(){
             log.e("onAuthenticationFailed") // display popup
@@ -39,7 +39,15 @@ ApplicationWindow {
     }
 
     Connections{
-        target: Memory
+        target: Backend
+        function onRestartedEvent(){
+            Backend.event.goToNextStage() // from Stage None to Configure
+            rootLoader.source = "Gameplay.qml"
+        }
+    }
+
+    Connections{
+        target: Backend.memory
         function onMemoryFileNotExist(){
             Backend.event.goToNextStage() // from Stage None to Configure
             rootLoader.source = "Gameplay.qml"
@@ -50,14 +58,14 @@ ApplicationWindow {
         }
 
         function onMemoryLoadError(message){
-            rootLoader.source = ""
+            rootLoader.source = "" // open error page with what goes wrong and button to remove memory file or retry
             log.e("error occur while loading memory: " + message, this.target.toString() + " onMemoryLoadError")
         }
 
         function onMemorySaved(reload){ // not reloading memory, while exiting the app
             // console.log("memory saved");
             // if(reload)
-                // Memory.load()
+                // Backend.memory.load()
         }
 
         function onMemorySaveError(message){
