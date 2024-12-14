@@ -46,6 +46,7 @@ Item {
 
             text: "end event"
             onClicked: {
+                rootLoader.source = "";
                 Backend.restartEvent();
             }
         }

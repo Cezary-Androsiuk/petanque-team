@@ -12,14 +12,13 @@ Item {
     Connections{
         target: Backend.event
         function onEventValid(){
-            log.i("event is valid")
 
             // confirm popup
             onConfirmed()
         }
 
         function onEventValidationFailed(description){
-            log.i("event is NOT valid")
+            log.i("event is NOT valid", onEventValidationFailed) // open popup
         }
 
     }

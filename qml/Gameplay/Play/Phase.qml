@@ -137,6 +137,22 @@ Item {
         //     font.pixelSize: 30
         // }
 
+        Button{
+            anchors{
+                top: parent.top
+                right: parent.right
+                rightMargin: 60
+                bottom: parent.bottom
+            }
+            // width: 2*height
+            text: "Restart event  (in future settings button)"
+            onClicked: {
+                console.log("open settings, then can restart event")
+                rootLoader.source = "";
+                Backend.restartEvent();
+            }
+        }
+
         Rectangle{
             id: headerBorder
             anchors.fill: parent
