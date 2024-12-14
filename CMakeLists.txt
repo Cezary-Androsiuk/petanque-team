@@ -30,6 +30,13 @@ qt_add_qml_module(appPetanqueTeam
     SOURCES cpp/objects/SubPhase.h cpp/objects/SubPhase.cpp
     SOURCES cpp/objects/Team.h cpp/objects/Team.cpp
     SOURCES cpp/objects/Player.h cpp/objects/Player.cpp
+    SOURCES cpp/objects/Round.h cpp/objects/Round.cpp
+    SOURCES cpp/objects/Match.h cpp/objects/Match.cpp
+    SOURCES cpp/objects/MatchTypeBase.h cpp/objects/MatchTypeBase.cpp
+    SOURCES cpp/objects/MatchSingiels.h cpp/objects/MatchSingiels.cpp
+    SOURCES cpp/objects/MatchDublets.h cpp/objects/MatchDublets.cpp
+    SOURCES cpp/objects/MatchTriplets.h cpp/objects/MatchTriplets.cpp
+    SOURCES cpp/objects/GroupMatch.h cpp/objects/GroupMatch.cpp
     SOURCES cpp/enums/GenderEnum.h cpp/enums/GenderEnum.cpp
     SOURCES cpp/enums/AgeGroupEnum.h cpp/enums/AgeGroupEnum.cpp
     SOURCES cpp/enums/StageEnum.h cpp/enums/StageEnum.cpp
