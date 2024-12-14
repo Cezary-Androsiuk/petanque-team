@@ -38,6 +38,16 @@ void Phase::initSubPhases()
     }
 }
 
+void Phase::verifyCurrentRoundStage()
+{
+
+}
+
+void Phase::gonext()
+{
+    emit this->phaseReachedEnd();
+}
+
 QJsonObject Phase::serialize() const
 {
     return QJsonObject();

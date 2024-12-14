@@ -53,6 +53,7 @@ public slots:
     /// STAGE STUFF
     void goToNextStage();
     void goToPrevStage();
+    void initFinishStage();
 
     /// PHASE STUFF
     void initFirstPhase();

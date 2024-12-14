@@ -33,7 +33,10 @@ void Event::initialize()
 void Event::createPhases()
 {
     m_phases[0] = PhasePtr::create(PhaseEnum::First, 1);
+    QObject::connect(m_phases[0].data(), &Phase::phaseReachedEnd, this, &Event::initSecondPhase);
+
     m_phases[1] = PhasePtr::create(PhaseEnum::Second, 2);
+    QObject::connect(m_phases[1].data(), &Phase::phaseReachedEnd, this, &Event::initFinishStage);
 
     emit this->phasesChanged();
 }
@@ -105,10 +108,6 @@ void Event::clear(bool emitting)
 
     m_currentStage = StageEnum::None;
     if(emitting) { emit this->currentStageChanged(); }
-
-    m_phases[PhaseEnum::First]->clear();
-    m_phases[PhaseEnum::Second]->clear();
-    if(emitting) { emit this->phasesChanged(); }
 }
 
 void Event::goToNextStage()
@@ -133,6 +132,12 @@ void Event::goToPrevStage()
     emit this->currentStageChanged();
 }
 
+void Event::initFinishStage()
+{
+    D("init finish stage")
+    this->goToNextStage();
+}
+
 void Event::initFirstPhase()
 {
 
@@ -140,7 +145,9 @@ void Event::initFirstPhase()
 
 void Event::initSecondPhase()
 {
-
+    D("init second phase")
+    m_currentPhase = PhaseEnum::Second;
+    emit this->currentPhaseChanged();
 }
 
 void Event::createDetachedTeam()

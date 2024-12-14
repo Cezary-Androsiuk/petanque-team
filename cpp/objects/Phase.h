@@ -23,8 +23,11 @@ public:
 private:
     void initSubPhases();
 
-public:
+public slots:
+    void verifyCurrentRoundStage();
+    void gonext();
 
+public:
     QJsonObject serialize() const override;
     void deserialize(const QJsonObject &phaseJson) override;
 
@@ -37,10 +40,15 @@ public:
     /// QML LIST GETTERS
     QmlSubPhasePtrVector getSubPhasesQml() const;
 
+signals:
+    void phaseReachedEnd();
+
 private:
     const PhaseEnum m_phase;
     const int m_subPhasesCount;
     const SubPhasePtrVector m_subPhases;
+
+
 };
 
 typedef QSharedPointer<Phase> PhasePtr;

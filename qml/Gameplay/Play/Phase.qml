@@ -155,31 +155,69 @@ Item {
         }
         height: phase.footerHeight
 
+
+        Item{
+            id: centerItem
+            anchors{
+                centerIn: parent
+            }
+        }
+
         // Button{
+        //     id: backButton
         //     anchors{
-        //         right: parent.right
-        //         rightMargin: 20
+        //         right: centerItem.left
+        //         rightMargin: 5
         //         verticalCenter: parent.verticalCenter
         //     }
+        //     enabled: Backend.event.hasPrevRoundStage;
 
-        //     text: "start event"
+        //     text: "Back"
         //     onClicked: {
-        //         Backend.event.validateEvent();
+        //         Backend.event.goToPrevRoundStage();
         //     }
         // }
 
-        // Button{
-        //     id: setExampleData
-        //     anchors{
-        //         left: parent.left
-        //         leftMargin: 20
-        //         verticalCenter: parent.verticalCenter
-        //     }
-        //     text: "create example data"
-        //     onClicked:{
-        //         Backend.event.assignExampleData();
-        //     }
-        // }
+        Button{
+            id: nextButton
+            anchors{
+                left: centerItem.right
+                leftMargin: 5
+                verticalCenter: parent.verticalCenter
+            }
+            text: "Next"
+            onClicked: {
+                phase.phaseVar.gonext();
+                // phase.phaseVar.verifyCurrentRoundStage();
+            }
+        }
+
+        Button{
+            id: exampleDataButton
+            anchors{
+                left: nextButton.right
+                leftMargin: 30
+                verticalCenter: parent.verticalCenter
+            }
+            text: "Set Example Data"
+            onClicked:{
+                continueLoader.item.setExampleData()
+            }
+        }
+
+        Button{
+            id: exampleDataAndNextButton
+            anchors{
+                left: exampleDataButton.right
+                leftMargin: 30
+                verticalCenter: parent.verticalCenter
+            }
+            text: "Set Example Data And Go Next"
+            onClicked:{
+                exampleDataButton.clicked();
+                nextButton.clicked();
+            }
+        }
 
         Rectangle{
             id: footerBorder
