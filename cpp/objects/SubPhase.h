@@ -11,6 +11,7 @@
 class SubPhase : public QObject, public Serializable
 {
     Q_OBJECT
+    Q_PROPERTY(QString name READ getName WRITE setName NOTIFY nameChanged FINAL)
 public:
     explicit SubPhase(QObject *parent = nullptr);
     ~SubPhase();
@@ -20,13 +21,20 @@ public:
 
     void clear();
 
+public:
+    QString getName() const;
+
+    void setName(const QString &name);
+
 signals:
+    void nameChanged();
 
 private:
+    QString m_name;
 };
 
 typedef QSharedPointer<SubPhase> SubPhasePtr;
 typedef QVector<SubPhasePtr> SubPhasePtrVector;
-typedef QVector<const SubPhase *> QmlSubPhasePtrVector;
+typedef QVector<SubPhase *> QmlSubPhasePtrVector;
 
 #endif // SUBPHASE_H

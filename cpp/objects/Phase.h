@@ -8,25 +8,43 @@
 #include "cpp/support/Log.h"
 #include "cpp/Serializable.h"
 #include "cpp/objects/SubPhase.h"
+#include "cpp/enums/PhaseEnum.h"
 
 class Phase : public QObject, public Serializable
 {
     Q_OBJECT
+    Q_PROPERTY(int subPhasesCount READ getSubPhasesCount CONSTANT FINAL)
+    Q_PROPERTY(QmlSubPhasePtrVector subPhases READ getSubPhasesQml CONSTANT FINAL)
+
 public:
-    explicit Phase(int subPhasesCount, QObject *parent = nullptr);
+    explicit Phase(PhaseEnum phase, int subPhasesCount, QObject *parent = nullptr);
     ~Phase();
+
+private:
+    void initSubPhases();
+
+public:
 
     QJsonObject serialize() const override;
     void deserialize(const QJsonObject &phaseJson) override;
 
     void clear();
 
+public:
+    int getSubPhasesCount() const;
+    const SubPhasePtrVector &getSubPhases() const;
+
+    /// QML LIST GETTERS
+    QmlSubPhasePtrVector getSubPhasesQml() const;
+
 private:
-    SubPhasePtrVector m_subPhases;
+    const PhaseEnum m_phase;
+    const int m_subPhasesCount;
+    const SubPhasePtrVector m_subPhases;
 };
 
 typedef QSharedPointer<Phase> PhasePtr;
 typedef QVector<PhasePtr> PhasePtrVector;
-typedef QVector<const Phase *> QmlPhasePtrVector;
+typedef QVector<Phase *> QmlPhasePtrVector;
 
 #endif // PHASE_H

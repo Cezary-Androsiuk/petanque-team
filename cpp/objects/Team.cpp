@@ -11,6 +11,10 @@ Team::Team(QObject *parent)
 Team::~Team()
 {
     I(QAPF("Destroying Team: %p", this));
+
+    for(auto &playerPtr : m_players)
+        playerPtr.clear();
+    m_players.clear();
 }
 
 QJsonObject Team::serialize() const

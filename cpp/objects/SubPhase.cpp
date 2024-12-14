@@ -25,3 +25,16 @@ void SubPhase::clear()
 {
 
 }
+
+QString SubPhase::getName() const
+{
+    return m_name;
+}
+
+void SubPhase::setName(const QString &name)
+{
+    if (m_name == name)
+        return;
+    m_name = name;
+    emit nameChanged();
+}

@@ -28,10 +28,6 @@ Item {
         }
     }
 
-    Rectangle{
-        anchors.fill: parent
-        color: Qt.rgba(0.2, 0.2, 0.8, 0.4)
-    }
     Component.onDestruction: {
         Memory.save();
     }

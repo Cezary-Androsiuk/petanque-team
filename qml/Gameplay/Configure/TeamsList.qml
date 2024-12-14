@@ -13,7 +13,7 @@ Item {
             parentStackView: teamsList.parentStackView,
             team: Backend.event.detachedTeam
         }
-        teamsList.parentStackView.push("../Team.qml", args)
+        teamsList.parentStackView.push("Team.qml", args)
     }
 
     ListView{

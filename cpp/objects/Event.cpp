@@ -13,6 +13,14 @@ Event::Event(QObject *parent)
 Event::~Event()
 {
     I(QAPF("Destroying Event: %p", this));
+
+    for(auto &teamPtr : m_teams)
+        teamPtr.clear();
+    m_teams.clear();
+
+    for(auto &phasePtr : m_phases)
+        phasePtr.clear();
+    m_phases.clear();
 }
 
 void Event::initialize()
@@ -24,8 +32,8 @@ void Event::initialize()
 
 void Event::createPhases()
 {
-    m_phases[0] = PhasePtr::create(1);
-    m_phases[1] = PhasePtr::create(2);
+    m_phases[0] = PhasePtr::create(PhaseEnum::First, 1);
+    m_phases[1] = PhasePtr::create(PhaseEnum::Second, 2);
 
     emit this->phasesChanged();
 }
