@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QVector>
 #include <QList>
+#include <QWeakPointer>
 #include <QSharedPointer>
 
 #include "cpp/support/Log.h"
@@ -75,6 +76,7 @@ private:
     bool m_isTeamLeader;
 };
 
+typedef QWeakPointer<Player> PlayerWPtr;
 typedef QSharedPointer<Player> PlayerPtr;
 typedef QList<PlayerPtr> PlayerPtrList;
 typedef QVector<Player *> QmlPlayerPtrVector;

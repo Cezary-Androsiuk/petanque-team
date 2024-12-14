@@ -1,3 +1,7 @@
 #include "MatchTriplets.h"
 
-MatchTriplets::MatchTriplets() {}
+MatchTriplets::MatchTriplets(QObject *parent)
+    : MatchTypeBase()
+{
+
+}

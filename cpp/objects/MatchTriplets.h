@@ -1,10 +1,22 @@
 #ifndef MATCHTRIPLETS_H
 #define MATCHTRIPLETS_H
 
-class MatchTriplets
+#include <QObject>
+#include <QList>
+#include <QSharedPointer>
+
+#include "cpp/support/Log.h"
+#include "cpp/objects/MatchTypeBase.h"
+
+class MatchTriplets : public MatchTypeBase
 {
+    Q_OBJECT
 public:
-    MatchTriplets();
+    explicit MatchTriplets(QObject *parent = nullptr);
+
+signals:
 };
+
+typedef QSharedPointer<MatchTriplets> MatchTripletsPtr;
 
 #endif // MATCHTRIPLETS_H

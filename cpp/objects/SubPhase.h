@@ -7,6 +7,7 @@
 
 #include "cpp/support/Log.h"
 #include "cpp/Serializable.h"
+#include "cpp/objects/Round.h"
 
 class SubPhase : public QObject, public Serializable
 {

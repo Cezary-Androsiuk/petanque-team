@@ -47,8 +47,6 @@ private:
     const PhaseEnum m_phase;
     const int m_subPhasesCount;
     const SubPhasePtrVector m_subPhases;
-
-
 };
 
 typedef QSharedPointer<Phase> PhasePtr;

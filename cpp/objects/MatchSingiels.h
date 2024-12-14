@@ -2,8 +2,13 @@
 #define MATCHSINGIELS_H
 
 #include <QObject>
+#include <QList>
+#include <QSharedPointer>
 
-class MatchSingiels : public QObject
+#include "cpp/support/Log.h"
+#include "cpp/objects/MatchTypeBase.h"
+
+class MatchSingiels : public MatchTypeBase
 {
     Q_OBJECT
 public:
@@ -11,5 +16,7 @@ public:
 
 signals:
 };
+
+typedef QSharedPointer<MatchSingiels> MatchSingielsPtr;
 
 #endif // MATCHSINGIELS_H

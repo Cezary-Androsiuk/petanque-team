@@ -2,8 +2,13 @@
 #define MATCHDUBLETS_H
 
 #include <QObject>
+#include <QList>
+#include <QSharedPointer>
 
-class MatchDublets : public QObject
+#include "cpp/support/Log.h"
+#include "cpp/objects/MatchTypeBase.h"
+
+class MatchDublets : public MatchTypeBase
 {
     Q_OBJECT
 public:
@@ -11,5 +16,7 @@ public:
 
 signals:
 };
+
+typedef QSharedPointer<MatchDublets> MatchDubletsPtr;
 
 #endif // MATCHDUBLETS_H
