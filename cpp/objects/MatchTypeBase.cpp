@@ -18,3 +18,13 @@ void MatchTypeBase::clear(bool emitting)
 {
 
 }
+
+bool MatchTypeBase::verifySelection(QString &message)
+{
+
+}
+
+bool MatchTypeBase::verifyMatch(QString &message)
+{
+
+}

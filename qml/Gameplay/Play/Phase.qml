@@ -12,6 +12,32 @@ Item {
     readonly property int headerHeight: 30
     readonly property int footerHeight: 70
 
+    Connections{
+        target: phaseVar
+        function onVerified(){
+
+            onContinueConfirmed() // open popup
+        }
+
+        function onVerificationFailed(message){
+            log.i(message, "Phase.qml -> onVerificationFailed")
+            // open popup
+        }
+    }
+
+    function onContinueConfirmed(){
+        if(phaseVar.hasNext())
+        {
+            phaseVar.goToNext();
+        }
+        else
+        {
+            if(event.hasNextPhase())
+                event.startSecondPhase();
+            else
+                event.startFinishStage();
+        }
+    }
 
     Item{
         id: content
@@ -203,8 +229,7 @@ Item {
             }
             text: "Next"
             onClicked: {
-                phase.phaseVar.gonext();
-                // phase.phaseVar.verifyCurrentRoundStage();
+                phase.phaseVar.verify();
             }
         }
 

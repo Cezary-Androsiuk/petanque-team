@@ -24,8 +24,9 @@ private:
     void initSubPhases();
 
 public slots:
-    void verifyCurrentRoundStage();
-    void gonext();
+    void verify();
+    bool hasNext();
+    void goToNext();
 
 public:
     QJsonObject serialize() const override;
@@ -41,7 +42,8 @@ public:
     QmlSubPhasePtrVector getSubPhasesQml() const;
 
 signals:
-    void phaseReachedEnd();
+    void verified();
+    void verificationFailed(QString message);
 
 private:
     const PhaseEnum m_phase;

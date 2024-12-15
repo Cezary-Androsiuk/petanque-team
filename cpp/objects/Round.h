@@ -5,12 +5,26 @@
 #include <QList>
 #include <QSharedPointer>
 
-#include "cpp/objects/Match.h"
+#include "cpp/support/Log.h"
+#include "cpp/Serializable.h"
+#include "cpp/objects/MatchTypeBase.h"
+
+typedef QVector<QPair<int, int>> IntPairs;
 
 class Round : public QObject, public Serializable
 {
     Q_OBJECT
 public:
+    enum RoundStage{
+        SingielsSelection = 0,
+        SingielsMatch,
+        DubletsSelection,
+        DubletsMatch,
+        TripletsSelection,
+        TripletsMatch,
+        RoundSummary,
+    };
+
     explicit Round(QObject *parent = nullptr);
 
     QJsonObject serialize() const override;
@@ -18,10 +32,17 @@ public:
 
     void clear(bool emitting = true);
 
+public:
+    bool verify(QString &message) const;
+    bool hasNextRoundStage() const;
+    void goToNextRoundStage();
+
 signals:
 
 private:
-    MatchPtrList m_matches;
+    IntPairs m_arrangement;
+    RoundStage m_currentRoundStage;
+    const MatchTypeBasePtrVector m_matchTypes;
 };
 
 typedef QSharedPointer<Round> RoundPtr;

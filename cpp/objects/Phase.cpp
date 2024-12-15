@@ -4,7 +4,7 @@ Phase::Phase(PhaseEnum phase, int subPhasesCount, QObject *parent)
     : QObject{parent}
     , m_phase{phase}
     , m_subPhasesCount{subPhasesCount}
-    , m_subPhases(subPhasesCount, SubPhasePtr::create())
+    , m_subPhases(subPhasesCount, SubPhasePtr::create(subPhasesCount==1?8:4))
 {
     I(QAPF("Creating Phase: %p", this));
     this->initSubPhases();
@@ -38,14 +38,41 @@ void Phase::initSubPhases()
     }
 }
 
-void Phase::verifyCurrentRoundStage()
+void Phase::verify()
 {
-
+    for(const auto &subPhasePtr : m_subPhases)
+    {
+        QString message;
+        if(!subPhasePtr->verify(message))
+        {
+            QString prefix( "In "+ subPhasePtr->getName() +" phase: " );
+            emit this->verificationFailed(prefix + message);
+            return;
+        }
+    }
+    emit this->verified();
 }
 
-void Phase::gonext()
+bool Phase::hasNext()
 {
-    emit this->phaseReachedEnd();
+    bool hasNextRound = true;
+    for(const auto &subPhasePtr : m_subPhases)
+    {
+        if(!subPhasePtr->hasNextRound())
+        {
+            hasNextRound = false;
+            break;
+        }
+    }
+    return hasNextRound;
+}
+
+void Phase::goToNext()
+{
+    for(auto &subPhasePtr : m_subPhases)
+    {
+        subPhasePtr->goToNextRound();
+    }
 }
 
 QJsonObject Phase::serialize() const

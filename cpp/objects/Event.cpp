@@ -33,10 +33,10 @@ void Event::initialize()
 void Event::createPhases()
 {
     m_phases[0] = PhasePtr::create(PhaseEnum::First, 1);
-    QObject::connect(m_phases[0].data(), &Phase::phaseReachedEnd, this, &Event::initSecondPhase);
+    // QObject::connect(m_phases[0].data(), &Phase::phaseReachedEnd, this, &Event::initSecondPhase);
 
     m_phases[1] = PhasePtr::create(PhaseEnum::Second, 2);
-    QObject::connect(m_phases[1].data(), &Phase::phaseReachedEnd, this, &Event::initFinishStage);
+    // QObject::connect(m_phases[1].data(), &Phase::phaseReachedEnd, this, &Event::initFinishStage);
 
     emit this->phasesChanged();
 }
@@ -132,20 +132,20 @@ void Event::goToPrevStage()
     emit this->currentStageChanged();
 }
 
-void Event::initFinishStage()
+void Event::startFinishStage()
 {
-    D("init finish stage")
+    D("start finish stage")
     this->goToNextStage();
 }
 
-void Event::initFirstPhase()
+bool Event::hasNextPhase()
 {
-
+    return m_currentPhase == PhaseEnum::First;
 }
 
-void Event::initSecondPhase()
+void Event::startSecondPhase()
 {
-    D("init second phase")
+    D("start second phase")
     m_currentPhase = PhaseEnum::Second;
     emit this->currentPhaseChanged();
 }

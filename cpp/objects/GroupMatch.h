@@ -20,6 +20,9 @@ public:
     void clear(bool emitting = true);
 
 signals:
+
+private:
+
 };
 
 typedef QSharedPointer<GroupMatch> GroupMatchPtr;

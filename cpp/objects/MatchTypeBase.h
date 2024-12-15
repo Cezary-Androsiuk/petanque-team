@@ -7,6 +7,7 @@
 
 #include "cpp/support/Log.h"
 #include "cpp/Serializable.h"
+#include "cpp/objects/GroupMatch.h"
 
 class MatchTypeBase : public QObject, public Serializable
 {
@@ -19,12 +20,18 @@ public:
     void deserialize(const QJsonObject &jTeam) override;
 
     void clear(bool emitting = true);
+public:
+    bool verifySelection(QString &message);
+    bool verifyMatch(QString &message);
 
 signals:
+
+private:
+    GroupMatchPtrList m_groupMatches;
 };
 
 typedef QSharedPointer<MatchTypeBase> MatchTypeBasePtr;
-typedef QList<MatchTypeBasePtr> MatchTypeBasePtrList;
+typedef QVector<MatchTypeBasePtr> MatchTypeBasePtrVector;
 typedef QVector<MatchTypeBase *> QmlMatchTypeBasePtrVector;
 
 
