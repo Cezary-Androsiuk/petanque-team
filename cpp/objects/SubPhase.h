@@ -40,7 +40,7 @@ signals:
 private:
     QString m_name;
     int m_currentRound;
-    const RoundPtrVector m_rounds;
+    RoundPtrVector m_rounds;
 };
 
 typedef QSharedPointer<SubPhase> SubPhasePtr;

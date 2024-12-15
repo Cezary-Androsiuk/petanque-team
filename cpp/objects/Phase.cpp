@@ -1,10 +1,8 @@
 #include "Phase.h"
 
-Phase::Phase(PhaseEnum phase, int subPhasesCount, QObject *parent)
+Phase::Phase(PhaseEnum phase, QObject *parent)
     : QObject{parent}
     , m_phase{phase}
-    , m_subPhasesCount{subPhasesCount}
-    , m_subPhases(subPhasesCount, SubPhasePtr::create(subPhasesCount==1?8:4))
 {
     I(QAPF("Creating Phase: %p", this));
     this->initSubPhases();
@@ -19,20 +17,13 @@ void Phase::initSubPhases()
 {
     if(m_phase == PhaseEnum::First)
     {
-        if(m_subPhases.size() != 1)
-        {
-            E("");
-            return;
-        }
+        m_subPhases.append(SubPhasePtr::create(8));
         m_subPhases[0]->setName("1");
     }
     else // m_phase == PhaseEnum::Second
     {
-        if(m_subPhases.size() != 2)
-        {
-            E("");
-            return;
-        }
+        m_subPhases.append(SubPhasePtr::create(4));
+        m_subPhases.append(SubPhasePtr::create(4));
         m_subPhases[0]->setName("2a");
         m_subPhases[1]->setName("2b");
     }
@@ -92,7 +83,7 @@ void Phase::clear()
 
 int Phase::getSubPhasesCount() const
 {
-    return m_subPhasesCount;
+    return m_subPhases.size();
 }
 
 const SubPhasePtrVector &Phase::getSubPhases() const

@@ -32,10 +32,10 @@ void Event::initialize()
 
 void Event::createPhases()
 {
-    m_phases[0] = PhasePtr::create(PhaseEnum::First, 1);
+    m_phases[0] = PhasePtr::create(PhaseEnum::First);
     // QObject::connect(m_phases[0].data(), &Phase::phaseReachedEnd, this, &Event::initSecondPhase);
 
-    m_phases[1] = PhasePtr::create(PhaseEnum::Second, 2);
+    m_phases[1] = PhasePtr::create(PhaseEnum::Second);
     // QObject::connect(m_phases[1].data(), &Phase::phaseReachedEnd, this, &Event::initFinishStage);
 
     emit this->phasesChanged();

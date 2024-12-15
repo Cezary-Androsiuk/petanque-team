@@ -3,12 +3,12 @@
 SubPhase::SubPhase(int roundsCount, QObject *parent)
     : QObject{parent}
     , m_currentRound(0)
-    , m_rounds(roundsCount, RoundPtr::create())
+    , m_rounds(roundsCount)
 {
     I(QAPF("Creating SubPhase: %p", this));
-    for(const auto &p : m_rounds)
+    for(auto &roundPtr : m_rounds)
     {
-        qDebug() << p;
+        roundPtr = RoundPtr::create();
     }
 }
 
@@ -48,11 +48,9 @@ bool SubPhase::hasNextRound() const
     RoundPtr currentRound = m_rounds[m_currentRound];
     if(currentRound->hasNextRoundStage())
     {
-        D("round has next roundStage")
         return true;
     }
 
-    D("round doesn't have next roundStage")
     return (m_currentRound < m_rounds.size()-1);
 }
 
@@ -60,7 +58,6 @@ void SubPhase::goToNextRound()
 {
     // should be called only if hasNextRound return true
     RoundPtr currentRound = m_rounds[m_currentRound];
-    qDebug() << currentRound;
     if(currentRound->hasNextRoundStage())
     {
         currentRound->goToNextRoundStage();

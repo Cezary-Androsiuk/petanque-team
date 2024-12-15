@@ -17,7 +17,7 @@ class Phase : public QObject, public Serializable
     Q_PROPERTY(QmlSubPhasePtrVector subPhases READ getSubPhasesQml CONSTANT FINAL)
 
 public:
-    explicit Phase(PhaseEnum phase, int subPhasesCount, QObject *parent = nullptr);
+    explicit Phase(PhaseEnum phase, QObject *parent = nullptr);
     ~Phase();
 
 private:
@@ -47,8 +47,7 @@ signals:
 
 private:
     const PhaseEnum m_phase;
-    const int m_subPhasesCount;
-    const SubPhasePtrVector m_subPhases;
+    SubPhasePtrVector m_subPhases;
 };
 
 typedef QSharedPointer<Phase> PhasePtr;
