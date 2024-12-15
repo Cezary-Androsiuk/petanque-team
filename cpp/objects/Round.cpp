@@ -38,14 +38,21 @@ bool Round::verify(QString &message) const
 
     if(isSelectionStage)
     {
-        // currentMatchType->verifySelection();
+        if(!currentMatchType->verifySelection(message))
+        {
+            message = "in roundStage " +QString::number(m_currentRoundStage)+": " + message;
+            return false;
+        }
     }
     else
     {
-        // currentMatchType->verifyMatch();
+        if(!currentMatchType->verifyMatch(message))
+        {
+            message = "in roundStage " +QString::number(m_currentRoundStage)+": " + message;
+            return false;
+        }
     }
 
-    // TMP
     return true;
 }
 
