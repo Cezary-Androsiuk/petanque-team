@@ -25,20 +25,8 @@ Event::~Event()
 
 void Event::initialize()
 {
-    this->createPhases();
     m_currentPhase = PhaseEnum::First;
     m_currentStage = StageEnum::None;
-}
-
-void Event::createPhases()
-{
-    m_phases[0] = PhasePtr::create(PhaseEnum::First);
-    // QObject::connect(m_phases[0].data(), &Phase::phaseReachedEnd, this, &Event::initSecondPhase);
-
-    m_phases[1] = PhasePtr::create(PhaseEnum::Second);
-    // QObject::connect(m_phases[1].data(), &Phase::phaseReachedEnd, this, &Event::initFinishStage);
-
-    emit this->phasesChanged();
 }
 
 QJsonObject Event::serialize() const
@@ -49,8 +37,14 @@ QJsonObject Event::serialize() const
     jEvent[ SERL_CURRENT_PHASE_KEY ] = currentPhaseInt;
     int currentStageInt = static_cast<int>(m_currentStage);
     jEvent[ SERL_CURRENT_STAGE_KEY ] = currentStageInt;
-    jEvent[ SERL_PHASE_FIRST_KEY ] = m_phases[PhaseEnum::First]->serialize();
-    jEvent[ SERL_PHASE_SECOND_KEY ] = m_phases[PhaseEnum::Second]->serialize();
+
+    jEvent[ SERL_PHASE_FIRST_KEY ] = m_phases[PhaseEnum::First].isNull() ?
+                                       QJsonObject() :
+                                       m_phases[PhaseEnum::First]->serialize();
+
+    jEvent[ SERL_PHASE_SECOND_KEY ] = m_phases[PhaseEnum::Second].isNull() ?
+                                        QJsonObject() :
+                                        m_phases[PhaseEnum::Second]->serialize();
 
 
     QJsonArray jTeams;
@@ -81,8 +75,10 @@ void Event::deserialize(const QJsonObject &jEvent)
 
     QJsonObject firstPhaseObject = jEvent[ SERL_PHASE_FIRST_KEY ].toObject();
     QJsonObject secondPhaseObject = jEvent[ SERL_PHASE_SECOND_KEY ].toObject();
-    m_phases[PhaseEnum::First]->deserialize( firstPhaseObject );
-    m_phases[PhaseEnum::Second]->deserialize( secondPhaseObject );
+    if(!m_phases[PhaseEnum::First].isNull())
+        m_phases[PhaseEnum::First]->deserialize( firstPhaseObject );
+    if(!m_phases[PhaseEnum::Second].isNull())
+        m_phases[PhaseEnum::Second]->deserialize( secondPhaseObject );
     emit this->phasesChanged();
 
     QJsonArray jTeams = jEvent[ SERL_TEAMS_KEY ].toArray();
@@ -143,10 +139,23 @@ bool Event::hasNextPhase()
     return m_currentPhase == PhaseEnum::First;
 }
 
+void Event::startFirstPhase()
+{
+    D("start first phase")
+    m_currentPhase = PhaseEnum::First;
+    m_phases[0] = PhasePtr::create(PhaseEnum::First);
+
+    emit this->phasesChanged();
+    emit this->currentPhaseChanged();
+}
+
 void Event::startSecondPhase()
 {
     D("start second phase")
     m_currentPhase = PhaseEnum::Second;
+    m_phases[1] = PhasePtr::create(PhaseEnum::Second);
+
+    emit this->phasesChanged();
     emit this->currentPhaseChanged();
 }
 

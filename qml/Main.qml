@@ -49,8 +49,8 @@ ApplicationWindow {
     Connections{
         target: Backend.memory
         function onMemoryFileNotExist(){
-            Backend.event.goToNextStage() // from Stage None to Configure
-            rootLoader.source = "Gameplay.qml"
+            Backend.event.goToNextStage(); // from Stage None to Configure
+            rootLoader.source = "Gameplay.qml";
         }
 
         function onMemoryLoaded(){

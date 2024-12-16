@@ -16,25 +16,30 @@ SubPhase::~SubPhase()
 void SubPhase::initRounds(QJsonArray jArrangements)
 {
     int roundsCount = m_rounds.size() > jArrangements.size() ? jArrangements.size() : m_rounds.size();
+    /// if rounds count not equal to arrangement count, display error and use least value
     if(m_rounds.size() != jArrangements.size())
     {
         E(QAPF("m_rounds size(%lld) != arrangment size(%lld) using %d size",
                m_rounds.size(), jArrangements.size(), roundsCount))
     }
 
+    /// for each round set their part of berger's table
     for(int i=0; i<roundsCount; i++)
     {
         QJsonArray jArrangement = jArrangements[i].toArray();
         IntPairs arrangement;
+        /// change json to int pairs
+        /// -1 is to change team numbers to intexes
         for(int j=0; j<jArrangement.size(); j++)
         {
-            int t1 = jArrangement[j].toObject()["t1"].toInt();
-            int t2 = jArrangement[j].toObject()["t2"].toInt();
+            int t1 = jArrangement[j].toObject()["t1"].toInt() -1;
+            int t2 = jArrangement[j].toObject()["t2"].toInt() -1;
             arrangement.append({t1,t2});
         }
 
         m_rounds[i] = RoundPtr::create();
         m_rounds[i]->setArrangement(arrangement);
+        m_rounds[i]->initMatches();
     }
 }
 
@@ -66,7 +71,7 @@ bool SubPhase::verify(QString &message) const
 bool SubPhase::hasNext() const
 {
     // should be called before goToNextRound
-    RoundPtr currentRound = m_rounds[m_currentRoundIndex];
+    const RoundPtr &currentRound = m_rounds[m_currentRoundIndex];
     if(currentRound->hasNext())
     {
         return true;
@@ -78,7 +83,7 @@ bool SubPhase::hasNext() const
 void SubPhase::goToNext()
 {
     // should be called only if hasNextRound return true
-    RoundPtr currentRound = m_rounds[m_currentRoundIndex];
+    RoundPtr &currentRound = m_rounds[m_currentRoundIndex];
     if(currentRound->hasNext())
     {
         currentRound->goToNext();

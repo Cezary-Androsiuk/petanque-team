@@ -39,7 +39,6 @@ public:
 private:
     /// INIT STUFF
     void initialize();
-    void createPhases();
 
 public:
     /// SERIALIZABLE STUFF
@@ -57,6 +56,7 @@ public slots:
 
     /// PHASE STUFF
     bool hasNextPhase();
+    void startFirstPhase();
     void startSecondPhase();
 
     /// TEAM STUFF
