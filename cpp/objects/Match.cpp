@@ -2,7 +2,15 @@
 
 Match::Match(QObject *parent)
     : QObject{parent}
-{}
+{
+    DOLT(this)
+
+}
+
+Match::~Match()
+{
+    DOLT(this)
+}
 
 QJsonObject Match::serialize() const
 {

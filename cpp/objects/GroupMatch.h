@@ -13,6 +13,7 @@ class GroupMatch : public QObject, public Serializable
     Q_OBJECT
 public:
     explicit GroupMatch(QObject *parent = nullptr);
+    ~GroupMatch();
 
     QJsonObject serialize() const override;
     void deserialize(const QJsonObject &jTeam) override;

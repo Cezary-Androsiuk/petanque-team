@@ -13,6 +13,7 @@ class MatchTriplets : public MatchTypeBase
     Q_OBJECT
 public:
     explicit MatchTriplets(QObject *parent = nullptr);
+    ~MatchTriplets();
 
 signals:
 };

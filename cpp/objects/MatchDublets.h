@@ -13,6 +13,7 @@ class MatchDublets : public MatchTypeBase
     Q_OBJECT
 public:
     explicit MatchDublets(QObject *parent = nullptr);
+    ~MatchDublets();
 
 signals:
 };

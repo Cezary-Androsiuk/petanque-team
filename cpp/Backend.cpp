@@ -5,14 +5,14 @@ Backend::Backend(QObject *parent)
     , m_memoryPtr(QSharedPointer<Memory>::create(nullptr))
     , m_eventPtr(QSharedPointer<Event>::create(nullptr))
 {
-    I(QAPF("Creating Backend: %p", this));
+    DOLT(this)
 
     m_memoryPtr->setSerializablePtr(m_eventPtr);
 }
 
 Backend::~Backend()
 {
-    I(QAPF("Destroying Backend: %p", this));
+    DOLT(this)
 }
 
 void Backend::restartEvent()

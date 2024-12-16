@@ -5,14 +5,14 @@ Event::Event(QObject *parent)
     , m_teams{globalTeams}
     , m_phases(2, PhasePtr())
 {
-    I(QAPF("Creating Event: %p", this));
+    DOLT(this)
 
     this->initialize();
 }
 
 Event::~Event()
 {
-    I(QAPF("Destroying Event: %p", this));
+    DOLT(this)
 
     for(auto &teamPtr : m_teams)
         teamPtr.clear();

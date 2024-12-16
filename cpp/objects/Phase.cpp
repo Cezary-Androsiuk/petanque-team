@@ -4,13 +4,13 @@ Phase::Phase(PhaseEnum phase, QObject *parent)
     : QObject{parent}
     , m_phase{phase}
 {
-    I(QAPF("Creating Phase: %p", this));
+    DOLT(this)
     this->initSubPhases();
 }
 
 Phase::~Phase()
 {
-    I(QAPF("Destroying Phase: %p", this));
+    DOLT(this)
 }
 
 void Phase::initSubPhases()

@@ -3,9 +3,15 @@
 Memory::Memory(QObject *parent)
     : QObject{parent}
 {
+    DOLT(this)
 #if DELETE_MEMORY_AT_START
     D("removed memory file at start with status: " + BOOL_TO_STR(QFile::remove(MEMORY_FILE)));
 #endif
+}
+
+Memory::~Memory()
+{
+    DOLT(this)
 }
 
 void Memory::setSerializablePtr(const QSharedPointer<Serializable> &serializablePtr)

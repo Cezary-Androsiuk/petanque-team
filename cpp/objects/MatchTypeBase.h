@@ -14,7 +14,7 @@ class MatchTypeBase : public QObject, public Serializable
     Q_OBJECT
 public:
     explicit MatchTypeBase(QObject *parent = nullptr);
-    virtual ~MatchTypeBase() = default;
+    virtual ~MatchTypeBase();
 
     QJsonObject serialize() const override;
     void deserialize(const QJsonObject &jTeam) override;

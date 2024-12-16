@@ -6,12 +6,12 @@ Player::Player(QObject *parent)
     , m_gender{GenderEnum::Male}
     , m_isTeamLeader{false}
 {
-    I(QAPF("Creating player: %p", this));
+    DOLT(this)
 }
 
 Player::~Player()
 {
-    I(QAPF("Destroying player: %p", this));
+    DOLT(this)
 }
 
 QJsonObject Player::serialize() const

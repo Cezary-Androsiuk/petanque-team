@@ -15,6 +15,7 @@ class Match : public QObject, public Serializable
     Q_OBJECT
 public:
     explicit Match(QObject *parent = nullptr);
+    ~Match();
 
     QJsonObject serialize() const override;
     void deserialize(const QJsonObject &jTeam) override;

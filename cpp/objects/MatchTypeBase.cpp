@@ -2,7 +2,16 @@
 
 MatchTypeBase::MatchTypeBase(QObject *parent)
     : QObject{parent}
-{}
+{
+    DOLT(this)
+
+}
+
+MatchTypeBase::~MatchTypeBase()
+{
+    DOLT(this)
+
+}
 
 QJsonObject MatchTypeBase::serialize() const
 {

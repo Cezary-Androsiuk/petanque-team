@@ -2,7 +2,15 @@
 
 GroupMatch::GroupMatch(QObject *parent)
     : QObject{parent}
-{}
+{
+    DOLT(this)
+
+}
+
+    GroupMatch::~GroupMatch()
+{
+    DOLT(this)
+}
 
 QJsonObject GroupMatch::serialize() const
 {

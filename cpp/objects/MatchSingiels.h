@@ -13,6 +13,7 @@ class MatchSingiels : public MatchTypeBase
     Q_OBJECT
 public:
     explicit MatchSingiels(QObject *parent = nullptr);
+    ~MatchSingiels();
 
 signals:
 };

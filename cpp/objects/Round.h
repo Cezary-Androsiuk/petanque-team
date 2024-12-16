@@ -26,6 +26,7 @@ public:
     };
 
     explicit Round(QObject *parent = nullptr);
+    ~Round();
 
     QJsonObject serialize() const override;
     void deserialize(const QJsonObject &jTeam) override;

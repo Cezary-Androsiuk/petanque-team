@@ -5,7 +5,7 @@ SubPhase::SubPhase(int roundsCount, QObject *parent)
     , m_currentRound(0)
     , m_rounds(roundsCount)
 {
-    I(QAPF("Creating SubPhase: %p", this));
+    DOLTV(this, QString::number(roundsCount));
     for(auto &roundPtr : m_rounds)
     {
         roundPtr = RoundPtr::create();
@@ -14,7 +14,7 @@ SubPhase::SubPhase(int roundsCount, QObject *parent)
 
 SubPhase::~SubPhase()
 {
-    I(QAPF("Destroying SubPhase: %p", this));
+    DOLT(this)
 }
 
 QJsonObject SubPhase::serialize() const

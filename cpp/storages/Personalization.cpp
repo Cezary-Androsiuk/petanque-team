@@ -4,12 +4,14 @@
 Personalization::Personalization(QObject *parent)
     : QObject{parent}
 {
+    DOLT(this)
     this->setDefault();
     this->load();
 }
 
 Personalization::~Personalization()
 {
+    DOLT(this)
     this->save();
 }
 

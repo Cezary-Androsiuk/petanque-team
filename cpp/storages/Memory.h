@@ -25,6 +25,7 @@ class Memory : public QObject
     Q_OBJECT
 public:
     explicit Memory(QObject *parent = nullptr);
+    ~Memory();
 
     void setSerializablePtr(const QSharedPointer<Serializable> &serializablePtr);
 

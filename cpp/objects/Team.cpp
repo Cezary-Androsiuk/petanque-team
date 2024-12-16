@@ -5,12 +5,12 @@ TeamPtrList globalTeams;
 Team::Team(QObject *parent)
     : QObject{parent}
 {
-    I(QAPF("Creating Team: %p", this));
+    DOLT(this)
 }
 
 Team::~Team()
 {
-    I(QAPF("Destroying Team: %p", this));
+    DOLT(this)
 
     for(auto &playerPtr : m_players)
         playerPtr.clear();

@@ -11,7 +11,16 @@ Round::Round(QObject *parent)
                     MatchTypeBasePtr::create()
       })
     , m_currentRoundStage{RoundStage::SingielsSelection}
-{}
+{
+    DOLT(this)
+
+}
+
+Round::~Round()
+{
+    DOLT(this)
+
+}
 
 QJsonObject Round::serialize() const
 {
