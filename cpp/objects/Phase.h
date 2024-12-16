@@ -9,6 +9,7 @@
 #include "cpp/Serializable.h"
 #include "cpp/objects/SubPhase.h"
 #include "cpp/enums/PhaseEnum.h"
+#include "cpp/storages/Personalization.h"
 
 class Phase : public QObject, public Serializable
 {
@@ -20,13 +21,7 @@ public:
     explicit Phase(PhaseEnum phase, QObject *parent = nullptr);
     ~Phase();
 
-private:
     void initSubPhases();
-
-public slots:
-    void verify();
-    bool hasNext();
-    void goToNext();
 
 public:
     QJsonObject serialize() const override;
@@ -34,11 +29,17 @@ public:
 
     void clear();
 
+public slots:
+    void verify();
+    bool hasNext();
+    void goToNext();
+
 public:
+    /// GETTERS
     int getSubPhasesCount() const;
     const SubPhasePtrVector &getSubPhases() const;
 
-    /// QML LIST GETTERS
+    /// QML GETTERS
     QmlSubPhasePtrVector getSubPhasesQml() const;
 
 signals:

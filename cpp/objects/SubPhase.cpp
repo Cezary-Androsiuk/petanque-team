@@ -2,19 +2,40 @@
 
 SubPhase::SubPhase(int roundsCount, QObject *parent)
     : QObject{parent}
-    , m_currentRoundIndex(0)
-    , m_rounds(roundsCount)
+    , m_currentRoundIndex{0}
+    , m_rounds(roundsCount, RoundPtr())
 {
     DOLTV(this, QString::number(roundsCount));
-    for(auto &roundPtr : m_rounds)
-    {
-        roundPtr = RoundPtr::create();
-    }
 }
 
 SubPhase::~SubPhase()
 {
     DOLT(this)
+}
+
+void SubPhase::initRounds(QJsonArray jArrangements)
+{
+    int roundsCount = m_rounds.size() > jArrangements.size() ? jArrangements.size() : m_rounds.size();
+    if(m_rounds.size() != jArrangements.size())
+    {
+        E(QAPF("m_rounds size(%lld) != arrangment size(%lld) using %d size",
+               m_rounds.size(), jArrangements.size(), roundsCount))
+    }
+
+    for(int i=0; i<roundsCount; i++)
+    {
+        QJsonArray jArrangement = jArrangements[i].toArray();
+        IntPairs arrangement;
+        for(int j=0; j<jArrangement.size(); j++)
+        {
+            int t1 = jArrangement[j].toObject()["t1"].toInt();
+            int t2 = jArrangement[j].toObject()["t2"].toInt();
+            arrangement.append({t1,t2});
+        }
+
+        m_rounds[i] = RoundPtr::create();
+        m_rounds[i]->setArrangement(arrangement);
+    }
 }
 
 QJsonObject SubPhase::serialize() const
@@ -42,11 +63,11 @@ bool SubPhase::verify(QString &message) const
     return true;
 }
 
-bool SubPhase::hasNextRound() const
+bool SubPhase::hasNext() const
 {
     // should be called before goToNextRound
     RoundPtr currentRound = m_rounds[m_currentRoundIndex];
-    if(currentRound->hasNextRoundStage())
+    if(currentRound->hasNext())
     {
         return true;
     }
@@ -54,13 +75,13 @@ bool SubPhase::hasNextRound() const
     return (m_currentRoundIndex < m_rounds.size()-1);
 }
 
-void SubPhase::goToNextRound()
+void SubPhase::goToNext()
 {
     // should be called only if hasNextRound return true
     RoundPtr currentRound = m_rounds[m_currentRoundIndex];
-    if(currentRound->hasNextRoundStage())
+    if(currentRound->hasNext())
     {
-        currentRound->goToNextRoundStage();
+        currentRound->goToNext();
     }
     else
     {
@@ -83,6 +104,11 @@ int SubPhase::getCurrentRoundIndex() const
 const RoundPtrVector &SubPhase::getRounds() const
 {
     return m_rounds;
+}
+
+Round *SubPhase::getCurrentRound() const
+{
+    return m_rounds[m_currentRoundIndex].data();
 }
 
 QmlRoundPtrVector SubPhase::getRoundsQml() const

@@ -10,7 +10,7 @@ Round::Round(QObject *parent)
                     MatchDubletsPtr::create(),
                     MatchTypeBasePtr::create()
       })
-    , m_currentRoundStage{RoundStage::SingielsSelection}
+    , m_currentRoundStage{RoundStageEnum::SingielsSelection}
 {
     DOLT(this)
 
@@ -39,7 +39,7 @@ void Round::clear(bool emitting)
 
 bool Round::verify(QString &message) const
 {
-    if(m_currentRoundStage == RoundStage::RoundSummary)
+    if(m_currentRoundStage == RoundStageEnum::RoundSummary)
         return true;
 
     MatchTypeBasePtr currentMatchType = m_matchTypes[m_currentRoundStage/2];
@@ -65,21 +65,31 @@ bool Round::verify(QString &message) const
     return true;
 }
 
-bool Round::hasNextRoundStage() const
+bool Round::hasNext() const
 {
     // should be called before goToNextRoundStage
-    return (m_currentRoundStage != RoundStage::RoundSummary);
+    return (m_currentRoundStage != RoundStageEnum::RoundSummary);
 }
 
-void Round::goToNextRoundStage()
+void Round::goToNext()
 {
     // should be called only if hasNextRoundStage return true
-    m_currentRoundStage = static_cast<RoundStage>(m_currentRoundStage+1);
+    m_currentRoundStage = static_cast<RoundStageEnum>(m_currentRoundStage+1);
     emit this->currentRoundStageChanged();
     D("going to         roundStage: " + QString::number(m_currentRoundStage));
 }
 
-Round::RoundStage Round::getCurrentRoundStage() const
+RoundStageEnum Round::getCurrentRoundStage() const
 {
     return m_currentRoundStage;
+}
+
+void Round::setArrangement(const IntPairs &arrangement)
+{
+    m_arrangement = arrangement;
+    D(QAPF("set arrangement for %p Round:", this))
+    for(const auto &pair : m_arrangement)
+    {
+        D(QAPF("%d %d", pair.first, pair.second))
+    }
 }

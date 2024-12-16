@@ -15,18 +15,40 @@ Phase::~Phase()
 
 void Phase::initSubPhases()
 {
+    Personalization *const p = Personalization::getInstance();
+    const QJsonObject &roundsMatches = p->getRoundsMatches();
     if(m_phase == PhaseEnum::First)
     {
-        m_subPhases.append(SubPhasePtr::create(8));
+        QJsonArray arrangement = roundsMatches["phase 1"].toArray();
+        m_subPhases.append(SubPhasePtr::create(arrangement.size()));
         m_subPhases[0]->setName("1");
+        m_subPhases[0]->initRounds(arrangement);
     }
     else // m_phase == PhaseEnum::Second
     {
-        m_subPhases.append(SubPhasePtr::create(4));
-        m_subPhases.append(SubPhasePtr::create(4));
+        QJsonArray arrangement = roundsMatches["phase 2"].toArray();
+        m_subPhases.append(SubPhasePtr::create(arrangement.size()));
+        m_subPhases.append(SubPhasePtr::create(arrangement.size()));
         m_subPhases[0]->setName("2a");
+        m_subPhases[0]->initRounds(arrangement);
         m_subPhases[1]->setName("2b");
+        m_subPhases[1]->initRounds(arrangement);
     }
+}
+
+QJsonObject Phase::serialize() const
+{
+    return QJsonObject();
+}
+
+void Phase::deserialize(const QJsonObject &phaseJson)
+{
+
+}
+
+void Phase::clear()
+{
+
 }
 
 void Phase::verify()
@@ -49,7 +71,7 @@ bool Phase::hasNext()
     bool hasNextRound = true;
     for(const auto &subPhasePtr : m_subPhases)
     {
-        if(!subPhasePtr->hasNextRound())
+        if(!subPhasePtr->hasNext())
         {
             hasNextRound = false;
             break;
@@ -62,23 +84,8 @@ void Phase::goToNext()
 {
     for(auto &subPhasePtr : m_subPhases)
     {
-        subPhasePtr->goToNextRound();
+        subPhasePtr->goToNext();
     }
-}
-
-QJsonObject Phase::serialize() const
-{
-    return QJsonObject();
-}
-
-void Phase::deserialize(const QJsonObject &phaseJson)
-{
-
-}
-
-void Phase::clear()
-{
-
 }
 
 int Phase::getSubPhasesCount() const

@@ -7,6 +7,7 @@
 
 #include "cpp/support/Log.h"
 #include "cpp/Serializable.h"
+#include "cpp/enums/RoundStageEnum.h"
 #include "cpp/objects/MatchTypeBase.h"
 
 typedef QVector<QPair<int, int>> IntPairs;
@@ -15,20 +16,12 @@ class Round : public QObject, public Serializable
 {
     Q_OBJECT
     Q_PROPERTY(int currentRoundStage READ getCurrentRoundStage NOTIFY currentRoundStageChanged FINAL)
-public:
-    enum RoundStage{
-        SingielsSelection = 0,
-        SingielsMatch,
-        DubletsSelection,
-        DubletsMatch,
-        TripletsSelection,
-        TripletsMatch,
-        RoundSummary,
-    };
 
+public:
     explicit Round(QObject *parent = nullptr);
     ~Round();
 
+public:
     QJsonObject serialize() const override;
     void deserialize(const QJsonObject &jTeam) override;
 
@@ -36,18 +29,22 @@ public:
 
 public:
     bool verify(QString &message) const;
-    bool hasNextRoundStage() const;
-    void goToNextRoundStage();
+    bool hasNext() const;
+    void goToNext();
 
 public:
-    RoundStage getCurrentRoundStage() const;
+    /// GETTERS
+    RoundStageEnum getCurrentRoundStage() const;
+
+    /// SETTERS
+    void setArrangement(const IntPairs &arrangement);
 
 signals:
     void currentRoundStageChanged();
 
 private:
     IntPairs m_arrangement;
-    RoundStage m_currentRoundStage;
+    RoundStageEnum m_currentRoundStage;
     const MatchTypeBasePtrVector m_matchTypes;
 };
 
