@@ -4,11 +4,8 @@
 #include <QObject>
 #include <QSharedPointer>
 
-#include "cpp/support/Log.h"
 #include "cpp/objects/Event.h"
 #include "cpp/storages/Memory.h"
-
-#define DEBUG_MODE true
 
 class Backend : public QObject
 {

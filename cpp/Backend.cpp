@@ -1,5 +1,8 @@
 #include "Backend.h"
 
+#include "cpp/support/Log.h"
+#include "DebugConstraints.h"
+
 Backend::Backend(QObject *parent)
     : QObject{parent}
     , m_memoryPtr(QSharedPointer<Memory>::create(nullptr))

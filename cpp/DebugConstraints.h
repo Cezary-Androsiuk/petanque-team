@@ -1,0 +1,6 @@
+#ifndef DEBUGCONSTRAINTS_H
+#define DEBUGCONSTRAINTS_H
+
+#define DEBUG_MODE true
+
+#endif // DEBUGCONSTRAINTS_H

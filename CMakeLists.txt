@@ -20,11 +20,15 @@ qt_add_qml_module(appPetanqueTeam
     SOURCES cpp/DoubleStartProtection.h cpp/DoubleStartProtection.cpp
     SOURCES cpp/Backend.h cpp/Backend.cpp
     SOURCES cpp/Serializable.h cpp/Serializable.cpp
+    SOURCES cpp/DebugConstraints.h
+    ################################
     SOURCES cpp/storages/Memory.h cpp/storages/Memory.cpp
     SOURCES cpp/storages/DefaultPersonalizationData.h cpp/storages/DefaultPersonalizationData.cpp
     SOURCES cpp/storages/Personalization.h cpp/storages/Personalization.cpp
+    ################################
     SOURCES cpp/support/Log.h cpp/support/Log.cpp
     SOURCES cpp/support/LogQML.h cpp/support/LogQML.cpp
+    ################################
     SOURCES cpp/objects/Event.h cpp/objects/Event.cpp
     SOURCES cpp/objects/Phase.h cpp/objects/Phase.cpp
     SOURCES cpp/objects/SubPhase.h cpp/objects/SubPhase.cpp
@@ -37,15 +41,20 @@ qt_add_qml_module(appPetanqueTeam
     SOURCES cpp/objects/MatchDublets.h cpp/objects/MatchDublets.cpp
     SOURCES cpp/objects/MatchTriplets.h cpp/objects/MatchTriplets.cpp
     SOURCES cpp/objects/GroupMatch.h cpp/objects/GroupMatch.cpp
+    ################################
     SOURCES cpp/enums/GenderEnum.h cpp/enums/GenderEnum.cpp
     SOURCES cpp/enums/AgeGroupEnum.h cpp/enums/AgeGroupEnum.cpp
     SOURCES cpp/enums/StageEnum.h cpp/enums/StageEnum.cpp
     SOURCES cpp/enums/PhaseEnum.h cpp/enums/PhaseEnum.cpp
+    SOURCES cpp/enums/RoundStageEnum.h cpp/enums/RoundStageEnum.cpp
+
+
 
     QML_FILES qml/Main.qml
     QML_FILES qml/Gameplay.qml
     QML_FILES qml/AppAlreadyRunning.qml
     QML_FILES qml/LoginForm.qml
+    ################################
     QML_FILES qml/Gameplay/Configure.qml
     QML_FILES qml/Gameplay/Configure/Event.qml
     QML_FILES qml/Gameplay/Configure/InfoField.qml
@@ -54,11 +63,12 @@ qt_add_qml_module(appPetanqueTeam
     QML_FILES qml/Gameplay/Configure/PlayerDelegate.qml
     QML_FILES qml/Gameplay/Configure/Team.qml
     QML_FILES qml/Gameplay/Configure/TeamDelegate.qml
+    ################################
     QML_FILES qml/Gameplay/Play.qml
     QML_FILES qml/Gameplay/Play/Phase.qml
     QML_FILES qml/Gameplay/Play/SubPhase.qml
+    ################################
     QML_FILES qml/Gameplay/Finish.qml
-    SOURCES cpp/enums/RoundStageEnum.h cpp/enums/RoundStageEnum.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
