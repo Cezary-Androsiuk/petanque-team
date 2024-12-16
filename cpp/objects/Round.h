@@ -14,6 +14,7 @@ typedef QVector<QPair<int, int>> IntPairs;
 class Round : public QObject, public Serializable
 {
     Q_OBJECT
+    Q_PROPERTY(int currentRoundStage READ getCurrentRoundStage NOTIFY currentRoundStageChanged FINAL)
 public:
     enum RoundStage{
         SingielsSelection = 0,
@@ -38,7 +39,11 @@ public:
     bool hasNextRoundStage() const;
     void goToNextRoundStage();
 
+public:
+    RoundStage getCurrentRoundStage() const;
+
 signals:
+    void currentRoundStageChanged();
 
 private:
     IntPairs m_arrangement;

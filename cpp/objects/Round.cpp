@@ -75,5 +75,11 @@ void Round::goToNextRoundStage()
 {
     // should be called only if hasNextRoundStage return true
     m_currentRoundStage = static_cast<RoundStage>(m_currentRoundStage+1);
+    emit this->currentRoundStageChanged();
     D("going to         roundStage: " + QString::number(m_currentRoundStage));
+}
+
+Round::RoundStage Round::getCurrentRoundStage() const
+{
+    return m_currentRoundStage;
 }

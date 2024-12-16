@@ -114,11 +114,9 @@ Item {
                 Repeater{
                     model: phaseVar.subPhases
                     Item{
-                        Component.onCompleted: {
-                            console.log("item "+index+" created")
-                        }
 
                         SubPhase{
+                            anchors.fill: parent
                             subPhaseVar: modelData
                         }
 

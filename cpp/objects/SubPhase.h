@@ -15,6 +15,8 @@ class SubPhase : public QObject, public Serializable
 {
     Q_OBJECT
     Q_PROPERTY(QString name READ getName WRITE setName NOTIFY nameChanged FINAL)
+    Q_PROPERTY(int currentRoundIndex READ getCurrentRoundIndex NOTIFY currentRoundIndexChanged FINAL)
+    Q_PROPERTY(QmlRoundPtrVector rounds READ getRoundsQml CONSTANT FINAL)
 public:
     explicit SubPhase(int roundsCount, QObject *parent = nullptr);
     ~SubPhase();
@@ -31,15 +33,20 @@ public:
 
 public:
     QString getName() const;
+    int getCurrentRoundIndex() const;
+    const RoundPtrVector &getRounds() const;
+
+    QmlRoundPtrVector getRoundsQml() const;
 
     void setName(const QString &name);
 
 signals:
     void nameChanged();
+    void currentRoundIndexChanged();
 
 private:
     QString m_name;
-    int m_currentRound;
+    int m_currentRoundIndex;
     RoundPtrVector m_rounds;
 };
 

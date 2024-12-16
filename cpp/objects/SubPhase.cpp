@@ -2,7 +2,7 @@
 
 SubPhase::SubPhase(int roundsCount, QObject *parent)
     : QObject{parent}
-    , m_currentRound(0)
+    , m_currentRoundIndex(0)
     , m_rounds(roundsCount)
 {
     DOLTV(this, QString::number(roundsCount));
@@ -34,9 +34,9 @@ void SubPhase::clear()
 
 bool SubPhase::verify(QString &message) const
 {
-    if( !(m_rounds[m_currentRound]->verify(message)) )
+    if( !(m_rounds[m_currentRoundIndex]->verify(message)) )
     {
-        message = "in round "+QString::number(m_currentRound)+": " + message;
+        message = "in round "+QString::number(m_currentRoundIndex)+": " + message;
         return false;
     }
     return true;
@@ -45,33 +45,53 @@ bool SubPhase::verify(QString &message) const
 bool SubPhase::hasNextRound() const
 {
     // should be called before goToNextRound
-    RoundPtr currentRound = m_rounds[m_currentRound];
+    RoundPtr currentRound = m_rounds[m_currentRoundIndex];
     if(currentRound->hasNextRoundStage())
     {
         return true;
     }
 
-    return (m_currentRound < m_rounds.size()-1);
+    return (m_currentRoundIndex < m_rounds.size()-1);
 }
 
 void SubPhase::goToNextRound()
 {
     // should be called only if hasNextRound return true
-    RoundPtr currentRound = m_rounds[m_currentRound];
+    RoundPtr currentRound = m_rounds[m_currentRoundIndex];
     if(currentRound->hasNextRoundStage())
     {
         currentRound->goToNextRoundStage();
     }
     else
     {
-        m_currentRound ++;
-        D("going to         round: " + QString::number(m_currentRound));
+        m_currentRoundIndex ++;
+        emit this->currentRoundIndexChanged();
+        D("going to         round: " + QString::number(m_currentRoundIndex));
     }
 }
 
 QString SubPhase::getName() const
 {
     return m_name;
+}
+
+int SubPhase::getCurrentRoundIndex() const
+{
+    return m_currentRoundIndex;
+}
+
+const RoundPtrVector &SubPhase::getRounds() const
+{
+    return m_rounds;
+}
+
+QmlRoundPtrVector SubPhase::getRoundsQml() const
+{
+    QmlRoundPtrVector retVec;
+    retVec.reserve(m_rounds.size());
+    for(const auto &roundPtr : m_rounds)
+        retVec.append(roundPtr.data());
+    return retVec;
 }
 
 void SubPhase::setName(const QString &name)

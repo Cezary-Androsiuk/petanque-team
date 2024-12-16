@@ -16,6 +16,8 @@
 #define QAPF_T(text, ...) QString::asprintf(tr(text).toStdString().c_str(), __VA_ARGS__) /* QString as printf translate */
 
 #define DISPLAY_OBJECT_LIFE_TIME true
+
+/// Display Object Life Time Variable
 #define DOLTV(ptr, argsStr) \
 if(DISPLAY_OBJECT_LIFE_TIME) {            \
     QString f_name(__FUNCTION__);                               \
@@ -26,6 +28,8 @@ if(DISPLAY_OBJECT_LIFE_TIME) {            \
     if(!qargsStr.isEmpty()) qargsStr = " (" + qargsStr + ")";\
     D(f_name + qargsStr + QAPF(": %p", ptr));  \
 }
+
+/// Display Object Life Time
 #define DOLT(ptr) DOLTV(ptr, "")
 
 //////////////////// OLD DEBUG ////////////////////

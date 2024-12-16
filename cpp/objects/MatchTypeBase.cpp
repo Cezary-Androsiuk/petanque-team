@@ -30,10 +30,10 @@ void MatchTypeBase::clear(bool emitting)
 
 bool MatchTypeBase::verifySelection(QString &message)
 {
-
+    return true;
 }
 
 bool MatchTypeBase::verifyMatch(QString &message)
 {
-
+    return true;
 }
