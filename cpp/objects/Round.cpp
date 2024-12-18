@@ -2,6 +2,7 @@
 
 Round::Round(QObject *parent)
     : QObject{parent}
+    , m_currentRoundStage{RoundStageEnum::SingielsSelection}
 {
     DOLT(this)
 
@@ -32,7 +33,10 @@ void Round::initMatches()
             continue;
         }
 
-        MatchPtr match = MatchPtr::create();
+        MatchPtr match = MatchPtr::create(m_currentRoundStage);
+        QObject::connect(
+            this, &Round::currentRoundStageChanged,
+            match.data(), &Match::currentRoundStageChanged);
         match->setTeamLeft(teams[t1]);
         match->setTeamRight(teams[t2]);
         m_matches.append(match);
@@ -42,6 +46,9 @@ void Round::initMatches()
 QJsonObject Round::serialize() const
 {
     QJsonObject jRound;
+
+    jRound[ SERL_CURRENT_ROUND_STAGE_KEY ] = EnumConvert::RoundStageToQString(m_currentRoundStage);
+
     QJsonArray jArrangement;
     for(const auto &matchArrangement : m_arrangement)
     {
@@ -69,6 +76,13 @@ QJsonObject Round::serialize() const
 
 void Round::deserialize(const QJsonObject &jRound)
 {
+    if(!jRound.contains(SERL_CURRENT_ROUND_STAGE_KEY))
+    {
+        E("cannot deserialize current round stage, due to not existing key: " SERL_CURRENT_ROUND_STAGE_KEY);
+    }
+    else m_currentRoundStage = EnumConvert::QStringToRoundStage( jRound[ SERL_CURRENT_ROUND_STAGE_KEY ].toString() );
+    emit this->currentRoundStageChanged();
+
     /// m_arrangement - don't need to be deserialized
 
     this->deserializeMatches(jRound);
@@ -121,55 +135,19 @@ bool Round::verify(QString &message) const
 
 bool Round::hasNext() const
 {
-#if DEBUG_MODE
-    /// find inconsistency in matches "hasNext"
-
-    /// check for what value look for
-    bool expectedValue = true;
-    for(const auto &matchPtr : m_matches)
-    {
-        if(!matchPtr->hasNext())
-        {
-            expectedValue = false;
-            break;
-        }
-    }
-    for(const auto &matchPtr : m_matches)
-    {
-        if(matchPtr->hasNext() != expectedValue)
-        {
-            W("found inconsistency in matches: ")
-            for(int i=0; i<m_matches.size(); i++)
-            {
-                I(QAPF("match %d %s next", i, m_matches[i]->hasNext()?"has":"doesn't have"))
-            }
-            break;
-        }
-    }
-#endif
-
-    for(const auto &matchPtr : m_matches)
-    {
-        if(!matchPtr->hasNext())
-        {
-            /// matches don't have next one
-            return false;
-        }
-    }
-
-    if(m_matches.isEmpty())
-    {
-        E("matches are empty")
-        return false;
-    }
-
-    return true;
+    // should be called before goToNextRoundStage
+    return (m_currentRoundStage != RoundStageEnum::RoundSummary);
 }
 
 void Round::goToNext()
 {
-    for(int i=0; i<m_matches.size(); i++)
-        m_matches[i]->goToNext();
+    m_currentRoundStage = static_cast<RoundStageEnum>(m_currentRoundStage+1);
+    emit this->currentRoundStageChanged();
+}
+
+RoundStageEnum Round::getCurrentRoundStage() const
+{
+    return m_currentRoundStage;
 }
 
 void Round::setArrangement(const IntPairs &arrangement)

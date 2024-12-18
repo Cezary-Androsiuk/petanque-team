@@ -8,9 +8,11 @@
 #include "cpp/support/Log.h"
 #include "cpp/Serializable.h"
 #include "cpp/objects/Match.h"
+#include "cpp/enums/RoundStageEnum.h"
 #include "cpp/objects/Team.h"
 #include "cpp/DebugConstraints.h"
 
+#define SERL_CURRENT_ROUND_STAGE_KEY "current round stage"
 #define SERL_ARRANGEMENT_KEY "arrangement"
 #define SERL_ARRANGEMENT_MATCH_FIRST_KEY "first"
 #define SERL_ARRANGEMENT_MATCH_SECOND_KEY "second"
@@ -21,6 +23,7 @@ typedef QVector<QPair<int, int>> IntPairs;
 class Round : public QObject, public Serializable
 {
     Q_OBJECT
+    Q_PROPERTY(int currentRoundStage READ getCurrentRoundStage NOTIFY currentRoundStageChanged FINAL)
 
 public:
     explicit Round(QObject *parent = nullptr);
@@ -42,13 +45,16 @@ public:
 
 public:
     /// GETTERS
+    RoundStageEnum getCurrentRoundStage() const;
 
     /// SETTERS
     void setArrangement(const IntPairs &arrangement);
 
 signals:
+    void currentRoundStageChanged();
 
 private:
+    RoundStageEnum m_currentRoundStage;
     IntPairs m_arrangement; /// const list, set while creating object by setter
     MatchPtrList m_matches; /// const list, created while creating object by initMatches (before setting arrangement)
 };

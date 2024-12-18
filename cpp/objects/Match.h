@@ -14,7 +14,6 @@
 
 #define SERL_TEAM_LEFT_NAME_KEY "team left"
 #define SERL_TEAM_RIGHT_NAME_KEY "team right"
-#define SERL_CURRENT_ROUND_STAGE_KEY "current round stage"
 #define SERL_MATCH_TYPES_KEY "match types"
 #define SERL_MATCH_TYPE_SINGIELS_KEY "singiels"
 #define SERL_MATCH_TYPE_DUBLETS_KEY "dublets"
@@ -23,10 +22,9 @@
 class Match : public QObject, public Serializable
 {
     Q_OBJECT
-    Q_PROPERTY(int currentRoundStage READ getCurrentRoundStage NOTIFY currentRoundStageChanged FINAL)
 
 public:
-    explicit Match(QObject *parent = nullptr);
+    explicit Match(const RoundStageEnum &roundStageRef, QObject *parent = nullptr);
     ~Match();
 
 public:
@@ -34,6 +32,7 @@ public:
     void deserialize(const QJsonObject &jMatch) override;
 
     void clear(bool emitting = true);
+
 private:
     QString serializeTeam(const TeamWPtr &teamWPtr) const;
     QJsonObject serializeMatchType(int matchTypeIndex) const;
@@ -42,12 +41,9 @@ private:
 
 public:
     bool verify(QString &message) const;
-    bool hasNext() const;
-    void goToNext();
 
 public:
     /// GETTERS
-    RoundStageEnum getCurrentRoundStage() const;
 
     /// SETTERS
     void setTeamLeft(const TeamPtr &team);
@@ -60,7 +56,7 @@ private:
     TeamWPtr m_teamLeft; /// const assigned while creation of object
     TeamWPtr m_teamRight; /// const assigned while creation of object
 
-    RoundStageEnum m_currentRoundStage;
+    const RoundStageEnum &m_currentRoundStage;
     const MatchTypeBasePtrVector m_matchTypes;
 };
 

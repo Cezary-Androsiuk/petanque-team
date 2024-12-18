@@ -3,14 +3,14 @@
 #include "cpp/objects/MatchDublets.h"
 #include "cpp/objects/MatchTriplets.h"
 
-Match::Match(QObject *parent)
+Match::Match(const RoundStageEnum &roundStageRef, QObject *parent)
     : QObject{parent}
     , m_matchTypes({
           MatchSingielsPtr::create(),
           MatchDubletsPtr::create(),
           MatchTripletsPtr::create()
       })
-    , m_currentRoundStage{RoundStageEnum::SingielsSelection}
+    , m_currentRoundStage{roundStageRef}
 {
     DOLT(this)
 
@@ -27,7 +27,7 @@ QJsonObject Match::serialize() const
 
     jMatch[ SERL_TEAM_LEFT_NAME_KEY ] = this->serializeTeam(m_teamLeft);
     jMatch[ SERL_TEAM_RIGHT_NAME_KEY ] = this->serializeTeam(m_teamRight);
-    jMatch[ SERL_CURRENT_ROUND_STAGE_KEY ] = EnumConvert::RoundStageToQString(m_currentRoundStage);
+    /// m_currentRoundStage - don't need to be deserialized
 
     QJsonObject jMatchTypes;
     jMatchTypes[ SERL_MATCH_TYPE_SINGIELS_KEY ] = this->serializeMatchType(0);
@@ -41,12 +41,7 @@ void Match::deserialize(const QJsonObject &jMatch)
 {
     /// m_teamLeft - don't need to be deserialized
     /// m_teamRight - don't need to be deserialized
-
-    if(!jMatch.contains(SERL_CURRENT_ROUND_STAGE_KEY))
-    {
-        E("cannot deserialize current round stage, due to not existing key: " SERL_CURRENT_ROUND_STAGE_KEY);
-    }
-    else m_currentRoundStage = EnumConvert::QStringToRoundStage( jMatch[ SERL_CURRENT_ROUND_STAGE_KEY ].toString() );
+    /// m_currentRoundStage - don't need to be deserialized
 
     this->deserializeMatchTypes(jMatch);
 
@@ -141,25 +136,6 @@ bool Match::verify(QString &message) const
     }
 
     return true;
-}
-
-bool Match::hasNext() const
-{
-    // should be called before goToNextRoundStage
-    return (m_currentRoundStage != RoundStageEnum::RoundSummary);
-}
-
-void Match::goToNext()
-{
-    // should be called only if hasNextRoundStage return true
-    m_currentRoundStage = static_cast<RoundStageEnum>(m_currentRoundStage+1);
-    emit this->currentRoundStageChanged();
-    // D("going to         roundStage: " + QString::number(m_currentRoundStage));
-}
-
-RoundStageEnum Match::getCurrentRoundStage() const
-{
-    return m_currentRoundStage;
 }
 
 void Match::setTeamLeft(const TeamPtr &team)
