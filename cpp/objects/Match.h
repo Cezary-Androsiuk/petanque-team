@@ -12,6 +12,14 @@
 #include "cpp/enums/RoundStageEnum.h"
 #include "cpp/objects/MatchTypeBase.h"
 
+#define SERL_TEAM_LEFT_NAME_KEY "team left"
+#define SERL_TEAM_RIGHT_NAME_KEY "team right"
+#define SERL_CURRENT_ROUND_STAGE_KEY "current round stage"
+#define SERL_MATCH_TYPES_KEY "match types"
+#define SERL_MATCH_TYPE_SINGIELS_KEY "singiels"
+#define SERL_MATCH_TYPE_DUBLETS_KEY "dublets"
+#define SERL_MATCH_TYPE_TRIPLETS_KEY "triplets"
+
 class Match : public QObject, public Serializable
 {
     Q_OBJECT
@@ -23,9 +31,14 @@ public:
 
 public:
     QJsonObject serialize() const override;
-    void deserialize(const QJsonObject &jTeam) override;
+    void deserialize(const QJsonObject &jMatch) override;
 
     void clear(bool emitting = true);
+private:
+    QString serializeTeam(const TeamWPtr &teamWPtr) const;
+    QJsonObject serializeMatchType(int matchTypeIndex) const;
+    void deserializeMatchTypes(const QJsonObject &jMatch);
+    void deserializeMatchType(const QJsonObject &jMatchTypes, int index);
 
 public:
     bool verify(QString &message) const;
@@ -44,8 +57,8 @@ signals:
     void currentRoundStageChanged();
 
 private:
-    TeamWPtr m_teamLeft;
-    TeamWPtr m_teamRight;
+    TeamWPtr m_teamLeft; /// const assigned while creation of object
+    TeamWPtr m_teamRight; /// const assigned while creation of object
 
     RoundStageEnum m_currentRoundStage;
     const MatchTypeBasePtrVector m_matchTypes;

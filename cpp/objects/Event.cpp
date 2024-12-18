@@ -38,19 +38,28 @@ QJsonObject Event::serialize() const
     int currentStageInt = static_cast<int>(m_currentStage);
     jEvent[ SERL_CURRENT_STAGE_KEY ] = currentStageInt;
 
-    jEvent[ SERL_PHASE_FIRST_KEY ] = m_phases[PhaseEnum::First].isNull() ?
-                                       QJsonObject() :
-                                       m_phases[PhaseEnum::First]->serialize();
+    if(m_phases[PhaseEnum::First].isNull())
+    {
+        I("skipping first phase serialization because, phase not started yet")
+        jEvent[ SERL_PHASE_FIRST_KEY ] = QJsonObject();
+    }
+    else jEvent[ SERL_PHASE_FIRST_KEY ] = m_phases[PhaseEnum::First]->serialize();
 
-    jEvent[ SERL_PHASE_SECOND_KEY ] = m_phases[PhaseEnum::Second].isNull() ?
-                                        QJsonObject() :
-                                        m_phases[PhaseEnum::Second]->serialize();
+    if(m_phases[PhaseEnum::Second].isNull())
+    {
+        I("skipping second phase serialization because, phase not started yet")
+        jEvent[ SERL_PHASE_SECOND_KEY ] = QJsonObject();
+    }
+    else jEvent[ SERL_PHASE_SECOND_KEY ] = m_phases[PhaseEnum::Second]->serialize();
 
 
     QJsonArray jTeams;
     for(const auto &teamPtr : m_teams)
     {
-        jTeams.append( teamPtr->serialize() );
+        if(teamPtr.isNull())
+            W("cannot serialize not exiting team")
+        else
+            jTeams.append( teamPtr->serialize() );
     }
     jEvent[ SERL_TEAMS_KEY ] = jTeams;
 
@@ -73,14 +82,6 @@ void Event::deserialize(const QJsonObject &jEvent)
     m_currentStage = static_cast<StageEnum>(currentStageInt);
     emit this->currentStageChanged();
 
-    QJsonObject firstPhaseObject = jEvent[ SERL_PHASE_FIRST_KEY ].toObject();
-    QJsonObject secondPhaseObject = jEvent[ SERL_PHASE_SECOND_KEY ].toObject();
-    if(!m_phases[PhaseEnum::First].isNull())
-        m_phases[PhaseEnum::First]->deserialize( firstPhaseObject );
-    if(!m_phases[PhaseEnum::Second].isNull())
-        m_phases[PhaseEnum::Second]->deserialize( secondPhaseObject );
-    emit this->phasesChanged();
-
     QJsonArray jTeams = jEvent[ SERL_TEAMS_KEY ].toArray();
     for(const auto &jTeam : jTeams)
     {
@@ -90,6 +91,55 @@ void Event::deserialize(const QJsonObject &jEvent)
     }
 
     emit this->teamsChanged();
+
+    if(!jEvent.contains(SERL_PHASE_FIRST_KEY))
+    {
+        E("cannot deserialize first phase due to missing key in json: " SERL_PHASE_FIRST_KEY)
+    }
+    else
+    {
+        QJsonObject jPhase = jEvent[ SERL_PHASE_FIRST_KEY ].toObject();
+
+        /// if is empty => hasn't been initialized => first phase was not started yet
+        if(!jPhase.isEmpty())
+        {
+            this->startFirstPhase();
+
+            if(m_phases[PhaseEnum::First].isNull())
+                W("cannot deserialize not existing first phase")
+            else
+                m_phases[PhaseEnum::First]->deserialize( jPhase );
+        }
+        else
+        {
+            I("skipped initialization of first phase, because it hasn't started yet")
+        }
+    }
+
+    if(!jEvent.contains(SERL_PHASE_SECOND_KEY))
+    {
+        E("cannot deserialize second phase due to missing key in json: " SERL_PHASE_SECOND_KEY)
+    }
+    else
+    {
+        QJsonObject jPhase = jEvent[ SERL_PHASE_SECOND_KEY ].toObject();
+
+        /// if is empty => hasn't been initialized => second phase was not started yet
+        if(!jPhase.isEmpty())
+        {
+            this->startSecondPhase();
+
+            if(m_phases[PhaseEnum::Second].isNull())
+                W("cannot deserialize not existing second phase")
+            else
+                m_phases[PhaseEnum::Second]->deserialize( jPhase );
+        }
+        else
+        {
+            I("skipped initialization of second phase, because it hasn't started yet")
+        }
+    }
+    emit this->phasesChanged();
 
     D("deserialized event")
 }

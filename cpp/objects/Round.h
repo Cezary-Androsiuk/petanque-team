@@ -11,6 +11,11 @@
 #include "cpp/objects/Team.h"
 #include "cpp/DebugConstraints.h"
 
+#define SERL_ARRANGEMENT_KEY "arrangement"
+#define SERL_ARRANGEMENT_MATCH_FIRST_KEY "first"
+#define SERL_ARRANGEMENT_MATCH_SECOND_KEY "second"
+#define SERL_MATCHES_KEY "matches"
+
 typedef QVector<QPair<int, int>> IntPairs;
 
 class Round : public QObject, public Serializable
@@ -25,7 +30,8 @@ public:
 
 public:
     QJsonObject serialize() const override;
-    void deserialize(const QJsonObject &jTeam) override;
+    void deserialize(const QJsonObject &jRound) override;
+    void deserializeMatches(const QJsonObject &jRound);
 
     void clear(bool emitting = true);
 
@@ -41,11 +47,10 @@ public:
     void setArrangement(const IntPairs &arrangement);
 
 signals:
-    void currentRoundStageChanged();
 
 private:
-    IntPairs m_arrangement;
-    MatchPtrList m_matches;
+    IntPairs m_arrangement; /// const list, set while creating object by setter
+    MatchPtrList m_matches; /// const list, created while creating object by initMatches (before setting arrangement)
 };
 
 typedef QSharedPointer<Round> RoundPtr;

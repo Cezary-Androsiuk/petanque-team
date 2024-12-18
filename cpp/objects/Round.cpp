@@ -41,12 +41,64 @@ void Round::initMatches()
 
 QJsonObject Round::serialize() const
 {
+    QJsonObject jRound;
+    QJsonArray jArrangement;
+    for(const auto &matchArrangement : m_arrangement)
+    {
+        QJsonObject jMatchArrangement;
+        jMatchArrangement[ SERL_ARRANGEMENT_MATCH_FIRST_KEY ] = matchArrangement.first;
+        jMatchArrangement[ SERL_ARRANGEMENT_MATCH_SECOND_KEY ] = matchArrangement.second;
+        jArrangement.append(jMatchArrangement);
+    }
+    jRound[ SERL_ARRANGEMENT_KEY ] = jArrangement;
 
+    QJsonArray jMatches;
+    for(const auto &matchPtr : m_matches)
+    {
+        if(matchPtr.isNull())
+        {
+            W("cannot serialize not existing match")
+            jMatches.append( QJsonObject() );
+        }
+        else jMatches.append( matchPtr->serialize() );
+    }
+    jRound[ SERL_MATCHES_KEY ] = jMatches;
+
+    return jRound;
 }
 
-void Round::deserialize(const QJsonObject &jTeam)
+void Round::deserialize(const QJsonObject &jRound)
 {
+    /// m_arrangement - don't need to be deserialized
 
+    this->deserializeMatches(jRound);
+}
+
+void Round::deserializeMatches(const QJsonObject &jRound)
+{
+    if(!jRound.contains( SERL_MATCHES_KEY ))
+    {
+        E("cannot deserialize matches due to missing key in json: " SERL_MATCHES_KEY)
+        return;
+    }
+
+    QJsonArray jMatches = jRound[ SERL_MATCHES_KEY ].toArray();
+
+    if(m_matches.size() != jMatches.size())
+    {
+        E(QAPF("cannot deserialize matches due to inconsistent size: "
+               "m_matches(%lld) list and jMatches(%lld) list",
+               m_matches.size(), jMatches.size() ))
+        return;
+    }
+
+    for(int i=0; i<m_matches.size(); i++)
+    {
+        if(m_matches[i].isNull())
+            E("cannot deserialize, due to not exising match")
+        else
+            m_matches[i]->deserialize( jMatches[i].toObject() );
+    }
 }
 
 void Round::clear(bool emitting)
@@ -123,9 +175,9 @@ void Round::goToNext()
 void Round::setArrangement(const IntPairs &arrangement)
 {
     m_arrangement = arrangement;
-    D(QAPF("set arrangement for %p Round:", this))
-    for(const auto &pair : m_arrangement)
-    {
-        D(QAPF("%d %d", pair.first, pair.second))
-    }
+    // D(QAPF("set arrangement for %p Round:", this))
+    // for(const auto &pair : m_arrangement)
+    // {
+    //     D(QAPF("%d %d", pair.first, pair.second))
+    // }
 }

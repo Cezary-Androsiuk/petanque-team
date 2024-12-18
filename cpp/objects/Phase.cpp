@@ -20,6 +20,7 @@ void Phase::initSubPhases()
     if(m_phase == PhaseEnum::First)
     {
         QJsonArray arrangement = roundsMatches["phase 1"].toArray();
+
         m_subPhases.append(SubPhasePtr::create(arrangement.size()));
         m_subPhases[0]->setName("1");
         m_subPhases[0]->initRounds(arrangement);
@@ -27,10 +28,12 @@ void Phase::initSubPhases()
     else // m_phase == PhaseEnum::Second
     {
         QJsonArray arrangement = roundsMatches["phase 2"].toArray();
-        m_subPhases.append(SubPhasePtr::create(arrangement.size()));
+
         m_subPhases.append(SubPhasePtr::create(arrangement.size()));
         m_subPhases[0]->setName("2a");
         m_subPhases[0]->initRounds(arrangement);
+
+        m_subPhases.append(SubPhasePtr::create(arrangement.size()));
         m_subPhases[1]->setName("2b");
         m_subPhases[1]->initRounds(arrangement);
     }
@@ -38,12 +41,59 @@ void Phase::initSubPhases()
 
 QJsonObject Phase::serialize() const
 {
-    return QJsonObject();
+    QJsonObject jPhase;
+
+    /// m_phase - don't need to be serialized
+
+    QJsonArray jSubPhases;
+    for(const auto &subPhasePtr : m_subPhases)
+    {
+        if(subPhasePtr.isNull())
+        {
+            W("cannot serialize not existing sub phase")
+            jSubPhases.append( QJsonObject() );
+        }
+        else jSubPhases.append( subPhasePtr->serialize() );
+    }
+    jPhase[ SERL_SUB_PHASES_KEY ] = jSubPhases;
+
+    return jPhase;
 }
 
-void Phase::deserialize(const QJsonObject &phaseJson)
+void Phase::deserialize(const QJsonObject &jPhase)
 {
+    this->clear();
 
+    /// m_phase - don't need to be deserialized
+
+    this->deserializeSubPhases(jPhase);
+}
+
+void Phase::deserializeSubPhases(const QJsonObject &jPhase)
+{
+    if(!jPhase.contains( SERL_SUB_PHASES_KEY ))
+    {
+        E("cannot deserialize subphases due to missing key in json: " SERL_SUB_PHASES_KEY)
+        return;
+    }
+
+    QJsonArray jSubPhases = jPhase[ SERL_SUB_PHASES_KEY ].toArray();
+
+    if(m_subPhases.size() != jSubPhases.size())
+    {
+        E(QAPF("cannot deserialize subphases due to inconsistent size: "
+               "m_subPhases(%lld) list and jSubPhases(%lld) list",
+               m_subPhases.size(), jSubPhases.size() ))
+        return;
+    }
+
+    for(int i=0; i<m_subPhases.size(); i++)
+    {
+        if(m_subPhases[i].isNull())
+            E("cannot deserialize, due to not existing subPhase")
+        else
+            m_subPhases[i]->deserialize( jSubPhases[i].toObject() );
+    }
 }
 
 void Phase::clear()

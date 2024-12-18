@@ -11,6 +11,8 @@
 #include "cpp/enums/PhaseEnum.h"
 #include "cpp/storages/Personalization.h"
 
+#define SERL_SUB_PHASES_KEY "sub phases"
+
 class Phase : public QObject, public Serializable
 {
     Q_OBJECT
@@ -25,7 +27,8 @@ public:
 
 public:
     QJsonObject serialize() const override;
-    void deserialize(const QJsonObject &phaseJson) override;
+    void deserialize(const QJsonObject &jPhase) override;
+    void deserializeSubPhases(const QJsonObject &jPhase);
 
     void clear();
 
@@ -48,7 +51,7 @@ signals:
 
 private:
     const PhaseEnum m_phase;
-    SubPhasePtrVector m_subPhases;
+    SubPhasePtrVector m_subPhases; /// const, but cant be marked as const :/ due to way this is initialized and serialization
 };
 
 typedef QSharedPointer<Phase> PhasePtr;

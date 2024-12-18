@@ -16,7 +16,7 @@ Item {
             text: subPhaseVar.currentRoundIndex
         }
         Label{
-            text: roundVar.currentRoundStage
+            // text: roundVar.currentRoundStage
         }
 
     }

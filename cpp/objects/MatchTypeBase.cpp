@@ -15,7 +15,7 @@ MatchTypeBase::~MatchTypeBase()
 
 QJsonObject MatchTypeBase::serialize() const
 {
-
+    return QJsonObject();
 }
 
 void MatchTypeBase::deserialize(const QJsonObject &jTeam)

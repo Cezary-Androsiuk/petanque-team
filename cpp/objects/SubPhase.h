@@ -9,6 +9,10 @@
 #include "cpp/Serializable.h"
 #include "cpp/objects/Round.h"
 
+#define SERL_SUB_PHASE_NAME_KEY "name"
+#define SERL_CURRENT_ROUND_INDEX_KEY "current round index"
+#define SERL_ROUNDS_KEY "rounds"
+
 typedef QVector<QPair<int, int>> IntPairs;
 
 class SubPhase : public QObject, public Serializable
@@ -17,7 +21,7 @@ class SubPhase : public QObject, public Serializable
     Q_PROPERTY(QString name READ getName WRITE setName NOTIFY nameChanged FINAL)
     Q_PROPERTY(int currentRoundIndex READ getCurrentRoundIndex NOTIFY currentRoundIndexChanged FINAL)
     Q_PROPERTY(Round *currentRound READ getCurrentRound NOTIFY currentRoundIndexChanged FINAL)
-    Q_PROPERTY(QmlRoundPtrVector rounds READ getRoundsQml CONSTANT FINAL)
+    Q_PROPERTY(QmlRoundPtrVector rounds READ getRoundsQml NOTIFY roundsChanged FINAL)
 
 public:
     explicit SubPhase(int roundsCount, QObject *parent = nullptr);
@@ -27,7 +31,8 @@ public:
 
 public:
     QJsonObject serialize() const override;
-    void deserialize(const QJsonObject &data) override;
+    void deserialize(const QJsonObject &jSubPhase) override;
+    void deserializeRounds(const QJsonObject &jSubPhase);
 
     void clear();
 
@@ -52,11 +57,12 @@ public:
 signals:
     void nameChanged();
     void currentRoundIndexChanged();
+    void roundsChanged();
 
 private:
-    QString m_name;
+    QString m_name; /// should be constant - set within initialization by setter
     int m_currentRoundIndex;
-    RoundPtrVector m_rounds;
+    RoundPtrVector m_rounds; /// const list, and created while initialization by initRounds
 };
 
 typedef QSharedPointer<SubPhase> SubPhasePtr;

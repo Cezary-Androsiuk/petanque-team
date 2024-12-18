@@ -74,7 +74,7 @@ Item {
 
                 Row{
                     Repeater{
-                        model: phaseVar.subPhases
+                        model: !(phaseVar)?0: phaseVar.subPhases
                         Item{
                             height: myTabBar.height
                             width: myTabBar.width / phaseVar.subPhasesCount
@@ -112,7 +112,7 @@ Item {
                 height: parent.height-myTabBar.height
 
                 Repeater{
-                    model: phaseVar.subPhases
+                    model: !(phaseVar)?0: phaseVar.subPhases
                     Item{
 
                         SubPhase{

@@ -41,16 +41,80 @@ void SubPhase::initRounds(QJsonArray jArrangements)
         m_rounds[i]->setArrangement(arrangement);
         m_rounds[i]->initMatches();
     }
+    emit this->roundsChanged();
 }
 
 QJsonObject SubPhase::serialize() const
 {
-    return QJsonObject();
+    QJsonObject jSubPhase;
+
+    jSubPhase[ SERL_SUB_PHASE_NAME_KEY ] = m_name;
+    jSubPhase[ SERL_CURRENT_ROUND_INDEX_KEY ] = m_currentRoundIndex;
+
+    QJsonArray jRounds;
+    for(const auto &roundPtr : m_rounds)
+    {
+        if(roundPtr.isNull())
+        {
+            W("cannot serialize not existing round")
+            jRounds.append( QJsonObject() );
+        }
+        else jRounds.append( roundPtr->serialize() );
+    }
+    jSubPhase[ SERL_ROUNDS_KEY ] = jRounds;
+
+    return jSubPhase;
 }
 
-void SubPhase::deserialize(const QJsonObject &data)
+void SubPhase::deserialize(const QJsonObject &jSubPhase)
 {
+    if(!jSubPhase.contains(SERL_SUB_PHASE_NAME_KEY))
+    {
+        W("cannot deserialize name of sub phase");
+    }
+    else
+    {
+        this->setName( jSubPhase[ SERL_SUB_PHASE_NAME_KEY ].toString() );
+    }
 
+    if(!jSubPhase.contains(SERL_CURRENT_ROUND_INDEX_KEY))
+    {
+        W("cannot deserialize current round index of sub phase");
+    }
+    else
+    {
+        m_currentRoundIndex = jSubPhase[ SERL_CURRENT_ROUND_INDEX_KEY ].toInt();
+        emit this->currentRoundIndexChanged();
+    }
+
+    this->deserializeRounds(jSubPhase);
+}
+
+void SubPhase::deserializeRounds(const QJsonObject &jSubPhase)
+{
+    if(!jSubPhase.contains(SERL_ROUNDS_KEY))
+    {
+        E("cannot deserialize rounds due to missing key in json: " SERL_ROUNDS_KEY)
+        return;
+    }
+
+    QJsonArray jRounds = jSubPhase[ SERL_ROUNDS_KEY ].toArray();
+
+    if(m_rounds.size() != jRounds.size())
+    {
+        E(QAPF("cannot deserialize rounds due to inconsistent size: "
+               "m_rounds(%lld) list and jRounds(%lld) list",
+               m_rounds.size(), jRounds.size() ))
+        return;
+    }
+
+    for(int i=0; i<m_rounds.size(); i++)
+    {
+        if(m_rounds[i].isNull())
+            E("cannot deserialize, due to not exiting round")
+        else
+            m_rounds[i]->deserialize( jRounds[i].toObject() );
+    }
 }
 
 void SubPhase::clear()
