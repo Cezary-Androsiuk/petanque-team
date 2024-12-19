@@ -24,6 +24,7 @@ class Round : public QObject, public Serializable
 {
     Q_OBJECT
     Q_PROPERTY(int currentRoundStage READ getCurrentRoundStage NOTIFY currentRoundStageChanged FINAL)
+    Q_PROPERTY(MatchPtrVectorQml matches READ getMatchesQml NOTIFY matchesChanged FINAL)
 
 public:
     explicit Round(QObject *parent = nullptr);
@@ -47,11 +48,15 @@ public:
     /// GETTERS
     RoundStageEnum getCurrentRoundStage() const;
 
+    /// QML GETTERS
+    MatchPtrVectorQml getMatchesQml() const;
+
     /// SETTERS
     void setArrangement(const IntPairs &arrangement);
 
 signals:
     void currentRoundStageChanged();
+    void matchesChanged();
 
 private:
     RoundStageEnum m_currentRoundStage;

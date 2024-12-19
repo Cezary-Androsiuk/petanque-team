@@ -41,6 +41,8 @@ void Round::initMatches()
         match->setTeamRight(teams[t2]);
         m_matches.append(match);
     }
+
+    emit this->matchesChanged();
 }
 
 QJsonObject Round::serialize() const
@@ -113,6 +115,8 @@ void Round::deserializeMatches(const QJsonObject &jRound)
         else
             m_matches[i]->deserialize( jMatches[i].toObject() );
     }
+
+    emit this->matchesChanged();
 }
 
 void Round::clear(bool emitting)
@@ -148,6 +152,15 @@ void Round::goToNext()
 RoundStageEnum Round::getCurrentRoundStage() const
 {
     return m_currentRoundStage;
+}
+
+MatchPtrVectorQml Round::getMatchesQml() const
+{
+    MatchPtrVectorQml retVec;
+    retVec.reserve(m_matches.size());
+    for(const auto &matchPtr : m_matches)
+        retVec.append(matchPtr.data());
+    return retVec;
 }
 
 void Round::setArrangement(const IntPairs &arrangement)
