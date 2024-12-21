@@ -20,6 +20,7 @@ QJsonObject MatchTypeBase::serialize() const
 
 void MatchTypeBase::deserialize(const QJsonObject &jTeam)
 {
+    this->clear(false);
 
 }
 

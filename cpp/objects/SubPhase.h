@@ -34,7 +34,7 @@ public:
     void deserialize(const QJsonObject &jSubPhase) override;
     void deserializeRounds(const QJsonObject &jSubPhase);
 
-    void clear();
+    void clear(bool emitting = true);
 
 public:
     bool verify(QString &message) const;

@@ -7,7 +7,7 @@ MatchTriplets::MatchTriplets(QObject *parent)
 
 }
 
-    MatchTriplets::~MatchTriplets()
+MatchTriplets::~MatchTriplets()
 {
     DOLT(this)
 }

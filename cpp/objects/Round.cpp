@@ -78,6 +78,8 @@ QJsonObject Round::serialize() const
 
 void Round::deserialize(const QJsonObject &jRound)
 {
+    this->clear(false);
+
     if(!jRound.contains(SERL_CURRENT_ROUND_STAGE_KEY))
     {
         E("cannot deserialize current round stage, due to not existing key: " SERL_CURRENT_ROUND_STAGE_KEY);

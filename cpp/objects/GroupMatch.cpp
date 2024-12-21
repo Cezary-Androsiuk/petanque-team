@@ -14,12 +14,12 @@ GroupMatch::GroupMatch(QObject *parent)
 
 QJsonObject GroupMatch::serialize() const
 {
-
+    return QJsonObject();
 }
 
 void GroupMatch::deserialize(const QJsonObject &jTeam)
 {
-
+    this->clear(false);
 }
 
 void GroupMatch::clear(bool emitting)

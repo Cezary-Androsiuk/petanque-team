@@ -41,6 +41,7 @@ qt_add_qml_module(appPetanqueTeam
     SOURCES cpp/objects/MatchDublets.h cpp/objects/MatchDublets.cpp
     SOURCES cpp/objects/MatchTriplets.h cpp/objects/MatchTriplets.cpp
     SOURCES cpp/objects/GroupMatch.h cpp/objects/GroupMatch.cpp
+    SOURCES cpp/objects/GroupSelection.h cpp/objects/GroupSelection.cpp
     ################################
     SOURCES cpp/enums/GenderEnum.h cpp/enums/GenderEnum.cpp
     SOURCES cpp/enums/AgeGroupEnum.h cpp/enums/AgeGroupEnum.cpp

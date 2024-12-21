@@ -39,6 +39,8 @@ QJsonObject Match::serialize() const
 
 void Match::deserialize(const QJsonObject &jMatch)
 {
+    this->clear(false);
+
     /// m_teamLeft - don't need to be deserialized
     /// m_teamRight - don't need to be deserialized
     /// m_currentRoundStage - don't need to be deserialized

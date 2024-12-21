@@ -15,6 +15,7 @@ public:
     explicit GroupMatch(QObject *parent = nullptr);
     ~GroupMatch();
 
+public:
     QJsonObject serialize() const override;
     void deserialize(const QJsonObject &jTeam) override;
 

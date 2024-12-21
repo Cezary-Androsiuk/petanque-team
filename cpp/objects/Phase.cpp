@@ -62,7 +62,7 @@ QJsonObject Phase::serialize() const
 
 void Phase::deserialize(const QJsonObject &jPhase)
 {
-    this->clear();
+    this->clear(false);
 
     /// m_phase - don't need to be deserialized
 
@@ -96,7 +96,7 @@ void Phase::deserializeSubPhases(const QJsonObject &jPhase)
     }
 }
 
-void Phase::clear()
+void Phase::clear(bool emitting)
 {
 
 }

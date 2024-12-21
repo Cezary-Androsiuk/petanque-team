@@ -68,6 +68,8 @@ QJsonObject SubPhase::serialize() const
 
 void SubPhase::deserialize(const QJsonObject &jSubPhase)
 {
+    this->clear(false);
+
     if(!jSubPhase.contains(SERL_SUB_PHASE_NAME_KEY))
     {
         W("cannot deserialize name of sub phase");
@@ -117,7 +119,7 @@ void SubPhase::deserializeRounds(const QJsonObject &jSubPhase)
     }
 }
 
-void SubPhase::clear()
+void SubPhase::clear(bool emitting)
 {
 
 }

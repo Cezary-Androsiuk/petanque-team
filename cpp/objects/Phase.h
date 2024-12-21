@@ -30,7 +30,7 @@ public:
     void deserialize(const QJsonObject &jPhase) override;
     void deserializeSubPhases(const QJsonObject &jPhase);
 
-    void clear();
+    void clear(bool emitting = true);
 
 public slots:
     void verify();
