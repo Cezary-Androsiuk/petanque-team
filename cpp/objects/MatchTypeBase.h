@@ -7,6 +7,7 @@
 
 #include "cpp/support/Log.h"
 #include "cpp/Serializable.h"
+#include "cpp/objects/GroupSelection.h"
 #include "cpp/objects/GroupMatch.h"
 
 class MatchTypeBase : public QObject, public Serializable
@@ -27,6 +28,7 @@ public:
 signals:
 
 private:
+    GroupSelectionPtrList m_groupSelection;
     GroupMatchPtrList m_groupMatches;
 };
 
