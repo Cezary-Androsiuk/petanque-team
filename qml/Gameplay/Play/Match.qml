@@ -15,71 +15,91 @@ Item {
     }
 
     required property var matchVar
-
-    Component.onCompleted: {
-        log.i("completed: " + matchVar, "Match->onCompleted")
+    required property int currentRoundStage
+    property string currentMatchTypeFile: {
+        if(currentRoundStage === 0) "Match/SingielsSelection.qml";    else
+        if(currentRoundStage === 1) "Match/SingielsMatch.qml";        else
+        if(currentRoundStage === 2) "Match/DubletsSelection.qml";     else
+        if(currentRoundStage === 3) "Match/DubletsMatch.qml";         else
+        if(currentRoundStage === 4) "Match/TripletsSelection.qml";    else
+        if(currentRoundStage === 5) "Match/TripletsMatch.qml";        else
+        if(currentRoundStage === 6) "Match/RoundSummary.qml";         else
+        {
+            log.w("unknown currentRoundStage: " + currentRoundStage, "Match.qml -> currentMatchTypeFile");
+            "";
+        }
+    }
+    onCurrentMatchTypeFileChanged: {
+        matchTypeLoader.setSource(currentMatchTypeFile, { matchVar: match.matchVar })
     }
 
     Loader{
+        id: matchTypeLoader
         anchors.fill: parent
-        sourceComponent: {
-            var crs = matchVar.currentRoundStage;
-            if(crs === 6) summaryExample; else
-            {
-                if(crs % 2 === 0)
-                    selectionExample;
-                else
-                    matchExample;
-
-            }
+        // source: ""//currentMatchTypeFile
+        onLoaded: {
+            // if (item && (typeof item.setParameters === "function")) {
+            //     item.setParameters({ matchVar: match.matchVar });
+            // }
         }
 
-        Component{
-            id: summaryExample
-            Item{
-                anchors.fill: parent
-                Label{
-                    id: headerLabel
-                    anchors.centerIn: parent
+        // sourceComponent: {
+        //     var crs = currentRoundStage;
+        //     if(crs === 6) summaryExample; else
+        //     {
+        //         if(crs % 2 === 0)
+        //             selectionExample;
+        //         else
+        //             matchExample;
+        //     }
+        // }
 
-                    text: "summary example"
-                    font.pixelSize: 24
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                }
-            }
-        }
+        // Component{
+        //     id: summaryExample
+        //     Item{
+        //         anchors.fill: parent
+        //         Label{
+        //             id: headerLabel
+        //             anchors.centerIn: parent
 
-        Component{
-            id: matchExample
-            Item{
-                anchors.fill: parent
-                Label{
-                    id: headerLabel
-                    anchors.centerIn: parent
+        //             text: "summary example"
+        //             font.pixelSize: 24
+        //             horizontalAlignment: Text.AlignHCenter
+        //             verticalAlignment: Text.AlignVCenter
+        //         }
+        //     }
+        // }
 
-                    text: "match example"
-                    font.pixelSize: 24
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                }
-            }
-        }
+        // Component{
+        //     id: matchExample
+        //     Item{
+        //         anchors.fill: parent
+        //         Label{
+        //             id: headerLabel
+        //             anchors.centerIn: parent
 
-        Component{
-            id: selectionExample
-            Item{
-                anchors.fill: parent
-                Label{
-                    id: headerLabel
-                    anchors.centerIn: parent
+        //             text: "match example"
+        //             font.pixelSize: 24
+        //             horizontalAlignment: Text.AlignHCenter
+        //             verticalAlignment: Text.AlignVCenter
+        //         }
+        //     }
+        // }
 
-                    text: "selection example"
-                    font.pixelSize: 24
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                }
-            }
-        }
+        // Component{
+        //     id: selectionExample
+        //     Item{
+        //         anchors.fill: parent
+        //         Label{
+        //             id: headerLabel
+        //             anchors.centerIn: parent
+
+        //             text: "selection example"
+        //             font.pixelSize: 24
+        //             horizontalAlignment: Text.AlignHCenter
+        //             verticalAlignment: Text.AlignVCenter
+        //         }
+        //     }
+        // }
     }
 }

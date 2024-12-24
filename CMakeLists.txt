@@ -69,6 +69,15 @@ qt_add_qml_module(appPetanqueTeam
     QML_FILES qml/Gameplay/Play/Phase.qml
     QML_FILES qml/Gameplay/Play/SubPhase.qml
     QML_FILES qml/Gameplay/Play/Match.qml
+    QML_FILES qml/Gameplay/Play/Match/SingielsSelection.qml
+    QML_FILES qml/Gameplay/Play/Match/SingielsMatch.qml
+    QML_FILES qml/Gameplay/Play/Match/DubletsSelection.qml
+    QML_FILES qml/Gameplay/Play/Match/DubletsMatch.qml
+    QML_FILES qml/Gameplay/Play/Match/TripletsSelection.qml
+    QML_FILES qml/Gameplay/Play/Match/TripletsMatch.qml
+    QML_FILES qml/Gameplay/Play/Match/RoundSummary.qml
+    QML_FILES qml/Gameplay/Play/Match/MatchType/GroupSelection.qml
+    QML_FILES qml/Gameplay/Play/Match/MatchType/GroupMatch.qml
     ################################
     QML_FILES qml/Gameplay/Finish.qml
 )

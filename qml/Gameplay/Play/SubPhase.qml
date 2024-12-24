@@ -83,6 +83,7 @@ Item {
                 Match{
                     required property int index;
                     matchVar: roundVar.matches[index]
+                    currentRoundStage: roundVar.currentRoundStage
                 }
             }
         }
