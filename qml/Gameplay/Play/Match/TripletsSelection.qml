@@ -14,6 +14,7 @@ Item {
 
     GroupSelection{
         id: groupSelection
+        matchVar: tripletsSelection.matchVar
 
     }
 }
