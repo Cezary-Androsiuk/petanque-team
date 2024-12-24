@@ -152,6 +152,11 @@ bool Match::verify(QString &message) const
     return true;
 }
 
+RoundStageEnum Match::getCurrentRoundStage() const
+{
+    return m_currentRoundStage;
+}
+
 void Match::setTeamLeft(const TeamPtr &team)
 {
     m_teamLeft = team.toWeakRef();

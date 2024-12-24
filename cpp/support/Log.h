@@ -15,7 +15,7 @@
 #define QAPF(...) QString::asprintf(__VA_ARGS__) /* QString as printf */
 #define QAPF_T(text, ...) QString::asprintf(tr(text).toStdString().c_str(), __VA_ARGS__) /* QString as printf translate */
 
-#define DISPLAY_OBJECT_LIFE_TIME true
+#define DISPLAY_OBJECT_LIFE_TIME false
 
 /// Display Object Life Time Variable
 #define DOLTV(ptr, argsStr) \

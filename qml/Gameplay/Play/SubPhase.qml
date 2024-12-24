@@ -74,68 +74,20 @@ Item {
             bottom: parent.bottom
         }
 
-        Loader{
+        Column{
             anchors.fill: parent
-            sourceComponent: {
-                var crs = roundVar.currentRoundStage;
-                if(crs === 6) summaryExample; else
-                {
-                    if(crs % 2 === 0)
-                        selectionExample;
-                    else
-                        matchExample;
+            spacing: 4
 
-                }
-            }
-
-            Component{
-                id: summaryExample
-                Item{
-                    anchors.fill: parent
-                    Label{
-                        id: headerLabel
-                        anchors.centerIn: parent
-
-                        text: "summary example"
-                        font.pixelSize: 24
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                    }
-                }
-            }
-
-            Component{
-                id: matchExample
-                Item{
-                    anchors.fill: parent
-                    Label{
-                        id: headerLabel
-                        anchors.centerIn: parent
-
-                        text: "match example"
-                        font.pixelSize: 24
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                    }
-                }
-            }
-
-            Component{
-                id: selectionExample
-                Item{
-                    anchors.fill: parent
-                    Label{
-                        id: headerLabel
-                        anchors.centerIn: parent
-
-                        text: "selection example"
-                        font.pixelSize: 24
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                    }
+            Repeater{
+                model: roundVar.matches
+                Match{
+                    required property int index;
+                    matchVar: roundVar.matches[index]
                 }
             }
         }
+
+
 
     }
 
