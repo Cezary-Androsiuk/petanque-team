@@ -6,9 +6,9 @@
 Match::Match(const RoundStageEnum &roundStageRef, QObject *parent)
     : QObject{parent}
     , m_matchTypes({
-          MatchSingielsPtr::create(),
-          MatchDubletsPtr::create(),
-          MatchTripletsPtr::create()
+                    MatchSingielsPtr::create(m_teamLeft, m_teamRight),
+                    MatchDubletsPtr::create(m_teamLeft, m_teamRight),
+                    MatchTripletsPtr::create(m_teamLeft, m_teamRight)
       })
     , m_currentRoundStage{roundStageRef}
 {
@@ -69,6 +69,13 @@ QString Match::serializeTeam(const TeamWPtr &teamWPtr) const
 
 QJsonObject Match::serializeMatchType(int matchTypeIndex) const
 {
+    if(m_matchTypes.size() <= matchTypeIndex)
+    {
+        E(QAPF("matchTypeIndex is %d, but m_matchTypes.size() is %lld",
+               matchTypeIndex, m_matchTypes.size()))
+        return QJsonObject();
+    }
+
     if(m_matchTypes[matchTypeIndex].isNull())
     {
         W("cannot serialize not exising match type")

@@ -1,7 +1,7 @@
 #include "MatchTriplets.h"
 
-MatchTriplets::MatchTriplets(QObject *parent)
-    : MatchTypeBase()
+MatchTriplets::MatchTriplets(const TeamWPtr &tl, const TeamWPtr &tr, QObject *parent)
+    : MatchTypeBase(tl, tr)
 {
     DOLT(this)
 

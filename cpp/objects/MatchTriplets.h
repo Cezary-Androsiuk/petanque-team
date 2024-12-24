@@ -12,7 +12,7 @@ class MatchTriplets : public MatchTypeBase
 {
     Q_OBJECT
 public:
-    explicit MatchTriplets(QObject *parent = nullptr);
+    explicit MatchTriplets(const TeamWPtr &tl, const TeamWPtr &tr, QObject *parent = nullptr);
     ~MatchTriplets();
 
 signals:

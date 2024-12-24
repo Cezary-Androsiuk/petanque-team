@@ -7,24 +7,28 @@
 
 #include "cpp/support/Log.h"
 #include "cpp/Serializable.h"
+#include "cpp/objects/Team.h"
 
 class GroupMatch : public QObject, public Serializable
 {
     Q_OBJECT
 public:
-    explicit GroupMatch(QObject *parent = nullptr);
+    explicit GroupMatch(const TeamWPtr &team, QObject *parent = nullptr);
     ~GroupMatch();
 
 public:
     QJsonObject serialize() const override;
-    void deserialize(const QJsonObject &jTeam) override;
+    void deserialize(const QJsonObject &jGroupMatch) override;
 
     void clear(bool emitting = true);
+
+public:
+    bool verify(QString &message);
 
 signals:
 
 private:
-
+    const TeamWPtr &m_teamRef;
 };
 
 typedef QSharedPointer<GroupMatch> GroupMatchPtr;

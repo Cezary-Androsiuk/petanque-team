@@ -12,7 +12,7 @@ class MatchDublets : public MatchTypeBase
 {
     Q_OBJECT
 public:
-    explicit MatchDublets(QObject *parent = nullptr);
+    explicit MatchDublets(const TeamWPtr &tl, const TeamWPtr &tr, QObject *parent = nullptr);
     ~MatchDublets();
 
 signals:

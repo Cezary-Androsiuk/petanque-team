@@ -1,13 +1,13 @@
 #include "GroupMatch.h"
 
-GroupMatch::GroupMatch(QObject *parent)
+GroupMatch::GroupMatch(const TeamWPtr &team, QObject *parent)
     : QObject{parent}
+    , m_teamRef{team}
 {
     DOLT(this)
-
 }
 
-    GroupMatch::~GroupMatch()
+GroupMatch::~GroupMatch()
 {
     DOLT(this)
 }
@@ -17,7 +17,7 @@ QJsonObject GroupMatch::serialize() const
     return QJsonObject();
 }
 
-void GroupMatch::deserialize(const QJsonObject &jTeam)
+void GroupMatch::deserialize(const QJsonObject &jGroupMatch)
 {
     this->clear(false);
 }
@@ -25,4 +25,9 @@ void GroupMatch::deserialize(const QJsonObject &jTeam)
 void GroupMatch::clear(bool emitting)
 {
 
+}
+
+bool GroupMatch::verify(QString &message)
+{
+    return true;
 }

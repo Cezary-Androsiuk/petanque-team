@@ -9,18 +9,24 @@
 #include "cpp/Serializable.h"
 #include "cpp/objects/GroupSelection.h"
 #include "cpp/objects/GroupMatch.h"
+#include "cpp/objects/Team.h"
 
 class MatchTypeBase : public QObject, public Serializable
 {
     Q_OBJECT
 public:
-    explicit MatchTypeBase(QObject *parent = nullptr);
+    explicit MatchTypeBase(const TeamWPtr &tl, const TeamWPtr &tr, QObject *parent = nullptr);
     virtual ~MatchTypeBase();
 
+    void initSelection();
+    void initMatch();
+
+public:
     QJsonObject serialize() const override;
     void deserialize(const QJsonObject &jTeam) override;
 
     void clear(bool emitting = true);
+
 public:
     bool verifySelection(QString &message);
     bool verifyMatch(QString &message);
@@ -28,8 +34,10 @@ public:
 signals:
 
 private:
-    GroupSelectionPtrList m_groupSelection;
-    GroupMatchPtrList m_groupMatches;
+    GroupSelectionPtr m_groupSelectionLeft;
+    GroupSelectionPtr m_groupSelectionRight;
+    GroupMatchPtr m_groupMatchLeft;
+    GroupMatchPtr m_groupMatchRight;
 };
 
 typedef QSharedPointer<MatchTypeBase> MatchTypeBasePtr;
