@@ -22,7 +22,9 @@
 class Match : public QObject, public Serializable
 {
     Q_OBJECT
-    Q_PROPERTY(int currentRoundStage READ getCurrentRoundStage NOTIFY currentRoundStageChanged FINAL)
+    Q_PROPERTY(Team *teamLeft READ getTeamLeft CONSTANT FINAL)
+    Q_PROPERTY(Team *teamRight READ getTeamRight CONSTANT FINAL)
+    Q_PROPERTY(MatchTypeBase *currentMatchType READ getCurrentMatchType NOTIFY currentRoundStageChanged FINAL)
 
 public:
     explicit Match(const RoundStageEnum &roundStageRef, QObject *parent = nullptr);
@@ -47,7 +49,9 @@ public:
 
 public:
     /// GETTERS
-    RoundStageEnum getCurrentRoundStage() const;
+    Team *getTeamLeft() const;
+    Team *getTeamRight() const;
+    MatchTypeBase *getCurrentMatchType() const;
 
     /// SETTERS
     void setTeamLeft(const TeamPtr &team);

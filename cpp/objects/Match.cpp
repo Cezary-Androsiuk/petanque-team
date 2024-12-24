@@ -152,9 +152,31 @@ bool Match::verify(QString &message) const
     return true;
 }
 
-RoundStageEnum Match::getCurrentRoundStage() const
+Team *Match::getTeamLeft() const
 {
-    return m_currentRoundStage;
+    if(m_teamLeft.isNull())
+    {
+        W("cannot return non exising left team")
+        return nullptr;
+    }
+
+    return m_teamLeft.toStrongRef().data();
+}
+
+Team *Match::getTeamRight() const
+{
+    if(m_teamRight.isNull())
+    {
+        W("cannot return non exising right team")
+        return nullptr;
+    }
+
+    return m_teamRight.toStrongRef().data();
+}
+
+MatchTypeBase *Match::getCurrentMatchType() const
+{
+    return m_matchTypes[m_currentRoundStage].data();
 }
 
 void Match::setTeamLeft(const TeamPtr &team)
