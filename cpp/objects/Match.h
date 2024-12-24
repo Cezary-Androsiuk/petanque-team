@@ -27,6 +27,8 @@ public:
     explicit Match(const RoundStageEnum &roundStageRef, QObject *parent = nullptr);
     ~Match();
 
+    void initMatchesTypes();
+
 public:
     QJsonObject serialize() const override;
     void deserialize(const QJsonObject &jMatch) override;
@@ -57,7 +59,7 @@ private:
     TeamWPtr m_teamRight; /// const assigned while creation of object
 
     const RoundStageEnum &m_currentRoundStage;
-    const MatchTypeBasePtrVector m_matchTypes;
+    MatchTypeBasePtrVector m_matchTypes;
 };
 
 typedef QSharedPointer<Match> MatchPtr;

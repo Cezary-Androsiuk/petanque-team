@@ -1,11 +1,13 @@
 #include "MatchTypeBase.h"
 
-MatchTypeBase::MatchTypeBase(const TeamWPtr &tl, const TeamWPtr &tr, QObject *parent)
+MatchTypeBase::MatchTypeBase(cTeamWPtr teamL, cTeamWPtr teamR, QObject *parent)
     : QObject{parent}
-    , m_groupSelectionLeft{GroupSelectionPtr::create(tl)}
-    , m_groupSelectionRight{GroupSelectionPtr::create(tr)}
-    , m_groupMatchLeft{GroupMatchPtr::create(tl)}
-    , m_groupMatchRight{GroupMatchPtr::create(tr)}
+    , m_groupSelectionLeft{GroupSelectionPtr::create()}
+    , m_groupSelectionRight{GroupSelectionPtr::create()}
+    , m_groupMatchLeft{GroupMatchPtr::create()}
+    , m_groupMatchRight{GroupMatchPtr::create()}
+    , m_teamLeft{teamL}
+    , m_teamRight{teamR}
 {
     DOLT(this)
 
@@ -19,7 +21,31 @@ MatchTypeBase::~MatchTypeBase()
 
 void MatchTypeBase::initSelection()
 {
+    m_groupSelectionLeft->setGroupsCount(0);
+    m_groupSelectionLeft->setMinPlayersInGroup(0);
+    m_groupSelectionLeft->setMaxPlayersInGroup(0);
+    if(m_teamLeft.isNull())
+    {
+        W("cannot set selection size for m_groupSelectionLeft due to teamLeft is null")
+    }
+    else
+    {
+        m_groupSelectionLeft->setSelectionSize(
+            m_teamLeft.toStrongRef()->getPlayers().size());
+    }
 
+    m_groupSelectionRight->setGroupsCount(0);
+    m_groupSelectionRight->setMinPlayersInGroup(0);
+    m_groupSelectionRight->setMaxPlayersInGroup(0);
+    if(m_teamRight.isNull())
+    {
+        W("cannot set selection size for m_groupSelectionRight due to teamRight is null")
+    }
+    else
+    {
+        m_groupSelectionRight->setSelectionSize(
+            m_teamRight.toStrongRef()->getPlayers().size());
+    }
 }
 
 void MatchTypeBase::initMatch()

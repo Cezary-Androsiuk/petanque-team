@@ -39,6 +39,8 @@ void Round::initMatches()
             match.data(), &Match::currentRoundStageChanged);
         match->setTeamLeft(teams[t1]);
         match->setTeamRight(teams[t2]);
+        match->initMatchesTypes();
+
         m_matches.append(match);
     }
 

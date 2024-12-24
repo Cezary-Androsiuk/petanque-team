@@ -1,8 +1,7 @@
 #include "GroupMatch.h"
 
-GroupMatch::GroupMatch(const TeamWPtr &team, QObject *parent)
+GroupMatch::GroupMatch(QObject *parent)
     : QObject{parent}
-    , m_teamRef{team}
 {
     DOLT(this)
 }

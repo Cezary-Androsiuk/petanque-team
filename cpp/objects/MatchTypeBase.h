@@ -11,15 +11,18 @@
 #include "cpp/objects/GroupMatch.h"
 #include "cpp/objects/Team.h"
 
+typedef const TeamWPtr &cTeamWPtr;
+
 class MatchTypeBase : public QObject, public Serializable
 {
     Q_OBJECT
 public:
-    explicit MatchTypeBase(const TeamWPtr &tl, const TeamWPtr &tr, QObject *parent = nullptr);
+    explicit MatchTypeBase(cTeamWPtr teamL, cTeamWPtr teamR, QObject *parent = nullptr);
     virtual ~MatchTypeBase();
 
-    void initSelection();
-    void initMatch();
+public slots:
+    void initSelection(); /// call on complition qml selection
+    void initMatch(); /// call on complition qml match
 
 public:
     QJsonObject serialize() const override;
@@ -27,13 +30,16 @@ public:
 
     void clear(bool emitting = true);
 
-public:
+public slots:
     bool verifySelection(QString &message);
     bool verifyMatch(QString &message);
 
 signals:
 
 private:
+    cTeamWPtr m_teamLeft;
+    cTeamWPtr m_teamRight;
+
     GroupSelectionPtr m_groupSelectionLeft;
     GroupSelectionPtr m_groupSelectionRight;
     GroupMatchPtr m_groupMatchLeft;

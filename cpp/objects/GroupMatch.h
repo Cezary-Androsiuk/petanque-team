@@ -13,7 +13,7 @@ class GroupMatch : public QObject, public Serializable
 {
     Q_OBJECT
 public:
-    explicit GroupMatch(const TeamWPtr &team, QObject *parent = nullptr);
+    explicit GroupMatch(QObject *parent = nullptr);
     ~GroupMatch();
 
 public:
@@ -28,7 +28,7 @@ public:
 signals:
 
 private:
-    const TeamWPtr &m_teamRef;
+
 };
 
 typedef QSharedPointer<GroupMatch> GroupMatchPtr;

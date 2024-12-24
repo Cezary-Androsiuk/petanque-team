@@ -13,7 +13,7 @@ class GroupSelection : public QObject, public Serializable
 {
     Q_OBJECT
 public:
-    explicit GroupSelection(uint groupsCount, uint minPlayersInGroup, uint maxPlayersInGroup, QObject *parent = nullptr);
+    explicit GroupSelection(QObject *parent = nullptr);
     ~GroupSelection();
 
 public:
@@ -26,12 +26,17 @@ public:
     bool verify(QString &message);
     void setSelectionSize(qsizetype size);
 
+public:
+    void setGroupsCount(int groupsCount);
+    void setMinPlayersInGroup(int minPlayersInGroup);
+    void setMaxPlayersInGroup(int maxPlayersInGroup);
+
 signals:
 
 private:
-    const uint m_groupsCount;
-    const uint m_minPlayersInGroup;
-    const uint m_maxPlayersInGroup;
+    int m_groupsCount;
+    int m_minPlayersInGroup;
+    int m_maxPlayersInGroup;
     QList<int> m_playerSelections;
 
     static constexpr int defaultSelectionValue = -1;

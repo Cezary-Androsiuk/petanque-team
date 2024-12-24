@@ -5,11 +5,7 @@
 
 Match::Match(const RoundStageEnum &roundStageRef, QObject *parent)
     : QObject{parent}
-    , m_matchTypes({
-                    MatchSingielsPtr::create(m_teamLeft, m_teamRight),
-                    MatchDubletsPtr::create(m_teamLeft, m_teamRight),
-                    MatchTripletsPtr::create(m_teamLeft, m_teamRight)
-      })
+    , m_matchTypes(3, MatchTypeBasePtr())
     , m_currentRoundStage{roundStageRef}
 {
     DOLT(this)
@@ -19,6 +15,15 @@ Match::Match(const RoundStageEnum &roundStageRef, QObject *parent)
 Match::~Match()
 {
     DOLT(this)
+}
+
+void Match::initMatchesTypes()
+{
+    m_matchTypes[0] = MatchSingielsPtr::create(m_teamLeft, m_teamRight);
+
+    m_matchTypes[1] = MatchDubletsPtr::create(m_teamLeft, m_teamRight);
+
+    m_matchTypes[2] = MatchTripletsPtr::create(m_teamLeft, m_teamRight);
 }
 
 QJsonObject Match::serialize() const

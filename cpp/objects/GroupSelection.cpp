@@ -1,10 +1,10 @@
 #include "GroupSelection.h"
 
-GroupSelection::GroupSelection(uint groupsCount, uint minPlayersInGroup, uint maxPlayersInGroup, QObject *parent)
+GroupSelection::GroupSelection(QObject *parent)
     : QObject{parent}
-    , m_groupsCount{groupsCount}
-    , m_minPlayersInGroup{minPlayersInGroup}
-    , m_maxPlayersInGroup{maxPlayersInGroup}
+    , m_groupsCount{0}
+    , m_minPlayersInGroup{0}
+    , m_maxPlayersInGroup{0}
 {
     DOLT(this);
 }
@@ -74,4 +74,19 @@ void GroupSelection::setSelectionSize(qsizetype size)
 
     /// first init
     m_playerSelections.assign(size, GroupSelection::defaultSelectionValue);
+}
+
+void GroupSelection::setGroupsCount(int groupsCount)
+{
+    m_groupsCount = groupsCount;
+}
+
+void GroupSelection::setMinPlayersInGroup(int minPlayersInGroup)
+{
+    m_minPlayersInGroup = minPlayersInGroup;
+}
+
+void GroupSelection::setMaxPlayersInGroup(int maxPlayersInGroup)
+{
+    m_maxPlayersInGroup = maxPlayersInGroup;
 }
