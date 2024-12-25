@@ -60,14 +60,17 @@ Item {
                     RadioButton{
                         anchors.fill: parent
 
-                        // uncheck mechanic
+                        // // uncheck mechanic // not works fully
                         // property bool wasCheckedWhilePressing: false
                         // onPressed: {
                         //     wasCheckedWhilePressing = checked
                         // }
                         // onClicked: {
                         //     if(wasCheckedWhilePressing)
+                        //     {
                         //         checked = false
+                        //         // selectionHalf.selectionVar.setPlayerGroup(rowDelegate.rowIndex, -1)
+                        //     }
                         // }
 
                         checked: selectionHalf.selectionVar.playerSelections[rowDelegate.rowIndex] === columnDelegate.colIndex

@@ -140,6 +140,7 @@ void Phase::goToNext()
 
 void Phase::assignExampleData()
 {
+    /// for all subPhases
     for(auto &subPhasePtr : m_subPhases)
         subPhasePtr->assignExampleData();
 }

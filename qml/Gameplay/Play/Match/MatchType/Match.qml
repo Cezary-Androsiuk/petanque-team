@@ -9,6 +9,8 @@ Item {
     readonly property var matchType: matchVar.currentMatchType
 
     Component.onCompleted: {
+        console.log("on completed matchVar: " + matchVar)
+        console.log("on completed matchType: " + matchType)
         matchType.initMatch()
     }
 

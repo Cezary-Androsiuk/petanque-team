@@ -164,8 +164,15 @@ void SubPhase::goToNext()
 
 void SubPhase::assignExampleData()
 {
-    for(auto &roundPtr : m_rounds)
-        roundPtr->assignExampleData();
+    if(m_rounds.size() <= m_currentRoundIndex)
+    {
+        E(QAPF("cannot read index out of bounds: m_rounds %lld, m_currentRoundIndex %d",
+               m_rounds.size(), m_currentRoundIndex))
+        return;
+    }
+
+    /// only current round
+    m_rounds[m_currentRoundIndex]->assignExampleData();
 }
 
 QString SubPhase::getName() const

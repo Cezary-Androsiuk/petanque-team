@@ -28,9 +28,9 @@ public:
 public:
     bool verify(QString &message);
     void setSelectionSize(qsizetype size);
+    void assignExampleData();
 
 public slots:
-    void setExampleData();
     void setPlayerGroup(int playerIndex, int groupIndex);
 
 public:

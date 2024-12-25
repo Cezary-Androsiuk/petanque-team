@@ -49,11 +49,13 @@ void MatchTypeBase::initSelection()
 
 void MatchTypeBase::initMatch()
 {
+    qDebug() <<"about to create left match"<< m_groupMatchLeft << "for:"<<this;
     m_groupMatchLeft = GroupMatchPtr::create();
-
+    qDebug() <<"created left match"<< m_groupMatchLeft;
 
     m_groupMatchRight = GroupMatchPtr::create();
 
+    emit this->matchChanged();
 }
 
 QJsonObject MatchTypeBase::serialize() const
@@ -103,6 +105,8 @@ bool MatchTypeBase::verifySelection(QString &message)
 
 bool MatchTypeBase::verifyMatch(QString &message)
 {
+    qDebug() << "trying to access left match" << m_groupMatchLeft << "for:"<<this;
+
     if(m_groupMatchLeft.isNull())
     {
         E("cannot verify, due to not exising left match pointer")
@@ -132,12 +136,14 @@ bool MatchTypeBase::verifyMatch(QString &message)
 
 void MatchTypeBase::assignSelectionExampleData()
 {
-
+    m_groupSelectionLeft->assignExampleData();
+    m_groupSelectionRight->assignExampleData();
 }
 
 void MatchTypeBase::assignMatchExampleData()
 {
-
+    m_groupMatchLeft->assignExampleData();
+    m_groupMatchRight->assignExampleData();
 }
 
 GroupSelection *MatchTypeBase::getSelectionLeft() const

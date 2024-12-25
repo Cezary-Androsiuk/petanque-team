@@ -30,3 +30,8 @@ bool GroupMatch::verify(QString &message)
 {
     return true;
 }
+
+void GroupMatch::assignExampleData()
+{
+
+}

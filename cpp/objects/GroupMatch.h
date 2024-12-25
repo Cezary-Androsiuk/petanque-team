@@ -24,6 +24,7 @@ public:
 
 public:
     bool verify(QString &message);
+    void assignExampleData();
 
 signals:
 

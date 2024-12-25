@@ -155,6 +155,7 @@ void Round::goToNext()
 
 void Round::assignExampleData()
 {
+    /// for all matches
     for(auto &matchPtr : m_matches)
         matchPtr->assignExampleData();
 }

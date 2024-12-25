@@ -160,6 +160,7 @@ void Match::assignExampleData()
     MatchTypeBasePtr currentMatchType = m_matchTypes[m_currentRoundStage/2];
     bool isSelectionStage = m_currentRoundStage%2 == 0;
 
+    /// assign only for current matchType
     if(isSelectionStage)
         currentMatchType->assignSelectionExampleData();
     else
@@ -190,7 +191,7 @@ Team *Match::getTeamRight() const
 
 MatchTypeBase *Match::getCurrentMatchType() const
 {
-    return m_matchTypes[m_currentRoundStage].data();
+    return m_matchTypes[m_currentRoundStage/2].data();
 }
 
 void Match::setTeamLeft(const TeamPtr &team)
