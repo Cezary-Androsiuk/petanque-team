@@ -9,9 +9,6 @@ Item {
     readonly property var selectionLeftVar: matchTypeVar.selectionLeft
     readonly property var selectionRightVar: matchTypeVar.selectionRight
 
-    readonly property int rowDelegateHeight: 50
-    readonly property int columnDelegateWidth: 70
-
     width: parent.width
     // height: 800 // compute by model, but for now 800+
     height: (leftHalf.height > rightHalf.height) ? leftHalf.height : rightHalf.height
@@ -21,7 +18,8 @@ Item {
     }
 
     function setExampleData(){
-
+        leftHalf.setExampleData();
+        rightHalf.setExampleData();
     }
 
     Item{
@@ -35,7 +33,8 @@ Item {
                 left: parent.left
             }
             width: parent.width/2
-            c: "red"
+
+            selectionVar: matchTypeVar.selectionLeft
         }
 
         SelectionHalf{
@@ -45,7 +44,8 @@ Item {
                 right: parent.right
             }
             width: parent.width/2
-            c: "green"
+
+            selectionVar: matchTypeVar.selectionRight
         }
     }
 
