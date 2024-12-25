@@ -17,7 +17,10 @@ class MatchTypeBase : public QObject, public Serializable
 {
     Q_OBJECT
 public:
-    explicit MatchTypeBase(cTeamWPtr teamL, cTeamWPtr teamR, QObject *parent = nullptr);
+    explicit MatchTypeBase(
+        cTeamWPtr teamL, cTeamWPtr teamR,
+        int groupsCount, int minPlayersInGroup, int maxPlayersInGroup,
+        QObject *parent = nullptr);
     virtual ~MatchTypeBase();
 
 public slots:
@@ -34,9 +37,24 @@ public slots:
     bool verifySelection(QString &message);
     bool verifyMatch(QString &message);
 
+public:
+    /// GETTERS
+    // Team *getTeamLeft() const;
+    // Team *getTeamRight() const;
+    GroupSelection *getSelectionLeft() const;
+    GroupSelection *getSelectionRight() const;
+    GroupMatch *getMatchLeft() const;
+    GroupMatch *getMatchRight() const;
+
+    /// SETTERS
+
+
 signals:
 
 private:
+    const int m_groupsCount;
+    const int m_minPlayersInGroup;
+    const int m_maxPlayersInGroup;
     cTeamWPtr m_teamLeft;
     cTeamWPtr m_teamRight;
 

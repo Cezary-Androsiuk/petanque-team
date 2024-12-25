@@ -8,6 +8,10 @@
 #include "cpp/support/Log.h"
 #include "cpp/objects/MatchTypeBase.h"
 
+#define DUBLETS_GROUPS_COUNT 3
+#define DUBLETS_MIN_PLAYERS_IN_GROUP 2
+#define DUBLETS_MAX_PLAYERS_IN_GROUP 3
+
 class MatchDublets : public MatchTypeBase
 {
     Q_OBJECT

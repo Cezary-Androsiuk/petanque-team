@@ -5,6 +5,11 @@ Item {
     anchors.fill: parent
 
     required property var matchVar
+    readonly property var matchType: matchVar.currentMatchType
+
+    Component.onCompleted: {
+        matchType.initMatch()
+    }
 
     Label{
         anchors.centerIn: parent

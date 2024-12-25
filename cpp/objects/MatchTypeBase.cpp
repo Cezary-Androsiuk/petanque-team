@@ -1,13 +1,12 @@
 #include "MatchTypeBase.h"
 
-MatchTypeBase::MatchTypeBase(cTeamWPtr teamL, cTeamWPtr teamR, QObject *parent)
+MatchTypeBase::MatchTypeBase(cTeamWPtr teamL, cTeamWPtr teamR, int groupsCount, int minPlayersInGroup, int maxPlayersInGroup, QObject *parent)
     : QObject{parent}
-    , m_groupSelectionLeft{GroupSelectionPtr::create()}
-    , m_groupSelectionRight{GroupSelectionPtr::create()}
-    , m_groupMatchLeft{GroupMatchPtr::create()}
-    , m_groupMatchRight{GroupMatchPtr::create()}
     , m_teamLeft{teamL}
     , m_teamRight{teamR}
+    , m_groupsCount{groupsCount}
+    , m_minPlayersInGroup{minPlayersInGroup}
+    , m_maxPlayersInGroup{maxPlayersInGroup}
 {
     DOLT(this)
 
@@ -21,9 +20,8 @@ MatchTypeBase::~MatchTypeBase()
 
 void MatchTypeBase::initSelection()
 {
-    m_groupSelectionLeft->setGroupsCount(0);
-    m_groupSelectionLeft->setMinPlayersInGroup(0);
-    m_groupSelectionLeft->setMaxPlayersInGroup(0);
+    m_groupSelectionLeft = GroupSelectionPtr::create(
+        m_groupsCount, m_minPlayersInGroup, m_maxPlayersInGroup);
     if(m_teamLeft.isNull())
     {
         W("cannot set selection size for m_groupSelectionLeft due to teamLeft is null")
@@ -34,9 +32,8 @@ void MatchTypeBase::initSelection()
             m_teamLeft.toStrongRef()->getPlayers().size());
     }
 
-    m_groupSelectionRight->setGroupsCount(0);
-    m_groupSelectionRight->setMinPlayersInGroup(0);
-    m_groupSelectionRight->setMaxPlayersInGroup(0);
+    m_groupSelectionRight = GroupSelectionPtr::create(
+        m_groupsCount, m_minPlayersInGroup, m_maxPlayersInGroup);
     if(m_teamRight.isNull())
     {
         W("cannot set selection size for m_groupSelectionRight due to teamRight is null")
@@ -50,6 +47,10 @@ void MatchTypeBase::initSelection()
 
 void MatchTypeBase::initMatch()
 {
+    m_groupMatchLeft = GroupMatchPtr::create();
+
+
+    m_groupMatchRight = GroupMatchPtr::create();
 
 }
 
@@ -71,6 +72,18 @@ void MatchTypeBase::clear(bool emitting)
 
 bool MatchTypeBase::verifySelection(QString &message)
 {
+    if(m_groupSelectionLeft.isNull())
+    {
+        E("cannot verify, due to not exising left selection pointer")
+        return false;
+    }
+
+    if(m_groupSelectionRight.isNull())
+    {
+        E("cannot verify, due to not exising right selection pointer")
+        return false;
+    }
+
     if(!m_groupSelectionLeft->verify(message))
     {
         message = "" + message;
@@ -88,6 +101,18 @@ bool MatchTypeBase::verifySelection(QString &message)
 
 bool MatchTypeBase::verifyMatch(QString &message)
 {
+    if(m_groupMatchLeft.isNull())
+    {
+        E("cannot verify, due to not exising left match pointer")
+        return false;
+    }
+
+    if(m_groupMatchRight.isNull())
+    {
+        E("cannot verify, due to not exising right match pointer")
+        return false;
+    }
+
     if(!m_groupMatchLeft->verify(message))
     {
         message = "" + message;
@@ -101,4 +126,24 @@ bool MatchTypeBase::verifyMatch(QString &message)
     }
 
     return true;
+}
+
+GroupSelection *MatchTypeBase::getSelectionLeft() const
+{
+    return m_groupSelectionLeft.data();
+}
+
+GroupSelection *MatchTypeBase::getSelectionRight() const
+{
+    return m_groupSelectionRight.data();
+}
+
+GroupMatch *MatchTypeBase::getMatchLeft() const
+{
+    return m_groupMatchLeft.data();
+}
+
+GroupMatch *MatchTypeBase::getMatchRight() const
+{
+    return m_groupMatchRight.data();
 }

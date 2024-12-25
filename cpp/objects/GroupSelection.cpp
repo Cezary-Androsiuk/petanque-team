@@ -1,10 +1,10 @@
 #include "GroupSelection.h"
 
-GroupSelection::GroupSelection(QObject *parent)
+GroupSelection::GroupSelection(int groupsCount, int minPlayersInGroup, int maxPlayersInGroup, QObject *parent)
     : QObject{parent}
-    , m_groupsCount{0}
-    , m_minPlayersInGroup{0}
-    , m_maxPlayersInGroup{0}
+    , m_groupsCount{groupsCount}
+    , m_minPlayersInGroup{minPlayersInGroup}
+    , m_maxPlayersInGroup{maxPlayersInGroup}
 {
     DOLT(this);
 }
@@ -76,17 +76,40 @@ void GroupSelection::setSelectionSize(qsizetype size)
     m_playerSelections.assign(size, GroupSelection::defaultSelectionValue);
 }
 
-void GroupSelection::setGroupsCount(int groupsCount)
+void GroupSelection::setPlayerGroup(int playerIndex, int groupIndex)
 {
-    m_groupsCount = groupsCount;
+    /// input value protection (always use protection)
+    if(playerIndex >= m_playerSelections.size())
+    {
+        W(QAPF("trying to access %d playerIndex, while list contains %lld players",
+               playerIndex, m_playerSelections.size()))
+        return;
+    }
+
+    if(groupIndex >= m_groupsCount)
+    {
+        W(QAPF(
+            "trying to assign %d group for %d playerIndex, while groupsCount is %d",
+            groupIndex, playerIndex, m_groupsCount ));
+        return;
+    }
+
+    /// Binding loop protection
+    if(m_playerSelections[playerIndex] == groupIndex)
+        return;
+
+    /// Uncheck (set to defaultSelectionValue) if other values in list if contains this group
+
+    m_playerSelections[playerIndex] = groupIndex;
+    emit this->playerSelectionsChanged();
 }
 
-void GroupSelection::setMinPlayersInGroup(int minPlayersInGroup)
+const QList<int> &GroupSelection::getPlayerSelections() const
 {
-    m_minPlayersInGroup = minPlayersInGroup;
+    return m_playerSelections;
 }
 
-void GroupSelection::setMaxPlayersInGroup(int maxPlayersInGroup)
+int GroupSelection::getGroupsCount() const
 {
-    m_maxPlayersInGroup = maxPlayersInGroup;
+    return m_groupsCount;
 }
