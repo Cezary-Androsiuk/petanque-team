@@ -17,11 +17,6 @@ Item {
         matchTypeVar.initSelection()
     }
 
-    function setExampleData(){
-        leftHalf.setExampleData();
-        rightHalf.setExampleData();
-    }
-
     Item{
         id: selectionContent
         anchors.fill: parent

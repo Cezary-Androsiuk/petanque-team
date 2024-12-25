@@ -9,10 +9,6 @@ Item {
 
     required property var matchVar
 
-    function setExampleData(){
-        match.setExampleData();
-    }
-
     Match{
         id: match
         matchVar: singielsMatch.matchVar

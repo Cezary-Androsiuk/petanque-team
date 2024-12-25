@@ -37,6 +37,8 @@ public slots:
     bool hasNext();
     void goToNext();
 
+    void assignExampleData();
+
 public:
     /// GETTERS
     int getSubPhasesCount() const;

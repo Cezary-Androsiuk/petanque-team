@@ -40,6 +40,10 @@ public slots:
     bool verifyMatch(QString &message);
 
 public:
+    void assignSelectionExampleData();
+    void assignMatchExampleData();
+
+public:
     /// GETTERS
     // Team *getTeamLeft() const;
     // Team *getTeamRight() const;

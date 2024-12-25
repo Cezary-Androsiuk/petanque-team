@@ -162,6 +162,12 @@ void SubPhase::goToNext()
     }
 }
 
+void SubPhase::assignExampleData()
+{
+    for(auto &roundPtr : m_rounds)
+        roundPtr->assignExampleData();
+}
+
 QString SubPhase::getName() const
 {
     return m_name;

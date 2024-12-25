@@ -130,6 +130,16 @@ bool MatchTypeBase::verifyMatch(QString &message)
     return true;
 }
 
+void MatchTypeBase::assignSelectionExampleData()
+{
+
+}
+
+void MatchTypeBase::assignMatchExampleData()
+{
+
+}
+
 GroupSelection *MatchTypeBase::getSelectionLeft() const
 {
     return m_groupSelectionLeft.data();

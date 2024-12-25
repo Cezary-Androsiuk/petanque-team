@@ -9,10 +9,6 @@ Item {
 
     required property var matchVar
 
-    function setExampleData(){
-        selection.setExampleData();
-    }
-
     Selection{
         id: selection
         matchVar: dubletsSelection.matchVar

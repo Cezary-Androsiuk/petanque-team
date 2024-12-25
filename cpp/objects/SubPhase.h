@@ -41,6 +41,8 @@ public:
     bool hasNext() const;
     void goToNext();
 
+    void assignExampleData();
+
 public:
     /// GETTERS
     QString getName() const;

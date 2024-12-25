@@ -44,6 +44,8 @@ public:
     bool hasNext() const;
     void goToNext();
 
+    void assignExampleData();
+
 public:
     /// GETTERS
     RoundStageEnum getCurrentRoundStage() const;

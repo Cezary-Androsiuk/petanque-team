@@ -47,6 +47,8 @@ private:
 public:
     bool verify(QString &message) const;
 
+    void assignExampleData();
+
 public:
     /// GETTERS
     Team *getTeamLeft() const;

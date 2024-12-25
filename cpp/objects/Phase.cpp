@@ -138,6 +138,12 @@ void Phase::goToNext()
     }
 }
 
+void Phase::assignExampleData()
+{
+    for(auto &subPhasePtr : m_subPhases)
+        subPhasePtr->assignExampleData();
+}
+
 int Phase::getSubPhasesCount() const
 {
     return m_subPhases.size();

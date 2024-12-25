@@ -153,6 +153,12 @@ void Round::goToNext()
     emit this->currentRoundStageChanged();
 }
 
+void Round::assignExampleData()
+{
+    for(auto &matchPtr : m_matches)
+        matchPtr->assignExampleData();
+}
+
 RoundStageEnum Round::getCurrentRoundStage() const
 {
     return m_currentRoundStage;

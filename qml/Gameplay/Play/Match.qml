@@ -6,13 +6,6 @@ Item {
     width: parent.width
     height: matchTypeLoader.item ? matchTypeLoader.item.height : 0
 
-    function setExampleData(){
-        // if(!matchTypeLoader.item)
-        //    continue;
-
-        matchTypeLoader.item.setExampleData();
-    }
-
     required property var matchVar
     required property int currentRoundStage
     property string currentMatchTypeFile: {

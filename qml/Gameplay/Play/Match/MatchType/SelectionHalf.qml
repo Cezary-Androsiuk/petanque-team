@@ -10,11 +10,6 @@ Item {
     readonly property int rowDelegateHeight: 50
     readonly property int columnDelegateWidth: 70
 
-
-    function setExampleData(){
-        selectionVar.setExampleData();
-    }
-
     ListView{
         id: rowListView
         anchors.fill: parent

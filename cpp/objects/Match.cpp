@@ -152,6 +152,20 @@ bool Match::verify(QString &message) const
     return true;
 }
 
+void Match::assignExampleData()
+{
+    if(m_currentRoundStage == RoundStageEnum::RoundSummary)
+        return;
+
+    MatchTypeBasePtr currentMatchType = m_matchTypes[m_currentRoundStage/2];
+    bool isSelectionStage = m_currentRoundStage%2 == 0;
+
+    if(isSelectionStage)
+        currentMatchType->assignSelectionExampleData();
+    else
+        currentMatchType->assignMatchExampleData();
+}
+
 Team *Match::getTeamLeft() const
 {
     if(m_teamLeft.isNull())
