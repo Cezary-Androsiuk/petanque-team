@@ -4,7 +4,8 @@ import "MatchType"
 
 Item {
     id: dubletsSelection
-    anchors.fill: parent
+    width: parent.width
+    height: groupSelection.height
 
     required property var matchVar
 

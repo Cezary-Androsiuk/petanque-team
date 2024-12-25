@@ -74,6 +74,9 @@ Item {
             bottom: parent.bottom
         }
 
+        readonly property int delegateHeaderHeight: 50
+        readonly property int delegateFooterHeight: 50
+
         ListView{
             id: matchListView
             anchors.fill: parent
@@ -94,20 +97,35 @@ Item {
 
             delegate: Item{
                 width: matchListView.width
-                height: match.height
+                height: delegateHeader.height + match.height + content.delegateFooterHeight
 
                 property alias matchAlias: match // for setting example data
 
+                Item{
+                    id: delegateHeader
+                    anchors{
+                        top: parent.top
+                        left: parent.left
+                        right: parent.right
+                    }
+                    height: content.delegateHeaderHeight
+
+                    // team name
+                }
+
                 Match{
                     id: match
+                    anchors{
+                        top: delegateHeader.bottom
+                        left: parent.left
+                        right: parent.right
+                    }
+
                     matchVar: modelData
                     currentRoundStage: roundVar.currentRoundStage
                 }
             }
         }
-
-
-
 
 
     }

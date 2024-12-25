@@ -4,7 +4,7 @@ import QtQuick.Controls.Material
 Item {
     id: match
     width: parent.width
-    height: 300
+    height: matchTypeLoader.item ? matchTypeLoader.item.height : 0
 
     Rectangle{
         anchors.fill: parent
@@ -30,24 +30,14 @@ Item {
         }
     }
     onCurrentMatchTypeFileChanged: {
-        matchTypeLoader.setSource(currentMatchTypeFile, { matchVar: match.matchVar })
+        var param = {
+            matchVar: match.matchVar
+        }
+        matchTypeLoader.setSource(currentMatchTypeFile, param)
     }
 
     Loader{
         id: matchTypeLoader
         anchors.fill: parent
-        // source: ""//currentMatchTypeFile
-        onLoaded: {
-            // item.width = match.width
-            // console.log(item)
-            // console.log(item.height)
-            // console.log(match.height)
-            // console.log(matchTypeLoader.width)
-            // match.height = item.height
-            // console.log(match.height)
-            // console.log(matchTypeLoader.width)
-            // console.log()
-        }
-
     }
 }

@@ -2,10 +2,16 @@ import QtQuick 2.15
 import QtQuick.Controls.Material
 
 Item {
-    anchors.fill: parent
+    id: groupSelection
 
     required property var matchVar
     readonly property var matchType: matchVar.currentMatchType
+
+    readonly property int rowDelegateHeight: 50
+    readonly property int columnDelegateWidth: 70
+
+    width: parent.width
+    height: 800 // compute by model, but for now 800+
 
     Component.onCompleted: {
         matchType.initSelection()
@@ -22,27 +28,57 @@ Item {
         verticalAlignment: Text.AlignVCenter
     }
 
-    Column{
+    ListView{
+        id: rowListView
         anchors.fill: parent
-        Repeater{
-            model: 5
-            Row{
-                height: 50
-                Repeater{
-                    model: 5
-                    Item{
-                        height: parent.height
-                        width: 40
+        model: 10
+        clip: true
+        interactive: false
+        cacheBuffer: 10000 // for god sake, keep delegates alive while scrolling
 
-                        Rectangle{
-                            anchors.fill: parent
-                            color: "transparent"
-                            border.color: "white"
-                            border.width: 1
-                        }
-                    }
+        header: Item{
+            // columns headers
+        }
+
+        delegate: Item{
+            width: rowListView.width
+            height: groupSelection.rowDelegateHeight
+
+            ListView{
+                id: columnListView
+                anchors.fill: parent
+                model: 10
+                clip: true
+                interactive: false
+                cacheBuffer: 10000 // for god sake, keep delegates alive while scrolling
+                orientation: ListView.Horizontal
+
+                header: Item{
+                    // player names headers
                 }
+
+                delegate: Item{
+                    width: groupSelection.columnDelegateWidth
+                    height: columnListView.height
+                    Rectangle{
+                        anchors.fill: parent
+                        color: "blue"
+                        border.color: "white"
+                        opacity: 0.5
+                        border.width: 1
+                    }
+
+                }
+            }
+
+            Rectangle{
+                anchors.fill: parent
+                color: "green"
+                border.color: "white"
+                opacity: 0.5
+                border.width: 1
             }
         }
     }
+
 }

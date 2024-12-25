@@ -5,7 +5,7 @@ import "MatchType"
 Item {
     id: singielsSelection
     width: parent.width
-    height: 300
+    height: groupSelection.height
 
     required property var matchVar
 

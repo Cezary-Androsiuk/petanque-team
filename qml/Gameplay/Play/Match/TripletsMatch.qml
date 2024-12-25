@@ -4,7 +4,8 @@ import "MatchType"
 
 Item {
     id: tripletsMatch
-    anchors.fill: parent
+    width: parent.width
+    height: groupMatch.height
 
     required property var matchVar
 
