@@ -74,19 +74,39 @@ Item {
             bottom: parent.bottom
         }
 
-        Column{
+        ListView{
+            id: matchListView
             anchors.fill: parent
-            spacing: 4
 
-            Repeater{
-                model: roundVar.matches
+            model: roundVar.matches
+            boundsBehavior: Flickable.StopAtBounds
+            clip: true
+            cacheBuffer: 10000 // for god sake, keep delegates alive while scrolling
+
+            ScrollBar.vertical: ScrollBar{
+                policy: ScrollBar.AsNeeded
+            }
+
+            footer: Item{
+                width: matchListView.width
+                height: 50
+            }
+
+            delegate: Item{
+                width: matchListView.width
+                height: match.height
+
+                property alias matchAlias: match // for setting example data
+
                 Match{
-                    required property int index;
-                    matchVar: roundVar.matches[index]
+                    id: match
+                    matchVar: modelData
                     currentRoundStage: roundVar.currentRoundStage
                 }
             }
         }
+
+
 
 
 
