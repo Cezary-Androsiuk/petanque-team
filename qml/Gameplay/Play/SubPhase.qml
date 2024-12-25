@@ -10,6 +10,19 @@ Item {
     readonly property int headerHeight: 45
     readonly property int footerHeight: 70
 
+    function setExampleData(){
+        for(let i=0; i<matchListView.count; i++){
+            console.log(matchListView)
+            let item = matchListView.itemAt(i);
+            console.log(item)
+
+            if(!item) continue;
+            if(!item.matchAlias) continue;
+
+            item.matchAlias.setExampleData();
+        }
+    }
+
     Item{
         id: header
         anchors{
@@ -99,7 +112,7 @@ Item {
                 width: matchListView.width
                 height: delegateHeader.height + match.height + content.delegateFooterHeight
 
-                property alias matchAlias: match // for setting example data
+                readonly property alias matchAlias: match // for setting example data
 
                 Item{
                     id: delegateHeader

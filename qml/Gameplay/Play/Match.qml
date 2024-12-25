@@ -6,12 +6,11 @@ Item {
     width: parent.width
     height: matchTypeLoader.item ? matchTypeLoader.item.height : 0
 
-    Rectangle{
-        anchors.fill: parent
-        color: "red"
-        opacity: 0.2
-        border.color: "white"
-        border.width: 1
+    function setExampleData(){
+        // if(!matchTypeLoader.item)
+        //    continue;
+
+        matchTypeLoader.item.setExampleData();
     }
 
     required property var matchVar

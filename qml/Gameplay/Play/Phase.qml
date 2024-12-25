@@ -41,15 +41,12 @@ Item {
 
     function setExampleData(){
         for(let i=0; i<subPhasesRepeater.count; i++){
-            let item = subPhasesRepeater.itemAt(i)
+            let item = subPhasesRepeater.itemAt(i);
 
-            if(!item)
-                continue;
+            if(!item) continue;
+            if(!item.subPhaseAlias) continue;
 
-            if(!item.child)
-                continue;
-
-            item.child.setExampleData()
+            item.subPhaseAlias.setExampleData();
         }
     }
 
@@ -129,7 +126,7 @@ Item {
                     id: subPhasesRepeater
                     model: !(phaseVar)?0: phaseVar.subPhases
                     Item{
-                        readonly property alias child: subPhase
+                        readonly property alias subPhaseAlias: subPhase
                         SubPhase{
                             id: subPhase
                             anchors.fill: parent
