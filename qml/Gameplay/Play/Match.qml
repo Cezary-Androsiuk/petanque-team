@@ -4,7 +4,7 @@ import QtQuick.Controls.Material
 Item {
     id: match
     width: parent.width
-    height: 40
+    height: 300
 
     Rectangle{
         anchors.fill: parent
@@ -38,68 +38,16 @@ Item {
         anchors.fill: parent
         // source: ""//currentMatchTypeFile
         onLoaded: {
-            // if (item && (typeof item.setParameters === "function")) {
-            //     item.setParameters({ matchVar: match.matchVar });
-            // }
+            // item.width = match.width
+            // console.log(item)
+            // console.log(item.height)
+            // console.log(match.height)
+            // console.log(matchTypeLoader.width)
+            // match.height = item.height
+            // console.log(match.height)
+            // console.log(matchTypeLoader.width)
+            // console.log()
         }
 
-        // sourceComponent: {
-        //     var crs = currentRoundStage;
-        //     if(crs === 6) summaryExample; else
-        //     {
-        //         if(crs % 2 === 0)
-        //             selectionExample;
-        //         else
-        //             matchExample;
-        //     }
-        // }
-
-        // Component{
-        //     id: summaryExample
-        //     Item{
-        //         anchors.fill: parent
-        //         Label{
-        //             id: headerLabel
-        //             anchors.centerIn: parent
-
-        //             text: "summary example"
-        //             font.pixelSize: 24
-        //             horizontalAlignment: Text.AlignHCenter
-        //             verticalAlignment: Text.AlignVCenter
-        //         }
-        //     }
-        // }
-
-        // Component{
-        //     id: matchExample
-        //     Item{
-        //         anchors.fill: parent
-        //         Label{
-        //             id: headerLabel
-        //             anchors.centerIn: parent
-
-        //             text: "match example"
-        //             font.pixelSize: 24
-        //             horizontalAlignment: Text.AlignHCenter
-        //             verticalAlignment: Text.AlignVCenter
-        //         }
-        //     }
-        // }
-
-        // Component{
-        //     id: selectionExample
-        //     Item{
-        //         anchors.fill: parent
-        //         Label{
-        //             id: headerLabel
-        //             anchors.centerIn: parent
-
-        //             text: "selection example"
-        //             font.pixelSize: 24
-        //             horizontalAlignment: Text.AlignHCenter
-        //             verticalAlignment: Text.AlignVCenter
-        //         }
-        //     }
-        // }
     }
 }

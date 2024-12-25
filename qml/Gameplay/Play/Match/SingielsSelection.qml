@@ -4,7 +4,8 @@ import "MatchType"
 
 Item {
     id: singielsSelection
-    anchors.fill: parent
+    width: parent.width
+    height: 300
 
     required property var matchVar
 
