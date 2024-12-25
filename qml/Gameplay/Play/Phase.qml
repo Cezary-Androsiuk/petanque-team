@@ -39,6 +39,20 @@ Item {
         }
     }
 
+    function setExampleData(){
+        for(let i=0; i<subPhasesRepeater.count; i++){
+            let item = subPhasesRepeater.itemAt(i)
+
+            if(!item)
+                continue;
+
+            if(!item.child)
+                continue;
+
+            item.child.setExampleData()
+        }
+    }
+
     Item{
         id: content
         anchors{
@@ -112,19 +126,18 @@ Item {
                 height: parent.height-myTabBar.height
 
                 Repeater{
+                    id: subPhasesRepeater
                     model: !(phaseVar)?0: phaseVar.subPhases
                     Item{
-
+                        readonly property alias child: subPhase
                         SubPhase{
+                            id: subPhase
                             anchors.fill: parent
                             subPhaseVar: modelData
                         }
 
                     }
                 }
-
-
-
             }
         }
 
@@ -240,7 +253,7 @@ Item {
             }
             text: "Set Example Data"
             onClicked:{
-                continueLoader.item.setExampleData()
+                phase.setExampleData()
             }
         }
 

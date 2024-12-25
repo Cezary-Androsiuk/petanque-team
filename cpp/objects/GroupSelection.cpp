@@ -7,6 +7,7 @@ GroupSelection::GroupSelection(int groupsCount, int minPlayersInGroup, int maxPl
     , m_maxPlayersInGroup{maxPlayersInGroup}
 {
     DOLT(this);
+    QObject::connect(this, &GroupSelection::playerSelectionsChanged, [&](){D("changed player selections")});
 }
 
 GroupSelection::~GroupSelection()
@@ -74,6 +75,19 @@ void GroupSelection::setSelectionSize(qsizetype size)
 
     /// first init
     m_playerSelections.assign(size, GroupSelection::defaultSelectionValue);
+}
+
+void GroupSelection::setExampleData()
+{
+    /// uncheck all
+    for(int &group : m_playerSelections)
+        group = GroupSelection::defaultSelectionValue;
+
+    for(int i=0; i<m_playerSelections.size(); i++)
+    {
+        int groupIndex = i/m_minPlayersInGroup; // gives 1->{0,1,2,3,4,5} or 2->{0,0,1,1,2,2} or 3->{0,0,0,1,1,1}
+        m_playerSelections[i] = groupIndex;
+    }
 }
 
 void GroupSelection::setPlayerGroup(int playerIndex, int groupIndex)

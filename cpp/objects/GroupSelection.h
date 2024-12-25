@@ -30,6 +30,7 @@ public:
     void setSelectionSize(qsizetype size);
 
 public slots:
+    void setExampleData();
     void setPlayerGroup(int playerIndex, int groupIndex);
 
 public:
