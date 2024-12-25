@@ -5,7 +5,9 @@ Item {
     id: groupSelection
 
     required property var matchVar
-    readonly property var matchType: matchVar.currentMatchType
+    readonly property var matchTypeVar: matchVar.currentMatchType
+    readonly property var selectionLeftVar: matchTypeVar.selectionLeft
+    readonly property var selectionRightVar: matchTypeVar.selectionRight
 
     readonly property int rowDelegateHeight: 50
     readonly property int columnDelegateWidth: 70
@@ -14,7 +16,9 @@ Item {
     height: 800 // compute by model, but for now 800+
 
     Component.onCompleted: {
-        matchType.initSelection()
+        console.log(selectionLeftVar)
+        matchTypeVar.initSelection()
+        console.log(selectionLeftVar)
     }
 
     function setExampleData(){

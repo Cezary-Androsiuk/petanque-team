@@ -43,6 +43,8 @@ void MatchTypeBase::initSelection()
         m_groupSelectionRight->setSelectionSize(
             m_teamRight.toStrongRef()->getPlayers().size());
     }
+
+    emit this->selectionChanged();
 }
 
 void MatchTypeBase::initMatch()

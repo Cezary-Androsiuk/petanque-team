@@ -16,6 +16,8 @@ typedef const TeamWPtr &cTeamWPtr;
 class MatchTypeBase : public QObject, public Serializable
 {
     Q_OBJECT
+    Q_PROPERTY(GroupSelection *selectionLeft READ getSelectionLeft NOTIFY selectionChanged FINAL)
+    Q_PROPERTY(GroupSelection *selectionRight READ getSelectionRight NOTIFY selectionChanged FINAL)
 public:
     explicit MatchTypeBase(
         cTeamWPtr teamL, cTeamWPtr teamR,
@@ -50,6 +52,8 @@ public:
 
 
 signals:
+    void selectionChanged();
+    void matchChanged();
 
 private:
     const int m_groupsCount;
