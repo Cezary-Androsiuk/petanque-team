@@ -17,20 +17,29 @@
 
 #define DISPLAY_OBJECT_LIFE_TIME false
 
-/// Display Object Life Time Variable
-#define DOLTV(ptr, argsStr) \
-if(DISPLAY_OBJECT_LIFE_TIME) {            \
+/// Display Object Life Time Variable - Force
+#define DOLTV_F(ptr, argsStr) {                                 \
     QString f_name(__FUNCTION__);                               \
-    if(f_name.isEmpty())    f_name = "unknown object";          \
-    if(f_name[0] == '~')    f_name = "Destroying " + f_name;      \
-    else                    f_name = "Creating " + f_name;    \
-    QString qargsStr(argsStr); \
-    if(!qargsStr.isEmpty()) qargsStr = " (" + qargsStr + ")";\
-    D(f_name + qargsStr + QAPF(": %p", ptr));  \
+    if(f_name.isEmpty())    f_name = "unknown action";          \
+    if(f_name[0] == '~')    f_name = "Destroying " + f_name;    \
+    else                    f_name = "Creating " + f_name;      \
+    QString qargsStr(argsStr);                                  \
+    if(!qargsStr.isEmpty()) qargsStr = " (" + qargsStr + ")";   \
+    D(f_name + qargsStr + QAPF(": %p", ptr));                   \
+}
+
+/// Display Object Life Time - Force
+#define DOLT_F(ptr) DOLTV_F(ptr, "")
+
+/// Display Object Life Time Variable
+#define DOLTV(ptr, argsStr)     \
+if(DISPLAY_OBJECT_LIFE_TIME) {  \
+    DOLTV_F(ptr, argsStr)       \
 }
 
 /// Display Object Life Time
 #define DOLT(ptr) DOLTV(ptr, "")
+
 
 //////////////////// OLD DEBUG ////////////////////
 #define FUNCTION __PRETTY_FUNCTION__
