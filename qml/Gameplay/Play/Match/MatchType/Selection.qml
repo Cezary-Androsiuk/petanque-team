@@ -2,7 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls.Material
 
 Item {
-    id: groupSelection
+    id: selection
 
     required property var matchVar
     readonly property var matchTypeVar: matchVar.currentMatchType
@@ -13,75 +13,39 @@ Item {
     readonly property int columnDelegateWidth: 70
 
     width: parent.width
-    height: 800 // compute by model, but for now 800+
+    // height: 800 // compute by model, but for now 800+
+    height: (leftHalf.height > rightHalf.height) ? leftHalf.height : rightHalf.height
 
     Component.onCompleted: {
-        console.log(selectionLeftVar)
         matchTypeVar.initSelection()
-        console.log(selectionLeftVar)
     }
 
     function setExampleData(){
 
     }
 
-    Label{
-        anchors.centerIn: parent
-        text: "Selection"
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
-    }
-
-    ListView{
-        id: rowListView
+    Item{
+        id: selectionContent
         anchors.fill: parent
-        model: 10
-        clip: true
-        interactive: false
-        cacheBuffer: 10000 // for god sake, keep delegates alive while scrolling
 
-        header: Item{
-            // columns headers
+        SelectionHalf{
+            id: leftHalf
+            anchors{
+                top: parent.top
+                left: parent.left
+            }
+            width: parent.width/2
+            c: "red"
         }
 
-        delegate: Item{
-            width: rowListView.width
-            height: groupSelection.rowDelegateHeight
-
-            ListView{
-                id: columnListView
-                anchors.fill: parent
-                model: 10
-                clip: true
-                interactive: false
-                cacheBuffer: 10000 // for god sake, keep delegates alive while scrolling
-                orientation: ListView.Horizontal
-
-                header: Item{
-                    // player names headers
-                }
-
-                delegate: Item{
-                    width: groupSelection.columnDelegateWidth
-                    height: columnListView.height
-                    Rectangle{
-                        anchors.fill: parent
-                        color: "blue"
-                        border.color: "white"
-                        opacity: 0.5
-                        border.width: 1
-                    }
-
-                }
+        SelectionHalf{
+            id: rightHalf
+            anchors{
+                top: parent.top
+                right: parent.right
             }
-
-            Rectangle{
-                anchors.fill: parent
-                color: "green"
-                border.color: "white"
-                opacity: 0.5
-                border.width: 1
-            }
+            width: parent.width/2
+            c: "green"
         }
     }
 

@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls.Material
 
 Item {
+    id: match
     anchors.fill: parent
 
     required property var matchVar

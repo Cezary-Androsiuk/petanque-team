@@ -5,16 +5,16 @@ import "MatchType"
 Item {
     id: singielsSelection
     width: parent.width
-    height: groupSelection.height
+    height: selection.height
 
     required property var matchVar
 
     function setExampleData(){
-        groupSelection.setExampleData();
+        selection.setExampleData();
     }
 
-    GroupSelection{
-        id: groupSelection
+    Selection{
+        id: selection
         matchVar: singielsSelection.matchVar
 
     }
