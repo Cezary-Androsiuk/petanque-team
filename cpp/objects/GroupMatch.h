@@ -26,10 +26,12 @@ public:
     bool verify(QString &message);
     void assignExampleData();
 
+    void setGroupsOfPlayers(const QList<PlayerPtrList> &groupsOfPlayers);
+
 signals:
 
 private:
-
+    QList<PlayerPtrList> m_groupsOfPlayers;
 };
 
 typedef QSharedPointer<GroupMatch> GroupMatchPtr;

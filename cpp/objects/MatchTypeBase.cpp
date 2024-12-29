@@ -51,7 +51,24 @@ void MatchTypeBase::initMatch()
 {
     m_groupMatchLeft = GroupMatchPtr::create();
 
+    if(m_teamLeft.isNull())
+    {
+        E("init match, due to not exising left selection pointer")
+        return;
+    }
+    auto gop = this->makeGroupsOfPlayersList(m_teamLeft, m_groupSelectionLeft);
+    m_groupMatchLeft->setGroupsOfPlayers(gop);
+
+
     m_groupMatchRight = GroupMatchPtr::create();
+
+    if(m_teamRight.isNull())
+    {
+        E("init match, due to not exising right selection pointer")
+        return;
+    }
+    gop = this->makeGroupsOfPlayersList(m_teamRight, m_groupSelectionRight);
+    m_groupMatchRight->setGroupsOfPlayers(gop);
 
     emit this->matchChanged();
 }
@@ -128,6 +145,42 @@ bool MatchTypeBase::verifyMatch(QString &message)
     }
 
     return true;
+}
+
+QList<PlayerPtrList> MatchTypeBase::makeGroupsOfPlayersList(cTeamWPtr wteam, const GroupSelectionPtr &gs) const
+{
+    QList<PlayerPtrList> groupsOfPlayers(m_groupsCount);
+
+    const TeamPtr team = wteam.toStrongRef();
+    const QList<int> &selection = gs->getPlayerSelections();
+
+    if(team->getPlayers().size() != selection.size())
+    {
+        E("players count received from team agument is different than set selections size")
+        return groupsOfPlayers;
+    }
+
+    for(int i=0; i<selection.size(); i++)
+    {
+        int playerGroupID = selection[i];
+        if(playerGroupID < 0)
+        {
+            W("player selection contains negative groupID value:");
+            for(const auto &pgi : selection)
+                qDebug() << pgi;
+        }
+        else if(playerGroupID >= m_groupsCount)
+        {
+            W("player selection contains to hight groupID value:");
+            for(const auto &pgi : selection)
+                qDebug() << pgi;
+        }
+
+        auto player = team->getPlayers()[i];
+        groupsOfPlayers[playerGroupID].append(player);
+    }
+
+    return groupsOfPlayers;
 }
 
 void MatchTypeBase::assignSelectionExampleData()

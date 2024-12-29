@@ -39,6 +39,9 @@ public slots:
     bool verifySelection(QString &message);
     bool verifyMatch(QString &message);
 
+private:
+    QList<PlayerPtrList> makeGroupsOfPlayersList(cTeamWPtr wteam, const GroupSelectionPtr &gs) const;
+
 public:
     void assignSelectionExampleData();
     void assignMatchExampleData();
