@@ -8,17 +8,16 @@ Item {
 
     required property var matchVar
     required property int currentRoundStage
+
     property string currentMatchTypeFile: {
-        if(currentRoundStage === 0) "Match/SingielsSelection.qml";    else
-        if(currentRoundStage === 1) "Match/SingielsMatch.qml";        else
-        if(currentRoundStage === 2) "Match/DubletsSelection.qml";     else
-        if(currentRoundStage === 3) "Match/DubletsMatch.qml";         else
-        if(currentRoundStage === 4) "Match/TripletsSelection.qml";    else
-        if(currentRoundStage === 5) "Match/TripletsMatch.qml";        else
-        if(currentRoundStage === 6) "Match/RoundSummary.qml";         else
+        if(currentRoundStage === 6)
+            "Match/RoundSummary.qml";
+        else
         {
-            log.w("unknown currentRoundStage: " + currentRoundStage, "Match.qml -> currentMatchTypeFile");
-            "";
+            if(currentRoundStage % 2 === 0)
+                "Match/SelectionTemplate.qml";
+            else
+                "Match/MatchTemplate.qml";
         }
     }
     onCurrentMatchTypeFileChanged: {
