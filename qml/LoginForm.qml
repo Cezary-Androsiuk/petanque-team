@@ -112,20 +112,29 @@ Item {
             }
         }
 
-    }
+        Button{
+            id:  loginNoMemoryButton
+            anchors{
+                top: loginButton.bottom
+                topMargin: 10
+                horizontalCenter: parent.horizontalCenter
+            }
+            width: 180
+            height: 60
 
-    Button{
-        id: debugDeleteMemoryButton
-        anchors{
-            bottom: parent.bottom
-            bottomMargin: 20
-            horizontalCenter: parent.horizontalCenter
+            visible: (!Backend.memory)?false: Backend.memory.debugMemoryFileExist()
+            text: qsTr("Login No Memory")
+            onClicked:{
+                Backend.memory.debugDeleteMemory();
+
+                var login = loginTextField.text;
+                var password = passwordTextField.text;
+
+                errorInfoLabel.visible = false
+
+                Login.authenticate(login, password)
+            }
         }
-        visible: (!Backend.memory)?false: Backend.memory.debugMemoryFileExist()
-        text: "Delete memory - Exist"
-        onClicked: {
-            Backend.memory.debugDeleteMemory();
-            visible = Backend.memory.debugMemoryFileExist();
-        }
+
     }
 }
