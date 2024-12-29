@@ -7,11 +7,12 @@
 
 #include "cpp/support/Log.h"
 #include "cpp/Serializable.h"
-#include "cpp/objects/Team.h"
+#include "cpp/objects/Player.h"
 
 class GroupMatch : public QObject, public Serializable
 {
     Q_OBJECT
+    Q_PROPERTY(QList<PlayerPtrList> groupsOfPlayers READ getGroupsOfPlayers CONSTANT FINAL)
 public:
     explicit GroupMatch(QObject *parent = nullptr);
     ~GroupMatch();
@@ -25,6 +26,9 @@ public:
 public:
     bool verify(QString &message);
     void assignExampleData();
+
+public:
+    QList<PlayerPtrList> getGroupsOfPlayers() const;
 
     void setGroupsOfPlayers(const QList<PlayerPtrList> &groupsOfPlayers);
 

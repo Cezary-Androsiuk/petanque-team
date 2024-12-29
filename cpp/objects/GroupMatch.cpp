@@ -36,6 +36,11 @@ void GroupMatch::assignExampleData()
 
 }
 
+QList<PlayerPtrList> GroupMatch::getGroupsOfPlayers() const
+{
+    return m_groupsOfPlayers;
+}
+
 void GroupMatch::setGroupsOfPlayers(const QList<PlayerPtrList> &groupsOfPlayers)
 {
     m_groupsOfPlayers = groupsOfPlayers;
