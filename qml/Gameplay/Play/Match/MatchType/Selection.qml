@@ -10,7 +10,6 @@ Item {
     readonly property var selectionRightVar: matchTypeVar.selectionRight
 
     width: parent.width
-    // height: 800 // compute by model, but for now 800+
     height: (leftHalf.height > rightHalf.height) ? leftHalf.height : rightHalf.height
 
     Component.onCompleted: {

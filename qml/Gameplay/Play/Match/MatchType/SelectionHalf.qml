@@ -3,17 +3,18 @@ import QtQuick.Controls.Material
 
 Item {
     id: selectionHalf
-    height: 800
+    height: rowDelegateHeight * selectionsCount
 
     required property var selectionVar
 
     readonly property int rowDelegateHeight: 50
     readonly property int columnDelegateWidth: 70
+    readonly property int selectionsCount: selectionVar.playerSelections.length
 
     ListView{
         id: rowListView
         anchors.fill: parent
-        model: selectionHalf.selectionVar.playerSelections.length
+        model: selectionHalf.selectionsCount
         clip: true
         interactive: false
         cacheBuffer: 10000 // for god sake, keep delegates alive while scrolling
