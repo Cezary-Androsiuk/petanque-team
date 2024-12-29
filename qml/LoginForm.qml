@@ -122,7 +122,13 @@ Item {
             width: 180
             height: 60
 
-            visible: (!Backend.memory)?false: Backend.memory.debugMemoryFileExist()
+            visible: {
+                if(Backend.isDebugMode && Backend.memory)
+                    Backend.memory.debugMemoryFileExist();
+                else
+                    false;
+            }
+
             text: qsTr("Login No Memory")
             onClicked:{
                 Backend.memory.debugDeleteMemory();
