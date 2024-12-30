@@ -120,12 +120,29 @@ void GroupSelection::setPlayerGroup(int playerIndex, int groupIndex)
     emit this->playerSelectionsChanged();
 }
 
-const QList<int> &GroupSelection::getPlayerSelections() const
+int GroupSelection::getGroupsCount() const
+{
+    return m_groupsCount;
+}
+
+const IntList &GroupSelection::getPlayerSelections() const
 {
     return m_playerSelections;
 }
 
-int GroupSelection::getGroupsCount() const
+const Team *GroupSelection::getTeamQml() const
 {
-    return m_groupsCount;
+    if(m_team.isNull())
+    {
+        W("team is null")
+        return nullptr;
+    }
+
+    return m_team.toStrongRef().data();
+}
+
+void GroupSelection::setTeam(TeamPtr team)
+{
+    m_team = team.toWeakRef();
+    emit this->teamChanged();
 }

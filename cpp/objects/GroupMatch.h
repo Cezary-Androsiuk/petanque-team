@@ -10,16 +10,17 @@
 #include "cpp/objects/Team.h"
 #include "cpp/objects/Player.h"
 
-typedef QList<QList<Player*>> ListOfPlayersListQml;
+typedef QList<int> IntList;
+typedef QVector<QmlPlayerPtrVector> QmlVecOfPlayersVec;
 
 class GroupMatch : public QObject, public Serializable
 {
     Q_OBJECT
     Q_PROPERTY(int groupsCount READ getGroupsCount NOTIFY groupsCountChanged FINAL)
     Q_PROPERTY(int defaultPlayersCountInGroup READ getDefaultPlayersCountInGroup NOTIFY defaultPlayersCountInGroupChanged FINAL)
-    Q_PROPERTY(ListOfPlayersListQml groupsOfPlayers READ getGroupsOfPlayers NOTIFY groupsOfPlayersChanged FINAL)
-    Q_PROPERTY(QList<int> matchPoints READ getMatchPoints NOTIFY matchPointsChanged FINAL)
-    Q_PROPERTY(Team *team READ getTeamQml NOTIFY teamChanged FINAL)
+    Q_PROPERTY(QmlVecOfPlayersVec groupsOfPlayers READ getGroupsOfPlayers NOTIFY groupsOfPlayersChanged FINAL)
+    Q_PROPERTY(const IntList &matchPoints READ getMatchPoints NOTIFY matchPointsChanged FINAL)
+    Q_PROPERTY(const Team *team READ getTeamQml NOTIFY teamChanged FINAL)
 
 public:
     explicit GroupMatch(QObject *parent = nullptr);
@@ -41,9 +42,9 @@ public:
 public:
     int getGroupsCount() const;
     int getDefaultPlayersCountInGroup() const;
-    ListOfPlayersListQml getGroupsOfPlayers() const;
-    const QList<int> &getMatchPoints() const;
-    Team *getTeamQml() const;
+    QmlVecOfPlayersVec getGroupsOfPlayers() const;
+    const IntList &getMatchPoints() const;
+    const Team *getTeamQml() const;
 
     void setGroupsCount(int groupsCount);
     void setDefaultPlayersCountInGroup(int defaultPlayersCountInGroup);
@@ -63,7 +64,7 @@ private:
     int m_defaultPlayersCountInGroup;
 
     QList<PlayerPtrList> m_groupsOfPlayers;
-    QList<int> m_matchPoints;
+    IntList m_matchPoints;
     TeamWPtr m_team;
 };
 

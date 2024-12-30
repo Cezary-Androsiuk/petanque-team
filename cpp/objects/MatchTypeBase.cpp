@@ -24,24 +24,35 @@ void MatchTypeBase::initSelection()
         m_groupsCount, m_minPlayersInGroup, m_maxPlayersInGroup);
     if(m_teamLeft.isNull())
     {
-        W("cannot set selection size for m_groupSelectionLeft due to teamLeft is null")
+        E("can't init left selection, due to not exising m_teamLeft pointer")
+    }
+    else if(m_groupSelectionLeft.isNull())
+    {
+        E("can't init left selection, due to not exising left selection pointer")
     }
     else
     {
-        m_groupSelectionLeft->setSelectionSize(
-            m_teamLeft.toStrongRef()->getPlayers().size());
+        auto playersSize = m_teamLeft.toStrongRef()->getPlayers().size();
+        m_groupSelectionLeft->setSelectionSize(playersSize);
+        m_groupSelectionLeft->setTeam(m_teamLeft.toStrongRef());
     }
+
 
     m_groupSelectionRight = GroupSelectionPtr::create(
         m_groupsCount, m_minPlayersInGroup, m_maxPlayersInGroup);
     if(m_teamRight.isNull())
     {
-        W("cannot set selection size for m_groupSelectionRight due to teamRight is null")
+        E("can't init right selection, due to not exising m_teamRight pointer")
+    }
+    else if(m_groupSelectionRight.isNull())
+    {
+        E("can't init right selection, due to not exising right selection pointer")
     }
     else
     {
-        m_groupSelectionRight->setSelectionSize(
-            m_teamRight.toStrongRef()->getPlayers().size());
+        auto playersSize = m_teamRight.toStrongRef()->getPlayers().size();
+        m_groupSelectionRight->setSelectionSize(playersSize);
+        m_groupSelectionRight->setTeam(m_teamRight.toStrongRef());
     }
 
     emit this->selectionChanged();
@@ -50,33 +61,43 @@ void MatchTypeBase::initSelection()
 void MatchTypeBase::initMatch()
 {
     m_groupMatchLeft = GroupMatchPtr::create();
-
     if(m_teamLeft.isNull())
     {
-        E("init match, due to not exising left selection pointer")
-        return;
+        E("can't init left match, due to not exising m_teamLeft pointer")
     }
-    auto gop = this->makeGroupsOfPlayersList(m_teamLeft, m_groupSelectionLeft);
-    m_groupMatchLeft->setGroupsCount(m_groupsCount);
-    m_groupMatchLeft->setMatchPointsSize(m_groupsCount);
-    m_groupMatchLeft->setDefaultPlayersCountInGroup(m_minPlayersInGroup);
-    m_groupMatchLeft->setGroupsOfPlayers(gop);
-    m_groupMatchLeft->setTeam(m_teamLeft.toStrongRef());
+    else if(m_groupMatchLeft.isNull())
+    {
+        E("can't init left match, due to not exising left match pointer")
+    }
+    else
+    {
+        auto gop = this->makeGroupsOfPlayersList(m_teamLeft, m_groupSelectionLeft);
+        m_groupMatchLeft->setGroupsCount(m_groupsCount);
+        m_groupMatchLeft->setMatchPointsSize(m_groupsCount);
+        m_groupMatchLeft->setDefaultPlayersCountInGroup(m_minPlayersInGroup);
+        m_groupMatchLeft->setGroupsOfPlayers(gop);
+        m_groupMatchLeft->setTeam(m_teamLeft.toStrongRef());
+    }
 
 
     m_groupMatchRight = GroupMatchPtr::create();
-
     if(m_teamRight.isNull())
     {
-        E("init match, due to not exising right selection pointer")
-        return;
+        E("can't init right match, due to not exising m_teamRight pointer")
     }
-    gop = this->makeGroupsOfPlayersList(m_teamRight, m_groupSelectionRight);
-    m_groupMatchRight->setGroupsCount(m_groupsCount);
-    m_groupMatchRight->setMatchPointsSize(m_groupsCount);
-    m_groupMatchRight->setDefaultPlayersCountInGroup(m_minPlayersInGroup);
-    m_groupMatchRight->setGroupsOfPlayers(gop);
-    m_groupMatchRight->setTeam(m_teamRight.toStrongRef());
+    else if(m_groupMatchRight.isNull())
+    {
+        E("can't init right match, due to not exising right match pointer")
+    }
+    else
+    {
+        auto gop = this->makeGroupsOfPlayersList(m_teamRight, m_groupSelectionRight);
+        m_groupMatchRight->setGroupsCount(m_groupsCount);
+        m_groupMatchRight->setMatchPointsSize(m_groupsCount);
+        m_groupMatchRight->setDefaultPlayersCountInGroup(m_minPlayersInGroup);
+        m_groupMatchRight->setGroupsOfPlayers(gop);
+        m_groupMatchRight->setTeam(m_teamRight.toStrongRef());
+    }
 
     emit this->matchChanged();
 }

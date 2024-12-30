@@ -60,9 +60,9 @@ int GroupMatch::getDefaultPlayersCountInGroup() const
     return m_defaultPlayersCountInGroup;
 }
 
-ListOfPlayersListQml GroupMatch::getGroupsOfPlayers() const
+QmlVecOfPlayersVec GroupMatch::getGroupsOfPlayers() const
 {
-    ListOfPlayersListQml ret;
+    QmlVecOfPlayersVec ret;
     ret.resize(m_groupsOfPlayers.size());
     for(int i=0; i<ret.size(); i++)
     {
@@ -73,12 +73,12 @@ ListOfPlayersListQml GroupMatch::getGroupsOfPlayers() const
     return ret;
 }
 
-const QList<int> &GroupMatch::getMatchPoints() const
+const IntList &GroupMatch::getMatchPoints() const
 {
     return m_matchPoints;
 }
 
-Team *GroupMatch::getTeamQml() const
+const Team *GroupMatch::getTeamQml() const
 {
     if(m_team.isNull())
     {
@@ -131,6 +131,6 @@ void GroupMatch::setMatchPointsSize(int matchPointsSize)
 
 void GroupMatch::setTeam(TeamPtr team)
 {
-    m_team = team;
+    m_team = team.toWeakRef();
     emit this->teamChanged();
 }

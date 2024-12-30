@@ -9,11 +9,14 @@
 #include "cpp/Serializable.h"
 #include "cpp/objects/Team.h"
 
+typedef QList<int> IntList;
+
 class GroupSelection : public QObject, public Serializable
 {
     Q_OBJECT
-    Q_PROPERTY(const QList<int> &playerSelections READ getPlayerSelections NOTIFY playerSelectionsChanged FINAL)
     Q_PROPERTY(int groupsCount READ getGroupsCount CONSTANT FINAL)
+    Q_PROPERTY(const IntList &playerSelections READ getPlayerSelections NOTIFY playerSelectionsChanged FINAL)
+    Q_PROPERTY(const Team *team READ getTeamQml NOTIFY teamChanged FINAL)
 
 public:
     explicit GroupSelection(int groupsCount, int minPlayersInGroup, int maxPlayersInGroup, QObject *parent = nullptr);
@@ -35,19 +38,23 @@ public slots:
 
 public:
     /// GETTERS
-    const QList<int> &getPlayerSelections() const;
     int getGroupsCount() const;
+    const IntList &getPlayerSelections() const;
+    const Team *getTeamQml() const;
 
     /// SETTERS
+    void setTeam(TeamPtr team);
 
 signals:
     void playerSelectionsChanged();
+    void teamChanged();
 
 private:
     const int m_groupsCount;
     const int m_minPlayersInGroup;
     const int m_maxPlayersInGroup;
     QList<int> m_playerSelections;
+    TeamWPtr m_team;
 
     static constexpr int defaultSelectionValue = -1;
 };
