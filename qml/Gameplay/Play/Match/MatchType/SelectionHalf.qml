@@ -3,13 +3,15 @@ import QtQuick.Controls.Material
 
 Item {
     id: selectionHalf
-    height: rowDelegateHeight * selectionsCount
 
     required property var selectionVar
+    required property var team
 
     readonly property int rowDelegateHeight: 50
     readonly property int columnDelegateWidth: 70
     readonly property int selectionsCount: selectionVar.playerSelections.length
+
+    height: rowDelegateHeight * selectionsCount
 
     ListView{
         id: rowListView

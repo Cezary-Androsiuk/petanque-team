@@ -3,19 +3,42 @@ import QtQuick.Controls.Material
 
 Item {
     id: match
-    anchors.fill: parent
 
     required property var matchVar
-    readonly property var matchType: matchVar.currentMatchType
+
+    width: parent.width
+    height: (leftHalf.height > rightHalf.height) ? leftHalf.height : rightHalf.height
 
     Component.onCompleted: {
-        matchType.initMatch()
+        matchVar.currentMatchType.initMatch()
     }
 
-    Label{
-        anchors.centerIn: parent
-        text: "Match"
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
+    Item{
+        id: matchContent
+        anchors.fill: parent
+
+        MatchHalf{
+            id: leftHalf
+            anchors{
+                top: parent.top
+                left: parent.left
+            }
+            width: parent.width/2
+
+            matchVar: match.matchVar.currentMatchType.matchLeft
+            team: match.matchVar.teamLeft
+        }
+
+        MatchHalf{
+            id: rightHalf
+            anchors{
+                top: parent.top
+                right: parent.right
+            }
+            width: parent.width/2
+
+            matchVar: match.matchVar.currentMatchType.matchRight
+            team: match.matchVar.teamRight
+        }
     }
 }

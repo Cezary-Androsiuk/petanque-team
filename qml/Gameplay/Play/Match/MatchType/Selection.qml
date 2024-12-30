@@ -5,15 +5,12 @@ Item {
     id: selection
 
     required property var matchVar
-    readonly property var matchTypeVar: matchVar.currentMatchType
-    readonly property var selectionLeftVar: matchTypeVar.selectionLeft
-    readonly property var selectionRightVar: matchTypeVar.selectionRight
 
     width: parent.width
     height: (leftHalf.height > rightHalf.height) ? leftHalf.height : rightHalf.height
 
     Component.onCompleted: {
-        matchTypeVar.initSelection()
+        matchVar.currentMatchType.initSelection()
     }
 
     Item{
@@ -28,7 +25,8 @@ Item {
             }
             width: parent.width/2
 
-            selectionVar: matchTypeVar.selectionLeft
+            selectionVar: matchVar.currentMatchType.selectionLeft
+            team: matchVar.teamLeft
         }
 
         SelectionHalf{
@@ -39,7 +37,8 @@ Item {
             }
             width: parent.width/2
 
-            selectionVar: matchTypeVar.selectionRight
+            selectionVar: matchVar.currentMatchType.selectionRight
+            team: matchVar.teamRight
         }
     }
 
