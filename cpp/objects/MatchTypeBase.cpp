@@ -58,8 +58,10 @@ void MatchTypeBase::initMatch()
     }
     auto gop = this->makeGroupsOfPlayersList(m_teamLeft, m_groupSelectionLeft);
     m_groupMatchLeft->setGroupsCount(m_groupsCount);
+    m_groupMatchLeft->setMatchPointsSize(m_groupsCount);
     m_groupMatchLeft->setDefaultPlayersCountInGroup(m_minPlayersInGroup);
     m_groupMatchLeft->setGroupsOfPlayers(gop);
+    m_groupMatchLeft->setTeam(m_teamLeft.toStrongRef());
 
 
     m_groupMatchRight = GroupMatchPtr::create();
@@ -71,8 +73,10 @@ void MatchTypeBase::initMatch()
     }
     gop = this->makeGroupsOfPlayersList(m_teamRight, m_groupSelectionRight);
     m_groupMatchRight->setGroupsCount(m_groupsCount);
+    m_groupMatchRight->setMatchPointsSize(m_groupsCount);
     m_groupMatchRight->setDefaultPlayersCountInGroup(m_minPlayersInGroup);
     m_groupMatchRight->setGroupsOfPlayers(gop);
+    m_groupMatchRight->setTeam(m_teamRight.toStrongRef());
 
     emit this->matchChanged();
 }
@@ -154,6 +158,18 @@ bool MatchTypeBase::verifyMatch(QString &message)
 QList<PlayerPtrList> MatchTypeBase::makeGroupsOfPlayersList(cTeamWPtr wteam, const GroupSelectionPtr &gs) const
 {
     QList<PlayerPtrList> groupsOfPlayers(m_groupsCount);
+
+    if(wteam.isNull())
+    {
+        W("wteam is null")
+        return QList<PlayerPtrList>();
+    }
+
+    if(gs.isNull())
+    {
+        W("groupSelection is null")
+        return QList<PlayerPtrList>();
+    }
 
     const TeamPtr team = wteam.toStrongRef();
     const QList<int> &selection = gs->getPlayerSelections();

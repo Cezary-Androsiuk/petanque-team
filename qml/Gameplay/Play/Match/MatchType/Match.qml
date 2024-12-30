@@ -5,12 +5,13 @@ Item {
     id: match
 
     required property var matchVar
+    readonly property var curMatchType: matchVar.currentMatchType
 
     width: parent.width
     height: (leftHalf.height > rightHalf.height) ? leftHalf.height : rightHalf.height
 
     Component.onCompleted: {
-        matchVar.currentMatchType.initMatch()
+        curMatchType.initMatch()
     }
 
     Item{
@@ -25,8 +26,8 @@ Item {
             }
             width: parent.width/2
 
-            matchVar: match.matchVar.currentMatchType.matchLeft
-            team: match.matchVar.teamLeft
+            matchVar: match.curMatchType.matchLeft
+            isLeft: true
         }
 
         MatchHalf{
@@ -37,8 +38,8 @@ Item {
             }
             width: parent.width/2
 
-            matchVar: match.matchVar.currentMatchType.matchRight
-            team: match.matchVar.teamRight
+            matchVar: match.curMatchType.matchRight
+            isLeft: false
         }
     }
 }
