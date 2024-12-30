@@ -15,9 +15,9 @@ Item {
         else
         {
             if(currentRoundStage % 2 === 0)
-                "Match/SelectionTemplate.qml";
+                "Match/GroupSelection.qml";
             else
-                "Match/MatchTemplate.qml";
+                "Match/GroupMatch.qml";
         }
     }
     onCurrentMatchTypeFileChanged: {

@@ -69,12 +69,10 @@ qt_add_qml_module(appPetanqueTeam
     QML_FILES qml/Gameplay/Play/Phase.qml
     QML_FILES qml/Gameplay/Play/SubPhase.qml
     QML_FILES qml/Gameplay/Play/Match.qml
-    QML_FILES qml/Gameplay/Play/Match/SelectionTemplate.qml
-    QML_FILES qml/Gameplay/Play/Match/MatchTemplate.qml
+    QML_FILES qml/Gameplay/Play/Match/GroupSelection.qml
+    QML_FILES qml/Gameplay/Play/Match/GroupMatch.qml
     QML_FILES qml/Gameplay/Play/Match/RoundSummary.qml
-    QML_FILES qml/Gameplay/Play/Match/MatchType/Selection.qml
     QML_FILES qml/Gameplay/Play/Match/MatchType/SelectionHalf.qml
-    QML_FILES qml/Gameplay/Play/Match/MatchType/Match.qml
     QML_FILES qml/Gameplay/Play/Match/MatchType/MatchHalf.qml
     ################################
     QML_FILES qml/Gameplay/Finish.qml

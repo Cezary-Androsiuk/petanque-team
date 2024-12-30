@@ -74,8 +74,8 @@ Item {
             bottom: parent.bottom
         }
 
-        readonly property int delegateHeaderHeight: 50
-        readonly property int delegateFooterHeight: 50
+        readonly property int delegateHeaderHeight: 60
+        readonly property int delegateFooterHeight: 0//50
 
         ListView{
             id: matchListView
@@ -97,31 +97,99 @@ Item {
 
             delegate: Item{
                 width: matchListView.width
-                height: delegateHeader.height + match.height + content.delegateFooterHeight
+                height: content.delegateHeaderHeight +
+                        match.height +
+                        content.delegateFooterHeight +
+                        (delegateContent.anchors.margins * 2) +
+                        (matchContent.anchors.margins * 2)
 
                 Item{
-                    id: delegateHeader
+                    id: delegateContent
                     anchors{
-                        top: parent.top
-                        left: parent.left
-                        right: parent.right
-                    }
-                    height: content.delegateHeaderHeight
-
-                    // team name
-                }
-
-                Match{
-                    id: match
-                    anchors{
-                        top: delegateHeader.bottom
-                        left: parent.left
-                        right: parent.right
+                        fill: parent
+                        margins: 10
                     }
 
-                    matchVar: modelData
-                    currentRoundStage: roundVar.currentRoundStage
+                    Item{
+                        id: delegateHeader
+                        anchors{
+                            top: parent.top
+                            left: parent.left
+                            right: parent.right
+                        }
+                        height: content.delegateHeaderHeight
+
+                        Item{
+                            id: leftTeamNameHeader
+                            anchors{
+                                top: parent.top
+                                topMargin: 10
+                                left: parent.left
+                                leftMargin: 10
+                                bottom: parent.bottom
+                            }
+                            width: parent.width/2 - anchors.leftMargin*2
+
+                            Rectangle{
+                                anchors.fill: parent
+                                color: "transparent"
+                                border.color: Qt.rgba(1,1,1, 0.4)
+                                border.width: 1
+                            }
+                        }
+
+                        Item{
+                            id: rightTeamNameHeader
+                            anchors{
+                                top: parent.top
+                                topMargin: 10
+                                right: parent.right
+                                rightMargin: 10
+                                bottom: parent.bottom
+                            }
+                            width: parent.width/2 - anchors.rightMargin*2
+
+                            Rectangle{
+                                anchors.fill: parent
+                                color: "transparent"
+                                border.color: Qt.rgba(1,1,1, 0.4)
+                                border.width: 1
+                            }
+                        }
+                    }
+
+                    Item{
+                        id: matchContent
+                        anchors{
+                            top: delegateHeader.bottom
+                            left: parent.left
+                            right: parent.right
+                            bottom: parent.bottom
+                            margins: 10
+                        }
+
+                        Match{
+                            id: match
+                            anchors{
+                                top: parent.top
+                                left: parent.left
+                                right: parent.right
+                            }
+
+                            matchVar: modelData
+                            currentRoundStage: roundVar.currentRoundStage
+                        }
+                    }
+
+
+                    Rectangle{
+                        anchors.fill: parent
+                        color: "transparent"
+                        border.color: Qt.rgba(1,1,1, 0.4)
+                        border.width: 1
+                    }
                 }
+
             }
         }
 
