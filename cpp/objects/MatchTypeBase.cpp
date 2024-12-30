@@ -57,6 +57,8 @@ void MatchTypeBase::initMatch()
         return;
     }
     auto gop = this->makeGroupsOfPlayersList(m_teamLeft, m_groupSelectionLeft);
+    m_groupMatchLeft->setGroupsCount(m_groupsCount);
+    m_groupMatchLeft->setDefaultPlayersCountInGroup(m_minPlayersInGroup);
     m_groupMatchLeft->setGroupsOfPlayers(gop);
 
 
@@ -68,6 +70,8 @@ void MatchTypeBase::initMatch()
         return;
     }
     gop = this->makeGroupsOfPlayersList(m_teamRight, m_groupSelectionRight);
+    m_groupMatchRight->setGroupsCount(m_groupsCount);
+    m_groupMatchRight->setDefaultPlayersCountInGroup(m_minPlayersInGroup);
     m_groupMatchRight->setGroupsOfPlayers(gop);
 
     emit this->matchChanged();
@@ -193,6 +197,26 @@ void MatchTypeBase::assignMatchExampleData()
 {
     m_groupMatchLeft->assignExampleData();
     m_groupMatchRight->assignExampleData();
+}
+
+Team *MatchTypeBase::getTeamLeftQml() const
+{
+    if(m_teamLeft.isNull())
+    {
+        W("Team left is null, but it shouldn't be")
+        return nullptr;
+    }
+    return m_teamLeft.toStrongRef().data();
+}
+
+Team *MatchTypeBase::getTeamRightQml() const
+{
+    if(m_teamRight.isNull())
+    {
+        W("Team right is null, but it shouldn't be")
+        return nullptr;
+    }
+    return m_teamRight.toStrongRef().data();
 }
 
 GroupSelection *MatchTypeBase::getSelectionLeft() const

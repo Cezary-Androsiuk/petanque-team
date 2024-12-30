@@ -12,7 +12,10 @@
 class GroupMatch : public QObject, public Serializable
 {
     Q_OBJECT
-    Q_PROPERTY(QList<PlayerPtrList> groupsOfPlayers READ getGroupsOfPlayers CONSTANT FINAL)
+    Q_PROPERTY(int groupsCount READ getGroupsCount NOTIFY groupsCountChanged FINAL)
+    Q_PROPERTY(int defaultPlayersCountInGroup READ getDefaultPlayersCountInGroup NOTIFY defaultPlayersCountInGroupChanged FINAL)
+    Q_PROPERTY(QList<PlayerPtrList> groupsOfPlayers READ getGroupsOfPlayers NOTIFY groupsOfPlayersChanged FINAL)
+
 public:
     explicit GroupMatch(QObject *parent = nullptr);
     ~GroupMatch();
@@ -28,13 +31,23 @@ public:
     void assignExampleData();
 
 public:
-    QList<PlayerPtrList> getGroupsOfPlayers() const;
+    int getGroupsCount() const;
+    int getDefaultPlayersCountInGroup() const;
+    const QList<PlayerPtrList> &getGroupsOfPlayers() const;
 
+    void setGroupsCount(int groupsCount);
+    void setDefaultPlayersCountInGroup(int defaultPlayersCountInGroup);
     void setGroupsOfPlayers(const QList<PlayerPtrList> &groupsOfPlayers);
 
 signals:
+    void groupsCountChanged();
+    void defaultPlayersCountInGroupChanged();
+    void groupsOfPlayersChanged();
 
 private:
+    int m_groupsCount;
+    int m_defaultPlayersCountInGroup;
+
     QList<PlayerPtrList> m_groupsOfPlayers;
 };
 

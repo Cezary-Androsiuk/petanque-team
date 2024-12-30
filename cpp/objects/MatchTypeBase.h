@@ -16,8 +16,13 @@ typedef const TeamWPtr &cTeamWPtr;
 class MatchTypeBase : public QObject, public Serializable
 {
     Q_OBJECT
+    Q_PROPERTY(Team *teamLeft READ getTeamLeftQml CONSTANT FINAL)
+    Q_PROPERTY(Team *teamRight READ getTeamRightQml CONSTANT FINAL)
     Q_PROPERTY(GroupSelection *selectionLeft READ getSelectionLeft NOTIFY selectionChanged FINAL)
     Q_PROPERTY(GroupSelection *selectionRight READ getSelectionRight NOTIFY selectionChanged FINAL)
+    Q_PROPERTY(GroupMatch *matchLeft READ getMatchLeft NOTIFY matchChanged FINAL)
+    Q_PROPERTY(GroupMatch *matchRight READ getMatchRight NOTIFY matchChanged FINAL)
+
 public:
     explicit MatchTypeBase(
         cTeamWPtr teamL, cTeamWPtr teamR,
@@ -48,8 +53,8 @@ public:
 
 public:
     /// GETTERS
-    // Team *getTeamLeft() const;
-    // Team *getTeamRight() const;
+    Team *getTeamLeftQml() const;
+    Team *getTeamRightQml() const;
     GroupSelection *getSelectionLeft() const;
     GroupSelection *getSelectionRight() const;
     GroupMatch *getMatchLeft() const;

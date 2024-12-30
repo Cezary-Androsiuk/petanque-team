@@ -2,6 +2,8 @@
 
 GroupMatch::GroupMatch(QObject *parent)
     : QObject{parent}
+    , m_groupsCount{0}
+    , m_defaultPlayersCountInGroup{0}
 {
     DOLT(this)
 }
@@ -36,12 +38,41 @@ void GroupMatch::assignExampleData()
 
 }
 
-QList<PlayerPtrList> GroupMatch::getGroupsOfPlayers() const
+int GroupMatch::getGroupsCount() const
+{
+    return m_groupsCount;
+}
+
+int GroupMatch::getDefaultPlayersCountInGroup() const
+{
+    return m_defaultPlayersCountInGroup;
+}
+
+const QList<PlayerPtrList> &GroupMatch::getGroupsOfPlayers() const
 {
     return m_groupsOfPlayers;
+}
+
+void GroupMatch::setGroupsCount(int groupsCount)
+{
+    if(m_groupsCount == groupsCount)
+        return;
+
+    m_groupsCount = groupsCount;
+    emit this->groupsCountChanged();
+}
+
+void GroupMatch::setDefaultPlayersCountInGroup(int defaultPlayersCountInGroup)
+{
+    if(m_defaultPlayersCountInGroup == defaultPlayersCountInGroup)
+        return;
+
+    m_defaultPlayersCountInGroup = defaultPlayersCountInGroup;
+    emit this->defaultPlayersCountInGroupChanged();
 }
 
 void GroupMatch::setGroupsOfPlayers(const QList<PlayerPtrList> &groupsOfPlayers)
 {
     m_groupsOfPlayers = groupsOfPlayers;
+    emit this->groupsOfPlayersChanged();
 }
