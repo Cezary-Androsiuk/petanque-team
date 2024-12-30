@@ -6,7 +6,7 @@
 
 #include "cpp/support/Log.h"
 
-#define UNIQUE_KEY_PREVENT_DOUBLE_RUN "PetanqueTeam-IsRunning-mt9n8MSxmKiEUZo"
+#define UNIQUE_KEY_PREVENT_DOUBLE_RUN "PetanqueTeam-IsRunning-mt9n8MSxmKiEUZo1"
 
 class DoubleStartProtection : public QObject
 {
