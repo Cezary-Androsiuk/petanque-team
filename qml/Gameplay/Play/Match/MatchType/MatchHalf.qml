@@ -13,8 +13,8 @@ Item {
     readonly property int groupHeaderHeight: 60
     readonly property int groupDelegateHeight: defaultPlayerDelegateHeight * defaultPlayersCountInGroup;
 
-    // height: groupHeaderHeight + ( (groupDelegateHeight + /*add margins*/(10*2)) * groupsCount )
-    height: 800
+    height: groupHeaderHeight + ( (groupDelegateHeight + /*add margins*/(10*2)) * groupsCount )
+    // height: 800
 
     Item{
         id: matchHalfContent
@@ -76,12 +76,16 @@ Item {
                         id: spinBox
                         anchors{
                             verticalCenter: parent.verticalCenter
+                            // top: parent.top
+                            // topMargin: 10
+                            // bottom: parent.bottom
+                            // bottomMargin: 10
                             right: matchHalf.isLeft ? parent.right : undefined
                             left: matchHalf.isLeft ? undefined : parent.left
                         }
 
                         editable: true
-                        to: 999
+                        to: 13
 
                         value: matchHalf.matchVar.matchPoints[index]
                         onValueChanged: {
