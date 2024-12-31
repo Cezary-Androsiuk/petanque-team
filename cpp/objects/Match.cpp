@@ -30,8 +30,8 @@ QJsonObject Match::serialize() const
 {
     QJsonObject jMatch;
 
-    jMatch[ SERL_TEAM_LEFT_NAME_KEY ] = this->serializeTeam(m_teamLeft);
-    jMatch[ SERL_TEAM_RIGHT_NAME_KEY ] = this->serializeTeam(m_teamRight);
+    jMatch[ SERL_MATCH_TEAM_LEFT_NAME_KEY ] = this->serializeTeam(m_teamLeft);
+    jMatch[ SERL_MATCH_TEAM_LEFT_NAME_KEY ] = this->serializeTeam(m_teamRight);
     /// m_currentRoundStage - don't need to be deserialized
 
     QJsonObject jMatchTypes;

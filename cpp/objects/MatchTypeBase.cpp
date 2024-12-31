@@ -104,18 +104,123 @@ void MatchTypeBase::initMatch()
 
 QJsonObject MatchTypeBase::serialize() const
 {
-    return QJsonObject();
+    QJsonObject jMatchTypeBase;
+
+    jMatchTypeBase[SERL_MATCH_TYPE_TEAM_LEFT_NAME_KEY] = this->serializeTeam(m_teamLeft);
+    jMatchTypeBase[SERL_MATCH_TYPE_TEAM_RIGHT_NAME_KEY] = this->serializeTeam(m_teamRight);
+    jMatchTypeBase[SERL_GROUPS_COUNT_KEY] = m_groupsCount;
+    jMatchTypeBase[SERL_MIN_PLAYERS_IN_GROUP_KEY] = m_minPlayersInGroup;
+    jMatchTypeBase[SERL_MAX_PLAYERS_IN_GROUP_KEY] = m_maxPlayersInGroup;
+
+    if(m_groupSelectionLeft.isNull() != m_groupSelectionRight.isNull())
+    {
+        /// one selection is null but other don't
+        W("one of the group selections are not exit, both won't be serialized")
+    }
+    else if(m_groupSelectionLeft.isNull())
+    {
+        /// both selection are null
+        // I("group selection not created, then not be serialized")
+    }
+    else
+    {
+        /// both selection are pointers
+        jMatchTypeBase[SERL_GROUP_SELECTION_LEFT_KEY] = this->m_groupSelectionLeft->serialize();
+        jMatchTypeBase[SERL_GROUP_SELECTION_RIGHT_KEY] = this->m_groupSelectionRight->serialize();
+    }
+
+    if(m_groupMatchLeft.isNull() != m_groupMatchRight.isNull())
+    {
+        /// one selection is null but other don't
+        W("one of the group match are not exit, both won't be serialized")
+    }
+    else if(m_groupMatchLeft.isNull())
+    {
+        /// both selection are null
+        // I("group match not created, then not be serialized")
+    }
+    else
+    {
+        /// both selection are pointers
+        jMatchTypeBase[SERL_GROUP_MATCH_LEFT_KEY] = this->m_groupMatchLeft->serialize();
+        jMatchTypeBase[SERL_GROUP_MATCH_RIGHT_KEY] = this->m_groupMatchRight->serialize();
+    }
+
+    return jMatchTypeBase;
 }
 
-void MatchTypeBase::deserialize(const QJsonObject &jTeam)
+void MatchTypeBase::deserialize(const QJsonObject &jMatchTypeBase)
 {
+    I("Deserialize")
+    qDebug() << this;
     this->clear(false);
 
+    /// team left don't need to be deserialized
+    /// team right don't need to be deserialized
+    /// groupsCount don't need to be deserialized
+    /// minPlayersInGroup don't need to be deserialized
+    /// maxPlayersInGroup don't need to be deserialized
+
+    QJsonObject obj;
+    bool csl, csr, cml, cmr; // contains [selection/match] [left/right]
+    csl = jMatchTypeBase.contains(SERL_GROUP_SELECTION_LEFT_KEY);
+    csr = jMatchTypeBase.contains(SERL_GROUP_SELECTION_RIGHT_KEY);
+    cml = jMatchTypeBase.contains(SERL_GROUP_MATCH_LEFT_KEY);
+    cmr = jMatchTypeBase.contains(SERL_GROUP_MATCH_RIGHT_KEY);
+
+    if(csl != csr)
+    {
+        /// one selection is null but other don't
+        W("one of the group selections are not exit in json, both won't be deserialized")
+    }
+    else if(csl)
+    {
+        /// both selection are null
+        // I("group selection not created, then not be deserialized")
+
+    }
+    else
+    {
+        this->initSelection();
+        obj = jMatchTypeBase[SERL_GROUP_SELECTION_LEFT_KEY].toObject();
+        m_groupSelectionLeft->deserialize( obj );
+        obj = jMatchTypeBase[SERL_GROUP_SELECTION_RIGHT_KEY].toObject();
+        m_groupSelectionRight->deserialize( obj );
+    }
+
+    if(cml != cmr)
+    {
+        /// one selection is null but other don't
+        W("one of the group match are not exit in json, both won't be deserialized")
+    }
+    else if(cml)
+    {
+        /// both selection are null
+        // I("group match not created, then not be deserialized")
+    }
+    else
+    {
+        this->initMatch();
+        obj = jMatchTypeBase[SERL_GROUP_MATCH_LEFT_KEY].toObject();
+        m_groupMatchLeft->deserialize( obj );
+        obj = jMatchTypeBase[SERL_GROUP_MATCH_RIGHT_KEY].toObject();
+        m_groupMatchRight->deserialize( obj );
+    }
 }
 
 void MatchTypeBase::clear(bool emitting)
 {
 
+}
+
+QString MatchTypeBase::serializeTeam(cTeamWPtr wteam) const
+{
+    if(wteam.isNull())
+    {
+        W("team is null")
+        return "";
+    }
+    return wteam.toStrongRef()->getName();
 }
 
 bool MatchTypeBase::verifySelection(QString &message)
@@ -189,6 +294,7 @@ QList<PlayerPtrList> MatchTypeBase::makeGroupsOfPlayersList(cTeamWPtr wteam, con
     if(gs.isNull())
     {
         W("groupSelection is null")
+        qDebug() << this;
         return QList<PlayerPtrList>();
     }
 
@@ -209,6 +315,7 @@ QList<PlayerPtrList> MatchTypeBase::makeGroupsOfPlayersList(cTeamWPtr wteam, con
             W("player selection contains negative groupID value:");
             for(const auto &pgi : selection)
                 qDebug() << pgi;
+            exit(1);
             continue;
         }
         else if(playerGroupID >= m_groupsCount)

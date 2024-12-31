@@ -12,8 +12,8 @@
 #include "cpp/enums/RoundStageEnum.h"
 #include "cpp/objects/MatchTypeBase.h"
 
-#define SERL_TEAM_LEFT_NAME_KEY "team left"
-#define SERL_TEAM_RIGHT_NAME_KEY "team right"
+#define SERL_MATCH_TEAM_LEFT_NAME_KEY "team left name"
+#define SERL_MATCH_TEAM_RIGHT_NAME_KEY "team right name"
 #define SERL_MATCH_TYPES_KEY "match types"
 #define SERL_MATCH_TYPE_SINGIELS_KEY "singiels"
 #define SERL_MATCH_TYPE_DUBLETS_KEY "dublets"

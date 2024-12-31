@@ -11,6 +11,16 @@
 #include "cpp/objects/GroupMatch.h"
 #include "cpp/objects/Team.h"
 
+#define SERL_MATCH_TYPE_TEAM_LEFT_NAME_KEY "team left name"
+#define SERL_MATCH_TYPE_TEAM_RIGHT_NAME_KEY "team right name"
+#define SERL_GROUPS_COUNT_KEY "groups count"
+#define SERL_MIN_PLAYERS_IN_GROUP_KEY "min players in group"
+#define SERL_MAX_PLAYERS_IN_GROUP_KEY "max players in group"
+#define SERL_GROUP_SELECTION_LEFT_KEY "gorup selection left"
+#define SERL_GROUP_SELECTION_RIGHT_KEY "group selection right"
+#define SERL_GROUP_MATCH_LEFT_KEY "group match left"
+#define SERL_GROUP_MATCH_RIGHT_KEY "group match right"
+
 typedef const TeamWPtr &cTeamWPtr;
 
 class MatchTypeBase : public QObject, public Serializable
@@ -36,9 +46,12 @@ public slots:
 
 public:
     QJsonObject serialize() const override;
-    void deserialize(const QJsonObject &jTeam) override;
+    void deserialize(const QJsonObject &jMatchTypeBase) override;
 
     void clear(bool emitting = true);
+
+private:
+    QString serializeTeam(cTeamWPtr wteam) const;
 
 public slots:
     bool verifySelection(QString &message);
