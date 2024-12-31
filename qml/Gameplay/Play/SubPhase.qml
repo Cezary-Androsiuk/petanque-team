@@ -7,7 +7,7 @@ Item {
     required property var subPhaseVar
     readonly property var roundVar: subPhaseVar.rounds[subPhaseVar.currentRoundIndex]
 
-    readonly property int headerHeight: 45
+    readonly property int headerHeight: 60
     readonly property int footerHeight: 70
 
     Item{
@@ -23,11 +23,12 @@ Item {
             id: headerLabel
             anchors{
                 top: parent.top
+                topMargin: 2
                 horizontalCenter: parent.horizontalCenter
             }
 
             text: "Round " + (subPhaseVar.currentRoundIndex+1);
-            font.pixelSize: 24
+            font.pixelSize: 26
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
         }
@@ -36,6 +37,7 @@ Item {
             id: headerRoundStageLabel
             anchors{
                 bottom: parent.bottom
+                bottomMargin: 5
                 horizontalCenter: parent.horizontalCenter
             }
 
