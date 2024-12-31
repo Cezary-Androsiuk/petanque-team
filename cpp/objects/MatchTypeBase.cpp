@@ -209,12 +209,14 @@ QList<PlayerPtrList> MatchTypeBase::makeGroupsOfPlayersList(cTeamWPtr wteam, con
             W("player selection contains negative groupID value:");
             for(const auto &pgi : selection)
                 qDebug() << pgi;
+            continue;
         }
         else if(playerGroupID >= m_groupsCount)
         {
             W("player selection contains to hight groupID value:");
             for(const auto &pgi : selection)
                 qDebug() << pgi;
+            continue;
         }
 
         auto player = team->getPlayers()[i];

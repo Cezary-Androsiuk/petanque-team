@@ -141,6 +141,24 @@ const Team *GroupSelection::getTeamQml() const
     return m_team.toStrongRef().data();
 }
 
+QStringList GroupSelection::getComboBoxModel() const
+{
+    if(m_groupsCount < 0)
+    {
+        W("cannot create comboBoxModel");
+        return QStringList();
+    }
+
+    QStringList model(m_groupsCount +1);
+
+    // model[0] = "None";
+    model[0] = "---";
+    for(int i=1; i<model.size(); i++)
+        model[i] = "Group " + QString::number(i-1);
+
+    return model;
+}
+
 void GroupSelection::setTeam(TeamPtr team)
 {
     m_team = team.toWeakRef();

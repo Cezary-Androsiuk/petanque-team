@@ -128,6 +128,8 @@ Item {
                                         fill: parent
                                         leftMargin: 10
                                     }
+
+                                    font.pixelSize: 20
                                     horizontalAlignment: Text.AlignLeft
                                     verticalAlignment: Text.AlignVCenter
                                     text: {

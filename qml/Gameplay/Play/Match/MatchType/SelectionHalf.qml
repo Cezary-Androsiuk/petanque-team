@@ -67,70 +67,16 @@ Item {
                             right: selectionHalf.isLeft ? parent.right : undefined
                             left: selectionHalf.isLeft ? undefined : parent.left
                         }
+                        // defaultSelectionValue
+                        editable: false
 
-                        editable: true
-                        // flat: isLeft
-                        // to: 13
+                        currentIndex: selectionHalf.selectionVar.playerSelections[index]+1
+                        model: selectionHalf.selectionVar.comboBoxModel
 
-                        // value: selectionHalf.matchVar.matchPoints[index]
-                        // onValueChanged: {
-                        //     selectionHalf.setGroupPoints(index, value);
-                        //     focus = false; // prevents keeping spinbox constantly selected
-                        // }
-                    }
-                }
-
-                /*
-                Item{
-                    id: spinBoxField
-                    anchors{
-                        top: parent.top
-                        bottom: parent.bottom
-                        right: matchHalf.isLeft ? parent.right : undefined
-                        rightMargin: matchHalf.isLeft ? 10 : 0
-                        left: matchHalf.isLeft ? undefined : parent.left
-                        leftMargin: matchHalf.isLeft ? 0 : 10
-                    }
-                    width: spinBox.width
-
-                    Rectangle{
-                        anchors.fill: spinBox
-                        color: Qt.rgba(0.8,0,0, 0.6)
-                        visible: spinBox.value > 13
-                        radius: 5
-                    }
-
-                    SpinBox{
-                        id: spinBox
-                        anchors{
-                            verticalCenter: parent.verticalCenter
-                            // top: parent.top
-                            // topMargin: 10
-                            // bottom: parent.bottom
-                            // bottomMargin: 10
-                            right: matchHalf.isLeft ? parent.right : undefined
-                            left: matchHalf.isLeft ? undefined : parent.left
-                        }
-
-                        editable: true
-                        to: 13
-
-                        value: matchHalf.matchVar.matchPoints[index]
-                        onValueChanged: {
-                            matchHalf.setGroupPoints(index, value);
-                            focus = false; // prevents keeping spinbox constantly selected
+                        onCurrentIndexChanged: {
+                            selectionHalf.selectionVar.setPlayerGroup(index, currentIndex-1)
                         }
                     }
-                }
-
-                readonly property int groupIndex: index
-                readonly property var playersInGroup: matchHalf.matchVar.groupsOfPlayers[groupIndex]
-                readonly property int playersCountInGroup: playersInGroup.length
-                // computing playerDelegateHeight here allows to fit 3 players in 2 fields or 4 players in 3 fields
-                readonly property int dynamicPlayerDelegateHeight: {
-                    let expectedDelegatesHeightSum = defaultPlayerDelegateHeight * defaultPlayersCountInGroup
-                    let newDelegateHeight = expectedDelegatesHeightSum / playersCountInGroup
-                    newDelegateHeight
                 }
 
                 Item{
@@ -138,65 +84,43 @@ Item {
                     anchors{
                         top: parent.top
                         bottom: parent.bottom
-                        right: matchHalf.isLeft ? spinBoxField.left : parent.right
-                        left: matchHalf.isLeft ? parent.left : spinBoxField.right
+                        right: selectionHalf.isLeft ? comboBoxField.left : parent.right
+                        left: selectionHalf.isLeft ? parent.left : comboBoxField.right
                         margins: 10
                     }
+                    clip: true
 
-                    ListView{
-                        id: playersListView
-                        anchors.fill: parent
+                    Label{
+                        anchors{
+                            fill: parent
+                            leftMargin: 10
+                        }
 
-                        model: groupDelegate.playersCountInGroup
-                        boundsBehavior: Flickable.StopAtBounds
-                        interactive: false
-                        cacheBuffer: 10000 // for god sake, keep delegates alive while scrolling
-
-                        delegate: Item{
-                            width: playersListViewContainer.width
-                            height: groupDelegate.dynamicPlayerDelegateHeight
-
-                            Item{
-                                anchors{
-                                    fill: parent
-                                    // topMargin: 5
-                                    // bottomMargin: 5
-                                }
-                                clip: true
-
-                                Label{
-                                    anchors{
-                                        fill: parent
-                                        leftMargin: 10
-                                    }
-                                    horizontalAlignment: Text.AlignLeft
-                                    verticalAlignment: Text.AlignVCenter
-                                    text: {
-                                        let player = groupDelegate.playersInGroup[index]
-                                        player.firstName + " " + player.lastName
-                                    }
-                                }
-
-                                Rectangle{
-                                    anchors.fill: parent
-                                    color: "transparent"
-                                    border.color: Qt.rgba(1,1,1, 0.4)
-                                    border.width: 1
-                                }
+                        font.pixelSize: 20
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
+                        text: {
+                            let player = selectionHalf.selectionVar.team.players[index];
+                            if(!player)
+                            {
+                                log.w("unknown player - players list is shorter than playerSelections",
+                                      "SelectionHalf -> Label -> text");
+                                "unknown";
                             }
-
+                            else
+                            {
+                                player.firstName + " " + player.lastName;
+                            }
                         }
                     }
 
+                    Rectangle{
+                        anchors.fill: parent
+                        color: "transparent"
+                        border.color: Qt.rgba(1,1,1, 0.4)
+                        border.width: 1
+                    }
                 }
-                */
-
-                // Item{
-                //     anchors{
-                //         fill: parent
-                //         margins: 10
-                //     }
-                // }
 
                 Rectangle{
                     anchors.fill: parent

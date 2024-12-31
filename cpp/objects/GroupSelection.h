@@ -15,6 +15,7 @@ class GroupSelection : public QObject, public Serializable
 {
     Q_OBJECT
     Q_PROPERTY(int groupsCount READ getGroupsCount CONSTANT FINAL)
+    Q_PROPERTY(QStringList comboBoxModel READ getComboBoxModel CONSTANT FINAL)
     Q_PROPERTY(const IntList &playerSelections READ getPlayerSelections NOTIFY playerSelectionsChanged FINAL)
     Q_PROPERTY(const Team *team READ getTeamQml NOTIFY teamChanged FINAL)
 
@@ -41,6 +42,7 @@ public:
     int getGroupsCount() const;
     const IntList &getPlayerSelections() const;
     const Team *getTeamQml() const;
+    QStringList getComboBoxModel() const;
 
     /// SETTERS
     void setTeam(TeamPtr team);
