@@ -77,7 +77,7 @@ if(DISPLAY_OBJECT_LIFE_TIME) {  \
 #define CONTENT_SPACE_CHARACTER ' ' // characters that fills space between function name and content
 #define SPACE_BETWEEN_CONTENT_SPACE_AND_CONTENT true // creates spaces between space: "x ........ y" instead of "x........y"
 
-    class Log
+class Log
 {
 public:
     enum Action{

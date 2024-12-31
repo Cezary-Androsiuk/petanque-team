@@ -17,17 +17,46 @@ GroupSelection::~GroupSelection()
 
 QJsonObject GroupSelection::serialize() const
 {
-    return QJsonObject();
+    QJsonObject jGroupSelection;
+
+    jGroupSelection[SERL_GROUP_SELECTION_GROUPS_COUNT_KEY] = m_groupsCount;
+    jGroupSelection[SERL_GROUP_SELECTION_MIN_PLAYERS_IN_GROUP_KEY] = m_minPlayersInGroup;
+    jGroupSelection[SERL_GROUP_SELECTION_MAX_PLAYERS_IN_GROUP_KEY] = m_maxPlayersInGroup;
+
+    /// Serialize player selections
+    QJsonArray jPlayerSelections;
+    for(int playerSelection : m_playerSelections)
+        jPlayerSelections.append(playerSelection);
+    jGroupSelection[SERL_GROUP_SELECTION_PLAYER_SELECTIONS_KEY] = jPlayerSelections;
+
+    /// Serialize team name
+    if(m_team.isNull())
+    {
+        W("cannot read team because is null")
+        jGroupSelection[SERL_GROUP_SELECTION_TEAM_NAME_KEY] = "";
+    }
+    else
+    {
+        QString teamName = m_team.toStrongRef()->getName();
+        jGroupSelection[SERL_GROUP_SELECTION_TEAM_NAME_KEY] = teamName;
+    }
+
+    return jGroupSelection;
 }
 
 void GroupSelection::deserialize(const QJsonObject &jGroupSelection)
 {
-    this->clear(false);
-}
+    /// groups count don't need to be deserialized
+    /// min players in group don't need to be deserialized
+    /// max players in group don't need to be deserialized
 
-void GroupSelection::clear(bool emitting)
-{
+    m_playerSelections.clear();
+    QJsonArray jPlayerSelections( jGroupSelection[SERL_GROUP_SELECTION_PLAYER_SELECTIONS_KEY].toArray() );
+    for(const auto &jPlayerSelection : jPlayerSelections)
+        m_playerSelections.append( jPlayerSelection.toInt() );
+    emit this->playerSelectionsChanged();
 
+    /// team don't need to be deserialized
 }
 
 bool GroupSelection::verify(QString &message)

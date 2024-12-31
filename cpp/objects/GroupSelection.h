@@ -9,6 +9,18 @@
 #include "cpp/Serializable.h"
 #include "cpp/objects/Team.h"
 
+#define SERL_GROUP_SELECTION_GROUPS_COUNT_KEY "groups count"
+#define SERL_GROUP_SELECTION_MIN_PLAYERS_IN_GROUP_KEY "min players in group"
+#define SERL_GROUP_SELECTION_MAX_PLAYERS_IN_GROUP_KEY "max players in group"
+#define SERL_GROUP_SELECTION_PLAYER_SELECTIONS_KEY "player selections"
+#define SERL_GROUP_SELECTION_TEAM_NAME_KEY "team name"
+
+// const int m_groupsCount;
+// const int m_minPlayersInGroup;
+// const int m_maxPlayersInGroup;
+// QList<int> m_playerSelections;
+// TeamWPtr m_team;
+
 typedef QList<int> IntList;
 
 class GroupSelection : public QObject, public Serializable
@@ -26,8 +38,6 @@ public:
 public:
     QJsonObject serialize() const override;
     void deserialize(const QJsonObject &jGroupSelection) override;
-
-    void clear(bool emitting = true);
 
 public:
     bool verify(QString &message);

@@ -192,8 +192,7 @@ void MatchTypeBase::deserialize(const QJsonObject &jMatchTypeBase)
     else if(!csl)
     {
         /// both selection are null
-        // I("group selection not created, then not be deserialized")
-
+        I("group selection not created, then not be deserialized", Log::Action::Save);
     }
     else
     {
@@ -212,7 +211,7 @@ void MatchTypeBase::deserialize(const QJsonObject &jMatchTypeBase)
     else if(!cml)
     {
         /// both selection are null
-        // I("group match not created, then not be deserialized")
+        I("group match not created, then not be deserialized", Log::Action::Save);
     }
     else
     {
@@ -310,7 +309,6 @@ QList<PlayerPtrList> MatchTypeBase::makeGroupsOfPlayersList(cTeamWPtr wteam, con
     if(gs.isNull())
     {
         W("groupSelection is null")
-        qDebug() << this;
         return QList<PlayerPtrList>();
     }
 
@@ -331,7 +329,6 @@ QList<PlayerPtrList> MatchTypeBase::makeGroupsOfPlayersList(cTeamWPtr wteam, con
             W("player selection contains negative groupID value:");
             for(const auto &pgi : selection)
                 qDebug() << pgi;
-            exit(1);
             continue;
         }
         else if(playerGroupID >= m_groupsCount)
