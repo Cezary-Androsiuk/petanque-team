@@ -16,7 +16,7 @@
 #define SERL_GROUPS_COUNT_KEY "groups count"
 #define SERL_MIN_PLAYERS_IN_GROUP_KEY "min players in group"
 #define SERL_MAX_PLAYERS_IN_GROUP_KEY "max players in group"
-#define SERL_GROUP_SELECTION_LEFT_KEY "gorup selection left"
+#define SERL_GROUP_SELECTION_LEFT_KEY "group selection left"
 #define SERL_GROUP_SELECTION_RIGHT_KEY "group selection right"
 #define SERL_GROUP_MATCH_LEFT_KEY "group match left"
 #define SERL_GROUP_MATCH_RIGHT_KEY "group match right"

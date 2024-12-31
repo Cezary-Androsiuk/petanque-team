@@ -10,6 +10,13 @@
 #include "cpp/objects/Team.h"
 #include "cpp/objects/Player.h"
 
+#define SERL_GROUP_MATCH_GROUPS_COUNT_KEY "groups count"
+#define SERL_GROUP_MATCH_DEFAULT_PLAYERS_COUNT_IN_GROUP_KEY "default players count in group"
+#define SERL_GROUP_MATCH_DPLCIG_KEY /**/ SERL_GROUP_MATCH_DEFAULT_PLAYERS_COUNT_IN_GROUP_KEY
+#define SERL_GROUP_MATCH_GROUPS_OF_PLAYERS_KEY "groups of players"
+#define SERL_GROUP_MATCH_MATCH_POINTS_KEY "match points"
+#define SERL_GROUP_MATCH_TEAM_NAME_KEY "team name"
+
 typedef QList<int> IntList;
 typedef QVector<QmlPlayerPtrVector> QmlVecOfPlayersVec;
 
@@ -30,7 +37,8 @@ public:
     QJsonObject serialize() const override;
     void deserialize(const QJsonObject &jGroupMatch) override;
 
-    void clear(bool emitting = true);
+private:
+    QJsonArray serializeGroupsOfPlayers() const;
 
 public slots:
     void setGroupPoints(int group, int points);

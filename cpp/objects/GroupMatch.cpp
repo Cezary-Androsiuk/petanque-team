@@ -15,17 +15,65 @@ GroupMatch::~GroupMatch()
 
 QJsonObject GroupMatch::serialize() const
 {
-    return QJsonObject();
+    QJsonObject jGroupMatch;
+
+    jGroupMatch[SERL_GROUP_MATCH_GROUPS_COUNT_KEY] = m_groupsCount;
+    jGroupMatch[SERL_GROUP_MATCH_DPLCIG_KEY] = m_defaultPlayersCountInGroup;
+
+    jGroupMatch[SERL_GROUP_MATCH_GROUPS_OF_PLAYERS_KEY] = this->serializeGroupsOfPlayers();
+
+
+    QJsonArray jMatchPoints;
+    for(int matchPoint : m_matchPoints)
+        jMatchPoints.append(matchPoint);
+    jGroupMatch[SERL_GROUP_MATCH_MATCH_POINTS_KEY] = jMatchPoints;
+
+    if(m_team.isNull())
+    {
+        W("cannot read team because is null")
+        jGroupMatch[SERL_GROUP_MATCH_TEAM_NAME_KEY] = "";
+    }
+    else
+    {
+        QString teamName = m_team.toStrongRef()->getName();
+        jGroupMatch[SERL_GROUP_MATCH_TEAM_NAME_KEY] = teamName;
+    }
+
+    return jGroupMatch;
 }
 
 void GroupMatch::deserialize(const QJsonObject &jGroupMatch)
 {
-    this->clear(false);
+    /// groups count don't need to be deserialized
+    /// default players count in group don't need to be deserialized
+    /// groups of players don't need to be deserialized
+
+    m_matchPoints.clear();
+    QJsonArray jMatchPoints( jGroupMatch[SERL_GROUP_MATCH_MATCH_POINTS_KEY].toArray() );
+    for(const auto &jMatchPoint : jMatchPoints)
+        m_matchPoints.append( jMatchPoint.toInt() );
+    emit this->matchPointsChanged();
+
+    /// team don't need to be deserialized
 }
 
-void GroupMatch::clear(bool emitting)
+QJsonArray GroupMatch::serializeGroupsOfPlayers() const
 {
+    QJsonArray jGroupsOfPlayers;
 
+    for(int i=0; i<m_groupsOfPlayers.size(); i++)
+    {
+        QJsonArray jGroupOfPlayers;
+        for(int j=0; j<m_groupsOfPlayers[i].size(); j++)
+        {
+            PlayerPtr player = m_groupsOfPlayers[i][j];
+
+            jGroupOfPlayers.append(player->getLicense());
+        }
+        jGroupsOfPlayers.append(jGroupOfPlayers);
+    }
+
+    return jGroupsOfPlayers;
 }
 
 void GroupMatch::setGroupPoints(int group, int points)
