@@ -36,6 +36,7 @@ Item {
                 }
 
                 selectionVar: groupSelection.matchVar.currentMatchType.selectionLeft
+                isLeft: true
             }
 
             Rectangle{
@@ -65,6 +66,7 @@ Item {
                 }
 
                 selectionVar: groupSelection.matchVar.currentMatchType.selectionRight
+                isLeft: false
             }
 
             Rectangle{

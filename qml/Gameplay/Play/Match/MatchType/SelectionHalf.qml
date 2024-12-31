@@ -37,6 +37,49 @@ Item {
                 width: playersListView.width
                 height: selectionHalf.delegateHeight + 20 //+ playersListViewContainer.anchors.margins*2
 
+                Item{
+                    id: comboBoxField
+                    anchors{
+                        top: parent.top
+                        bottom: parent.bottom
+                        right: selectionHalf.isLeft ? parent.right : undefined
+                        rightMargin: selectionHalf.isLeft ? 10 : 0
+                        left: selectionHalf.isLeft ? undefined : parent.left
+                        leftMargin: selectionHalf.isLeft ? 0 : 10
+                    }
+                    width: comboBox.width
+
+                    Rectangle{
+                        anchors.fill: comboBox
+                        color: Qt.rgba(0.8,0,0, 0.6)
+                        visible: comboBox.value > 13
+                        radius: 5
+                    }
+
+                    ComboBox{
+                        id: comboBox
+                        anchors{
+                            verticalCenter: parent.verticalCenter
+                            // top: parent.top
+                            // topMargin: 10
+                            // bottom: parent.bottom
+                            // bottomMargin: 10
+                            right: selectionHalf.isLeft ? parent.right : undefined
+                            left: selectionHalf.isLeft ? undefined : parent.left
+                        }
+
+                        editable: true
+                        // flat: isLeft
+                        // to: 13
+
+                        // value: selectionHalf.matchVar.matchPoints[index]
+                        // onValueChanged: {
+                        //     selectionHalf.setGroupPoints(index, value);
+                        //     focus = false; // prevents keeping spinbox constantly selected
+                        // }
+                    }
+                }
+
                 /*
                 Item{
                     id: spinBoxField
