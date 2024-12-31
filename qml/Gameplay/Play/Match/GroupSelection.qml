@@ -36,7 +36,6 @@ Item {
                 }
 
                 selectionVar: groupSelection.matchVar.currentMatchType.selectionLeft
-                team: groupSelection.matchVar.teamLeft
             }
 
             Rectangle{
@@ -66,7 +65,6 @@ Item {
                 }
 
                 selectionVar: groupSelection.matchVar.currentMatchType.selectionRight
-                team: groupSelection.matchVar.teamRight
             }
 
             Rectangle{

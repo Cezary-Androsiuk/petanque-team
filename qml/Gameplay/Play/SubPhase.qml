@@ -130,6 +130,16 @@ Item {
                             }
                             width: parent.width/2 - anchors.leftMargin*2
 
+                            Label{
+                                id: leftTeamName
+                                anchors.centerIn: parent
+                                height: 50
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+
+                                text: modelData.teamLeft.name
+                            }
+
                             Rectangle{
                                 anchors.fill: parent
                                 color: "transparent"
@@ -148,6 +158,16 @@ Item {
                                 bottom: parent.bottom
                             }
                             width: parent.width/2 - anchors.rightMargin*2
+
+                            Label{
+                                id: rightTeamName
+                                anchors.centerIn: parent
+                                height: 50
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+
+                                text: modelData.teamRight.name
+                            }
 
                             Rectangle{
                                 anchors.fill: parent
