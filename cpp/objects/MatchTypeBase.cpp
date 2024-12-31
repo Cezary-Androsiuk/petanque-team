@@ -7,6 +7,8 @@ MatchTypeBase::MatchTypeBase(cTeamWPtr teamL, cTeamWPtr teamR, int groupsCount, 
     , m_groupsCount{groupsCount}
     , m_minPlayersInGroup{minPlayersInGroup}
     , m_maxPlayersInGroup{maxPlayersInGroup}
+    , m_selectionInitialized{false}
+    , m_matchInitialized{false}
 {
     DOLT(this)
 
@@ -20,6 +22,12 @@ MatchTypeBase::~MatchTypeBase()
 
 void MatchTypeBase::initSelection()
 {
+    if(m_selectionInitialized)
+    {
+        I("prevented double initialization")
+        return;
+    }
+
     m_groupSelectionLeft = GroupSelectionPtr::create(
         m_groupsCount, m_minPlayersInGroup, m_maxPlayersInGroup);
     if(m_teamLeft.isNull())
@@ -55,11 +63,19 @@ void MatchTypeBase::initSelection()
         m_groupSelectionRight->setTeam(m_teamRight.toStrongRef());
     }
 
+    m_selectionInitialized = true;
+
     emit this->selectionChanged();
 }
 
 void MatchTypeBase::initMatch()
 {
+    if(m_matchInitialized)
+    {
+        I("prevented double initialization")
+        return;
+    }
+
     m_groupMatchLeft = GroupMatchPtr::create();
     if(m_teamLeft.isNull())
     {
@@ -98,6 +114,8 @@ void MatchTypeBase::initMatch()
         m_groupMatchRight->setGroupsOfPlayers(gop);
         m_groupMatchRight->setTeam(m_teamRight.toStrongRef());
     }
+
+    m_matchInitialized = true;
 
     emit this->matchChanged();
 }
@@ -151,8 +169,6 @@ QJsonObject MatchTypeBase::serialize() const
 
 void MatchTypeBase::deserialize(const QJsonObject &jMatchTypeBase)
 {
-    I("Deserialize")
-    qDebug() << this;
     this->clear(false);
 
     /// team left don't need to be deserialized
@@ -173,7 +189,7 @@ void MatchTypeBase::deserialize(const QJsonObject &jMatchTypeBase)
         /// one selection is null but other don't
         W("one of the group selections are not exit in json, both won't be deserialized")
     }
-    else if(csl)
+    else if(!csl)
     {
         /// both selection are null
         // I("group selection not created, then not be deserialized")
@@ -193,7 +209,7 @@ void MatchTypeBase::deserialize(const QJsonObject &jMatchTypeBase)
         /// one selection is null but other don't
         W("one of the group match are not exit in json, both won't be deserialized")
     }
-    else if(cml)
+    else if(!cml)
     {
         /// both selection are null
         // I("group match not created, then not be deserialized")

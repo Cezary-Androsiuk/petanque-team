@@ -3,7 +3,7 @@
 #include "cpp/objects/MatchDublets.h"
 #include "cpp/objects/MatchTriplets.h"
 
-Match::Match(const RoundStageEnum &roundStageRef, QObject *parent)
+Match::Match(RoundStageEnumRPtr roundStageRef, QObject *parent)
     : QObject{parent}
     , m_matchTypes(3, MatchTypeBasePtr())
     , m_currentRoundStage{roundStageRef}
@@ -126,17 +126,17 @@ void Match::deserializeMatchTypes(const QJsonObject &jMatch)
 
 bool Match::verify(QString &message) const
 {
-    if(m_currentRoundStage == RoundStageEnum::RoundSummary)
+    if(*m_currentRoundStage == RoundStageEnum::RoundSummary)
         return true;
 
-    MatchTypeBasePtr currentMatchType = m_matchTypes[m_currentRoundStage/2];
-    bool isSelectionStage = m_currentRoundStage%2 == 0;
+    MatchTypeBasePtr currentMatchType = m_matchTypes[(*m_currentRoundStage)/2];
+    bool isSelectionStage = (*m_currentRoundStage)%2 == 0;
 
     if(isSelectionStage)
     {
         if(!currentMatchType->verifySelection(message))
         {
-            message = "in roundStage " +QString::number(m_currentRoundStage)+": " + message;
+            message = "in roundStage " +QString::number(*m_currentRoundStage)+": " + message;
             return false;
         }
     }
@@ -144,7 +144,7 @@ bool Match::verify(QString &message) const
     {
         if(!currentMatchType->verifyMatch(message))
         {
-            message = "in roundStage " +QString::number(m_currentRoundStage)+": " + message;
+            message = "in roundStage " +QString::number(*m_currentRoundStage)+": " + message;
             return false;
         }
     }
@@ -154,11 +154,11 @@ bool Match::verify(QString &message) const
 
 void Match::assignExampleData()
 {
-    if(m_currentRoundStage == RoundStageEnum::RoundSummary)
+    if(*m_currentRoundStage == RoundStageEnum::RoundSummary)
         return;
 
-    MatchTypeBasePtr currentMatchType = m_matchTypes[m_currentRoundStage/2];
-    bool isSelectionStage = m_currentRoundStage%2 == 0;
+    MatchTypeBasePtr currentMatchType = m_matchTypes[(*m_currentRoundStage)/2];
+    bool isSelectionStage = (*m_currentRoundStage)%2 == 0;
 
     /// assign only for current matchType
     if(isSelectionStage)
@@ -191,7 +191,7 @@ Team *Match::getTeamRight() const
 
 MatchTypeBase *Match::getCurrentMatchType() const
 {
-    return m_matchTypes[m_currentRoundStage/2].data();
+    return m_matchTypes[(*m_currentRoundStage)/2].data();
 }
 
 void Match::setTeamLeft(const TeamPtr &team)

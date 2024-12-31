@@ -87,8 +87,10 @@ private:
     cTeamWPtr m_teamLeft;
     cTeamWPtr m_teamRight;
 
+    bool m_selectionInitialized;
     GroupSelectionPtr m_groupSelectionLeft;
     GroupSelectionPtr m_groupSelectionRight;
+    bool m_matchInitialized;
     GroupMatchPtr m_groupMatchLeft;
     GroupMatchPtr m_groupMatchRight;
 };

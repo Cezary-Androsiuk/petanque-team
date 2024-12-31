@@ -19,6 +19,8 @@
 #define SERL_MATCH_TYPE_DUBLETS_KEY "dublets"
 #define SERL_MATCH_TYPE_TRIPLETS_KEY "triplets"
 
+typedef const RoundStageEnum *const RoundStageEnumRPtr;
+
 class Match : public QObject, public Serializable
 {
     Q_OBJECT
@@ -27,7 +29,7 @@ class Match : public QObject, public Serializable
     Q_PROPERTY(MatchTypeBase *currentMatchType READ getCurrentMatchType NOTIFY currentRoundStageChanged FINAL)
 
 public:
-    explicit Match(const RoundStageEnum &roundStageRef, QObject *parent = nullptr);
+    explicit Match(RoundStageEnumRPtr roundStageRef, QObject *parent = nullptr);
     ~Match();
 
     void initMatchesTypes();
@@ -66,7 +68,7 @@ private:
     TeamWPtr m_teamLeft; /// const assigned while creation of object
     TeamWPtr m_teamRight; /// const assigned while creation of object
 
-    const RoundStageEnum &m_currentRoundStage;
+    RoundStageEnumRPtr m_currentRoundStage;
     MatchTypeBasePtrVector m_matchTypes;
 };
 

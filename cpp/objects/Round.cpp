@@ -33,7 +33,7 @@ void Round::initMatches()
             continue;
         }
 
-        MatchPtr match = MatchPtr::create(m_currentRoundStage);
+        MatchPtr match = MatchPtr::create(&m_currentRoundStage);
         QObject::connect(
             this, &Round::currentRoundStageChanged,
             match.data(), &Match::currentRoundStageChanged);
