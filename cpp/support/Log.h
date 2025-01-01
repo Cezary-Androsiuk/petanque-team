@@ -117,8 +117,8 @@ public:
         static QString listUrlToString(QList<QUrl> list);
     };
 
-    static bool m_firstLog;
-    static QString m_sessionLogs;
+    static bool firstLog;
+    static QString sessionLogs;
 };
 
 #endif // LOG_H

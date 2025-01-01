@@ -4,6 +4,11 @@ LogQML::LogQML(QObject *parent)
     : QObject{parent}
 {}
 
+LogQML::cQS LogQML::getSessionLogs() const
+{
+    return Log::sessionLogs;
+}
+
 void LogQML::i(cQS log, QString func)
 {
     Log::info( QML_LOG_PREFIX(func), log );

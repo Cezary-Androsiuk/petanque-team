@@ -137,7 +137,7 @@ void Personalization::save()
     file.write(jsonData.toJson());
     file.close();
 
-    I("personalization data saved");
+    I("personalization data saved", Log::Action::SavePrint); // Adding to session cause the process crash
 
     emit this->saved();
 }

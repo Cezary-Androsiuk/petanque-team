@@ -24,6 +24,8 @@ void Memory::setSerializablePtr(const QSharedPointer<Serializable> &serializable
 
 void Memory::load()
 {
+    emit this->memoryLoadError("test");
+    return;
     if(!QFileInfo::exists( MEMORY_FILE ))
     {
         I("Memory file not exist");

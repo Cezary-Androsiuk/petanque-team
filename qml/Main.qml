@@ -31,10 +31,8 @@ ApplicationWindow {
     Connections{
         target: Login
         function onAuthenticated(){
+            log.i("authenticated login" , "Main.qml -> onAuthenticated")
             Backend.memory.load()
-        }
-        function onAuthenticationFailed(){
-            log.i("onAuthenticationFailed") // display popup
         }
     }
 
@@ -58,14 +56,14 @@ ApplicationWindow {
         }
 
         function onMemoryLoadError(message){
-            rootLoader.source = "" // open error page with what goes wrong and button to remove memory file or retry
+            // open page with "cannot start application" and display current session from Logs
+            let title = "Error while loading Memory!"
+            rootLoader.setSource("ErrorPage.qml", { pageTitle: title, pageMessage: message })
             log.e("error occur while loading memory: " + message, this.target.toString() + " onMemoryLoadError")
         }
 
-        function onMemorySaved(reload){ // not reloading memory, while exiting the app
-            // console.log("memory saved");
-            // if(reload)
-                // Backend.memory.load()
+        function onMemorySaved(){
+            // send to server
         }
 
         function onMemorySaveError(message){

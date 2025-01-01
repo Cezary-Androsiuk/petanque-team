@@ -1,7 +1,7 @@
 #include "cpp/support/Log.h"
 
-bool Log::m_firstLog = true;
-QString Log::m_sessionLogs = QString();
+bool Log::firstLog = true;
+QString Log::sessionLogs = QString();
 
 void Log::info(cQS func, cQS log, Log::Action action)
 {
@@ -112,10 +112,10 @@ void Log::saveFile(cQS content)
     }
 
     QTextStream out(&file);
-    if(m_firstLog)
+    if(firstLog)
     {
         out << Log::buildStartPrefix() << "\n";
-        m_firstLog = false;
+        firstLog = false;
     }
     out << content << "\n";
     file.close();
@@ -123,7 +123,7 @@ void Log::saveFile(cQS content)
 
 void Log::addSession(cQS content)
 {
-    Log::m_sessionLogs += content + "\n";
+    Log::sessionLogs += content + "\n";
 }
 
 QString Log::Convert::listUrlToString(QList<QUrl> list)

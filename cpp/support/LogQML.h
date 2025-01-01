@@ -10,10 +10,13 @@
 class LogQML : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(const QString &sessionLogs READ getSessionLogs CONSTANT FINAL)
 public:
     explicit LogQML(QObject *parent = nullptr);
 
     typedef const QString &cQS;
+
+    cQS getSessionLogs() const;
 
 public slots:
     void i(cQS log, QString func = "");

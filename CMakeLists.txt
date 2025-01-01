@@ -55,6 +55,7 @@ qt_add_qml_module(appPetanqueTeam
     QML_FILES qml/Gameplay.qml
     QML_FILES qml/AppAlreadyRunning.qml
     QML_FILES qml/LoginForm.qml
+    QML_FILES qml/ErrorPage.qml
     ################################
     QML_FILES qml/Gameplay/Configure.qml
     QML_FILES qml/Gameplay/Configure/Event.qml

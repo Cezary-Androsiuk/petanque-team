@@ -17,5 +17,7 @@ Item {
         font.pixelSize: 26
         text: qsTr("Application is already running!");
         color: Qt.rgba(0.8, 0.3, 0.3)
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
     }
 }

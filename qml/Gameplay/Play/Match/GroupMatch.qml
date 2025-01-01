@@ -19,9 +19,6 @@ Item {
         id: matchContent
         anchors.fill: parent
 
-
-
-
         Item{
             id: leftHalfContainer
             anchors{
