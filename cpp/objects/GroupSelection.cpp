@@ -64,6 +64,7 @@ bool GroupSelection::verify(QString &message)
     /// check for each group if it contains enough declared players
     for(int i=0; i<m_groupsCount; i++)
     {
+        E("REQUIRES REBUILD")
         int foundPlayersInGroup = 0;
         for(int playerGroup : m_playerSelections)
         {
@@ -108,6 +109,7 @@ void GroupSelection::setSelectionSize(qsizetype size)
 
 void GroupSelection::assignExampleData()
 {
+    E("REQUIRES REBUILD - can assign non existing group")
     /// uncheck all
     for(int &group : m_playerSelections)
         group = GroupSelection::defaultSelectionValue;

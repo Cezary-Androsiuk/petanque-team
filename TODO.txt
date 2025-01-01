@@ -1,0 +1,19 @@
+REBUILD:
+GroupSelection: verify, assignExampleData
+MatchTypeBase: makeGroupsOfPlayersList
+
+IMPLEMENT:
+Player: points
+Team/Event/Phase/SubPhase: implement different lists of Teams for different Phases/SubPhases and compute teams for second phase using points
+RoundSummary qml
+Finish qml
+Add new Player (while gameplay)
+confirm popups
+
+OPTIONAL
+change Configure gui (better buttons)
+change Configure gui (add new player button but from event page in teams list)
+change Configure gui (better/prettier controls)
+change Configure gui (better placement of controls)
+emplace "add new player (while gameplay)" and reset in settings
+better buttons in gameplay footer

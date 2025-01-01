@@ -317,6 +317,7 @@ bool MatchTypeBase::verifyMatch(QString &message)
 
 QList<PlayerPtrList> MatchTypeBase::makeGroupsOfPlayersList(cTeamWPtr wteam, const GroupSelectionPtr &gs) const
 {
+    E("REQUIRES REBUILD")
     QList<PlayerPtrList> groupsOfPlayers(m_groupsCount);
 
     if(wteam.isNull())
