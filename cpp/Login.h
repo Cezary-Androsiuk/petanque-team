@@ -19,6 +19,10 @@ private:
 public slots:
     void authenticate(QString login, QString password);
 
+private:
+    void sendRequest();
+    void waitForResponse();
+
 signals:
     void authenticated();
     void authenticationFailed(QString message);

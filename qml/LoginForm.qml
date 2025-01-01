@@ -16,7 +16,7 @@ Item {
     Connections{
         target: Login
         function onAuthenticationFailed(message){
-            log.w("Received failed authentication signal: " + message)
+            log.i("Received failed authentication signal: " + message)
             errorInfoLabel.visible = true
             errorInfoLabel.text = message
         }
@@ -108,6 +108,12 @@ Item {
 
                 errorInfoLabel.visible = false
 
+                if(Backend.isDebugMode)
+                {
+                    if(login === "") login = "example login";
+                    if(password === "") password = "example password";
+                }
+
                 Login.authenticate(login, password)
             }
         }
@@ -137,6 +143,12 @@ Item {
                 var password = passwordTextField.text;
 
                 errorInfoLabel.visible = false
+
+                if(Backend.isDebugMode)
+                {
+                    if(login === "") login = "example login";
+                    if(password === "") password = "example password";
+                }
 
                 Login.authenticate(login, password)
             }

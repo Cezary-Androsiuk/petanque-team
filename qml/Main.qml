@@ -34,7 +34,7 @@ ApplicationWindow {
             Backend.memory.load()
         }
         function onAuthenticationFailed(){
-            log.e("onAuthenticationFailed") // display popup
+            log.i("onAuthenticationFailed") // display popup
         }
     }
 
