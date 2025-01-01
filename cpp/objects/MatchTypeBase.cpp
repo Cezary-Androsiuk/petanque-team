@@ -472,10 +472,6 @@ void MatchTypeBase::generateTwoRandomValues2(int &v1, int &v2, int max)
         v2 = randomPoints1;
         v1 = randomPoints2;
     }
-
-    /// secure
-    if(v1 < 0) v1 *= -1;
-    if(v2 < 0) v2 *= -1;
 }
 
 void MatchTypeBase::generateTwoRandomValues3(int &v1, int &v2, int max)
@@ -506,10 +502,6 @@ void MatchTypeBase::generateTwoRandomValues3(int &v1, int &v2, int max)
     { v1 = _v1; v2 = _v2; }
     else
     { v1 = _v2; v2 = _v1; }
-
-    /// secure
-    if(v1 < 0) v1 *= -1;
-    if(v2 < 0) v2 *= -1;
 }
 
 Team *MatchTypeBase::getTeamLeftQml() const

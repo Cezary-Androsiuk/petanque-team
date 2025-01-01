@@ -94,8 +94,10 @@ Item {
                         anchors{
                             fill: parent
                             leftMargin: 10
+                            rightMargin: 10
                         }
 
+                        elide: Text.ElideRight
                         font.pixelSize: 20
                         horizontalAlignment: Text.AlignLeft
                         verticalAlignment: Text.AlignVCenter
