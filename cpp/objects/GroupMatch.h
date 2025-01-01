@@ -44,8 +44,8 @@ public slots:
     void setGroupPoints(int group, int points);
 
 public:
-    bool verify(QString &message);
-    void assignExampleData();
+    // bool verify(QString &message); // left and right GroupMatch need to be verified together
+    void assignExampleData(const IntList &data);
 
 public:
     int getGroupsCount() const;

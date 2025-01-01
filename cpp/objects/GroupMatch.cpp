@@ -88,14 +88,30 @@ void GroupMatch::setGroupPoints(int group, int points)
     emit this->matchPointsChanged();
 }
 
-bool GroupMatch::verify(QString &message)
-{
-    return true;
-}
+// bool GroupMatch::verify(QString &message)
+// {
+//     return true;
+// }
 
-void GroupMatch::assignExampleData()
+void GroupMatch::assignExampleData(const IntList &data)
 {
-
+    if(m_matchPoints.empty())
+    {
+        for(int value : data)
+            m_matchPoints.append(value);
+        emit this->matchPointsChanged();
+    }
+    else if(m_matchPoints.size() != data.size())
+    {
+        W(QAPF("cannot assign example data: m_matchPoints.size(%lld) != data.size(%lld)",
+               m_matchPoints.size(), data.size()));
+    }
+    else
+    {
+        for(int i=0; i<m_matchPoints.size(); i++)
+            m_matchPoints[i] = data[i];
+        emit this->matchPointsChanged();
+    }
 }
 
 int GroupMatch::getGroupsCount() const

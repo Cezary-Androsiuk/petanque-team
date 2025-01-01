@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QList>
 #include <QSharedPointer>
+#include <QRandomGenerator>
 
 #include "cpp/support/Log.h"
 #include "cpp/Serializable.h"

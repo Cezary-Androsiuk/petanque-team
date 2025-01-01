@@ -254,13 +254,13 @@ bool MatchTypeBase::verifySelection(QString &message)
 
     if(!m_groupSelectionLeft->verify(message))
     {
-        message = "" + message;
+        message = "in left: " + message;
         return false;
     }
 
     if(!m_groupSelectionRight->verify(message))
     {
-        message = "" + message;
+        message = "in right: " + message;
         return false;
     }
 
@@ -281,16 +281,35 @@ bool MatchTypeBase::verifyMatch(QString &message)
         return false;
     }
 
-    if(!m_groupMatchLeft->verify(message))
+    const IntList &leftMatchPoints = m_groupMatchLeft->getMatchPoints();
+    const IntList &rightMatchPoints = m_groupMatchRight->getMatchPoints();
+
+    if(leftMatchPoints.size() != rightMatchPoints.size())
     {
-        message = "" + message;
+        W(QAPF("matchPoints have different sizes: left(%lld) right(%lld)",
+               leftMatchPoints.size(), rightMatchPoints.size()));
         return false;
     }
 
-    if(!m_groupMatchRight->verify(message))
+    int maxPointsInMatch = Personalization::getInstance()->getMaxPointsInMatch();
+    for(int i=0; i<leftMatchPoints.size(); i++)
     {
-        message = "" + message;
-        return false;
+        int lValue = leftMatchPoints[i];
+        int rValue = rightMatchPoints[i];
+
+        if(lValue + rValue > maxPointsInMatch)
+        {
+            message = QAPF("in group %d, the sum of left and right points is %d, but cannot be larger than %d",
+                           i+1, lValue+rValue, maxPointsInMatch);
+            return false;
+        }
+
+        if(lValue == rValue)
+        {
+            message = QAPF("in group %d, the left and right points are equal (value: %d), but they should not be",
+                           i+1, lValue);
+            return false;
+        }
     }
 
     return true;
@@ -354,8 +373,62 @@ void MatchTypeBase::assignSelectionExampleData()
 
 void MatchTypeBase::assignMatchExampleData()
 {
-    m_groupMatchLeft->assignExampleData();
-    m_groupMatchRight->assignExampleData();
+    qsizetype leftMatchPointsSize = m_groupMatchLeft->getMatchPoints().size();
+    IntList leftMatchPoints( leftMatchPointsSize );
+
+    qsizetype rightMatchPointsSize = m_groupMatchRight->getMatchPoints().size();
+    IntList rightMatchPoints( rightMatchPointsSize );
+
+    if(leftMatchPointsSize != rightMatchPointsSize)
+    {
+        W(QAPF("cannot assign example data, matchPoints have different sizes: "
+               "left(%lld) right(%lld)", leftMatchPointsSize, rightMatchPointsSize));
+        return;
+    }
+
+    /// CONDITIONS
+    /// left and right sum, need to be smaller or equal to <<maxPointsInMatch>>
+    /// left cannot equal to right
+
+    int maxPointsInMatch = Personalization::getInstance()->getMaxPointsInMatch();
+    for(int i=0; i<leftMatchPointsSize; i++)
+    {
+        auto rnd = QRandomGenerator::global();
+        int randomPoints1 = rnd->bounded(maxPointsInMatch +1); // r1 = [0, 13]
+        int randomPoints2 = rnd->bounded(maxPointsInMatch - randomPoints1 +1); // r2 = [0, 13-r1]
+
+        if(randomPoints1 == randomPoints2)
+        {
+            randomPoints1 += (randomPoints1 == 0) ? 1 : (randomPoints1-1);
+        }
+        ///////////////////////////////////////////////////// HOW THAT VALUES ARE EVEN POSSIBLE: 11 + 6 > 13
+        if((randomPoints1 + randomPoints2) > maxPointsInMatch)
+        {
+            W(QAPF("%d + %d > %d, generated values sum is larger than max points",
+                   randomPoints1, randomPoints2, maxPointsInMatch));
+
+            randomPoints1 = 6;
+            randomPoints2 = 3;
+        }
+        // Q_ASSERT_X(
+        //     (randomPoints1+randomPoints2) <= maxPointsInMatch,
+        //     "MatchTypeBase::assignMatchExampleData()",
+        //     "random points are greater than max points");
+
+        if(rnd->generate()%2)
+        {
+            leftMatchPoints[i] = randomPoints1;
+            rightMatchPoints[i] = randomPoints2;
+        }
+        else
+        {
+            rightMatchPoints[i] = randomPoints1;
+            leftMatchPoints[i] = randomPoints2;
+        }
+    }
+
+    m_groupMatchLeft->assignExampleData(leftMatchPoints);
+    m_groupMatchRight->assignExampleData(rightMatchPoints);
 }
 
 Team *MatchTypeBase::getTeamLeftQml() const
