@@ -408,10 +408,11 @@ void MatchTypeBase::assignMatchExampleData()
         if((randomPoints1 + randomPoints2) > maxPointsInMatch)
         {
             I(QAPF("%d + %d > %d, generated values sum is larger than max points",
-                   randomPoints1, randomPoints2, maxPointsInMatch));
+                   randomPoints1, randomPoints2, maxPointsInMatch), Log::Action::Save);
             /// I CANNOT FIND OUT WHY SOMETIMES THEY DON'T ADD UP
             /// for example 13 - 9 + 1 gives 9 or something
 
+            /// if that happend assign my own random data xd
             randomPoints1 = 6;
             randomPoints2 = 3;
         }

@@ -1,5 +1,7 @@
 #include "GroupMatch.h"
 
+const int GroupMatch::maxPointsInMatch = Personalization::getInstance()->getMaxPointsInMatch();
+
 GroupMatch::GroupMatch(QObject *parent)
     : QObject{parent}
     , m_groupsCount{0}
@@ -84,6 +86,9 @@ void GroupMatch::setGroupPoints(int group, int points)
         return;
     }
 
+    if(m_matchPoints[group] == points)
+        return;
+
     m_matchPoints[group] = points;
     emit this->matchPointsChanged();
 }
@@ -151,6 +156,11 @@ const Team *GroupMatch::getTeamQml() const
     }
 
     return m_team.toStrongRef().data();
+}
+
+int GroupMatch::getMaxPointsInMatch() const
+{
+    return GroupMatch::maxPointsInMatch;
 }
 
 void GroupMatch::setGroupsCount(int groupsCount)

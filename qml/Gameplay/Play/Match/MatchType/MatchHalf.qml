@@ -72,11 +72,16 @@ Item {
                         }
 
                         editable: true
-                        to: 13
+                        // higher value makes entering number easier
+                        to: matchHalf.matchVar.maxPointsInMatch // 9999
 
-                        value: matchHalf.matchVar.matchPoints[index]
+                        value: {
+                            // log.i("assigning new value: " + matchHalf.matchVar.matchPoints[index])
+                            matchHalf.matchVar.matchPoints[index]
+                        }
+
                         onValueChanged: {
-                            matchHalf.setGroupPoints(index, value);
+                            matchHalf.matchVar.setGroupPoints(index, value);
                             focus = false; // prevents keeping spinbox constantly selected
                         }
                     }

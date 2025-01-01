@@ -28,6 +28,7 @@ class GroupMatch : public QObject, public Serializable
     Q_PROPERTY(QmlVecOfPlayersVec groupsOfPlayers READ getGroupsOfPlayers NOTIFY groupsOfPlayersChanged FINAL)
     Q_PROPERTY(const IntList &matchPoints READ getMatchPoints NOTIFY matchPointsChanged FINAL)
     Q_PROPERTY(const Team *team READ getTeamQml NOTIFY teamChanged FINAL)
+    Q_PROPERTY(int maxPointsInMatch READ getMaxPointsInMatch CONSTANT FINAL)
 
 public:
     explicit GroupMatch(QObject *parent = nullptr);
@@ -53,6 +54,7 @@ public:
     QmlVecOfPlayersVec getGroupsOfPlayers() const;
     const IntList &getMatchPoints() const;
     const Team *getTeamQml() const;
+    int getMaxPointsInMatch() const;
 
     void setGroupsCount(int groupsCount);
     void setDefaultPlayersCountInGroup(int defaultPlayersCountInGroup);
@@ -74,6 +76,8 @@ private:
     QList<PlayerPtrList> m_groupsOfPlayers;
     IntList m_matchPoints;
     TeamWPtr m_team;
+
+    static const int maxPointsInMatch;
 };
 
 typedef QSharedPointer<GroupMatch> GroupMatchPtr;
