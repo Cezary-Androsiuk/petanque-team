@@ -37,7 +37,7 @@ QJsonObject GroupMatch::serialize() const
     }
     else
     {
-        QString teamName = m_team.toStrongRef()->getName();
+        QString teamName = m_team->getName();
         jGroupMatch[SERL_GROUP_MATCH_TEAM_NAME_KEY] = teamName;
     }
 
@@ -149,13 +149,7 @@ const IntList &GroupMatch::getMatchPoints() const
 
 const Team *GroupMatch::getTeamQml() const
 {
-    if(m_team.isNull())
-    {
-        W("returning null as a team");
-        return nullptr;
-    }
-
-    return m_team.toStrongRef().data();
+    return m_team.data();
 }
 
 int GroupMatch::getMaxPointsInMatch() const

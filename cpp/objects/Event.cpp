@@ -2,7 +2,6 @@
 
 Event::Event(QObject *parent)
     : QObject{parent}
-    , m_teams{globalTeams}
     , m_phases(2, PhasePtr())
 {
     DOLT(this)
@@ -192,20 +191,32 @@ bool Event::hasNextPhase()
 void Event::startFirstPhase()
 {
     D("start first phase")
-    m_currentPhase = PhaseEnum::First;
+
+    TeamPtrList teams1;
+    this->createListForFirstPhase(teams1);
+
     m_phases[0] = PhasePtr::create(PhaseEnum::First);
+    m_phases[0]->initSubPhases({m_teams});
 
     emit this->phasesChanged();
+
+    m_currentPhase = PhaseEnum::First;
     emit this->currentPhaseChanged();
 }
 
 void Event::startSecondPhase()
 {
     D("start second phase")
-    m_currentPhase = PhaseEnum::Second;
+
+    TeamPtrList teams2a, teams2b;
+    this->createListForSecondPhase(teams2a, teams2b);
+
     m_phases[1] = PhasePtr::create(PhaseEnum::Second);
+    m_phases[1]->initSubPhases({teams2a,teams2b});
 
     emit this->phasesChanged();
+
+    m_currentPhase = PhaseEnum::Second;
     emit this->currentPhaseChanged();
 }
 
@@ -424,6 +435,34 @@ void Event::assignExampleData()
     }
 
     emit this->teamsChanged();
+}
+
+void Event::createListForFirstPhase(TeamPtrList &teams1) const
+{
+    teams1.clear();
+    for(const auto &team : m_teams)
+        teams1.append(team);
+}
+
+void Event::createListForSecondPhase(TeamPtrList &teams2a, TeamPtrList &teams2b) const
+{
+    teams2a.clear();
+    teams2b.clear();
+
+    /// take first and last 4 for now
+    /// later sort then by points or something
+
+    if(m_teams.size() == 8)
+    {
+        for(int i=0; i<4; i++)
+            teams2a.append(m_teams[i]);
+
+        for(int i=0; i<4; i++)
+            teams2b.append(m_teams[4+i]);
+    }
+    else
+        W("teams size != 8")
+
 }
 
 const QString &Event::getName() const

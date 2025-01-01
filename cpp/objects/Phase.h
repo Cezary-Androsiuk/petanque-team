@@ -13,6 +13,8 @@
 
 #define SERL_SUB_PHASES_KEY "sub phases"
 
+typedef QList<TeamPtrList> TeamPtrLists;
+
 class Phase : public QObject, public Serializable
 {
     Q_OBJECT
@@ -23,7 +25,7 @@ public:
     explicit Phase(PhaseEnum phase, QObject *parent = nullptr);
     ~Phase();
 
-    void initSubPhases();
+    void initSubPhases(const TeamPtrLists &listsOfTeams);
 
 public:
     QJsonObject serialize() const override;

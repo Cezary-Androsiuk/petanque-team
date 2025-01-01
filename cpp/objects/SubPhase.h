@@ -8,6 +8,7 @@
 #include "cpp/support/Log.h"
 #include "cpp/Serializable.h"
 #include "cpp/objects/Round.h"
+#include "cpp/objects/Team.h"
 
 #define SERL_SUB_PHASE_NAME_KEY "name"
 #define SERL_CURRENT_ROUND_INDEX_KEY "current round index"
@@ -55,16 +56,19 @@ public:
 
     /// SETTERS
     void setName(const QString &name);
+    void setTeams(const TeamPtrList &teams);
 
 signals:
     void nameChanged();
     void currentRoundIndexChanged();
     void roundsChanged();
+    void teamsChanged();
 
 private:
     QString m_name; /// should be constant - set within initialization by setter
     int m_currentRoundIndex;
     RoundPtrVector m_rounds; /// const list, and created while initialization by initRounds
+    TeamPtrList m_teams;
 };
 
 typedef QSharedPointer<SubPhase> SubPhasePtr;

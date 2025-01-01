@@ -23,6 +23,7 @@
 #define SERL_GROUP_MATCH_RIGHT_KEY "group match right"
 
 typedef const TeamWPtr &cTeamWPtr;
+typedef QList<int> IntList;
 
 class MatchTypeBase : public QObject, public Serializable
 {
@@ -36,7 +37,7 @@ class MatchTypeBase : public QObject, public Serializable
 
 public:
     explicit MatchTypeBase(
-        cTeamWPtr teamL, cTeamWPtr teamR,
+        TeamPtr teamL, TeamPtr teamR,
         int groupsCount, int minPlayersInGroup, int maxPlayersInGroup,
         QObject *parent = nullptr);
     virtual ~MatchTypeBase();
@@ -59,7 +60,7 @@ public slots:
     bool verifyMatch(QString &message);
 
 private:
-    QList<PlayerPtrList> makeGroupsOfPlayersList(cTeamWPtr wteam, const GroupSelectionPtr &gs) const;
+    QList<PlayerPtrList> makeGroupsOfPlayersList(const PlayerPtrList &wteam, const IntList &selection) const;
 
 public:
     void assignSelectionExampleData();
@@ -90,8 +91,8 @@ private:
     const int m_groupsCount;
     const int m_minPlayersInGroup;
     const int m_maxPlayersInGroup;
-    cTeamWPtr m_teamLeft;
-    cTeamWPtr m_teamRight;
+    TeamPtr m_teamLeft;
+    TeamPtr m_teamRight;
 
     bool m_selectionInitialized;
     GroupSelectionPtr m_groupSelectionLeft;

@@ -81,6 +81,4 @@ typedef QSharedPointer<Team> TeamPtr;
 typedef QList<TeamPtr> TeamPtrList;
 typedef QVector<Team *> QmlTeamPtrVector;
 
-extern TeamPtrList globalTeams;
-
 #endif // TEAM_H

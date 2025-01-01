@@ -75,7 +75,7 @@ private:
 
     QList<PlayerPtrList> m_groupsOfPlayers;
     IntList m_matchPoints;
-    TeamWPtr m_team;
+    TeamPtr m_team;
 
     static const int maxPointsInMatch;
 };

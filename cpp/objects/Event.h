@@ -73,6 +73,10 @@ public slots:
     /// EXAMPLE
     void assignExampleData();
 
+private:
+    void createListForFirstPhase(TeamPtrList &teams1) const;
+    void createListForSecondPhase(TeamPtrList &teams2a, TeamPtrList &teams2b) const;
+
 public:
     /// GETTERS
     const QString &getName() const;
@@ -121,7 +125,7 @@ private:
     PhasePtrVector m_phases;
 
     TeamPtr m_detachedTeam;
-    TeamPtrList &m_teams;
+    TeamPtrList m_teams;
 };
 
 #endif // EVENT_H

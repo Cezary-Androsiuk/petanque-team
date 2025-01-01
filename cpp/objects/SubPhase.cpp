@@ -37,7 +37,7 @@ void SubPhase::initRounds(QJsonArray jArrangements)
             arrangement.append({t1,t2});
         }
 
-        m_rounds[i] = RoundPtr::create();
+        m_rounds[i] = RoundPtr::create(m_teams);
         m_rounds[i]->setArrangement(arrangement);
         m_rounds[i]->initMatches();
     }
@@ -210,4 +210,12 @@ void SubPhase::setName(const QString &name)
         return;
     m_name = name;
     emit nameChanged();
+}
+
+void SubPhase::setTeams(const TeamPtrList &teams)
+{
+    m_teams.clear();
+    for(const auto &team : teams)
+        m_teams.append(team);
+    emit this->teamsChanged();
 }

@@ -27,7 +27,7 @@ class Round : public QObject, public Serializable
     Q_PROPERTY(MatchPtrVectorQml matches READ getMatchesQml NOTIFY matchesChanged FINAL)
 
 public:
-    explicit Round(QObject *parent = nullptr);
+    explicit Round(TeamPtrList &teams, QObject *parent = nullptr);
     ~Round();
 
     void initMatches();
@@ -64,6 +64,7 @@ private:
     RoundStageEnum m_currentRoundStage;
     IntPairs m_arrangement; /// const list, set while creating object by setter
     MatchPtrList m_matches; /// const list, created while creating object by initMatches (before setting arrangement)
+    TeamPtrList &m_teams;
 };
 
 typedef QSharedPointer<Round> RoundPtr;

@@ -65,8 +65,8 @@ signals:
     void currentRoundStageChanged();
 
 private:
-    TeamWPtr m_teamLeft; /// const assigned while creation of object
-    TeamWPtr m_teamRight; /// const assigned while creation of object
+    TeamPtr m_teamLeft; /// const assigned while creation of object
+    TeamPtr m_teamRight; /// const assigned while creation of object
 
     RoundStageEnumRPtr m_currentRoundStage;
     MatchTypeBasePtrVector m_matchTypes;

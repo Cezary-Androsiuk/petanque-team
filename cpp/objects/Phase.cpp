@@ -5,7 +5,6 @@ Phase::Phase(PhaseEnum phase, QObject *parent)
     , m_phase{phase}
 {
     DOLT(this)
-    this->initSubPhases();
 }
 
 Phase::~Phase()
@@ -13,15 +12,23 @@ Phase::~Phase()
     DOLT(this)
 }
 
-void Phase::initSubPhases()
+void Phase::initSubPhases(const TeamPtrLists &listsOfTeams)
 {
     Personalization *const p = Personalization::getInstance();
     const QJsonObject &roundsMatches = p->getRoundsMatches();
+
     if(m_phase == PhaseEnum::First)
     {
         QJsonArray arrangement = roundsMatches["phase 1"].toArray();
 
+        if(listsOfTeams.size() != 1)
+        {
+            E(QAPF("invalid listOfTeams size, required 1, but got %lld", listsOfTeams.size()));
+            return;
+        }
+
         m_subPhases.append(SubPhasePtr::create(arrangement.size()));
+        m_subPhases[0]->setTeams(listsOfTeams[0]);
         m_subPhases[0]->setName("1");
         m_subPhases[0]->initRounds(arrangement);
     }
@@ -29,11 +36,19 @@ void Phase::initSubPhases()
     {
         QJsonArray arrangement = roundsMatches["phase 2"].toArray();
 
+        if(listsOfTeams.size() != 2)
+        {
+            E(QAPF("invalid listOfTeams size, required 2, but got %lld", listsOfTeams.size()));
+            return;
+        }
+
         m_subPhases.append(SubPhasePtr::create(arrangement.size()));
+        m_subPhases[0]->setTeams(listsOfTeams[0]);
         m_subPhases[0]->setName("2a");
         m_subPhases[0]->initRounds(arrangement);
 
         m_subPhases.append(SubPhasePtr::create(arrangement.size()));
+        m_subPhases[1]->setTeams(listsOfTeams[1]);
         m_subPhases[1]->setName("2b");
         m_subPhases[1]->initRounds(arrangement);
     }

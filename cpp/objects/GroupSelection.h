@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QList>
 #include <QSharedPointer>
+#include <QRandomGenerator>
 
 #include "cpp/support/Log.h"
 #include "cpp/Serializable.h"
@@ -66,7 +67,7 @@ private:
     const int m_minPlayersInGroup;
     const int m_maxPlayersInGroup;
     QList<int> m_playerSelections;
-    TeamWPtr m_team;
+    TeamPtr m_team;
 
     static constexpr int defaultSelectionValue = -1;
 };

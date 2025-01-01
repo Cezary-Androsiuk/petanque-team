@@ -169,24 +169,12 @@ void Match::assignExampleData()
 
 Team *Match::getTeamLeft() const
 {
-    if(m_teamLeft.isNull())
-    {
-        W("cannot return non exising left team")
-        return nullptr;
-    }
-
-    return m_teamLeft.toStrongRef().data();
+    return m_teamLeft.data();
 }
 
 Team *Match::getTeamRight() const
 {
-    if(m_teamRight.isNull())
-    {
-        W("cannot return non exising right team")
-        return nullptr;
-    }
-
-    return m_teamRight.toStrongRef().data();
+    return m_teamRight.data();
 }
 
 MatchTypeBase *Match::getCurrentMatchType() const
@@ -196,10 +184,10 @@ MatchTypeBase *Match::getCurrentMatchType() const
 
 void Match::setTeamLeft(const TeamPtr &team)
 {
-    m_teamLeft = team.toWeakRef();
+    m_teamLeft = team;
 }
 
 void Match::setTeamRight(const TeamPtr &team)
 {
-    m_teamRight = team.toWeakRef();
+    m_teamRight = team;
 }

@@ -1,6 +1,6 @@
 #include "MatchTypeBase.h"
 
-MatchTypeBase::MatchTypeBase(cTeamWPtr teamL, cTeamWPtr teamR, int groupsCount, int minPlayersInGroup, int maxPlayersInGroup, QObject *parent)
+MatchTypeBase::MatchTypeBase(TeamPtr teamL, TeamPtr teamR, int groupsCount, int minPlayersInGroup, int maxPlayersInGroup, QObject *parent)
     : QObject{parent}
     , m_teamLeft{teamL}
     , m_teamRight{teamR}
@@ -30,37 +30,29 @@ void MatchTypeBase::initSelection()
 
     m_groupSelectionLeft = GroupSelectionPtr::create(
         m_groupsCount, m_minPlayersInGroup, m_maxPlayersInGroup);
-    if(m_teamLeft.isNull())
-    {
-        E("can't init left selection, due to not exising m_teamLeft pointer")
-    }
-    else if(m_groupSelectionLeft.isNull())
+    if(m_groupSelectionLeft.isNull())
     {
         E("can't init left selection, due to not exising left selection pointer")
     }
     else
     {
-        auto playersSize = m_teamLeft.toStrongRef()->getPlayers().size();
+        auto playersSize = m_teamLeft->getPlayers().size();
         m_groupSelectionLeft->setSelectionSize(playersSize);
-        m_groupSelectionLeft->setTeam(m_teamLeft.toStrongRef());
+        m_groupSelectionLeft->setTeam(m_teamLeft);
     }
 
 
     m_groupSelectionRight = GroupSelectionPtr::create(
         m_groupsCount, m_minPlayersInGroup, m_maxPlayersInGroup);
-    if(m_teamRight.isNull())
-    {
-        E("can't init right selection, due to not exising m_teamRight pointer")
-    }
-    else if(m_groupSelectionRight.isNull())
+    if(m_groupSelectionRight.isNull())
     {
         E("can't init right selection, due to not exising right selection pointer")
     }
     else
     {
-        auto playersSize = m_teamRight.toStrongRef()->getPlayers().size();
+        auto playersSize = m_teamRight->getPlayers().size();
         m_groupSelectionRight->setSelectionSize(playersSize);
-        m_groupSelectionRight->setTeam(m_teamRight.toStrongRef());
+        m_groupSelectionRight->setTeam(m_teamRight);
     }
 
     m_selectionInitialized = true;
@@ -77,9 +69,9 @@ void MatchTypeBase::initMatch()
     }
 
     m_groupMatchLeft = GroupMatchPtr::create();
-    if(m_teamLeft.isNull())
+    if(m_groupSelectionLeft.isNull())
     {
-        E("can't init left match, due to not exising m_teamLeft pointer")
+        E("can't init left match, due to not exising left selection pointer")
     }
     else if(m_groupMatchLeft.isNull())
     {
@@ -87,19 +79,19 @@ void MatchTypeBase::initMatch()
     }
     else
     {
-        auto gop = this->makeGroupsOfPlayersList(m_teamLeft, m_groupSelectionLeft);
+        auto gop = this->makeGroupsOfPlayersList(m_teamLeft->getPlayers(), m_groupSelectionLeft->getPlayerSelections());
         m_groupMatchLeft->setGroupsCount(m_groupsCount);
         m_groupMatchLeft->setMatchPointsSize(m_groupsCount);
         m_groupMatchLeft->setDefaultPlayersCountInGroup(m_minPlayersInGroup);
         m_groupMatchLeft->setGroupsOfPlayers(gop);
-        m_groupMatchLeft->setTeam(m_teamLeft.toStrongRef());
+        m_groupMatchLeft->setTeam(m_teamLeft);
     }
 
 
     m_groupMatchRight = GroupMatchPtr::create();
-    if(m_teamRight.isNull())
+    if(m_groupSelectionRight.isNull())
     {
-        E("can't init right match, due to not exising m_teamRight pointer")
+        E("can't init right match, due to not exising right selection pointer")
     }
     else if(m_groupMatchRight.isNull())
     {
@@ -107,12 +99,12 @@ void MatchTypeBase::initMatch()
     }
     else
     {
-        auto gop = this->makeGroupsOfPlayersList(m_teamRight, m_groupSelectionRight);
+        auto gop = this->makeGroupsOfPlayersList(m_teamRight->getPlayers(), m_groupSelectionRight->getPlayerSelections());
         m_groupMatchRight->setGroupsCount(m_groupsCount);
         m_groupMatchRight->setMatchPointsSize(m_groupsCount);
         m_groupMatchRight->setDefaultPlayersCountInGroup(m_minPlayersInGroup);
         m_groupMatchRight->setGroupsOfPlayers(gop);
-        m_groupMatchRight->setTeam(m_teamRight.toStrongRef());
+        m_groupMatchRight->setTeam(m_teamRight);
     }
 
     m_matchInitialized = true;
@@ -315,27 +307,11 @@ bool MatchTypeBase::verifyMatch(QString &message)
     return true;
 }
 
-QList<PlayerPtrList> MatchTypeBase::makeGroupsOfPlayersList(cTeamWPtr wteam, const GroupSelectionPtr &gs) const
+QList<PlayerPtrList> MatchTypeBase::makeGroupsOfPlayersList(const PlayerPtrList &players, const IntList &selection) const
 {
-    E("REQUIRES REBUILD")
     QList<PlayerPtrList> groupsOfPlayers(m_groupsCount);
 
-    if(wteam.isNull())
-    {
-        W("wteam is null")
-        return QList<PlayerPtrList>();
-    }
-
-    if(gs.isNull())
-    {
-        W("groupSelection is null")
-        return QList<PlayerPtrList>();
-    }
-
-    const TeamPtr team = wteam.toStrongRef();
-    const QList<int> &selection = gs->getPlayerSelections();
-
-    if(team->getPlayers().size() != selection.size())
+    if(players.size() != selection.size())
     {
         E("players count received from team agument is different than set selections size")
         return groupsOfPlayers;
@@ -343,24 +319,20 @@ QList<PlayerPtrList> MatchTypeBase::makeGroupsOfPlayersList(cTeamWPtr wteam, con
 
     for(int i=0; i<selection.size(); i++)
     {
-        int playerGroupID = selection[i];
+        int playerGroupID = selection[i]; /// safe []
         if(playerGroupID < 0)
-        {
-            W("player selection contains negative groupID value:");
-            for(const auto &pgi : selection)
-                qDebug() << pgi;
             continue;
-        }
-        else if(playerGroupID >= m_groupsCount)
+        else if(playerGroupID >= m_groupsCount || playerGroupID >= groupsOfPlayers.size())
         {
-            W("player selection contains to hight groupID value:");
-            for(const auto &pgi : selection)
-                qDebug() << pgi;
+            QString selectionsStr;
+            for(int playerGroupIndex : selection)
+                selectionsStr.append( QAPF("%d ", playerGroupIndex) );
+            W("player selection contains to hight groupID value: [ " + selectionsStr + "]");
             continue;
         }
 
-        auto player = team->getPlayers()[i];
-        groupsOfPlayers[playerGroupID].append(player);
+        auto player = players[i]; /// safe []
+        groupsOfPlayers[playerGroupID].append(player); /// safe []
     }
 
     return groupsOfPlayers;
@@ -507,22 +479,12 @@ void MatchTypeBase::generateTwoRandomValues3(int &v1, int &v2, int max)
 
 Team *MatchTypeBase::getTeamLeftQml() const
 {
-    if(m_teamLeft.isNull())
-    {
-        W("Team left is null, but it shouldn't be")
-        return nullptr;
-    }
-    return m_teamLeft.toStrongRef().data();
+    return m_teamLeft.data();
 }
 
 Team *MatchTypeBase::getTeamRightQml() const
 {
-    if(m_teamRight.isNull())
-    {
-        W("Team right is null, but it shouldn't be")
-        return nullptr;
-    }
-    return m_teamRight.toStrongRef().data();
+    return m_teamRight.data();
 }
 
 GroupSelection *MatchTypeBase::getSelectionLeft() const

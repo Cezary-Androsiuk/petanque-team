@@ -37,7 +37,7 @@ QJsonObject GroupSelection::serialize() const
     }
     else
     {
-        QString teamName = m_team.toStrongRef()->getName();
+        QString teamName = m_team->getName();
         jGroupSelection[SERL_GROUP_SELECTION_TEAM_NAME_KEY] = teamName;
     }
 
@@ -64,7 +64,6 @@ bool GroupSelection::verify(QString &message)
     /// check for each group if it contains enough declared players
     for(int i=0; i<m_groupsCount; i++)
     {
-        E("REQUIRES REBUILD")
         int foundPlayersInGroup = 0;
         for(int playerGroup : m_playerSelections)
         {
@@ -109,15 +108,41 @@ void GroupSelection::setSelectionSize(qsizetype size)
 
 void GroupSelection::assignExampleData()
 {
-    E("REQUIRES REBUILD - can assign non existing group")
     /// uncheck all
     for(int &group : m_playerSelections)
         group = GroupSelection::defaultSelectionValue;
 
-    for(int i=0; i<m_playerSelections.size(); i++)
+    QRandomGenerator* random = QRandomGenerator::global();
+
+    /// m_groupsCount = 6, m_minPlayersInGroup = 1
+    /// m_groupsCount = 3, m_minPlayersInGroup = 2
+    /// m_groupsCount = 2, m_minPlayersInGroup = 3
+    /// lSize >= 6
+
+    int lSize = m_playerSelections.size();
+    int additionalPlayers = lSize - (m_groupsCount*m_minPlayersInGroup);
+
+    /// set required players
+    for(int i=0; i<lSize - additionalPlayers; i++)
     {
         int groupIndex = i/m_minPlayersInGroup; // gives 1->{0,1,2,3,4,5} or 2->{0,0,1,1,2,2} or 3->{0,0,0,1,1,1}
         m_playerSelections[i] = groupIndex;
+    }
+
+    /// set optional players - not finished
+    // int diffPlayersInGroup = m_maxPlayersInGroup - m_minPlayersInGroup;
+    // int optionalPlayersToSet = diffPlayersInGroup * m_groupsCount;
+    // for(int i=0; i<additionalPlayers; i++)
+    // {
+    //     int offset = lSize-1;
+    //     int groupIndex = i/m_minPlayersInGroup;
+    //     m_playerSelections[offset + i] = groupIndex;
+    // }
+
+    /// shuffle list
+    for (int i = lSize - 1; i > 0; --i) {
+        int j = random->bounded(i + 1);                         // Losowy indeks od 0 do i
+        qSwap(m_playerSelections[i], m_playerSelections[j]);    // Zamiana elementów
     }
 
     emit this->playerSelectionsChanged();
@@ -163,13 +188,7 @@ const IntList &GroupSelection::getPlayerSelections() const
 
 const Team *GroupSelection::getTeamQml() const
 {
-    if(m_team.isNull())
-    {
-        W("team is null")
-        return nullptr;
-    }
-
-    return m_team.toStrongRef().data();
+    return m_team.data();
 }
 
 QStringList GroupSelection::getComboBoxModel() const

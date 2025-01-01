@@ -1,7 +1,8 @@
 #include "Round.h"
 
-Round::Round(QObject *parent)
+Round::Round(TeamPtrList &teams, QObject *parent)
     : QObject{parent}
+    , m_teams{teams}
     , m_currentRoundStage{RoundStageEnum::SingielsSelection}
 {
     DOLT(this)
@@ -16,8 +17,7 @@ Round::~Round()
 
 void Round::initMatches()
 {
-    const TeamPtrList &teams = globalTeams;
-    const int teamSize = teams.size();
+    const int teamSize = m_teams.size();
 
     m_matches.reserve(m_arrangement.size());
     for(int i=0; i<m_arrangement.size(); i++)
@@ -37,8 +37,8 @@ void Round::initMatches()
         QObject::connect(
             this, &Round::currentRoundStageChanged,
             match.data(), &Match::currentRoundStageChanged);
-        match->setTeamLeft(teams[t1]);
-        match->setTeamRight(teams[t2]);
+        match->setTeamLeft(m_teams[t1]);
+        match->setTeamRight(m_teams[t2]);
         match->initMatchesTypes();
 
         m_matches.append(match);
