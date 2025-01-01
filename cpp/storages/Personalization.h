@@ -32,6 +32,7 @@
 #define KEY_MINIMUM_PLAYERS_IN_TEA "minimum players in team"
 #define KEY_REQUIRED_TEAMS_COUNT "required teams count"
 #define KEY_REQUIRED_JUNIORS "requires juniors"
+#define KEY_MAX_POINTS_IN_MATCH "max points in match"
 #define KEY_ROUND_MATCHES "rounds matches"
 
 
@@ -65,6 +66,7 @@ public:
     int getMinimumPlayersInTeam() const;
     int getRequiredTeamsCount() const;
     bool getRequiresJuniors() const;
+    int getMaxPointsInMatch() const;
     const QJsonObject &getRoundsMatches() const;
     const QJsonObject &getExampleData() const;
     int getRoundsCount() const;
@@ -79,6 +81,7 @@ private:
     int m_minimumPlayersInTeam;
     int m_requiredTeamsCount;
     bool m_requiresJuniors;
+    int m_maxPointsInMatch;
     QJsonObject m_roundsMatches;
     QJsonObject m_exampleData;
     int m_roundsCount;
