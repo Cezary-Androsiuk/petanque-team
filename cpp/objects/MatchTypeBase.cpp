@@ -393,19 +393,24 @@ void MatchTypeBase::assignMatchExampleData()
     int maxPointsInMatch = Personalization::getInstance()->getMaxPointsInMatch();
     for(int i=0; i<leftMatchPointsSize; i++)
     {
+
         auto rnd = QRandomGenerator::global();
-        int randomPoints1 = rnd->bounded(maxPointsInMatch +1); // r1 = [0, 13]
-        int randomPoints2 = rnd->bounded(maxPointsInMatch - randomPoints1 +1); // r2 = [0, 13-r1]
+        int mod1 = maxPointsInMatch + 1;
+        int randomPoints1 = rnd->bounded(0, mod1); // r1 = [0, 13]
+        int mod2 = maxPointsInMatch - randomPoints1 +1;
+        int randomPoints2 = rnd->bounded(0, mod2); // r2 = [0, 13-r1]
 
         if(randomPoints1 == randomPoints2)
         {
             randomPoints1 += (randomPoints1 == 0) ? 1 : (randomPoints1-1);
         }
-        ///////////////////////////////////////////////////// HOW THAT VALUES ARE EVEN POSSIBLE: 11 + 6 > 13
+
         if((randomPoints1 + randomPoints2) > maxPointsInMatch)
         {
-            W(QAPF("%d + %d > %d, generated values sum is larger than max points",
+            I(QAPF("%d + %d > %d, generated values sum is larger than max points",
                    randomPoints1, randomPoints2, maxPointsInMatch));
+            /// I CANNOT FIND OUT WHY SOMETIMES THEY DON'T ADD UP
+            /// for example 13 - 9 + 1 gives 9 or something
 
             randomPoints1 = 6;
             randomPoints2 = 3;
