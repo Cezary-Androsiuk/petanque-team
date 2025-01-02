@@ -149,8 +149,12 @@ bool Round::hasNext() const
 
 void Round::goToNext()
 {
+    onMatchEnd();
+
     m_currentRoundStage = static_cast<RoundStageEnum>(m_currentRoundStage+1);
     emit this->currentRoundStageChanged();
+
+    onMatchStart();
 }
 
 void Round::assignExampleData()
@@ -158,6 +162,18 @@ void Round::assignExampleData()
     /// for all matches
     for(auto &matchPtr : m_matches)
         matchPtr->assignExampleData();
+}
+
+void Round::onMatchStart()
+{
+    for(auto &match : m_matches)
+        match->onStart();
+}
+
+void Round::onMatchEnd()
+{
+    for(auto &match : m_matches)
+        match->onEnd();
 }
 
 RoundStageEnum Round::getCurrentRoundStage() const

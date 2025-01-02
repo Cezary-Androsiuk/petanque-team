@@ -17,6 +17,16 @@ Match::~Match()
     DOLT(this)
 }
 
+void Match::onStart()
+{
+    D("before match start")
+}
+
+void Match::onEnd()
+{
+    D("after match end")
+}
+
 void Match::initMatchesTypes()
 {
     m_matchTypes[0] = MatchSingielsPtr::create(m_teamLeft, m_teamRight);

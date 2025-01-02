@@ -46,6 +46,10 @@ public:
 
     void assignExampleData();
 
+private:
+    void onMatchStart();
+    void onMatchEnd();
+
 public:
     /// GETTERS
     RoundStageEnum getCurrentRoundStage() const;

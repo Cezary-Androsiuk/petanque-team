@@ -32,6 +32,9 @@ public:
     explicit Match(RoundStageEnumRPtr roundStageRef, QObject *parent = nullptr);
     ~Match();
 
+    void onStart();
+    void onEnd();
+
     void initMatchesTypes();
 
 public:
