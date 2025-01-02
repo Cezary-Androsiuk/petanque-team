@@ -1,10 +1,11 @@
 REBUILD:
-GroupSelection: verify, assignExampleData
-MatchTypeBase: makeGroupsOfPlayersList
+OK - GroupSelection: verify, assignExampleData
+OK - MatchTypeBase: makeGroupsOfPlayersList
 
 IMPLEMENT:
 Player: points
-Team/Event/Phase/SubPhase: implement different lists of Teams for different Phases/SubPhases and compute teams for second phase using points
+OK - Team/Event/Phase/SubPhase: implement different lists of Teams for different Phases/SubPhases 
+Team/Event/Phase/SubPhase: compute teams for second phase using points
 RoundSummary qml
 Finish qml
 Add new Player (while gameplay)
