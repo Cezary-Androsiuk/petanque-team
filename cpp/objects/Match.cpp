@@ -19,12 +19,12 @@ Match::~Match()
 
 void Match::onStart()
 {
-    D("before match start")
+    D(QAPF("before match start: %p", this), Log::Action::SaveSession)
 }
 
 void Match::onEnd()
 {
-    D("after match end")
+    D(QAPF("after match end: %p", this), Log::Action::SaveSession)
 }
 
 void Match::initMatchesTypes()

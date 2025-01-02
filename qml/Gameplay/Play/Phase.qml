@@ -200,21 +200,6 @@ Item {
             }
         }
 
-        // Button{
-        //     id: backButton
-        //     anchors{
-        //         right: centerItem.left
-        //         rightMargin: 5
-        //         verticalCenter: parent.verticalCenter
-        //     }
-        //     enabled: Backend.event.hasPrevRoundStage;
-
-        //     text: "Back"
-        //     onClicked: {
-        //         Backend.event.goToPrevRoundStage();
-        //     }
-        // }
-
         Button{
             id: nextButton
             anchors{
@@ -224,7 +209,9 @@ Item {
             }
             text: "Next"
             onClicked: {
-                log.i("next pressed", "Phase.qml -> nextButton -> onClicked")
+                log.i("next pressed",
+                      "Phase.qml -> nextButton -> onClicked",
+                      log.toAction("save session"))
                 phase.phaseVar.verify();
             }
         }

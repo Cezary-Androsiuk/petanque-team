@@ -15,11 +15,13 @@ SubPhase::~SubPhase()
 
 void SubPhase::onStart()
 {
+    D(QAPF("before subPhase start: %p", this), Log::Action::SaveSession)
     this->roundStart();
 }
 
 void SubPhase::onEnd()
 {
+    D(QAPF("after subPhase end: %p", this), Log::Action::SaveSession)
     this->roundEnd();
 }
 
@@ -170,7 +172,8 @@ void SubPhase::goToNext()
 
         m_currentRoundIndex ++;
         emit this->currentRoundIndexChanged();
-        D("going to         round: " + QString::number(m_currentRoundIndex));
+        D("starting round: " + QString::number(m_currentRoundIndex, Log::Action::SaveSession),
+          Log::Action::SaveSession);
 
         this->roundStart();
     }

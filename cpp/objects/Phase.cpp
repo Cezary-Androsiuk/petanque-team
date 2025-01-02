@@ -14,11 +14,13 @@ Phase::~Phase()
 
 void Phase::onStart()
 {
+    D(QAPF("before phase start: %p", this), Log::Action::SaveSession)
     this->subPhaseStart();
 }
 
 void Phase::onEnd()
 {
+    D(QAPF("after phase end: %p", this), Log::Action::SaveSession)
     this->subPhaseEnd();
 }
 

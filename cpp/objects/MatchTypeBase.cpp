@@ -24,7 +24,7 @@ void MatchTypeBase::initSelection()
 {
     if(m_selectionInitialized)
     {
-        I("prevented double initialization")
+        I("prevented double initialization", Log::Action::SaveSession)
         return;
     }
 

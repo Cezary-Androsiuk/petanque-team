@@ -17,11 +17,13 @@ Round::~Round()
 
 void Round::onStart()
 {
+    D(QAPF("before round start: %p", this), Log::Action::SaveSession)
     this->matchStart();
 }
 
 void Round::onEnd()
 {
+    D(QAPF("after round end: %p", this), Log::Action::SaveSession)
     this->matchEnd();
 }
 
