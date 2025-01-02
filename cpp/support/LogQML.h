@@ -19,10 +19,14 @@ public:
     cQS getSessionLogs() const;
 
 public slots:
-    void i(cQS log, QString func = "");
-    void w(cQS log, QString func = "");
-    void e(cQS log, QString func = "");
-    void d(cQS log, QString func = "");
+    Log::Action toAction(const QString &action);
+    Log::Action toAction(int action);
+
+public slots:
+    void i(cQS log, QString func = "", Log::Action action = Log::Action::All);
+    void w(cQS log, QString func = "", Log::Action action = Log::Action::All);
+    void e(cQS log, QString func = "", Log::Action action = Log::Action::All);
+    void d(cQS log, QString func = "", Log::Action action = Log::Action::All);
 
 signals:
 };

@@ -84,11 +84,11 @@ public:
         None = 0,
         Save = 1 << 0,
         Print = 1 << 1,
-        Sesion = 1 << 2,
+        Session = 1 << 2,
         SavePrint = Save | Print,
-        SaveSesion = Save | Sesion,
-        PrintSesion = Print | Sesion,
-        All = Save | Print | Sesion,
+        SaveSession = Save | Session,
+        PrintSession = Print | Session,
+        All = Save | Print | Session,
     };
 
     typedef const QString &cQS;

@@ -93,7 +93,7 @@ void Log::log(const char *type, cQS func, cQS log, Log::Action action)
     if(limitedAction & Action::Save)
         Log::saveFile(logWithTime);
 
-    if(limitedAction & Action::Sesion)
+    if(limitedAction & Action::Session)
         Log::addSession(logWithoutTime);
 }
 
