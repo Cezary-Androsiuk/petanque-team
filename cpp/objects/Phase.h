@@ -25,6 +25,9 @@ public:
     explicit Phase(PhaseEnum phase, QObject *parent = nullptr);
     ~Phase();
 
+    void onStart();
+    void onEnd();
+
     void initSubPhases(const TeamPtrLists &listsOfTeams);
 
 public:
@@ -40,6 +43,10 @@ public slots:
     void goToNext();
 
     void assignExampleData();
+
+private:
+    void subPhaseStart();
+    void subPhaseEnd();
 
 public:
     /// GETTERS

@@ -51,13 +51,13 @@ public:
 public slots:
     /// STAGE STUFF
     void goToNextStage();
-    void goToPrevStage();
-    void startFinishStage();
+    void goToPrevStage(); // ?
+    void startFinishStage(); // ?
 
     /// PHASE STUFF
     bool hasNextPhase();
-    void startFirstPhase();
-    void startSecondPhase();
+    void startFirstPhase(); /// executed in qml, Event.qml
+    void startSecondPhase(); /// executed in qml, Phase.qml
 
     /// TEAM STUFF
     void createDetachedTeam();
@@ -74,6 +74,8 @@ public slots:
     void assignExampleData();
 
 private:
+    void firstPhaseStart();
+    void secondPhaseEnd();
     void createListForFirstPhase(TeamPtrList &teams1) const;
     void createListForSecondPhase(TeamPtrList &teams2a, TeamPtrList &teams2b) const;
 

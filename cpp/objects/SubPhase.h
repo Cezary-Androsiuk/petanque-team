@@ -28,6 +28,9 @@ public:
     explicit SubPhase(int roundsCount, QObject *parent = nullptr);
     ~SubPhase();
 
+    void onStart();
+    void onEnd();
+
     void initRounds(QJsonArray arrangements);
 
 public:
@@ -43,6 +46,10 @@ public:
     void goToNext();
 
     void assignExampleData();
+
+private:
+    void roundStart();
+    void roundEnd();
 
 public:
     /// GETTERS

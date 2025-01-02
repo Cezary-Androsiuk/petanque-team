@@ -15,6 +15,16 @@ Round::~Round()
 
 }
 
+void Round::onStart()
+{
+    this->matchStart();
+}
+
+void Round::onEnd()
+{
+    this->matchEnd();
+}
+
 void Round::initMatches()
 {
     const int teamSize = m_teams.size();
@@ -149,12 +159,12 @@ bool Round::hasNext() const
 
 void Round::goToNext()
 {
-    onMatchEnd();
+    matchEnd();
 
     m_currentRoundStage = static_cast<RoundStageEnum>(m_currentRoundStage+1);
     emit this->currentRoundStageChanged();
 
-    onMatchStart();
+    matchStart();
 }
 
 void Round::assignExampleData()
@@ -164,13 +174,13 @@ void Round::assignExampleData()
         matchPtr->assignExampleData();
 }
 
-void Round::onMatchStart()
+void Round::matchStart()
 {
     for(auto &match : m_matches)
         match->onStart();
 }
 
-void Round::onMatchEnd()
+void Round::matchEnd()
 {
     for(auto &match : m_matches)
         match->onEnd();

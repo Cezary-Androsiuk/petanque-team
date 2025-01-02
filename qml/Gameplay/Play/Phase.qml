@@ -224,6 +224,7 @@ Item {
             }
             text: "Next"
             onClicked: {
+                log.i("next pressed", "Phase.qml -> nextButton -> onClicked")
                 phase.phaseVar.verify();
             }
         }

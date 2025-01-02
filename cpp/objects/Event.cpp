@@ -162,8 +162,19 @@ void Event::goToNextStage()
         W("trying to exceed the highest stage!");
         return;
     }
+
+    if(m_currentStage == StageEnum::Play)
+    {
+        this->secondPhaseEnd();
+    }
+
     m_currentStage = static_cast<StageEnum>(m_currentStage +1);
     emit this->currentStageChanged();
+
+    if(m_currentStage == StageEnum::Play)
+    {
+        this->firstPhaseStart();
+    }
 }
 
 void Event::goToPrevStage()
@@ -195,8 +206,8 @@ void Event::startFirstPhase()
     TeamPtrList teams1;
     this->createListForFirstPhase(teams1);
 
-    m_phases[0] = PhasePtr::create(PhaseEnum::First);
-    m_phases[0]->initSubPhases({m_teams});
+    m_phases[PhaseEnum::First] = PhasePtr::create(PhaseEnum::First);
+    m_phases[PhaseEnum::First]->initSubPhases({m_teams});
 
     emit this->phasesChanged();
 
@@ -206,18 +217,23 @@ void Event::startFirstPhase()
 
 void Event::startSecondPhase()
 {
+    m_phases[PhaseEnum::First]->onEnd();
+
     D("start second phase")
 
     TeamPtrList teams2a, teams2b;
     this->createListForSecondPhase(teams2a, teams2b);
 
-    m_phases[1] = PhasePtr::create(PhaseEnum::Second);
-    m_phases[1]->initSubPhases({teams2a,teams2b});
+    m_phases[PhaseEnum::Second] = PhasePtr::create(PhaseEnum::Second);
+    m_phases[PhaseEnum::Second]->initSubPhases({teams2a,teams2b});
 
     emit this->phasesChanged();
 
     m_currentPhase = PhaseEnum::Second;
     emit this->currentPhaseChanged();
+
+    m_phases[PhaseEnum::Second]->onStart();
+    /// onEnd called in goToNextStage
 }
 
 void Event::createDetachedTeam()
@@ -435,6 +451,16 @@ void Event::assignExampleData()
     }
 
     emit this->teamsChanged();
+}
+
+void Event::firstPhaseStart()
+{
+    m_phases[PhaseEnum::First]->onStart();
+}
+
+void Event::secondPhaseEnd()
+{
+    m_phases[PhaseEnum::Second]->onEnd();
 }
 
 void Event::createListForFirstPhase(TeamPtrList &teams1) const

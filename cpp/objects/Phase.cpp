@@ -12,6 +12,16 @@ Phase::~Phase()
     DOLT(this)
 }
 
+void Phase::onStart()
+{
+    this->subPhaseStart();
+}
+
+void Phase::onEnd()
+{
+    this->subPhaseEnd();
+}
+
 void Phase::initSubPhases(const TeamPtrLists &listsOfTeams)
 {
     Personalization *const p = Personalization::getInstance();
@@ -147,6 +157,12 @@ bool Phase::hasNext()
 
 void Phase::goToNext()
 {
+    if(!this->hasNext())
+    {
+        W("trying to go next, where is no next")
+        return;
+    }
+
     for(auto &subPhasePtr : m_subPhases)
     {
         subPhasePtr->goToNext();
@@ -158,6 +174,18 @@ void Phase::assignExampleData()
     /// for all subPhases
     for(auto &subPhasePtr : m_subPhases)
         subPhasePtr->assignExampleData();
+}
+
+void Phase::subPhaseStart()
+{
+    for(auto &subPhase : m_subPhases)
+        subPhase->onStart();
+}
+
+void Phase::subPhaseEnd()
+{
+    for(auto &subPhase : m_subPhases)
+        subPhase->onEnd();
 }
 
 int Phase::getSubPhasesCount() const

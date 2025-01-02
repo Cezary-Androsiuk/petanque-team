@@ -13,6 +13,16 @@ SubPhase::~SubPhase()
     DOLT(this)
 }
 
+void SubPhase::onStart()
+{
+    this->roundStart();
+}
+
+void SubPhase::onEnd()
+{
+    this->roundEnd();
+}
+
 void SubPhase::initRounds(QJsonArray jArrangements)
 {
     int roundsCount = m_rounds.size() > jArrangements.size() ? jArrangements.size() : m_rounds.size();
@@ -156,9 +166,13 @@ void SubPhase::goToNext()
     }
     else
     {
+        this->roundEnd();
+
         m_currentRoundIndex ++;
         emit this->currentRoundIndexChanged();
         D("going to         round: " + QString::number(m_currentRoundIndex));
+
+        this->roundStart();
     }
 }
 
@@ -173,6 +187,16 @@ void SubPhase::assignExampleData()
 
     /// only current round
     m_rounds[m_currentRoundIndex]->assignExampleData();
+}
+
+void SubPhase::roundStart()
+{
+    m_rounds[m_currentRoundIndex]->onStart();
+}
+
+void SubPhase::roundEnd()
+{
+    m_rounds[m_currentRoundIndex]->onEnd();
 }
 
 QString SubPhase::getName() const

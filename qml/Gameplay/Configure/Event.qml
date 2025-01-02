@@ -26,8 +26,8 @@ Item {
     /////////////////// onEventStartConfirmed
     function onConfirmed(){
         Backend.memory.save(); // saves data
-        Backend.event.goToNextStage() // changes stage from Configure to Play(Continue)
         Backend.event.startFirstPhase();
+        Backend.event.goToNextStage() // changes stage from Configure to Play(Continue)
         // Backend.memory.save(); // saves changed stage // exiting doing it as well // and timer will be
     }
 

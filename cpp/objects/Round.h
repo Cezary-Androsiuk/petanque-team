@@ -30,6 +30,9 @@ public:
     explicit Round(TeamPtrList &teams, QObject *parent = nullptr);
     ~Round();
 
+    void onStart();
+    void onEnd();
+
     void initMatches();
 
 public:
@@ -47,8 +50,8 @@ public:
     void assignExampleData();
 
 private:
-    void onMatchStart();
-    void onMatchEnd();
+    void matchStart();
+    void matchEnd();
 
 public:
     /// GETTERS
