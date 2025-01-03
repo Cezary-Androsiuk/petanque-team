@@ -12,20 +12,22 @@
 #include <QTextStream>
 #include <QIODevice>
 
+#include "LogSession.h"
+
 #define QAPF(...) QString::asprintf(__VA_ARGS__) /* QString as printf */
 #define QAPF_T(text, ...) QString::asprintf(tr(text).toStdString().c_str(), __VA_ARGS__) /* QString as printf translate */
 
-#define DISPLAY_OBJECT_LIFE_TIME false
+#define DISPLAY_OBJECT_LIFE_TIME true
 
 /// Display Object Life Time Variable - Force
-#define DOLTV_F(ptr, argsStr) {                                 \
-    QString f_name(__FUNCTION__);                               \
-    if(f_name.isEmpty())    f_name = "unknown action";          \
-    if(f_name[0] == '~')    f_name = "Destroying " + f_name;    \
-    else                    f_name = "Creating " + f_name;      \
-    QString qargsStr(argsStr);                                  \
-    if(!qargsStr.isEmpty()) qargsStr = " (" + qargsStr + ")";   \
-    D(f_name + qargsStr + QAPF(": %p", ptr));                   \
+#define DOLTV_F(ptr, argsStr) {                                         \
+    QString f_name(__FUNCTION__);                                       \
+    if(f_name.isEmpty())    f_name = "unknown action";                  \
+    if(f_name[0] == '~')    f_name = "Destroying " + f_name;            \
+    else                    f_name = "Creating " + f_name;              \
+    QString qargsStr(argsStr);                                          \
+    if(!qargsStr.isEmpty()) qargsStr = " (" + qargsStr + ")";           \
+    D(f_name + qargsStr + QAPF(": %p", ptr), Log::Action::SaveSession); \
 }
 
 /// Display Object Life Time - Force
@@ -70,7 +72,7 @@ if(DISPLAY_OBJECT_LIFE_TIME) {  \
 //////////////////////////////////////////////////
 
 
-#define LOG_FILE "Logs.log"
+#define LOG_FILE "petanque_team_logs.log"
 #define EST_FUNCTION_LENGTH 90 // estimated function name length what will be reserved while creating log
 #define SHORTER_FUNCTION_FILL_CHARACTER ' ' // characters that fills area before function name to fit estimated function name length
 #define CONTENT_SPACE 10 // space between function name and content
@@ -103,13 +105,14 @@ public:
 
 private:
     static QString time();
-    static QString buildPrefix(cQS type, cQS func, bool time = false);
+    static QString buildPrefix(LogTypeEnum logType, cQS fuction, bool time = false);
     static QString buildStartPrefix();
 
-    static void log(const char *type, cQS func, cQS log, Action action);
+    static void log(LogTypeEnum logType, cQS fuction, cQS log, Action action = Action::All);
     static void print(cQS content);
     static void saveFile(cQS content);
     static void addSession(cQS content);
+    // static void addSession(LogTypeEnum logType, const QString &function, const QString &message);
 
 public:
     class Convert{
@@ -118,7 +121,9 @@ public:
     };
 
     static bool firstLog;
-    static QString sessionLogs;
+
+    // static LogSession currentSession;
+    static QString currentSession;
 };
 
 #endif // LOG_H

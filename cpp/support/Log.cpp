@@ -1,26 +1,27 @@
 #include "cpp/support/Log.h"
 
 bool Log::firstLog = true;
-QString Log::sessionLogs = QString();
+// LogSession Log::currentSession = LogSession();
+QString Log::currentSession = QString();
 
 void Log::info(cQS func, cQS log, Log::Action action)
 {
-    Log::log("I", func, log, action);
+    Log::log(LogTypeEnum::Info, func, log, action);
 }
 
 void Log::warning(cQS func, cQS log, Log::Action action)
 {
-    Log::log("W", func, log, action);
+    Log::log(LogTypeEnum::Warning, func, log, action);
 }
 
 void Log::error(cQS func, cQS log, Log::Action action)
 {
-    Log::log("E", func, log, action);
+    Log::log(LogTypeEnum::Error, func, log, action);
 }
 
 void Log::debug(cQS func, cQS log, Log::Action action)
 {
-    Log::log("D", func, log, action);
+    Log::log(LogTypeEnum::Debug, func, log, action);
 }
 
 QString Log::time()
@@ -29,7 +30,7 @@ QString Log::time()
     return currentDateTime.toString("yyyy-MM-dd HH:mm:ss.zzz");
 }
 
-QString Log::buildPrefix(cQS type, cQS func, bool time)
+QString Log::buildPrefix(LogTypeEnum logType, cQS function, bool time)
 {
     QString prefix;
 
@@ -38,23 +39,24 @@ QString Log::buildPrefix(cQS type, cQS func, bool time)
         prefix = "[" + Log::time() +  "]" + " ";
 
     // set type
-    prefix += type;
-
-    prefix += " ";
-
-    if(type == "E")
-        prefix += "### ### ";
-    else if(type == "W")
-        prefix += "### ";
-
-    // set function name
-    if(func.length() >= EST_FUNCTION_LENGTH)
-        prefix += func;
+    if(logType == LogTypeEnum::Info)            prefix += "I ";
+    else if(logType == LogTypeEnum::Warning)    prefix += "W " "### ";
+    else if(logType == LogTypeEnum::Error)      prefix += "E " "### ### ";
+    else if(logType == LogTypeEnum::Debug)      prefix += "D ";
     else
     {
-        size_t fill = EST_FUNCTION_LENGTH - func.length() - prefix.size();
+        qDebug() << "unknown type" << logType << "returning: ?";
+        prefix += "? ";
+    }
+
+    // set function name
+    if(function.length() >= EST_FUNCTION_LENGTH)
+        prefix += function;
+    else
+    {
+        size_t fill = EST_FUNCTION_LENGTH - function.length() - prefix.size();
         prefix += QString(SHORTER_FUNCTION_FILL_CHARACTER).repeated(fill);
-        prefix += func;
+        prefix += function;
     }
 
 #if SPACE_BETWEEN_CONTENT_SPACE_AND_CONTENT
@@ -80,12 +82,12 @@ QString Log::buildStartPrefix()
     return prefix + "--- [APPLICATION STARTED] ---";
 }
 
-void Log::log(const char *type, cQS func, cQS log, Log::Action action)
+void Log::log(LogTypeEnum logType, cQS function, cQS log, Log::Action action)
 {
     Action limitedAction = Action( (action | Log::actionForceLowest) & Log::actionForceHighest );
 
-    QString logWithTime = buildPrefix(type, func, true) + log;
-    QString logWithoutTime = buildPrefix(type, func, false) + log;
+    QString logWithTime = buildPrefix(logType, function, true) + log;
+    QString logWithoutTime = buildPrefix(logType, function, false) + log;
 
     if(limitedAction & Action::Print)
         Log::print(logWithoutTime);
@@ -95,6 +97,7 @@ void Log::log(const char *type, cQS func, cQS log, Log::Action action)
 
     if(limitedAction & Action::Session)
         Log::addSession(logWithoutTime);
+        // Log::addSession(logType, function, log);
 }
 
 void Log::print(cQS content)
@@ -123,8 +126,13 @@ void Log::saveFile(cQS content)
 
 void Log::addSession(cQS content)
 {
-    Log::sessionLogs += content + "\n";
+    Log::currentSession += content + "\n";
 }
+
+// void Log::addSession(LogTypeEnum logType, const QString &function, const QString &message)
+// {
+//     Log::currentSession.addPart(logType, function, message);
+// }
 
 QString Log::Convert::listUrlToString(QList<QUrl> list)
 {

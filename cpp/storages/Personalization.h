@@ -15,7 +15,7 @@
 #include "cpp/support/Log.h"
 #include "cpp/storages/DefaultPersonalizationData.h"
 
-#define JSON_FILE "personalization.json"
+#define JSON_FILE "petanque_team_personalization.json"
 #define PRINT_VALUES false // if true, prints values after loadPersonalization and before savePersonalization
 #define KEY_NOT_FOUND_MESSAGE W(JSON_FILE " file not contains value related with key: " + key); // requires key variable
 #define MARK_ERROR(x) {auto error = (x); W(error);}

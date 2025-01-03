@@ -28,6 +28,8 @@ qt_add_qml_module(appPetanqueTeam
     ################################
     SOURCES cpp/support/Log.h cpp/support/Log.cpp
     SOURCES cpp/support/LogQML.h cpp/support/LogQML.cpp
+    SOURCES cpp/support/LogSession.h cpp/support/LogSession.cpp
+    SOURCES cpp/support/LogSessionPart.h cpp/support/LogSessionPart.cpp
     ################################
     SOURCES cpp/objects/Event.h cpp/objects/Event.cpp
     SOURCES cpp/objects/Phase.h cpp/objects/Phase.cpp
@@ -48,6 +50,7 @@ qt_add_qml_module(appPetanqueTeam
     SOURCES cpp/enums/StageEnum.h cpp/enums/StageEnum.cpp
     SOURCES cpp/enums/PhaseEnum.h cpp/enums/PhaseEnum.cpp
     SOURCES cpp/enums/RoundStageEnum.h cpp/enums/RoundStageEnum.cpp
+    SOURCES cpp/enums/LogTypeEnum.h cpp/enums/LogTypeEnum.cpp
 
 
 

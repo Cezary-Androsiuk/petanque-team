@@ -66,7 +66,7 @@ Item {
             TextArea{
                 id: textArea
 
-                text: log.sessionLogs
+                text: log.currentSession
                 font.family: "Courier New"
                 // wrapMode: Text.WordWrap
                 font.pixelSize: 14

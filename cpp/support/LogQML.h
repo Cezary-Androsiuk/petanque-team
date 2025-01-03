@@ -10,13 +10,13 @@
 class LogQML : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(const QString &sessionLogs READ getSessionLogs CONSTANT FINAL)
+    Q_PROPERTY(const QString &currentSession READ getCurrentSession CONSTANT FINAL)
 public:
     explicit LogQML(QObject *parent = nullptr);
 
     typedef const QString &cQS;
 
-    cQS getSessionLogs() const;
+    cQS getCurrentSession() const;
 
 public slots:
     Log::Action toAction(const QString &action);

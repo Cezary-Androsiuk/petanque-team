@@ -53,9 +53,9 @@ Log::Action LogQML::toAction(int action)
     return Log::Action::All;
 }
 
-LogQML::cQS LogQML::getSessionLogs() const
+LogQML::cQS LogQML::getCurrentSession() const
 {
-    return Log::sessionLogs;
+    return Log::currentSession;
 }
 
 void LogQML::i(cQS log, QString func, Log::Action action)
