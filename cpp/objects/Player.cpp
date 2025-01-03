@@ -24,6 +24,8 @@ QJsonObject Player::serialize() const
     jPlayer[ SERL_AGE_GROUP_KEY ] = EnumConvert::AgeGroupToQString(m_ageGroup);
     jPlayer[ SERL_GENDER_KEY ] = EnumConvert::GenderToQString(m_gender);
     jPlayer[ SERL_IS_TEAM_LEADER_KEY ] = m_isTeamLeader;
+    jPlayer[ SERL_PLAYER_SMALL_POINTS_KEY ] = m_smallPoints;
+    jPlayer[ SERL_PLAYER_LARGE_POINTS_KEY ] = m_largePoints;
 
     return jPlayer;
 }
@@ -52,6 +54,12 @@ void Player::deserialize(const QJsonObject &jPlayer)
 
     m_isTeamLeader = jPlayer[ SERL_IS_TEAM_LEADER_KEY ].toBool();
     emit this->isTeamLeaderChanged();
+
+    m_smallPoints = jPlayer[ SERL_PLAYER_SMALL_POINTS_KEY ].toInt();
+    emit this->smallPointsChanged();
+
+    m_largePoints = jPlayer[ SERL_PLAYER_LARGE_POINTS_KEY ].toInt();
+    emit this->largePointsChanged();
 }
 
 void Player::clear(bool emitting)
@@ -73,6 +81,12 @@ void Player::clear(bool emitting)
 
     m_isTeamLeader = false;
     if(emitting) emit this->isTeamLeaderChanged();
+
+    m_smallPoints = 0;
+    if(emitting) emit this->smallPointsChanged();
+
+    m_largePoints = 0;
+    if(emitting) emit this->largePointsChanged();
 }
 
 void Player::copyFromOtherPlayer(const Player &sourcePlayer)
@@ -89,6 +103,8 @@ void Player::copyFromOtherPlayer(const Player &sourcePlayer)
     m_ageGroup = sourcePlayer.m_ageGroup;
     m_gender = sourcePlayer.m_gender;
     m_isTeamLeader = sourcePlayer.m_isTeamLeader;
+    m_smallPoints = sourcePlayer.m_smallPoints;
+    m_largePoints = sourcePlayer.m_largePoints;
 
     emit this->firstNameChanged();
     emit this->lastNameChanged();
@@ -96,6 +112,8 @@ void Player::copyFromOtherPlayer(const Player &sourcePlayer)
     emit this->ageGroupChanged();
     emit this->genderChanged();
     emit this->isTeamLeaderChanged();
+    emit this->smallPointsChanged();
+    emit this->largePointsChanged();
 }
 
 void Player::assignExampleData(const QJsonObject &jPlayer)

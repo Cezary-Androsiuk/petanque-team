@@ -19,6 +19,8 @@ QJsonObject Team::serialize() const
 {
     QJsonObject jTeam;
     jTeam[ SERL_TEAM_NAME_KEY ] = m_name;
+    jTeam[ SERL_TEAM_SMALL_POINTS_KEY ] = m_smallPoints;
+    jTeam[ SERL_TEAM_LARGE_POINTS_KEY ] = m_largePoints;
 
     QJsonArray jPlayers;
     for(const auto &playerPtr : m_players)
@@ -37,6 +39,12 @@ void Team::deserialize(const QJsonObject &jTeam)
     m_name = jTeam[ SERL_TEAM_NAME_KEY ].toString();
     emit this->nameChanged();
 
+    m_smallPoints = jTeam[ SERL_TEAM_SMALL_POINTS_KEY ].toInt();
+    emit this->smallPointsChanged();
+
+    m_largePoints = jTeam[ SERL_TEAM_LARGE_POINTS_KEY ].toInt();
+    emit this->largePointsChanged();
+
     m_detachedPlayer.clear();
     emit this->detachedPlayerChanged();
 
@@ -54,6 +62,12 @@ void Team::clear(bool emitting)
 {
     m_name.clear();
     if(emitting) emit this->nameChanged();
+
+    m_smallPoints = 0;
+    if(emitting) emit this->smallPointsChanged();
+
+    m_largePoints = 0;
+    if(emitting) emit this->largePointsChanged();
 
     m_detachedPlayer.clear();
     if(emitting) emit this->detachedPlayerChanged();
