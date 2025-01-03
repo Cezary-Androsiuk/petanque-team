@@ -138,6 +138,16 @@ bool Player::getIsTeamLeader() const
     return m_isTeamLeader;
 }
 
+int Player::getSmallPoints() const
+{
+    return m_smallPoints;
+}
+
+int Player::getLargePoints() const
+{
+    return m_largePoints;
+}
+
 void Player::setFirstName(const QString &firstName)
 {
     if (m_firstName == firstName)
@@ -184,4 +194,40 @@ void Player::setIsTeamLeader(bool isTeamLeader)
         return;
     m_isTeamLeader = isTeamLeader;
     emit isTeamLeaderChanged();
+}
+
+void Player::setSmallPoints(int smallPoints)
+{
+    if(m_smallPoints == smallPoints)
+        return;
+
+    m_smallPoints = smallPoints;
+    emit this->smallPointsChanged();
+}
+
+void Player::setLargePoints(int largePoints)
+{
+    if(m_largePoints == largePoints)
+        return;
+
+    m_largePoints = largePoints;
+    emit this->largePointsChanged();
+}
+
+void Player::addSmallPoints(int smallPoints)
+{
+    if(smallPoints <= 0)
+        return;
+
+    m_smallPoints += smallPoints;
+    emit this->smallPointsChanged();
+}
+
+void Player::addLargePoints(int largePoints)
+{
+    if(largePoints <= 0)
+        return;
+
+    m_largePoints += largePoints;
+    emit this->largePointsChanged();
 }

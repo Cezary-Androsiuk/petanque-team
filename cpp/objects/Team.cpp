@@ -191,12 +191,58 @@ const PlayerPtrList &Team::getPlayers() const
     return m_players;
 }
 
+int Team::getSmallPoints() const
+{
+    return m_smallPoints;
+}
+
+int Team::getLargePoints() const
+{
+    return m_largePoints;
+}
+
 void Team::setName(const QString &name)
 {
     if(m_name == name)
         return;
     m_name = name;
     emit this->nameChanged();
+}
+
+void Team::setSmallPoints(int smallPoints)
+{
+    if(m_smallPoints == smallPoints)
+        return;
+
+    m_smallPoints = smallPoints;
+    emit this->smallPointsChanged();
+}
+
+void Team::setLargePoints(int largePoints)
+{
+    if(m_largePoints == largePoints)
+        return;
+
+    m_largePoints = largePoints;
+    emit this->largePointsChanged();
+}
+
+void Team::addSmallPoints(int smallPoints)
+{
+    if(smallPoints <= 0)
+        return;
+
+    m_smallPoints += smallPoints;
+    emit this->smallPointsChanged();
+}
+
+void Team::addLargePoints(int largePoints)
+{
+    if(largePoints <= 0)
+        return;
+
+    m_largePoints += largePoints;
+    emit this->largePointsChanged();
 }
 
 Player *Team::getDetachedPlayerQml() const
