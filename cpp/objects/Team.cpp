@@ -2,6 +2,8 @@
 
 Team::Team(QObject *parent)
     : QObject{parent}
+    , m_smallPoints{0}
+    , m_largePoints{0}
 {
     DOLT(this)
 }

@@ -5,6 +5,8 @@ Player::Player(QObject *parent)
     , m_ageGroup{AgeGroupEnum::Junior}
     , m_gender{GenderEnum::Male}
     , m_isTeamLeader{false}
+    , m_smallPoints{0}
+    , m_largePoints{0}
 {
     DOLT(this)
 }
