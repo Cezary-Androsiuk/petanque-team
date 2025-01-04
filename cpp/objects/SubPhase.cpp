@@ -27,6 +27,8 @@ void SubPhase::onEnd()
 
 void SubPhase::initRounds(QJsonArray jArrangements)
 {
+    D(QAPF("init rounds: %p", this), Log::Action::SaveSession)
+
     int roundsCount = m_rounds.size() > jArrangements.size() ? jArrangements.size() : m_rounds.size();
     /// if rounds count not equal to arrangement count, display error and use least value
     if(m_rounds.size() != jArrangements.size())

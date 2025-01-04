@@ -17,18 +17,20 @@ Round::~Round()
 
 void Round::onStart()
 {
-    D(QAPF("before round start: %p", this), Log::Action::All)
+    D(QAPF("before round start: %p", this), Log::Action::SaveSession)
     this->matchStart();
 }
 
 void Round::onEnd()
 {
-    D(QAPF("after round end: %p", this), Log::Action::All)
+    D(QAPF("after round end: %p", this), Log::Action::SaveSession)
     this->matchEnd();
 }
 
 void Round::initMatches()
 {
+    D(QAPF("init matches: %p", this), Log::Action::SaveSession)
+
     const int teamSize = m_teams.size();
 
     m_matches.reserve(m_arrangement.size());

@@ -22,7 +22,7 @@ MatchTypeBase::~MatchTypeBase()
 
 void MatchTypeBase::onSelectionStart()
 {
-    D(QAPF("before matchTypeBase selection start: %p", this), Log::Action::All)
+    D(QAPF("before matchTypeBase selection start: %p", this), Log::Action::SaveSession)
 
     this->initSelection();
 
@@ -44,7 +44,7 @@ void MatchTypeBase::onSelectionStart()
 
 void MatchTypeBase::onSelectionEnd()
 {
-    D(QAPF("after matchTypeBase selection end: %p", this), Log::Action::All)
+    D(QAPF("after matchTypeBase selection end: %p", this), Log::Action::SaveSession)
 
     if(m_groupSelectionLeft.isNull())
     {
@@ -64,7 +64,7 @@ void MatchTypeBase::onSelectionEnd()
 
 void MatchTypeBase::onMatchStart()
 {
-    D(QAPF("before matchTypeBase match start: %p", this), Log::Action::All)
+    D(QAPF("before matchTypeBase match start: %p", this), Log::Action::SaveSession)
 
     this->initMatch();
 
@@ -86,7 +86,7 @@ void MatchTypeBase::onMatchStart()
 
 void MatchTypeBase::onMatchEnd()
 {
-    D(QAPF("after matchTypeBase match end: %p", this), Log::Action::All)
+    D(QAPF("after matchTypeBase match end: %p", this), Log::Action::SaveSession)
 
     if(m_groupMatchLeft.isNull())
     {
@@ -102,15 +102,17 @@ void MatchTypeBase::onMatchEnd()
 
     m_groupMatchLeft->onEnd();
     m_groupMatchRight->onEnd();
+
+    this->addPoints();
 }
 
 void MatchTypeBase::initSelection()
 {
-    D(QAPF("init selection: %p", this), Log::Action::All)
+    D(QAPF("init selection: %p", this), Log::Action::SaveSession)
 
     if(m_selectionInitialized)
     {
-        I("prevented double initialization", Log::Action::All)
+        I("prevented double initialization", Log::Action::SaveSession)
         return;
     }
 
@@ -148,11 +150,11 @@ void MatchTypeBase::initSelection()
 
 void MatchTypeBase::initMatch()
 {
-    D(QAPF("init match: %p", this), Log::Action::All)
+    D(QAPF("init match: %p", this), Log::Action::SaveSession)
 
     if(m_matchInitialized)
     {
-        I("prevented double initialization", Log::Action::All)
+        I("prevented double initialization", Log::Action::SaveSession)
         return;
     }
 
@@ -198,6 +200,25 @@ void MatchTypeBase::initMatch()
     m_matchInitialized = true;
 
     emit this->matchChanged();
+}
+
+void MatchTypeBase::addPoints()
+{
+    D("adding points after match")
+
+    this->addPointsForTeam();
+
+    this->addPointsForPlayers();
+}
+
+void MatchTypeBase::addPointsForTeam()
+{
+
+}
+
+void MatchTypeBase::addPointsForPlayers()
+{
+
 }
 
 QJsonObject MatchTypeBase::serialize() const

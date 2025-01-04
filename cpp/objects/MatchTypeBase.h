@@ -48,8 +48,15 @@ public:
     void onMatchEnd();
 
 public slots:
-    void initSelection(); /// call on complition qml selection
-    void initMatch(); /// call on complition qml match
+    /// following methods are called in qml (in selection and match) as well here in onStart methods
+    /// i mean that is pain in the ass, maybe i will reiplement it in future
+    void initSelection();
+    void initMatch();
+
+private:
+    void addPoints();
+    void addPointsForTeam();
+    void addPointsForPlayers();
 
 public:
     QJsonObject serialize() const override;

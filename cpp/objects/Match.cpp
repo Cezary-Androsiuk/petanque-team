@@ -19,7 +19,7 @@ Match::~Match()
 
 void Match::onStart()
 {
-    D(QAPF("before match start: %p", this), Log::Action::All)
+    D(QAPF("before match start: %p", this), Log::Action::SaveSession)
 
     if(*m_currentRoundStage == RoundStageEnum::RoundSummary)
         return;
@@ -41,7 +41,7 @@ void Match::onStart()
 
 void Match::onEnd()
 {
-    D(QAPF("after match end: %p", this), Log::Action::All)
+    D(QAPF("after match end: %p", this), Log::Action::SaveSession)
 
     if(*m_currentRoundStage == RoundStageEnum::RoundSummary)
         return;

@@ -17,12 +17,12 @@ GroupSelection::~GroupSelection()
 
 void GroupSelection::onStart()
 {
-    D(QAPF("before groupSelection start: %p", this), Log::Action::All)
+    D(QAPF("before groupSelection start: %p", this), Log::Action::SaveSession)
 }
 
 void GroupSelection::onEnd()
 {
-    D(QAPF("after groupSelection end: %p", this), Log::Action::All)
+    D(QAPF("after groupSelection end: %p", this), Log::Action::SaveSession)
 }
 
 QJsonObject GroupSelection::serialize() const
