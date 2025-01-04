@@ -105,10 +105,11 @@ public:
 
 private:
     static QString time();
-    static QString buildPrefix(LogTypeEnum logType, cQS fuction, bool time = false);
+    static QString buildPrefix(LogTypeEnum logType, cQS function, bool time = false);
     static QString buildStartPrefix();
 
-    static void log(LogTypeEnum logType, cQS fuction, cQS log, Action action = Action::All);
+    static void log(LogTypeEnum logType, cQS function, cQS log, Action action = Action::All);
+    static void safeLog(LogTypeEnum logType, cQS function, cQS log, Action action = Action::All);
     static void print(cQS content);
     static void saveFile(cQS content);
     static void addSession(cQS content);

@@ -6,22 +6,22 @@ QString Log::currentSession = QString();
 
 void Log::info(cQS func, cQS log, Log::Action action)
 {
-    Log::log(LogTypeEnum::Info, func, log, action);
+    Log::safeLog(LogTypeEnum::Info, func, log, action);
 }
 
 void Log::warning(cQS func, cQS log, Log::Action action)
 {
-    Log::log(LogTypeEnum::Warning, func, log, action);
+    Log::safeLog(LogTypeEnum::Warning, func, log, action);
 }
 
 void Log::error(cQS func, cQS log, Log::Action action)
 {
-    Log::log(LogTypeEnum::Error, func, log, action);
+    Log::safeLog(LogTypeEnum::Error, func, log, action);
 }
 
 void Log::debug(cQS func, cQS log, Log::Action action)
 {
-    Log::log(LogTypeEnum::Debug, func, log, action);
+    Log::safeLog(LogTypeEnum::Debug, func, log, action);
 }
 
 QString Log::time()
@@ -95,9 +95,25 @@ void Log::log(LogTypeEnum logType, cQS function, cQS log, Log::Action action)
     if(limitedAction & Action::Save)
         Log::saveFile(logWithTime);
 
-    if(limitedAction & Action::Session)
-        Log::addSession(logWithoutTime);
-        // Log::addSession(logType, function, log);
+    try{
+        if(limitedAction & Action::Session)
+        {
+            Log::addSession(logWithoutTime);
+            // Log::addSession(logType, function, log);
+        }
+    }
+    catch (...) {
+        qDebug() << "adding log to session failed";
+    }
+}
+
+void Log::safeLog(LogTypeEnum logType, cQS function, cQS log, Action action)
+{
+    try {
+        Log::log(logType, function, log, action);
+    } catch (...) {
+        qDebug() << "logging failed";
+    }
 }
 
 void Log::print(cQS content)

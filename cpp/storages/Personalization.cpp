@@ -11,7 +11,7 @@ Personalization::Personalization(QObject *parent)
 
 Personalization::~Personalization()
 {
-    DOLT(this)
+    // DOLT(this) // causing crash
     this->save();
 }
 
