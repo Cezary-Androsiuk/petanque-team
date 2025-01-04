@@ -17,12 +17,12 @@ GroupMatch::~GroupMatch()
 
 void GroupMatch::onStart()
 {
-    D(QAPF("before groupMatch start: %p", this), Log::Action::SaveSession)
+    D(QAPF("before groupMatch start: %p", this), Log::Action::All)
 }
 
 void GroupMatch::onEnd()
 {
-    D(QAPF("after groupMatch end: %p", this), Log::Action::SaveSession)
+    D(QAPF("after groupMatch end: %p", this), Log::Action::All)
 }
 
 QJsonObject GroupMatch::serialize() const

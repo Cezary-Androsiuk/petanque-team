@@ -20,9 +20,11 @@ MatchTypeBase::~MatchTypeBase()
 
 }
 
-void MatchTypeBase::onStart()
+void MatchTypeBase::onSelectionStart()
 {
-    D(QAPF("before matchTypeBase start: %p", this), Log::Action::SaveSession)
+    D(QAPF("before matchTypeBase selection start: %p", this), Log::Action::All)
+
+    this->initSelection();
 
     if(m_groupSelectionLeft.isNull())
     {
@@ -35,29 +37,14 @@ void MatchTypeBase::onStart()
         W("groupSelectionRight is null")
         return;
     }
-
-    if(m_groupMatchLeft.isNull())
-    {
-        W("groupMatchLeft is null")
-        return;
-    }
-
-    if(m_groupMatchRight.isNull())
-    {
-        W("groupMatchRight is null")
-        return;
-    }
-
-    m_groupMatchLeft->onStart();
-    m_groupMatchRight->onStart();
 
     m_groupSelectionLeft->onStart();
     m_groupSelectionRight->onStart();
 }
 
-void MatchTypeBase::onEnd()
+void MatchTypeBase::onSelectionEnd()
 {
-    D(QAPF("after matchTypeBase end: %p", this), Log::Action::SaveSession)
+    D(QAPF("after matchTypeBase selection end: %p", this), Log::Action::All)
 
     if(m_groupSelectionLeft.isNull())
     {
@@ -70,6 +57,16 @@ void MatchTypeBase::onEnd()
         W("groupSelectionRight is null")
         return;
     }
+
+    m_groupSelectionLeft->onEnd();
+    m_groupSelectionRight->onEnd();
+}
+
+void MatchTypeBase::onMatchStart()
+{
+    D(QAPF("before matchTypeBase match start: %p", this), Log::Action::All)
+
+    this->initMatch();
 
     if(m_groupMatchLeft.isNull())
     {
@@ -85,16 +82,35 @@ void MatchTypeBase::onEnd()
 
     m_groupMatchLeft->onStart();
     m_groupMatchRight->onStart();
+}
 
-    m_groupSelectionLeft->onStart();
-    m_groupSelectionRight->onStart();
+void MatchTypeBase::onMatchEnd()
+{
+    D(QAPF("after matchTypeBase match end: %p", this), Log::Action::All)
+
+    if(m_groupMatchLeft.isNull())
+    {
+        W("groupMatchLeft is null")
+        return;
+    }
+
+    if(m_groupMatchRight.isNull())
+    {
+        W("groupMatchRight is null")
+        return;
+    }
+
+    m_groupMatchLeft->onEnd();
+    m_groupMatchRight->onEnd();
 }
 
 void MatchTypeBase::initSelection()
 {
+    D(QAPF("init selection: %p", this), Log::Action::All)
+
     if(m_selectionInitialized)
     {
-        I("prevented double initialization", Log::Action::SaveSession)
+        I("prevented double initialization", Log::Action::All)
         return;
     }
 
@@ -132,9 +148,11 @@ void MatchTypeBase::initSelection()
 
 void MatchTypeBase::initMatch()
 {
+    D(QAPF("init match: %p", this), Log::Action::All)
+
     if(m_matchInitialized)
     {
-        I("prevented double initialization")
+        I("prevented double initialization", Log::Action::All)
         return;
     }
 

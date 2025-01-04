@@ -19,44 +19,52 @@ Match::~Match()
 
 void Match::onStart()
 {
-    D(QAPF("before match start: %p", this), Log::Action::SaveSession)
+    D(QAPF("before match start: %p", this), Log::Action::All)
 
-    for(int i=0; i<m_matchTypes.size(); i++)
+    if(*m_currentRoundStage == RoundStageEnum::RoundSummary)
+        return;
+
+    MatchTypeBasePtr currentMatchType = m_matchTypes[(*m_currentRoundStage)/2];
+    bool isSelectionStage = (*m_currentRoundStage)%2 == 0;
+
+    if(currentMatchType.isNull())
     {
-        if(!m_matchTypes[i].isNull())
-            continue;
-
-        W(QAPF("matchType[%d] is a null", i))
+        W("currentMatchType is a null")
         return;
     }
 
-    for(auto &matchType : m_matchTypes)
-    {
-        matchType->onStart();
-    }
+    if(isSelectionStage)
+        currentMatchType->onSelectionStart();
+    else
+        currentMatchType->onMatchStart();
 }
 
 void Match::onEnd()
 {
-    D(QAPF("after match end: %p", this), Log::Action::SaveSession)
+    D(QAPF("after match end: %p", this), Log::Action::All)
 
-    for(int i=0; i<m_matchTypes.size(); i++)
+    if(*m_currentRoundStage == RoundStageEnum::RoundSummary)
+        return;
+
+    MatchTypeBasePtr currentMatchType = m_matchTypes[(*m_currentRoundStage)/2];
+    bool isSelectionStage = (*m_currentRoundStage)%2 == 0;
+
+    if(currentMatchType.isNull())
     {
-        if(!m_matchTypes[i].isNull())
-            continue;
-
-        W(QAPF("matchType[%d] is a null", i))
+        W("currentMatchType is a null")
         return;
     }
 
-    for(auto &matchType : m_matchTypes)
-    {
-        matchType->onEnd();
-    }
+    if(isSelectionStage)
+        currentMatchType->onSelectionEnd();
+    else
+        currentMatchType->onMatchEnd();
 }
 
 void Match::initMatchesTypes()
 {
+    D(QAPF("init matchTypes: %p", this), Log::Action::SaveSession)
+
     m_matchTypes[0] = MatchSingielsPtr::create(m_teamLeft, m_teamRight);
 
     m_matchTypes[1] = MatchDubletsPtr::create(m_teamLeft, m_teamRight);

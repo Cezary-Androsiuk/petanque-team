@@ -42,8 +42,10 @@ public:
         QObject *parent = nullptr);
     virtual ~MatchTypeBase();
 
-    void onStart();
-    void onEnd();
+    void onSelectionStart();
+    void onSelectionEnd();
+    void onMatchStart();
+    void onMatchEnd();
 
 public slots:
     void initSelection(); /// call on complition qml selection
