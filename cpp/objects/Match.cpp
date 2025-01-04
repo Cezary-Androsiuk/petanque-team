@@ -20,11 +20,39 @@ Match::~Match()
 void Match::onStart()
 {
     D(QAPF("before match start: %p", this), Log::Action::SaveSession)
+
+    for(int i=0; i<m_matchTypes.size(); i++)
+    {
+        if(!m_matchTypes[i].isNull())
+            continue;
+
+        W(QAPF("matchType[%d] is a null", i))
+        return;
+    }
+
+    for(auto &matchType : m_matchTypes)
+    {
+        matchType->onStart();
+    }
 }
 
 void Match::onEnd()
 {
     D(QAPF("after match end: %p", this), Log::Action::SaveSession)
+
+    for(int i=0; i<m_matchTypes.size(); i++)
+    {
+        if(!m_matchTypes[i].isNull())
+            continue;
+
+        W(QAPF("matchType[%d] is a null", i))
+        return;
+    }
+
+    for(auto &matchType : m_matchTypes)
+    {
+        matchType->onEnd();
+    }
 }
 
 void Match::initMatchesTypes()

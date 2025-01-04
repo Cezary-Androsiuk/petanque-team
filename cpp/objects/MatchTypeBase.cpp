@@ -20,6 +20,76 @@ MatchTypeBase::~MatchTypeBase()
 
 }
 
+void MatchTypeBase::onStart()
+{
+    D(QAPF("before matchTypeBase start: %p", this), Log::Action::SaveSession)
+
+    if(m_groupSelectionLeft.isNull())
+    {
+        W("groupSelectionLeft is null")
+        return;
+    }
+
+    if(m_groupSelectionRight.isNull())
+    {
+        W("groupSelectionRight is null")
+        return;
+    }
+
+    if(m_groupMatchLeft.isNull())
+    {
+        W("groupMatchLeft is null")
+        return;
+    }
+
+    if(m_groupMatchRight.isNull())
+    {
+        W("groupMatchRight is null")
+        return;
+    }
+
+    m_groupMatchLeft->onStart();
+    m_groupMatchRight->onStart();
+
+    m_groupSelectionLeft->onStart();
+    m_groupSelectionRight->onStart();
+}
+
+void MatchTypeBase::onEnd()
+{
+    D(QAPF("after matchTypeBase end: %p", this), Log::Action::SaveSession)
+
+    if(m_groupSelectionLeft.isNull())
+    {
+        W("groupSelectionLeft is null")
+        return;
+    }
+
+    if(m_groupSelectionRight.isNull())
+    {
+        W("groupSelectionRight is null")
+        return;
+    }
+
+    if(m_groupMatchLeft.isNull())
+    {
+        W("groupMatchLeft is null")
+        return;
+    }
+
+    if(m_groupMatchRight.isNull())
+    {
+        W("groupMatchRight is null")
+        return;
+    }
+
+    m_groupMatchLeft->onStart();
+    m_groupMatchRight->onStart();
+
+    m_groupSelectionLeft->onStart();
+    m_groupSelectionRight->onStart();
+}
+
 void MatchTypeBase::initSelection()
 {
     if(m_selectionInitialized)

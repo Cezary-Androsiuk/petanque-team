@@ -36,6 +36,9 @@ public:
     explicit GroupSelection(int groupsCount, int minPlayersInGroup, int maxPlayersInGroup, QObject *parent = nullptr);
     ~GroupSelection();
 
+    void onStart();
+    void onEnd();
+
 public:
     QJsonObject serialize() const override;
     void deserialize(const QJsonObject &jGroupSelection) override;

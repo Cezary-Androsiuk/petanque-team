@@ -34,6 +34,9 @@ public:
     explicit GroupMatch(QObject *parent = nullptr);
     ~GroupMatch();
 
+    void onStart();
+    void onEnd();
+
 public:
     QJsonObject serialize() const override;
     void deserialize(const QJsonObject &jGroupMatch) override;

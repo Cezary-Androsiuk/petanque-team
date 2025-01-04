@@ -15,6 +15,16 @@ GroupMatch::~GroupMatch()
     DOLT(this)
 }
 
+void GroupMatch::onStart()
+{
+    D(QAPF("before groupMatch start: %p", this), Log::Action::SaveSession)
+}
+
+void GroupMatch::onEnd()
+{
+    D(QAPF("after groupMatch end: %p", this), Log::Action::SaveSession)
+}
+
 QJsonObject GroupMatch::serialize() const
 {
     QJsonObject jGroupMatch;
