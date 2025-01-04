@@ -25,7 +25,7 @@ class GroupMatch : public QObject, public Serializable
     Q_OBJECT
     Q_PROPERTY(int groupsCount READ getGroupsCount NOTIFY groupsCountChanged FINAL)
     Q_PROPERTY(int defaultPlayersCountInGroup READ getDefaultPlayersCountInGroup NOTIFY defaultPlayersCountInGroupChanged FINAL)
-    Q_PROPERTY(QmlVecOfPlayersVec groupsOfPlayers READ getGroupsOfPlayers NOTIFY groupsOfPlayersChanged FINAL)
+    Q_PROPERTY(QmlVecOfPlayersVec groupsOfPlayers READ getGroupsOfPlayersQml NOTIFY groupsOfPlayersChanged FINAL)
     Q_PROPERTY(const IntList &matchPoints READ getMatchPoints NOTIFY matchPointsChanged FINAL)
     Q_PROPERTY(const Team *team READ getTeamQml NOTIFY teamChanged FINAL)
     Q_PROPERTY(int maxPointsInMatch READ getMaxPointsInMatch CONSTANT FINAL)
@@ -54,7 +54,8 @@ public:
 public:
     int getGroupsCount() const;
     int getDefaultPlayersCountInGroup() const;
-    QmlVecOfPlayersVec getGroupsOfPlayers() const;
+    const QList<PlayerPtrList> &getGroupsOfPlayers() const;
+    QmlVecOfPlayersVec getGroupsOfPlayersQml() const;
     const IntList &getMatchPoints() const;
     const Team *getTeamQml() const;
     int getMaxPointsInMatch() const;

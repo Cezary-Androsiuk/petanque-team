@@ -204,21 +204,109 @@ void MatchTypeBase::initMatch()
 
 void MatchTypeBase::addPoints()
 {
-    D("adding points after match")
+    D("adding points after match", Log::Action::SaveSession)
 
-    this->addPointsForTeam();
+    this->addPointsForTeams();
 
     this->addPointsForPlayers();
 }
 
-void MatchTypeBase::addPointsForTeam()
+void MatchTypeBase::addPointsForTeams()
 {
+    int size;
+    IntList leftPoints = m_groupMatchLeft->getMatchPoints();
+    IntList rightPoints = m_groupMatchRight->getMatchPoints();
+    size = leftPoints.size();
 
+    if(size != rightPoints.size())
+    {
+        W("left and right matches has different sizes of points lists")
+        return;
+    }
+
+    if(m_teamLeft.isNull() || m_teamRight.isNull())
+    {
+        W("one of the teams is null")
+        return;
+    }
+
+    for(int i=0; i<size; i++)
+    {
+        if(leftPoints[i] > rightPoints[i])
+        {
+            // add large point to team left team
+            m_teamLeft->addLargePoints(1);
+        }
+        else
+        {
+            // add large point to team left team
+            m_teamRight->addLargePoints(1);
+        }
+
+        // add small points;
+        m_teamLeft->addSmallPoints( leftPoints[i] );
+        m_teamRight->addSmallPoints( rightPoints[i] );
+    }
 }
 
 void MatchTypeBase::addPointsForPlayers()
 {
+    int size;
+    QList<PlayerPtrList> leftGroupsOfPlayers = m_groupMatchLeft->getGroupsOfPlayers();
+    IntList leftPoints = m_groupMatchLeft->getMatchPoints();
+    size = leftPoints.size();
+    if(size != leftGroupsOfPlayers.size())
+    {
+        W("in left match groups of players and points have different sizes")
+        return;
+    }
 
+    QList<PlayerPtrList> rightGroupsOfPlayers = m_groupMatchRight->getGroupsOfPlayers();
+    IntList rightPoints = m_groupMatchRight->getMatchPoints();
+    if(rightPoints.size() != rightGroupsOfPlayers.size())
+    {
+        W("in right match groups of players and points have different sizes")
+        return;
+    }
+
+    if(size != rightPoints.size())
+    {
+        W("left and right matches has different sizes of points lists")
+        return;
+    }
+
+    for(int i=0; i<size; i++)
+    {
+        int lp = leftPoints[i];
+        int rp = rightPoints[i];
+
+        /// following for loops can't be marged into one, because there can be different
+        /// counts of players in each group
+
+        /// add points for left match players
+        for(auto &leftPlayer : leftGroupsOfPlayers[i])
+        {
+            if(lp > rp)
+            {
+                // add large point to player of left team
+                leftPlayer->addLargePoints(1);
+            }
+
+            leftPlayer->addSmallPoints(lp);
+        }
+
+        /// add points for right match players
+        for(auto &rightPlayer : rightGroupsOfPlayers[i])
+        {
+            if(lp < rp)
+            {
+                // add large point to player of right team
+                rightPlayer->addLargePoints(1);
+            }
+
+            rightPlayer->addSmallPoints(rp);
+        }
+    }
 }
 
 QJsonObject MatchTypeBase::serialize() const

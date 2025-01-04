@@ -139,7 +139,12 @@ int GroupMatch::getDefaultPlayersCountInGroup() const
     return m_defaultPlayersCountInGroup;
 }
 
-QmlVecOfPlayersVec GroupMatch::getGroupsOfPlayers() const
+const QList<PlayerPtrList> &GroupMatch::getGroupsOfPlayers() const
+{
+    return m_groupsOfPlayers;
+}
+
+QmlVecOfPlayersVec GroupMatch::getGroupsOfPlayersQml() const
 {
     QmlVecOfPlayersVec ret;
     ret.resize(m_groupsOfPlayers.size());

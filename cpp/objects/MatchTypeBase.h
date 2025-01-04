@@ -55,7 +55,7 @@ public slots:
 
 private:
     void addPoints();
-    void addPointsForTeam();
+    void addPointsForTeams();
     void addPointsForPlayers();
 
 public:
