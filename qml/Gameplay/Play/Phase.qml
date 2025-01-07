@@ -2,6 +2,8 @@ import QtQuick 2.15
 import QtQuick.Controls.Material
 import QtQuick.Layouts
 
+import "../../Popups"
+
 Item {
     id: phase
     anchors.fill: parent
@@ -12,30 +14,41 @@ Item {
     readonly property int headerHeight: 30
     readonly property int footerHeight: 70
 
-    Connections{
-        target: phaseVar
-        function onVerified(){
+    InfoPopup{
+        id: infoPopup
+    }
 
-            onContinueConfirmed() // open popup
-        }
-
-        function onVerificationFailed(message){
-            log.i(message, "Phase.qml -> onVerificationFailed")
-            // open popup
+    ConfirmNextPopup{
+        id: confirmNextPopup
+        fromMessage: "?"
+        toMessage: "?"
+        onConfirmed: {
+            if(phaseVar.hasNext())
+            {
+                phaseVar.goToNext();
+            }
+            else
+            {
+                if(event.hasNextPhase())
+                    event.startSecondPhase();
+                else
+                    event.startFinishStage();
+            }
         }
     }
 
-    function onContinueConfirmed(){
-        if(phaseVar.hasNext())
-        {
-            phaseVar.goToNext();
+    Connections{
+        target: phaseVar
+        function onVerified(){
+            confirmNextPopup.title = "Are you sure to move on to\nthe next stage?"
+            confirmNextPopup.open();
         }
-        else
-        {
-            if(event.hasNextPhase())
-                event.startSecondPhase();
-            else
-                event.startFinishStage();
+
+        function onVerificationFailed(message){
+            infoPopup.title = "?Event data are not valid!";
+            infoPopup.splitText = true;
+            infoPopup.message = message;
+            infoPopup.open();
         }
     }
 
