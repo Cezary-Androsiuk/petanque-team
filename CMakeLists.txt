@@ -59,7 +59,9 @@ qt_add_qml_module(appPetanqueTeam
     QML_FILES qml/AppAlreadyRunning.qml
     QML_FILES qml/LoginForm.qml
     QML_FILES qml/ErrorPage.qml
-    ################################
+    ################################ Popups
+    QML_FILES qml/Popups/ConfirmNextPopup.qml
+    ################################ Configure
     QML_FILES qml/Gameplay/Configure.qml
     QML_FILES qml/Gameplay/Configure/Event.qml
     QML_FILES qml/Gameplay/Configure/InfoField.qml
@@ -68,19 +70,19 @@ qt_add_qml_module(appPetanqueTeam
     QML_FILES qml/Gameplay/Configure/PlayerDelegate.qml
     QML_FILES qml/Gameplay/Configure/Team.qml
     QML_FILES qml/Gameplay/Configure/TeamDelegate.qml
-    ################################
+    ################################ Play
     QML_FILES qml/Gameplay/Play.qml
     QML_FILES qml/Gameplay/Play/Phase.qml
     QML_FILES qml/Gameplay/Play/SubPhase.qml
     QML_FILES qml/Gameplay/Play/Match.qml
     QML_FILES qml/Gameplay/Play/Match/GroupSelection.qml
     QML_FILES qml/Gameplay/Play/Match/GroupMatch.qml
-    QML_FILES qml/Gameplay/Play/Match/RoundSummary.qml
     QML_FILES qml/Gameplay/Play/Match/MatchType/SelectionHalf.qml
     QML_FILES qml/Gameplay/Play/Match/MatchType/MatchHalf.qml
-    ################################
-    QML_FILES qml/Gameplay/Finish.qml
+    QML_FILES qml/Gameplay/Play/Match/RoundSummary.qml
     QML_FILES qml/Gameplay/Play/Match/RoundSummaryHalf.qml
+    ################################ Finish
+    QML_FILES qml/Gameplay/Finish.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
