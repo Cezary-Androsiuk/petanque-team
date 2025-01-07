@@ -23,6 +23,16 @@ Item{
         parentStackView.push("Team.qml", args)
     }
 
+    function addNewPlayer(){
+        teamDelegate.team.createDetachedPlayer();
+        const args = {
+            parentStackView: teamDelegate.parentStackView,
+            team: teamDelegate.team,
+            player: teamDelegate.team.detachedPlayer
+        }
+        parentStackView.push("Player.qml", args)
+    }
+
     function deleteTeam(){
         Backend.event.deleteTeam(team);
     }
@@ -136,7 +146,7 @@ Item{
                 right: parent.right
                 leftMargin: parent.width * 0.1
             }
-            height: playersCount * defaultHeight
+            height: (playersCount +1/*footer*/) * defaultHeight
 
             readonly property int playersCount: (!teamDelegate.team)?0: teamDelegate.team.players.length
 
@@ -171,18 +181,18 @@ Item{
                     }
                 }
 
-        //         footer: Item{
-        //             width: playersInfo.width
-        //             height: teamDelegate.defaultHeight
+                footer: Item{
+                    width: playersInfo.width
+                    height: teamDelegate.defaultHeight
 
-        //             Button{
-        //                 anchors.fill: parent
-        //                 text: qsTr("Add new player")
-        //                 onClicked: {
-        //                     teamsList.addNewTeam();
-        //                 }
-        //             }
-        //         }
+                    Button{
+                        anchors.fill: parent
+                        text: qsTr("Add new player")
+                        onClicked: {
+                            teamDelegate.addNewPlayer()
+                        }
+                    }
+                }
             }
         }
     }
