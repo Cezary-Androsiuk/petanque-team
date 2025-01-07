@@ -61,6 +61,7 @@ qt_add_qml_module(appPetanqueTeam
     QML_FILES qml/ErrorPage.qml
     ################################ Popups
     QML_FILES qml/Popups/ConfirmNextPopup.qml
+    QML_FILES qml/Popups/InfoPopup.qml
     ################################ Configure
     QML_FILES qml/Gameplay/Configure.qml
     QML_FILES qml/Gameplay/Configure/Event.qml

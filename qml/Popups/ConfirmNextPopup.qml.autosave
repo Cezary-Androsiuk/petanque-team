@@ -10,7 +10,7 @@ Item{
     width: rw.width
     height: rw.height
 
-    property string title
+    property string title: "Are you sure to move on to\nthe next stage?"
     property string fromMessage
     property string toMessage
 
