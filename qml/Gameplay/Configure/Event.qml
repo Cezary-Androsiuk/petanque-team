@@ -27,6 +27,18 @@ Item {
         }
     }
 
+    AskPopup{
+        id: askDeleteTeamPopup
+        title: "Are you sure to delete Team?"
+        // onConfirmed handled in TeamDelegate
+    }
+
+    AskPopup{
+        id: askDeletePlayerPopup
+        title: "Are you sure to delete Player?"
+        // onConfirmed handled in PlayerDelegate
+    }
+
     Connections{
         target: Backend.event
         function onEventValid(){
@@ -170,6 +182,7 @@ Item {
         height: configureEvent.footerHeight
 
         Button{
+            id: nextButton
             anchors{
                 right: parent.right
                 rightMargin: 20

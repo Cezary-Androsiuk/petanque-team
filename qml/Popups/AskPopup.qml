@@ -2,7 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls.Material
 
 Item{
-    id: confirmNextPopup
+    id: askPopup
 
     z: 9999 // allways on top
 
@@ -10,9 +10,9 @@ Item{
     width: rw.width
     height: rw.height
 
-    property string title: "Are you sure to move on to\nthe next stage?"
-    property string fromMessage
-    property string toMessage
+    property string title
+    property string lButtonText: "Cancel"
+    property string rButtonText: "Yes"
 
     property color backgroudColor: Qt.rgba(28/255, 27/255, 31/255)
     property double dimmerShowOpacity: 0.8
@@ -31,16 +31,16 @@ Item{
     Rectangle{
         id: dimmer
         anchors.fill: parent
-        color: confirmNextPopup.backgroudColor
-        opacity: confirmNextPopup.dimmerHideOpacity
+        color: askPopup.backgroudColor
+        opacity: askPopup.dimmerHideOpacity
         visible: opacity > 0
 
         function show(){
-            dimmer.opacity = confirmNextPopup.dimmerShowOpacity
+            dimmer.opacity = askPopup.dimmerShowOpacity
         }
 
         function hide(){
-            dimmer.opacity = confirmNextPopup.dimmerHideOpacity
+            dimmer.opacity = askPopup.dimmerHideOpacity
         }
 
         Behavior on opacity {
@@ -55,13 +55,13 @@ Item{
         anchors.centerIn: parent
 
         width: 340
-        height: 200
+        height: 180
 
         // dim: true
         // modal: true
 
         focus: true
-        closePolicy: confirmNextPopup.autoClose ?
+        closePolicy: askPopup.autoClose ?
                          Popup.CloseOnEscape | Popup.CloseOnPressOutside :
                          Popup.NoAutoClose
 
@@ -92,50 +92,16 @@ Item{
             Label{
                 id: titleLabel
                 anchors{
-                    left: parent.left
-                    leftMargin: 10
-                    right: parent.right
-                    rightMargin: 10
-                    top: parent.top
-                    topMargin: 10
+                    fill: parent
+                    margins: 10
                 }
-                text: confirmNextPopup.title
+                text: askPopup.title
                 font.pixelSize: 20
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignTop
-                wrapMode: Text.WordWrap
-            }
-
-            Label{
-                id: messageLabel
-                anchors{
-                    left: parent.left
-                    leftMargin: 10
-                    right: parent.right
-                    rightMargin: 10
-                    top: titleLabel.bottom
-                    topMargin: 15
-                }
-
-                readonly property bool fromFieldIsSet: confirmNextPopup.fromMessage != "";
-                readonly property bool toFieldIsSet: confirmNextPopup.toMessage != "";
-                readonly property bool bothFieldsAreSet: fromFieldIsSet && toFieldIsSet;
-
-                text: {
-                    if(bothFieldsAreSet)
-                        confirmNextPopup.fromMessage + "  ➤  " + confirmNextPopup.toMessage;
-                    else if(fromFieldIsSet)
-                        confirmNextPopup.fromMessage;
-                    else if(toFieldIsSet)
-                        confirmNextPopup.toMessage;
-                }
-                opacity: 0.8
-                font.pixelSize: 13
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 wrapMode: Text.WordWrap
-                visible: bothFieldsAreSet
             }
+
         }
 
         Item{
@@ -149,24 +115,24 @@ Item{
 
             Button{
                 id: cancelButton
-                text: "Cancel"
+                text: askPopup.lButtonText
                 anchors.verticalCenter: parent.verticalCenter
                 x: popup.spaceBeetweenButtons
                 width: popup.buttonWidth
                 onClicked:{
-                    confirmNextPopup.close();
+                    askPopup.close();
                 }
             }
 
             Button{
                 id: nextButton
-                text: "Next"
+                text: askPopup.rButtonText
                 anchors.verticalCenter: parent.verticalCenter
                 x: popup.spaceBeetweenButtons *2 + popup.buttonWidth
                 width: popup.buttonWidth
                 onClicked:{
-                    confirmNextPopup.confirmed();
-                    confirmNextPopup.close();
+                    askPopup.confirmed();
+                    askPopup.close();
                 }
             }
         }

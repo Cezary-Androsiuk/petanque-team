@@ -24,6 +24,13 @@ Item{
         parentStackView.push("Player.qml", args)
     }
 
+    Connections{
+        target: askDeletePlayerPopup
+        function onConfirmed() {
+            playerDelegate.deletePlayer();
+        }
+    }
+
     Item{
         anchors.fill: parent
 
@@ -73,7 +80,7 @@ Item{
             text: "delete"
 
             onClicked:{
-                playerDelegate.deletePlayer();
+                askDeletePlayerPopup.open();
             }
         }
 

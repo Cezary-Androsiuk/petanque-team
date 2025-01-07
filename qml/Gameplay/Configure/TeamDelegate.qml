@@ -31,6 +31,13 @@ Item{
         extended = !extended
     }
 
+    Connections{
+        target: askDeleteTeamPopup
+        function onConfirmed() {
+            teamDelegate.deleteTeam()
+        }
+    }
+
     Item{
         anchors.fill: parent
         Rectangle{
@@ -84,7 +91,7 @@ Item{
                 text: "delete"
 
                 onClicked:{
-                    teamDelegate.deleteTeam()
+                    askDeleteTeamPopup.open()
                 }
             }
 
@@ -163,6 +170,19 @@ Item{
                         team: teamDelegate.team
                     }
                 }
+
+        //         footer: Item{
+        //             width: playersInfo.width
+        //             height: teamDelegate.defaultHeight
+
+        //             Button{
+        //                 anchors.fill: parent
+        //                 text: qsTr("Add new player")
+        //                 onClicked: {
+        //                     teamsList.addNewTeam();
+        //                 }
+        //             }
+        //         }
             }
         }
     }
