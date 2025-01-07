@@ -3,9 +3,9 @@ OK - GroupSelection: verify, assignExampleData
 OK - MatchTypeBase: makeGroupsOfPlayersList
 
 IMPLEMENT:
-Player: points
+OK - Player: points
 OK - Team/Event/Phase/SubPhase: implement different lists of Teams for different Phases/SubPhases 
-Team/Event/Phase/SubPhase: compute teams for second phase using points
+OK - Team/Event/Phase/SubPhase: compute teams for second phase using points
 RoundSummary qml
 Finish qml
 Add new Player (while gameplay)
@@ -18,3 +18,4 @@ change Configure gui (better/prettier controls)
 change Configure gui (better placement of controls)
 emplace "add new player (while gameplay)" and reset in settings
 better buttons in gameplay footer
+in popup asking if delete player/team, add info about object that will be deleted
