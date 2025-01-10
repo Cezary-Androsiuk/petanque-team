@@ -13,6 +13,15 @@ Item {
     property int footerHeight: 70
     property int delegateHeight: 50
 
+    Component.onCompleted: {
+        log.w("now while editing existing team his name can be changed to the invalid one", "Team.qml -> onCompleted")
+    }
+
+    function randomNumber(topRange){
+        // [0, topRange) - topRange value is not included
+        return Math.floor(Math.random() * topRange);
+    }
+
     function generateRandomTeamName(prefix, length) {
         /// Claude AI stuff
         // const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
@@ -21,7 +30,7 @@ Item {
         let result = '';
 
         for (let i = 0; i < length; i++) {
-            const randomIndex = Math.floor(Math.random() * characters.length);
+            const randomIndex = randomNumber(characters.length);
             result += characters[randomIndex];
         }
 
@@ -53,10 +62,13 @@ Item {
         event.deleteDetachedTeam();
     }
 
-    function saveAddedTeam(){
-        if(Backend.isDebugMode)
-            setExampleTeamDataIfNeeded();
+    function saveAddedTeamAuto(){
+        setExampleTeamDataIfNeeded();
 
+        event.validateDetachedTeam();
+    }
+
+    function saveAddedTeam(){
         event.validateDetachedTeam();
     }
 
@@ -254,6 +266,7 @@ Item {
             }
 
             Button{
+                id: saveTeamButton
                 anchors{
                     left: centerPoint.right
                     verticalCenter: parent.verticalCenter
@@ -261,6 +274,18 @@ Item {
                 text: "save team"
                 onClicked: {
                     configureTeam.saveAddedTeam();
+                }
+            }
+            Button{
+                anchors{
+                    left: saveTeamButton.right
+                    leftMargin: 10
+                    verticalCenter: parent.verticalCenter
+                }
+                text: "save team auto"
+                visible: Backend.isDebugMode
+                onClicked: {
+                    configureTeam.saveAddedTeamAuto();
                 }
             }
         }

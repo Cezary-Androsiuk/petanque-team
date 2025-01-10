@@ -13,11 +13,14 @@ Item {
     property int footerHeight: 70
     property int delegateHeight: 50
 
+    Component.onCompleted: {
+        log.w("now while editing existing player his license, and other values can be changed to the invalid one", "Player.qml -> onCompleted")
+    }
+
     function randomNumber(topRange){
         // [0, topRange) - topRange value is not included
         return Math.floor(Math.random() * topRange);
     }
-
 
     function generateRandomLicense(length) {
         /// Claude AI stuff
@@ -71,10 +74,13 @@ Item {
         team.deleteDetachedPlayer();
     }
 
-    function saveAddedPlayer(){
-        if(Backend.isDebugMode)
-            setExamplePlayerDataIfNeeded();
+    function saveAddedPlayerAuto(){
+        setExamplePlayerDataIfNeeded();
 
+        team.validateDetachedPlayer();
+    }
+
+    function saveAddedPlayer(){
         team.validateDetachedPlayer();
     }
 
@@ -282,6 +288,7 @@ Item {
             }
 
             Button{
+                id: savePlayerButton
                 anchors{
                     left: centerPoint.right
                     verticalCenter: parent.verticalCenter
@@ -289,6 +296,19 @@ Item {
                 text: "save player"
                 onClicked: {
                     configurePlayer.saveAddedPlayer();
+                }
+            }
+
+            Button{
+                anchors{
+                    left: savePlayerButton.right
+                    leftMargin: 10
+                    verticalCenter: parent.verticalCenter
+                }
+                text: "save player auto"
+                visible: Backend.isDebugMode
+                onClicked: {
+                    configurePlayer.saveAddedPlayerAuto();
                 }
             }
         }

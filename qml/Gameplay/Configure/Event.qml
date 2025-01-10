@@ -19,10 +19,10 @@ Item {
         }
 
         function onEventValidationFailed(description){
-            infoPopup.title = "Event data are not valid!";
-            infoPopup.splitText = true;
-            infoPopup.message = description;
-            infoPopup.open();
+            popups.info.title = "Event data are not valid!";
+            popups.info.splitText = true;
+            popups.info.message = description;
+            popups.info.open();
         }
     }
 
