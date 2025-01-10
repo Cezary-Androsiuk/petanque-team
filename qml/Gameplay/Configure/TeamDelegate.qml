@@ -42,7 +42,7 @@ Item{
     }
 
     Connections{
-        target: askDeleteTeamPopup
+        target: popups.ask
         function onConfirmed() {
             teamDelegate.deleteTeam()
         }
@@ -101,7 +101,8 @@ Item{
                 text: "delete"
 
                 onClicked:{
-                    askDeleteTeamPopup.open()
+                    popups.ask.title = "Are you sure to delete Team?"
+                    popups.ask.open()
                 }
             }
 

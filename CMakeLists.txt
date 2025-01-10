@@ -59,6 +59,7 @@ qt_add_qml_module(appPetanqueTeam
     QML_FILES qml/AppAlreadyRunning.qml
     QML_FILES qml/LoginForm.qml
     QML_FILES qml/ErrorPage.qml
+    QML_FILES qml/Popups.qml
     ################################ Popups
     QML_FILES qml/Popups/ConfirmNextPopup.qml
     QML_FILES qml/Popups/InfoPopup.qml

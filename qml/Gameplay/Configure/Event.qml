@@ -1,8 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
-import "../../Popups"
-
 Item {
     id: configureEvent
 
@@ -11,39 +9,13 @@ Item {
     readonly property int headerHeight: 70
     readonly property int footerHeight: 70
 
-    InfoPopup{
-        id: infoPopup
-    }
-
-    ConfirmNextPopup{
-        id: confirmNextPopup
-        fromMessage: "Configure"
-        toMessage: "Play"
-        onConfirmed: {
-            Backend.memory.save(); // saves data
-            Backend.event.startFirstPhase();
-            Backend.event.goToNextStage() // changes stage from Configure to Play(Continue)
-            // Backend.memory.save(); // saves changed stage // exiting doing it as well // and timer will be
-        }
-    }
-
-    AskPopup{
-        id: askDeleteTeamPopup
-        title: "Are you sure to delete Team?"
-        // onConfirmed handled in TeamDelegate
-    }
-
-    AskPopup{
-        id: askDeletePlayerPopup
-        title: "Are you sure to delete Player?"
-        // onConfirmed handled in PlayerDelegate
-    }
-
     Connections{
         target: Backend.event
         function onEventValid(){
-            confirmNextPopup.title = "Are you sure to move on to\nthe next round stage?"
-            confirmNextPopup.open();
+            popups.confirmNext.fromMessage = "Configure"
+            popups.confirmNext.toMessage = "Play"
+            popups.confirmNext.title = "Are you sure to move on to\nthe next round stage?"
+            popups.confirmNext.open();
         }
 
         function onEventValidationFailed(description){
@@ -53,6 +25,17 @@ Item {
             infoPopup.open();
         }
     }
+
+    Connections{
+        target: popups.confirmNext
+        function onConfirmed(){
+            Backend.memory.save(); // saves data
+            Backend.event.startFirstPhase();
+            Backend.event.goToNextStage() // changes stage from Configure to Play(Continue)
+            // Backend.memory.save(); // saves changed stage // exiting doing it as well // and timer will be
+        }
+    }
+
     Item{
         id: eventTeamsList
         anchors{

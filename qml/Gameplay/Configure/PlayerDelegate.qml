@@ -25,7 +25,7 @@ Item{
     }
 
     Connections{
-        target: askDeletePlayerPopup
+        target: popups.ask
         function onConfirmed() {
             playerDelegate.deletePlayer();
         }
@@ -80,7 +80,8 @@ Item{
             text: "delete"
 
             onClicked:{
-                askDeletePlayerPopup.open();
+                popups.ask.title = "Are you sure to delete Player?"
+                popups.ask.open();
             }
         }
 

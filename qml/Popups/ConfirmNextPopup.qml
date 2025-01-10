@@ -128,6 +128,8 @@ Item{
                         confirmNextPopup.fromMessage;
                     else if(toFieldIsSet)
                         confirmNextPopup.toMessage;
+                    else
+                        "";
                 }
                 opacity: 0.8
                 font.pixelSize: 13
