@@ -12,22 +12,22 @@ Item {
     Connections{
         target: Backend.event
         function onEventValid(){
-            popups.confirmNext.fromMessage = "Configure"
-            popups.confirmNext.toMessage = "Play"
-            popups.confirmNext.title = "Are you sure to move on to\nthe next round stage?"
-            popups.confirmNext.open();
+            popups.confirmNextRoundStage.fromMessage = "Configure"
+            popups.confirmNextRoundStage.toMessage = "Play"
+            popups.confirmNextRoundStage.title = "Are you sure to move on to\nthe next round stage?"
+            popups.confirmNextRoundStage.open();
         }
 
         function onEventValidationFailed(description){
-            popups.info.title = "Event data are not valid!";
-            popups.info.splitText = true;
-            popups.info.message = description;
-            popups.info.open();
+            popups.failedEventCreationInfo.title = "Event data are not valid!";
+            popups.failedEventCreationInfo.splitText = true;
+            popups.failedEventCreationInfo.message = description;
+            popups.failedEventCreationInfo.open();
         }
     }
 
     Connections{
-        target: popups.confirmNext
+        target: popups.confirmNextRoundStage
         function onConfirmed(){
             Backend.memory.save(); // saves data
             Backend.event.startFirstPhase();
@@ -44,7 +44,7 @@ Item {
             bottom: footer.top
         }
         width: parent.width * 0.5
-        clip: true
+        // clip: true
 
         Item{
             anchors{
@@ -52,7 +52,7 @@ Item {
                 leftMargin: 30
                 rightMargin: 15
             }
-            clip: true
+            // clip: true
 
             Rectangle{
                 id: teamListBorder
@@ -81,7 +81,7 @@ Item {
             bottom: footer.top
         }
         width: parent.width * 0.5
-        clip: true
+        // clip: true
 
         Item{
             anchors{
@@ -89,7 +89,7 @@ Item {
                 leftMargin: 15
                 rightMargin: 30
             }
-            clip: true
+            // clip: true
 
             Rectangle{
                 id: infoFieldFlickableBorder

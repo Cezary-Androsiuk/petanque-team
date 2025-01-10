@@ -10,10 +10,6 @@ Item{
 
     clip: true
 
-    function deletePlayer(){
-        team.deletePlayer(player);
-    }
-
     function editPlayer(){
         const args = {
             edit: true,
@@ -25,9 +21,11 @@ Item{
     }
 
     Connections{
-        target: popups.ask
-        function onConfirmed() {
-            playerDelegate.deletePlayer();
+        target: popups.askDeletePlayer
+        function onConfirmed(playerToDelete) {
+            console.log(playerToDelete)
+            team.deletePlayer(playerToDelete);
+            console.log(playerToDelete)
         }
     }
 
@@ -80,8 +78,10 @@ Item{
             text: "delete"
 
             onClicked:{
-                popups.ask.title = "Are you sure to delete Player?"
-                popups.ask.open();
+                console.log(player)
+                popups.askDeletePlayer.title = "Are you sure to delete Player?"
+                popups.askDeletePlayer.arg1 = player;
+                popups.askDeletePlayer.open();
             }
         }
 

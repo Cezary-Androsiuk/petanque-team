@@ -13,6 +13,7 @@ Item{
     property string title
     property string lButtonText: "Cancel"
     property string rButtonText: "Yes"
+    property var arg1;
 
     property color backgroudColor: Qt.rgba(28/255, 27/255, 31/255)
     property double dimmerShowOpacity: 0.8
@@ -26,7 +27,8 @@ Item{
     function close(){
         popup.close();
     }
-    signal confirmed()
+    // signal confirmed()
+    signal confirmed(var a1);
 
     Rectangle{
         id: dimmer
@@ -131,7 +133,9 @@ Item{
                 x: popup.spaceBeetweenButtons *2 + popup.buttonWidth
                 width: popup.buttonWidth
                 onClicked:{
-                    askPopup.confirmed();
+                    // askPopup.confirmed();
+                    console.log(arg1)
+                    askPopup.confirmed(arg1);
                     askPopup.close();
                 }
             }
