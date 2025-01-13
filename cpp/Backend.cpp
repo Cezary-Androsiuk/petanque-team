@@ -43,3 +43,8 @@ bool Backend::getIsDebugMode() const
 {
     return DEBUG_MODE;
 }
+
+bool Backend::getEnabledPopups() const
+{
+    return ENABLE_POPUPS;
+}

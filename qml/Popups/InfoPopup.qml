@@ -31,6 +31,12 @@ Item{
     property bool autoClose: true
 
     function open(){
+        if(!Backend.enabledPopups)
+        {
+            confirmed();
+            return;
+        }
+
         popup.open();
     }
 

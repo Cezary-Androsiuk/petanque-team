@@ -112,6 +112,20 @@ Item {
                         margins: 10
                     }
 
+                    Rectangle{
+                        id: delegateContentBackground
+                        anchors.fill: parent
+                        opacity: 0.2
+                        color: {
+                            if(roundVar.currentRoundStage === 6)
+                                "#1c1b1f";
+                            else
+                                roundVar.currentRoundStage % 2 === 0 ?
+                                            "#545467" :
+                                            "#864E2E";
+                        }
+                    }
+
                     Item{
                         id: delegateHeader
                         anchors{
