@@ -6,14 +6,14 @@ Item{
 
     z: 9999 // allways on top
 
-    property var rw: rootWindow
-    width: rw.width
-    height: rw.height
+    width: rootLoader.width
+    height: rootLoader.height
+    x: rootLoader.x
+    y: rootLoader.y
 
     property string title
     property string lButtonText: "Cancel"
     property string rButtonText: "Yes"
-    property var arg1;
 
     property color backgroudColor: Qt.rgba(28/255, 27/255, 31/255)
     property double dimmerShowOpacity: 0.8
@@ -33,8 +33,8 @@ Item{
     function close(){
         popup.close();
     }
-    // signal confirmed()
-    signal confirmed(var a1);
+
+    signal confirmed()
 
     Rectangle{
         id: dimmer
@@ -139,10 +139,8 @@ Item{
                 x: popup.spaceBeetweenButtons *2 + popup.buttonWidth
                 width: popup.buttonWidth
                 onClicked:{
-                    // askPopup.confirmed();
-                    console.log(arg1)
-                    askPopup.confirmed(arg1);
-                    askPopup.close();
+                    askPopup.confirmed();
+                    // askPopup.close();
                 }
             }
         }

@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
+import "../../Popups"
+
 Item{
     id: teamDelegate
 
@@ -12,7 +14,7 @@ Item{
     readonly property double extendedHeight: defaultHeight * 1.5 + playersInfo.height
     height: extended ? extendedHeight : defaultHeight
 
-    clip: true
+    // clip: true
 
     function editTeam(){
         const args = {
@@ -41,9 +43,10 @@ Item{
         extended = !extended
     }
 
-    Connections{
-        target: popups.askDeleteTeam
-        function onConfirmed() {
+    AskPopup{
+        id: askDeleteTeamPopup
+        autoClose: false
+        onConfirmed: {
             teamDelegate.deleteTeam()
         }
     }
@@ -101,8 +104,8 @@ Item{
                 text: "delete"
 
                 onClicked:{
-                    popups.askDeleteTeam.title = "Are you sure to delete Team?"
-                    popups.askDeleteTeam.open()
+                    askDeleteTeamPopup.title = "Are you sure to delete Team?"
+                    askDeleteTeamPopup.open()
                 }
             }
 
@@ -148,6 +151,7 @@ Item{
                 leftMargin: parent.width * 0.1
             }
             height: (playersCount +1/*footer*/) * defaultHeight
+            visible: teamDelegate.extended
 
             readonly property int playersCount: (!teamDelegate.team)?0: teamDelegate.team.players.length
 

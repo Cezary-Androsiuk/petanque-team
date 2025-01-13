@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
+import "../../Popups"
+
 Item {
     id: configureTeam
 
@@ -82,6 +84,10 @@ Item {
         function onDetachedTeamValidationFailed(message){
             log.i(message, "Team.qml->onDetachedTeamValidationFailed")
         }
+    }
+
+    InfoPopup{
+        id: failedTeamCreationInfoPopup
     }
 
     Rectangle{ // required because of stack view animation

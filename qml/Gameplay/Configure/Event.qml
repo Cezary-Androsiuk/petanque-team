@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
+import "../../Popups"
+
 Item {
     id: configureEvent
 
@@ -12,28 +14,32 @@ Item {
     Connections{
         target: Backend.event
         function onEventValid(){
-            popups.confirmNextRoundStage.fromMessage = "Configure"
-            popups.confirmNextRoundStage.toMessage = "Play"
-            popups.confirmNextRoundStage.title = "Are you sure to move on to\nthe next round stage?"
-            popups.confirmNextRoundStage.open();
+            confirmNextRoundStagePopup.fromMessage = "Configure"
+            confirmNextRoundStagePopup.toMessage = "Play"
+            confirmNextRoundStagePopup.title = "Are you sure to move on to\nthe next round stage?"
+            confirmNextRoundStagePopup.open();
         }
 
         function onEventValidationFailed(description){
-            popups.failedEventCreationInfo.title = "Event data are not valid!";
-            popups.failedEventCreationInfo.splitText = true;
-            popups.failedEventCreationInfo.message = description;
-            popups.failedEventCreationInfo.open();
+            failedEventCreationInfoPopup.title = "Event data are not valid!";
+            failedEventCreationInfoPopup.splitText = true;
+            failedEventCreationInfoPopup.message = description;
+            failedEventCreationInfoPopup.open();
         }
     }
 
-    Connections{
-        target: popups.confirmNextRoundStage
-        function onConfirmed(){
+    ConfirmNextPopup{
+        id: confirmNextRoundStagePopup
+        onConfirmed: {
             Backend.memory.save(); // saves data
             Backend.event.startFirstPhase();
             Backend.event.goToNextStage() // changes stage from Configure to Play(Continue)
             // Backend.memory.save(); // saves changed stage // exiting doing it as well // and timer will be
         }
+    }
+
+    InfoPopup{
+        id: failedEventCreationInfoPopup
     }
 
     Item{

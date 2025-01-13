@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
+import "../../Popups"
+
 Item{
     id: playerDelegate
 
@@ -8,7 +10,7 @@ Item{
     required property var team
     required property var parentStackView
 
-    clip: true
+    // clip: true
 
     function editPlayer(){
         const args = {
@@ -20,12 +22,11 @@ Item{
         parentStackView.push("Player.qml", args)
     }
 
-    Connections{
-        target: popups.askDeletePlayer
-        function onConfirmed(playerToDelete) {
-            console.log(playerToDelete)
-            team.deletePlayer(playerToDelete);
-            console.log(playerToDelete)
+    AskPopup{
+        id: askDeletePlayerPopup
+        onConfirmed: {
+            console.log("onConfirmed", player)
+            playerDelegate.team.deletePlayer(playerDelegate.player);
         }
     }
 
@@ -78,10 +79,9 @@ Item{
             text: "delete"
 
             onClicked:{
-                console.log(player)
-                popups.askDeletePlayer.title = "Are you sure to delete Player?"
-                popups.askDeletePlayer.arg1 = player;
-                popups.askDeletePlayer.open();
+                console.log("onClicked ",player)
+                askDeletePlayerPopup.title = "Are you sure to delete Player?"
+                askDeletePlayerPopup.open();
             }
         }
 

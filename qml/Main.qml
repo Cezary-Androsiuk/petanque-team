@@ -80,10 +80,4 @@ ApplicationWindow {
         }
     }
 
-
-
-    Popups{
-        id: popups
-    }
-
 }

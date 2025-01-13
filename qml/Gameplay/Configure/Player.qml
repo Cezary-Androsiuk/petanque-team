@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
+import "../../Popups"
+
 Item {
     id: configurePlayer
 
@@ -94,7 +96,10 @@ Item {
         function onDetachedPlayerValidationFailed(message){
             log.i(message, "Player.qml->onDetachedPlayerValidationFailed")
         }
+    }
 
+    InfoPopup{
+        id: failedPlayerCreationInfoPopup
     }
 
     Rectangle{ // required because of stack view animation
