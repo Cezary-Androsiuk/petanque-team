@@ -10,7 +10,7 @@ Item{
     required property var team
     required property var parentStackView
 
-    // clip: true
+    clip: true
 
     function editPlayer(){
         const args = {
@@ -81,7 +81,7 @@ Item{
             onClicked:{
                 console.log("onClicked ",player)
                 askDeletePlayerPopup.title = "Are you sure to delete Player?"
-                askDeletePlayerPopup.open();
+                askDeletePlayerPopup.fOpen();
             }
         }
 

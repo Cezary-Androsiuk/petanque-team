@@ -22,7 +22,7 @@ Item {
 
         model: Backend.event.teams.length
         boundsBehavior: Flickable.StopAtBounds
-        // clip: true
+        clip: true
         cacheBuffer: 10000
 
         ScrollBar.vertical: ScrollBar{

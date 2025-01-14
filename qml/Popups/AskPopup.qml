@@ -1,151 +1,143 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
-Item{
+Popup {
     id: askPopup
+    parent: rootWindowCenterPopupAnchor
+    width: parent.width
+    height: parent.height
 
-    z: 9999 // allways on top
+    property bool openedByFOpen: false
 
-    width: rootLoader.width
-    height: rootLoader.height
-    x: rootLoader.x
-    y: rootLoader.y
+    onAboutToShow: {
+        if(!openedByFOpen)
+            log.e("popup opened by open(), not fOpen()!", "AskPopup.qml")
+        rootWindowPopupDimmer.show();
+    }
 
-    property string title
-    property string lButtonText: "Cancel"
-    property string rButtonText: "Yes"
+    onAboutToHide: {
+        rootWindowPopupDimmer.hide();
+    }
 
-    property color backgroudColor: Qt.rgba(28/255, 27/255, 31/255)
-    property double dimmerShowOpacity: 0.8
-    property double dimmerHideOpacity: 0.0
-    property bool autoClose: true
-
-    function open(){
+    function fOpen(){
+        openedByFOpen = true;
         if(!Backend.enabledPopups)
         {
             confirmed();
             return;
         }
 
-        popup.open();
+        askPopup.open();
     }
 
-    function close(){
-        popup.close();
+    function fClose(){
+        openedByFOpen = false;
+        askPopup.close();
     }
 
-    signal confirmed()
+    property string title
+    property string lButtonText: "Cancel"
+    property string rButtonText: "Yes"
 
-    Rectangle{
-        id: dimmer
-        anchors.fill: parent
-        color: askPopup.backgroudColor
-        opacity: askPopup.dimmerHideOpacity
-        visible: opacity > 0
+    signal confirmed();
 
-        function show(){
-            dimmer.opacity = askPopup.dimmerShowOpacity
-        }
+    property bool autoClose: true
 
-        function hide(){
-            dimmer.opacity = askPopup.dimmerHideOpacity
-        }
+    focus: true
+    closePolicy: askPopup.autoClose ?
+                     Popup.CloseOnEscape | Popup.CloseOnPressOutside :
+                     Popup.NoAutoClose
 
-        Behavior on opacity {
-            NumberAnimation {
-                duration: 100 // slow down changing opacity
+    background: Item {
+        MouseArea{ /// better than default, because handle clicks
+            id: backgroudMouseArea
+            anchors.fill: parent
+            onClicked: {
+                if(askPopup.autoClose)
+                    askPopup.fClose();
             }
         }
-    }
 
-    Popup {
-        id: popup
-        anchors.centerIn: parent
+        Rectangle{
+            id: popupBody
+            anchors.centerIn: parent
+            width: 340
+            height: 180
+            color: "#3f3e40"
+            radius: 6
 
-        width: 340
-        height: 180
-
-        // dim: true
-        // modal: true
-
-        focus: true
-        closePolicy: askPopup.autoClose ?
-                         Popup.CloseOnEscape | Popup.CloseOnPressOutside :
-                         Popup.NoAutoClose
-
-        onAboutToShow: {
-            dimmer.show()
-        }
-
-        onAboutToHide: {
-            dimmer.hide();
-        }
-
-        property int buttonsAreaHeight: 70
-        property int buttonWidth: 90
-
-        property double spaceBeetweenButtons:
-            (buttonsItem.width - cancelButton.width - nextButton.width)/3
-
-
-        Item{
-            id: content
-            anchors{
-                top: parent.top
-                left: parent.left
-                right: parent.right
-                bottom: buttonsItem.top
+            MouseArea{
+                id: bodyMouseArea
+                anchors.fill: parent
+                onClicked: {}
             }
 
-            Label{
-                id: titleLabel
+            Item{
+                id: content
                 anchors{
-                    fill: parent
-                    margins: 10
+                    top: parent.top
+                    left: parent.left
+                    right: parent.right
+                    bottom: buttonsItem.top
                 }
-                text: askPopup.title
-                font.pixelSize: 20
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                wrapMode: Text.WordWrap
+
+                Label{
+                    id: titleLabel
+                    anchors{
+                        fill: parent
+                        margins: 10
+                    }
+                    text: askPopup.title
+                    font.pixelSize: 20
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    wrapMode: Text.WordWrap
+                }
+
             }
 
+            property int buttonsAreaHeight: 70
+            property int buttonWidth: 90
+
+            property double spaceBeetweenButtons:
+                (buttonsItem.width - cancelButton.width - nextButton.width)/3
+
+
+            Item{
+                id: buttonsItem
+                anchors{
+                    left: parent.left
+                    right: parent.right
+                    bottom: parent.bottom
+                }
+                height: popupBody.buttonsAreaHeight
+
+                Button{
+                    id: cancelButton
+                    text: askPopup.lButtonText
+                    anchors.verticalCenter: parent.verticalCenter
+                    x: popupBody.spaceBeetweenButtons
+                    width: popupBody.buttonWidth
+                    onClicked:{
+                        askPopup.fClose();
+                    }
+                }
+
+                Button{
+                    id: nextButton
+                    text: askPopup.rButtonText
+                    anchors.verticalCenter: parent.verticalCenter
+                    x: popupBody.spaceBeetweenButtons *2 + popupBody.buttonWidth
+                    width: popupBody.buttonWidth
+                    onClicked:{
+                        askPopup.fClose();
+                        askPopup.confirmed();
+                    }
+                }
+            }
         }
 
-        Item{
-            id: buttonsItem
-            anchors{
-                left: parent.left
-                right: parent.right
-                bottom: parent.bottom
-            }
-            height: popup.buttonsAreaHeight
-
-            Button{
-                id: cancelButton
-                text: askPopup.lButtonText
-                anchors.verticalCenter: parent.verticalCenter
-                x: popup.spaceBeetweenButtons
-                width: popup.buttonWidth
-                onClicked:{
-                    askPopup.close();
-                }
-            }
-
-            Button{
-                id: nextButton
-                text: askPopup.rButtonText
-                anchors.verticalCenter: parent.verticalCenter
-                x: popup.spaceBeetweenButtons *2 + popup.buttonWidth
-                width: popup.buttonWidth
-                onClicked:{
-                    askPopup.confirmed();
-                    // askPopup.close();
-                }
-            }
-        }
     }
+
 
 }
-
-

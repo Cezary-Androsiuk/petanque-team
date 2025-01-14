@@ -1,18 +1,24 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
-Item{
+Popup {
     id: infoPopup
+    parent: rootWindowCenterPopupAnchor
+    width: parent.width
+    height: parent.height
 
-    z: 9999 // allways on top
+    property bool openedByFOpen: false
 
-    property var rw: rootWindow
-    width: rw.width
-    height: rw.height
+    onAboutToShow: {
+        if(!openedByFOpen)
+            log.e("popup opened by open(), not fOpen()!", "InfoPopup.qml")
+        rootWindowPopupDimmer.show();
+    }
 
-    property string title
-    property string message
-    property bool splitText: true
+    onAboutToHide: {
+        rootWindowPopupDimmer.hide();
+    }
+
     readonly property string splitedMessage: {
         // message.replace(/:/g, "\n");
         //   / sign starts regex
@@ -25,163 +31,146 @@ Item{
 
     }
 
-    property color backgroudColor: Qt.rgba(28/255, 27/255, 31/255)
-    property double dimmerShowOpacity: 0.8
-    property double dimmerHideOpacity: 0.0
-    property bool autoClose: true
-
-    function open(){
+    function fOpen(){
+        openedByFOpen = true;
         if(!Backend.enabledPopups)
         {
-            confirmed();
             return;
         }
 
-        popup.open();
+        infoPopup.open();
     }
 
-    function close(){
-        popup.close();
+    function fClose(){
+        openedByFOpen = false;
+        infoPopup.close();
     }
 
-    signal confirmed()
+    property string title
+    property string message
+    property bool splitText: true
+    property bool autoClose: true
 
-    Rectangle{
-        id: dimmer
-        anchors.fill: parent
-        color: infoPopup.backgroudColor
-        opacity: infoPopup.dimmerHideOpacity
-        visible: opacity > 0
+    focus: true
+    closePolicy: infoPopup.autoClose ?
+                     Popup.CloseOnEscape | Popup.CloseOnPressOutside :
+                     Popup.NoAutoClose
 
-        function show(){
-            dimmer.opacity = infoPopup.dimmerShowOpacity
-        }
-
-        function hide(){
-            dimmer.opacity = infoPopup.dimmerHideOpacity
-        }
-
-        Behavior on opacity {
-            NumberAnimation {
-                duration: 100 // slow down changing opacity
-            }
-        }
-    }
-
-    Popup {
-        id: popup
-        anchors.centerIn: parent
-
-        width: 520
-        height: 350
-
-        // dim: true
-        // modal: true
-
-        focus: true
-        closePolicy: infoPopup.autoClose ?
-                         Popup.CloseOnEscape | Popup.CloseOnPressOutside :
-                         Popup.NoAutoClose
-
-        onAboutToShow: {
-            dimmer.show()
-        }
-
-        onAboutToHide: {
-            dimmer.hide();
-        }
-
-        property int buttonsAreaHeight: 70
-        property int titleItemHeight: 50
-        property int buttonWidth: 90
-
-        MouseArea {
+    background: Item {
+        MouseArea{ /// better than default, because handle clicks
+            id: backgroudMouseArea
             anchors.fill: parent
-            onClicked: forceActiveFocus()
+            onClicked: {
+                if(infoPopup.autoClose)
+                    infoPopup.close();
+            }
         }
 
-        Item{
-            id: titleItemHeader
-            anchors{
-                top: parent.top
-                left: parent.left
-                right: parent.right
-            }
-            height: popup.titleItemHeight
-            clip: true
+        Rectangle{
+            id: popupBody
+            anchors.centerIn: parent
+            width: 520
+            height: 350
+            color: "#3f3e40"
+            radius: 6
 
-            Label{
-                id: titleLabel
+            MouseArea { // to lose textArea focus
+                anchors.fill: parent
+                onClicked: forceActiveFocus()
+            }
+
+            property int titleItemHeight: 50
+
+            Item{
+                id: titleItemHeader
                 anchors{
-                    fill: parent
-                    margins: 10
+                    top: parent.top
+                    left: parent.left
+                    right: parent.right
                 }
+                height: popupBody.titleItemHeight
+                clip: true
 
-                text: infoPopup.title
-                font.pixelSize: 20
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignTop
-                wrapMode: Text.WordWrap
-            }
-        }
+                Label{
+                    id: titleLabel
+                    anchors{
+                        fill: parent
+                        margins: 10
+                    }
 
-        Item{
-            id: content
-            anchors{
-                top: titleItemHeader.bottom
-                left: parent.left
-                right: parent.right
-                bottom: buttonsItemFooter.top
+                    text: infoPopup.title
+                    font.pixelSize: 20
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignTop
+                    wrapMode: Text.WordWrap
+                }
             }
 
             Item{
+                id: content
                 anchors{
-                    fill: parent
-                    margins: 10
+                    top: titleItemHeader.bottom
+                    left: parent.left
+                    right: parent.right
+                    bottom: buttonsItemFooter.top
                 }
 
-                ScrollView{
-                    anchors.fill: parent
-                    TextArea{
-                        id: textArea
-                        text: {
-                            if(splitText)
-                                infoPopup.splitedMessage
-                            else
-                                infoPopup.message
+                Item{
+                    anchors{
+                        fill: parent
+                        margins: 10
+                    }
+
+                    ScrollView{
+                        anchors.fill: parent
+                        TextArea{
+                            id: textArea
+                            text: {
+                                if(infoPopup.splitText)
+                                    infoPopup.splitedMessage
+                                else
+                                    infoPopup.message
+                            }
+                            font.family: "Courier New"
+                            font.pixelSize: 14
+                            readOnly: true
                         }
-                        font.family: "Courier New"
-                        font.pixelSize: 14
-                        readOnly: true
                     }
                 }
+
             }
 
-        }
+            property int buttonsAreaHeight: 70
+            property int buttonWidth: 90
 
 
-        Item{
-            id: buttonsItemFooter
-            anchors{
-                left: parent.left
-                right: parent.right
-                bottom: parent.bottom
-            }
-            height: popup.buttonsAreaHeight
-
-            Button{
-                id: cancelButton
-                anchors.centerIn: parent
-                text: "Ok"
-                width: popup.buttonWidth
-                onClicked:{
-                    infoPopup.close();
+            Item{
+                id: buttonsItemFooter
+                anchors{
+                    left: parent.left
+                    right: parent.right
+                    bottom: parent.bottom
                 }
-            }
+                height: popupBody.buttonsAreaHeight
 
+                Button{
+                    id: cancelButton
+                    anchors.centerIn: parent
+                    text: "Ok"
+                    width: popupBody.buttonWidth
+                    onClicked:{
+                        infoPopup.fClose();
+                    }
+                }
+
+            }
         }
+
     }
 
+
 }
+
+
 
 

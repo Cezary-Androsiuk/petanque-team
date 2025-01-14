@@ -17,14 +17,14 @@ Item {
             confirmNextRoundStagePopup.fromMessage = "Configure"
             confirmNextRoundStagePopup.toMessage = "Play"
             confirmNextRoundStagePopup.title = "Are you sure to move on to\nthe next round stage?"
-            confirmNextRoundStagePopup.open();
+            confirmNextRoundStagePopup.fOpen();
         }
 
         function onEventValidationFailed(description){
             failedEventCreationInfoPopup.title = "Event data are not valid!";
             failedEventCreationInfoPopup.splitText = true;
             failedEventCreationInfoPopup.message = description;
-            failedEventCreationInfoPopup.open();
+            failedEventCreationInfoPopup.fOpen();
         }
     }
 
@@ -50,7 +50,7 @@ Item {
             bottom: footer.top
         }
         width: parent.width * 0.5
-        // clip: true
+        clip: true
 
         Item{
             anchors{
@@ -58,7 +58,7 @@ Item {
                 leftMargin: 30
                 rightMargin: 15
             }
-            // clip: true
+            clip: true
 
             Rectangle{
                 id: teamListBorder
@@ -87,7 +87,7 @@ Item {
             bottom: footer.top
         }
         width: parent.width * 0.5
-        // clip: true
+        clip: true
 
         Item{
             anchors{
@@ -95,7 +95,7 @@ Item {
                 leftMargin: 15
                 rightMargin: 30
             }
-            // clip: true
+            clip: true
 
             Rectangle{
                 id: infoFieldFlickableBorder

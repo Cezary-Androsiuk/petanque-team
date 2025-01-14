@@ -80,4 +80,29 @@ ApplicationWindow {
         }
     }
 
+
+
+    Rectangle{
+        id: rootWindowPopupDimmer
+        anchors.fill: parent
+
+        readonly property double dimmerOpacity: 0.8
+
+        function show(){
+            opacity = dimmerOpacity;
+        }
+        function hide(){
+            opacity = 0;
+        }
+
+        color: Qt.rgba(28/255, 27/255, 31/255)
+        opacity: 0
+
+        Behavior on opacity { NumberAnimation { duration: 150 } }
+    }
+
+    Item{
+        id: rootWindowCenterPopupAnchor
+        anchors.fill: parent
+    }
 }

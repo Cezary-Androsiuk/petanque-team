@@ -14,7 +14,7 @@ Item{
     readonly property double extendedHeight: defaultHeight * 1.5 + playersInfo.height
     height: extended ? extendedHeight : defaultHeight
 
-    // clip: true
+    clip: true
 
     function editTeam(){
         const args = {
@@ -45,7 +45,6 @@ Item{
 
     AskPopup{
         id: askDeleteTeamPopup
-        autoClose: false
         onConfirmed: {
             teamDelegate.deleteTeam()
         }
@@ -105,7 +104,7 @@ Item{
 
                 onClicked:{
                     askDeleteTeamPopup.title = "Are you sure to delete Team?"
-                    askDeleteTeamPopup.open()
+                    askDeleteTeamPopup.fOpen()
                 }
             }
 
