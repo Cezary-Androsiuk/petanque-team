@@ -1,6 +1,10 @@
 REBUILD:
 OK - GroupSelection: verify, assignExampleData
 OK - MatchTypeBase: makeGroupsOfPlayersList
+Deleting player from configure stage - fix
+Deleting team from configure stage - fix
+Editing player in configure stage - there is no verification right now, copy player to delegate, after pressing save swap them
+Editing team in configure stage - there is no verification right now, copy team to delegate, after pressing save swap them
 
 IMPLEMENT:
 OK - Player: points
@@ -9,7 +13,8 @@ OK - Team/Event/Phase/SubPhase: compute teams for second phase using points
 RoundSummary qml
 Finish qml
 Add new Player (while gameplay)
-confirm popups
+OK - confirm popups
+check all conditions while changing to phase 2
 
 OPTIONAL
 change Configure gui (better buttons)
