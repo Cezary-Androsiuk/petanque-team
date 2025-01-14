@@ -470,26 +470,33 @@ bool MatchTypeBase::verifyMatch(QString &message)
         return false;
     }
 
-    const IntList &leftMatchPoints = m_groupMatchLeft->getMatchPoints();
-    const IntList &rightMatchPoints = m_groupMatchRight->getMatchPoints();
+    const IntList &leftMatchesPoints = m_groupMatchLeft->getMatchPoints();
+    const IntList &rightMatchesPoints = m_groupMatchRight->getMatchPoints();
 
-    if(leftMatchPoints.size() != rightMatchPoints.size())
+    if(leftMatchesPoints.size() != rightMatchesPoints.size())
     {
         W(QAPF("matchPoints have different sizes: left(%lld) right(%lld)",
-               leftMatchPoints.size(), rightMatchPoints.size()));
+               leftMatchesPoints.size(), rightMatchesPoints.size()));
         return false;
     }
 
     int maxPointsInMatch = Personalization::getInstance()->getMaxPointsInMatch();
-    for(int i=0; i<leftMatchPoints.size(); i++)
+    for(int i=0; i<leftMatchesPoints.size(); i++)
     {
-        int lValue = leftMatchPoints[i];
-        int rValue = rightMatchPoints[i];
+        int lValue = leftMatchesPoints[i];
+        int rValue = rightMatchesPoints[i];
 
-        if(lValue + rValue > maxPointsInMatch)
+        if(lValue > maxPointsInMatch)
         {
-            message = QAPF("in group %d, the sum of left and right points is %d, but cannot be larger than %d",
-                           i+1, lValue+rValue, maxPointsInMatch);
+            message = QAPF("in group %d, the left points are %d, but cannot be larger than %d",
+                           i+1, lValue, maxPointsInMatch);
+            return false;
+        }
+
+        if(rValue > maxPointsInMatch)
+        {
+            message = QAPF("in group %d, the right points are %d, but cannot be larger than %d",
+                           i+1, rValue, maxPointsInMatch);
             return false;
         }
 
@@ -575,7 +582,7 @@ void MatchTypeBase::assignMatchExampleData()
     int maxPointsInMatch = m_groupMatchLeft->getMaxPointsInMatch();
     for(int i=0; i<leftMatchPointsSize; i++)
     {
-        MatchTypeBase::generateTwoRandomValues3(
+        MatchTypeBase::generateTwoRandomValues(
             leftMatchPoints[i], rightMatchPoints[i], maxPointsInMatch);
     }
 
@@ -583,95 +590,30 @@ void MatchTypeBase::assignMatchExampleData()
     m_groupMatchRight->assignExampleData(rightMatchPoints);
 }
 
-void MatchTypeBase::generateTwoRandomValues1(int &v1, int &v2, int max)
+void MatchTypeBase::generateTwoRandomValues(int &v1, int &v2, int max)
 {
-    /// Algorithm is not that good and surprisingly not always gives valid result
     auto rnd = QRandomGenerator::global();
-    int mod1 = max + 1;
-    int randomPoints1 = rnd->bounded(0, mod1); // r1 = [0, 13]
-    int mod2 = max - randomPoints1 +1;
-    int randomPoints2 = rnd->bounded(0, mod2); // r2 = [0, 13-r1]
+    int mod = max + 1;
+    int randomPoint1 = rnd->bounded(0, mod); // r1 = [0, 13]
+    int randomPoint2 = rnd->bounded(0, mod); // r2 = [0, 13]
 
-    if(randomPoints1 == randomPoints2)
+    if(randomPoint1 == randomPoint2)
     {
-        randomPoints1 += (randomPoints1 == 0) ? 1 : (randomPoints1-1);
+        randomPoint1 += (randomPoint1 == 0) ? 1 : (randomPoint1-1);
     }
 
-    if((randomPoints1 + randomPoints2) > max)
+    if(randomPoint1 < 0 || randomPoint1 > max || randomPoint2 < 0 || randomPoint2 > max)
     {
-        I(QAPF("%d + %d > %d, generated values sum is larger than max points",
-               randomPoints1, randomPoints2, max), Log::Action::Save);
-        /// I CANNOT FIND OUT WHY SOMETIMES THEY DON'T ADD UP
-        /// for example 13 - 9 + 1 gives 9 or something
+        I(QAPF("%d, %d not belong to  [0, %d] , generated values are not match required range",
+               randomPoint1, randomPoint2, max), Log::Action::Save);
 
         /// if that happend assign my own random data xd
-        randomPoints1 = 6;
-        randomPoints2 = 3;
+        randomPoint1 = 6;
+        randomPoint2 = 3;
     }
 
-    if(rnd->generate()%2)
-    {
-        v1 = randomPoints1;
-        v2 = randomPoints2;
-    }
-    else
-    {
-        v2 = randomPoints1;
-        v1 = randomPoints2;
-    }
-
-    /// secure
-    if(v1 < 0) v1 *= -1;
-    if(v2 < 0) v2 *= -1;
-}
-
-void MatchTypeBase::generateTwoRandomValues2(int &v1, int &v2, int max)
-{
-    auto rnd = QRandomGenerator::global();
-
-    int randomPoints1 = 3;
-    int randomPoints2 = 6;
-
-    if(rnd->generate()%2)
-    {
-        v1 = randomPoints1;
-        v2 = randomPoints2;
-    }
-    else
-    {
-        v2 = randomPoints1;
-        v1 = randomPoints2;
-    }
-}
-
-void MatchTypeBase::generateTwoRandomValues3(int &v1, int &v2, int max)
-{
-    auto rnd = QRandomGenerator::global();
-    uint rndVal = rnd->generate();
-    rndVal = rndVal % 12;
-
-    int _v1, _v2;
-    switch (rndVal) {
-    case 0:  _v1 =  4; _v2 =  8; break;
-    case 1:  _v1 =  6; _v2 =  2; break;
-    case 2:  _v1 =  3; _v2 =  6; break;
-    case 3:  _v1 =  1; _v2 = 10; break;
-    case 4:  _v1 =  2; _v2 = 11; break;
-    case 5:  _v1 =  5; _v2 =  3; break;
-    case 6:  _v1 =  0; _v2 =  7; break;
-    case 7:  _v1 =  3; _v2 =  8; break;
-    case 8:  _v1 = 13; _v2 =  0; break;
-    case 9:  _v1 =  4; _v2 =  9; break;
-    case 10: _v1 =  3; _v2 =  6; break;
-    case 11: _v1 =  2; _v2 = 11; break;
-    default: _v1 =  0; _v2 =  1; break;
-    }
-
-    rndVal = rnd->generate();
-    if(rndVal % 2)
-    { v1 = _v1; v2 = _v2; }
-    else
-    { v1 = _v2; v2 = _v1; }
+    v1 = randomPoint1;
+    v2 = randomPoint2;
 }
 
 Team *MatchTypeBase::getTeamLeftQml() const

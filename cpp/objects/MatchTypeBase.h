@@ -79,9 +79,7 @@ public:
     void assignMatchExampleData();
 
 private:
-    static void generateTwoRandomValues1(int &v1, int &v2, int max);
-    static void generateTwoRandomValues2(int &v1, int &v2, int max);
-    static void generateTwoRandomValues3(int &v1, int &v2, int max);
+    static void generateTwoRandomValues(int &v1, int &v2, int max);
 
 public:
     /// GETTERS

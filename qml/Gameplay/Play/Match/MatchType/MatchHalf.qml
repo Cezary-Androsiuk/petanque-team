@@ -52,10 +52,13 @@ Item {
                     }
                     width: spinBox.width
 
+                    // higher value makes entering number easier
+                    readonly property int maxValue: matchHalf.matchVar.maxPointsInMatch // 9999
+
                     Rectangle{
                         anchors.fill: spinBox
                         color: Qt.rgba(0.8,0,0, 0.6)
-                        visible: spinBox.value > 13
+                        visible: spinBox.value > spinBoxField.maxValue
                         radius: 5
                     }
 
@@ -72,8 +75,7 @@ Item {
                         }
 
                         editable: true
-                        // higher value makes entering number easier
-                        to: matchHalf.matchVar.maxPointsInMatch // 9999
+                        to: spinBoxField.maxValue
 
                         value: {
                             // log.i("assigning new value: " + matchHalf.matchVar.matchPoints[index])
