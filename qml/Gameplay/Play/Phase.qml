@@ -48,7 +48,7 @@ Item {
             infoPopup.title = "?Event data are not valid!";
             infoPopup.splitText = true;
             infoPopup.message = message;
-            infoPopup.open();
+            infoPopup.fOpen();
         }
     }
 
