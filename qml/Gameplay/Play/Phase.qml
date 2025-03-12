@@ -41,7 +41,7 @@ Item {
         target: phaseVar
         function onVerified(){
             confirmNextPopup.title = "Are you sure to move on to\nthe next stage?"
-            confirmNextPopup.open();
+            confirmNextPopup.fOpen();
         }
 
         function onVerificationFailed(message){
