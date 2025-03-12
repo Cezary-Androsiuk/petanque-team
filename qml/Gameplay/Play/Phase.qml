@@ -67,21 +67,8 @@ Item {
             anchors.fill: parent
             spacing: 0
 
-            // TabBar{
-            //     id: tabBar
-            //     width: parent.width
-
-            //     Repeater{
-            //         model: 2//phaseVar.subPhases
-            //         TabButton{
-            //             text: qsTr("Phase ") + index//modelData.name
-
-            //         }
-            //     }
-            // }
-
             Item{
-                id: myTabBar
+                id: tabBar
                 width: parent.width
                 height: 60
 
@@ -89,8 +76,8 @@ Item {
                     Repeater{
                         model: !(phaseVar)?0: phaseVar.subPhases
                         Item{
-                            height: myTabBar.height
-                            width: myTabBar.width / phaseVar.subPhasesCount
+                            height: tabBar.height
+                            width: tabBar.width / phaseVar.subPhasesCount
 
                             Rectangle{
                                 anchors.fill: parent
@@ -116,13 +103,7 @@ Item {
             StackLayout{
                 id: stackLayout
                 width: parent.width
-
-                // tabBar
-                // height: parent.height-tabBar.height
-                // currentIndex: tabBar.currentIndex
-
-                // myTabBar
-                height: parent.height-myTabBar.height
+                height: parent.height-tabBar.height
 
                 Repeater{
                     model: !(phaseVar)?0: phaseVar.subPhases
