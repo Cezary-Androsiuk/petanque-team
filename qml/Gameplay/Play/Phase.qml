@@ -45,7 +45,7 @@ Item {
         }
 
         function onVerificationFailed(message){
-            infoPopup.title = "?Event data are not valid!";
+            infoPopup.title = "Phase data are not valid!";
             infoPopup.splitText = true;
             infoPopup.message = message;
             infoPopup.fOpen();
