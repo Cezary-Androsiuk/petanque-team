@@ -11,7 +11,7 @@ QString EnumConvert::RoundStageToQString(RoundStageEnum roundStage)
     case RoundStageEnum::TripletsMatch:     return "Triplets Match";
     case RoundStageEnum::RoundSummary:      return "Round Summary";
     default:
-        W("unknown round stage, returning singiels selection string");
+        W("unknown round stage, returning Singiels Selection string");
         return "Singiels Selection";
     }
 }
@@ -26,6 +26,6 @@ RoundStageEnum EnumConvert::QStringToRoundStage(const QString &roundStage)
     if(roundStage == "Triplets Match")      return RoundStageEnum::TripletsMatch;
     if(roundStage == "Round Summary")       return RoundStageEnum::RoundSummary;
 
-    W("unknown round stage string: " "\"" + roundStage + "\"" ", returning singlets selection enum");
+    W("unknown round stage string: " "\"" + roundStage + "\"" ", returning Singlets Selection enum");
     return RoundStageEnum::SingielsSelection;
 }

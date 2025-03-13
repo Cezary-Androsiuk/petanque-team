@@ -8,7 +8,7 @@ QString EnumConvert::AgeGroupToQString(AgeGroupEnum ageGroup)
     case AgeGroupEnum::Senior:  return "senior";
     case AgeGroupEnum::Veteran: return "veteran";
     default:
-        W("unknown age group, returning veteran string");
+        W("unknown age group, returning Veteran string");
         return "veteran";
     }
 }
@@ -20,6 +20,6 @@ AgeGroupEnum EnumConvert::QStringToAgeGroup(const QString &ageGroup)
     if(ageGroup == "senior")  return AgeGroupEnum::Senior;
     if(ageGroup == "veteran") return AgeGroupEnum::Veteran;
 
-    W("unknown age group string: " "\"" + ageGroup + "\"" ", returning veteran enum");
+    W("unknown age group string: " "\"" + ageGroup + "\"" ", returning Veteran enum");
     return AgeGroupEnum::Veteran;
 }
