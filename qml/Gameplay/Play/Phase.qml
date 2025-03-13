@@ -218,6 +218,7 @@ Item {
                 verticalCenter: parent.verticalCenter
             }
             text: "Set Example Data"
+            visible: Backend.isDebugMode
             onClicked:{
                 phase.phaseVar.assignExampleData();
             }
@@ -231,6 +232,7 @@ Item {
                 verticalCenter: parent.verticalCenter
             }
             text: "Set Example Data And Go Next"
+            visible: Backend.isDebugMode
             onClicked:{
                 exampleDataButton.clicked();
                 nextButton.clicked();

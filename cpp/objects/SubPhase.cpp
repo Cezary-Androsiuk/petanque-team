@@ -142,7 +142,7 @@ bool SubPhase::verify(QString &message) const
 {
     if( !(m_rounds[m_currentRoundIndex]->verify(message)) )
     {
-        message = "in round "+QString::number(m_currentRoundIndex)+": " + message;
+        message = "in round "+QString::number(m_currentRoundIndex+1)+": " + message;
         return false;
     }
     return true;

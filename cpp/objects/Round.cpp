@@ -148,7 +148,7 @@ bool Round::verify(QString &message) const
     {
         if(!(m_matches[i]->verify(message)))
         {
-            message = "in match " + QString::number(i) + ": " + message;
+            message = "in match " + QString::number(i+1) + ": " + message;
             return false;
         }
     }

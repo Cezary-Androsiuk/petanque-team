@@ -182,7 +182,8 @@ bool Match::verify(QString &message) const
     {
         if(!currentMatchType->verifySelection(message))
         {
-            message = "in roundStage " +QString::number(*m_currentRoundStage)+": " + message;
+            QString roundStage = EnumConvert::RoundStageToQString(*m_currentRoundStage);
+            message = "in roundStage " + roundStage + ": " + message;
             return false;
         }
     }
@@ -190,7 +191,8 @@ bool Match::verify(QString &message) const
     {
         if(!currentMatchType->verifyMatch(message))
         {
-            message = "in roundStage " +QString::number(*m_currentRoundStage)+": " + message;
+            QString roundStage = EnumConvert::RoundStageToQString(*m_currentRoundStage);
+            message = "in roundStage " + roundStage + ": " + message;
             return false;
         }
     }

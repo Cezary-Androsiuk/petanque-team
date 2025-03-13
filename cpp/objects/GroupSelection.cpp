@@ -89,7 +89,7 @@ bool GroupSelection::verify(QString &message)
                                  QAPF("%d or %d", m_minPlayersInGroup, m_maxPlayersInGroup);
 
         message = QAPF("in group %d, %d players were selected, but %s were expected",
-                       i, foundPlayersInGroup, difference.toStdString().c_str());
+                       i+1, foundPlayersInGroup, difference.toStdString().c_str());
 
         return false;
     }
