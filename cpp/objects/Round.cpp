@@ -195,6 +195,11 @@ RoundStageEnum Round::getCurrentRoundStage() const
     return m_currentRoundStage;
 }
 
+QString Round::getCurrentName() const
+{
+    return EnumConvert::RoundStageToQString(m_currentRoundStage);
+}
+
 MatchPtrVectorQml Round::getMatchesQml() const
 {
     MatchPtrVectorQml retVec;

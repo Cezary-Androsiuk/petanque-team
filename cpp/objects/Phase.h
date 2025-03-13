@@ -53,6 +53,9 @@ public:
     int getSubPhasesCount() const;
     const SubPhasePtrVector &getSubPhases() const;
 
+    QString getCurrentName() const;
+    QString getNextName() const;
+
     /// QML GETTERS
     QmlSubPhasePtrVector getSubPhasesQml() const;
 

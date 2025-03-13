@@ -57,6 +57,8 @@ public:
     int getCurrentRoundIndex() const;
     const RoundPtrVector &getRounds() const;
 
+    QString getCurrentName() const;
+
     /// QML GETTERS
     Round *getCurrentRound() const;
     QmlRoundPtrVector getRoundsQml() const;

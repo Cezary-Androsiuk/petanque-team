@@ -55,7 +55,7 @@ public slots:
     void startFinishStage(); // ?
 
     /// PHASE STUFF
-    bool hasNextPhase();
+    bool hasNextPhase() const;
     void startFirstPhase(); /// executed in qml, Event.qml
     void startSecondPhase(); /// executed in qml, Phase.qml
 
@@ -89,6 +89,9 @@ public:
 
     const TeamPtr &getDetachedTeam() const;
     const TeamPtrList &getTeams() const;
+
+    Q_INVOKABLE QString getConfirmNextPopupTextFrom() const;
+    Q_INVOKABLE QString getConfirmNextPopupTextTo() const;
 
     /// QML LIST GETTERS
     QmlPhasePtrVector getPhasesQml() const;

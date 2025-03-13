@@ -219,6 +219,15 @@ const RoundPtrVector &SubPhase::getRounds() const
     return m_rounds;
 }
 
+QString SubPhase::getCurrentName() const
+{
+    if(m_rounds[m_currentRoundIndex]->hasNext())
+    {
+        return m_rounds[m_currentRoundIndex]->getCurrentName();
+    }
+    return "Round " + QString::number(m_currentRoundIndex+1);
+}
+
 Round *SubPhase::getCurrentRound() const
 {
     return m_rounds[m_currentRoundIndex].data();

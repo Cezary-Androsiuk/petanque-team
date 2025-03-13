@@ -194,7 +194,7 @@ void Event::startFinishStage()
     this->goToNextStage();
 }
 
-bool Event::hasNextPhase()
+bool Event::hasNextPhase() const
 {
     return m_currentPhase == PhaseEnum::First;
 }
@@ -519,6 +519,30 @@ const TeamPtr &Event::getDetachedTeam() const
 const TeamPtrList &Event::getTeams() const
 {
     return m_teams;
+}
+
+QString Event::getConfirmNextPopupTextFrom() const
+{
+    /// returned right before changing Round or RoundStage
+    if(m_phases[m_currentPhase]->hasNext())
+    {
+        return m_phases[m_currentPhase]->getCurrentName();
+    }
+
+    /// returned right before changing the phase
+    if(this->hasNextPhase())
+    {
+        return EnumConvert::PhaseToQString(m_currentPhase);
+    }
+
+    /// returned right before changing stage
+    // return EnumConvert:: m_currentStage
+
+}
+
+QString Event::getConfirmNextPopupTextTo() const
+{
+
 }
 
 QmlPhasePtrVector Event::getPhasesQml() const
