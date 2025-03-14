@@ -536,13 +536,12 @@ QString Event::getConfirmNextPopupTextFrom() const
     }
 
     /// returned right before changing stage
-    // return EnumConvert:: m_currentStage
-
+    return EnumConvert::StageToQString(m_currentStage);
 }
 
 QString Event::getConfirmNextPopupTextTo() const
 {
-
+    return "none";
 }
 
 QmlPhasePtrVector Event::getPhasesQml() const
