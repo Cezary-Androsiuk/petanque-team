@@ -89,10 +89,10 @@ Popup {
                         right: parent.right
                         rightMargin: 10
                         top: parent.top
-                        topMargin: 10
+                        topMargin: 24
                     }
                     text: confirmNextPopup.title
-                    font.pixelSize: 20
+                    font.pixelSize: 22
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignTop
                     wrapMode: Text.WordWrap
@@ -106,7 +106,7 @@ Popup {
                         right: parent.right
                         rightMargin: 10
                         top: titleLabel.bottom
-                        topMargin: 15
+                        topMargin: 22
                     }
 
                     readonly property bool fromFieldIsSet: confirmNextPopup.fromMessage != "";
@@ -124,7 +124,7 @@ Popup {
                             "";
                     }
                     opacity: 0.8
-                    font.pixelSize: 13
+                    font.pixelSize: 14
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     wrapMode: Text.WordWrap
