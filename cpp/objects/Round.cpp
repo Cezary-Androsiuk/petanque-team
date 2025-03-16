@@ -200,6 +200,12 @@ QString Round::getCurrentName() const
     return EnumConvert::RoundStageToQString(m_currentRoundStage);
 }
 
+QString Round::getNextName() const
+{
+    return EnumConvert::RoundStageToQString(
+        static_cast<RoundStageEnum>(m_currentRoundStage +1));
+}
+
 MatchPtrVectorQml Round::getMatchesQml() const
 {
     MatchPtrVectorQml retVec;

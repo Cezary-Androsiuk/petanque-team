@@ -16,7 +16,7 @@ Item {
         function onEventValid(){
             confirmNextRoundStagePopup.fromMessage = "Configure"
             confirmNextRoundStagePopup.toMessage = "Play"
-            confirmNextRoundStagePopup.title = "Are you sure to move on to\nthe next round stage?"
+            confirmNextRoundStagePopup.title = "Are you sure to move on?"
             confirmNextRoundStagePopup.fOpen();
         }
 

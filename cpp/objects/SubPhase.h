@@ -58,6 +58,7 @@ public:
     const RoundPtrVector &getRounds() const;
 
     QString getCurrentName() const;
+    QString getNextName() const;
 
     /// QML GETTERS
     Round *getCurrentRound() const;

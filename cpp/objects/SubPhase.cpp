@@ -228,6 +228,15 @@ QString SubPhase::getCurrentName() const
     return "Round " + QString::number(m_currentRoundIndex+1);
 }
 
+QString SubPhase::getNextName() const
+{
+    if(m_rounds[m_currentRoundIndex]->hasNext())
+    {
+        return m_rounds[m_currentRoundIndex]->getNextName();
+    }
+    return "Round " + QString::number(m_currentRoundIndex+2);
+}
+
 Round *SubPhase::getCurrentRound() const
 {
     return m_rounds[m_currentRoundIndex].data();

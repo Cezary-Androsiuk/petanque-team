@@ -58,6 +58,7 @@ public:
     RoundStageEnum getCurrentRoundStage() const;
 
     QString getCurrentName() const;
+    QString getNextName() const;
 
     /// QML GETTERS
     MatchPtrVectorQml getMatchesQml() const;

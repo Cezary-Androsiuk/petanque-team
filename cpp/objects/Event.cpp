@@ -541,7 +541,21 @@ QString Event::getConfirmNextPopupTextFrom() const
 
 QString Event::getConfirmNextPopupTextTo() const
 {
-    return "none";
+    /// returned right before changing Round or RoundStage
+    if(m_phases[m_currentPhase]->hasNext())
+    {
+        return m_phases[m_currentPhase]->getNextName();
+    }
+
+    /// returned right before changing the phase
+    if(this->hasNextPhase())
+    {
+        return EnumConvert::PhaseToQString(PhaseEnum::Second);
+    }
+
+    /// returned right before changing stage
+    return EnumConvert::StageToQString(
+        static_cast<StageEnum>(m_currentStage+1));
 }
 
 QmlPhasePtrVector Event::getPhasesQml() const

@@ -203,22 +203,31 @@ const SubPhasePtrVector &Phase::getSubPhases() const
 QString Phase::getCurrentName() const
 {
     /// Prevent crashing app
-    if(m_subPhases.size() < 1)
+    if(Q_UNLIKELY(m_subPhases.size() < 1))
     {
         E("empty m_subPhases vector, cannot determine round stage");
         return "---";
     }
 
     /// returned right before changing Round or RoundStage
-    if(m_subPhases[0]->hasNext())
+    /// phase is a container for supPages
+    /// and doesn't have second stage or something like that
+    return m_subPhases[0]->getCurrentName();
+}
+
+QString Phase::getNextName() const
+{
+    /// Prevent crashing app
+    if(Q_UNLIKELY(m_subPhases.size() < 1))
     {
-        return m_subPhases[0]->getCurrentName();
+        E("empty m_subPhases vector, cannot determine round stage");
+        return "---";
     }
 
-    /// there is no case when this could be reached
-    /// due to that the phase is a container for supPages
+    /// returned right before changing Round or RoundStage
+    /// phase is a container for supPages
     /// and doesn't have second stage or something like that
-    return EnumConvert::PhaseToQString(m_phase);
+    return m_subPhases[0]->getNextName();
 }
 
 QmlSubPhasePtrVector Phase::getSubPhasesQml() const
