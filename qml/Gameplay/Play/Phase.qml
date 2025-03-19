@@ -6,12 +6,11 @@ import "../../Popups"
 
 Item {
     id: phase
-    anchors.fill: parent
 
     required property int phaseIndex;
     readonly property var phaseVar: Backend.event.phases[phaseIndex];
 
-    readonly property int headerHeight: 30
+    readonly property int headerHeight: 50
     readonly property int footerHeight: 70
 
     InfoPopup{
@@ -162,11 +161,9 @@ Item {
                 bottom: parent.bottom
             }
             // width: 2*height
-            text: "Restart event  (in future settings button)"
+            text: "Settings"
             onClicked: {
-                console.log("open settings, then can restart event")
-                rootLoader.source = "";
-                Backend.restartEvent();
+                playStackView.push(settingsComponent.createObject(playStackView));
             }
         }
 

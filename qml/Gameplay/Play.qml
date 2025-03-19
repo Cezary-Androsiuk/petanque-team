@@ -1,4 +1,6 @@
 import QtQuick 2.15
+import QtQuick.Controls.Material
+import QtQuick.Layouts
 
 import "Play"
 
@@ -11,7 +13,22 @@ Item {
         rootWindow.minimumHeight = 550;
     }
 
-    Phase{
-        phaseIndex: Backend.event.currentPhase
+    Component{
+        id: settingsComponent
+        Settings{
+
+        }
     }
+
+    StackView {
+        id: playStackView
+        anchors.fill: parent
+        initialItem: Phase{
+            phaseIndex: Backend.event.currentPhase
+        }
+
+    }
+
+
+
 }
