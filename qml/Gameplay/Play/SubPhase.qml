@@ -93,20 +93,6 @@ Item {
                     return null;
                 }
             }
-            onLoaded: {
-                // if(sourceComponent === matchesComponent)
-                // {
-                //     item.roundVar = subPhase.roundVar
-                //     item.headerHeight = subPhase.headerHeight
-                //     item.footerHeight = subPhase.footerHeight
-                // }
-                // if(sourceComponent === roundSummeryComponent)
-                // {
-                //     item.roundVar = subPhase.roundVar
-                //     item.headerHeight = subPhase.headerHeight
-                //     item.footerHeight = subPhase.footerHeight
-                // }
-            }
         }
 
         Component{
@@ -124,10 +110,13 @@ Item {
         Component{
             id: roundSummeryComponent
             Item{
-                Label{
-                    anchors.centerIn: parent
-                    text: "round summary"
+                RoundSummary{
+                    anchors.fill: parent
+                    roundVar: subPhase.roundVar
+                    headerHeight: subPhase.headerHeight
+                    footerHeight: subPhase.footerHeight
                 }
+
             }
         }
 
