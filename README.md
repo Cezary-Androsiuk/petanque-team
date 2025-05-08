@@ -9,8 +9,8 @@
 ## Images
 
 ### Graphs
-#### CPP
+#### CPP Relations
 ![graph - CPP relations](https://github.com/Cezary-Androsiuk/petanque-team/blob/master/graphs/PetanqueTeam.png)
 
-#### QML
+#### QML Relations
 ![graph - QML relations](https://github.com/Cezary-Androsiuk/petanque-team/blob/master/graphs/PetanqueTeamQML.png)
