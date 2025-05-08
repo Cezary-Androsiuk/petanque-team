@@ -36,7 +36,7 @@ ApplicationWindow {
     Connections{
         target: DoubleStartProtection
         function onApplicationIsAlreadyRunning(){
-            rootLoader.source = "ApplicationIsAlreadyRunning.qml" // sets own min height/width
+            rootLoader.source = "AppAlreadyRunning.qml" // sets own min height/width
         }
 
         function onVerified(){
