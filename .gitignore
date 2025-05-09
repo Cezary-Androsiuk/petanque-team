@@ -2,6 +2,3 @@ CMakeLists.txt.user
 build/
 docs/
 _graph/
-doxygen1/
-doxygen2/
-doxygen3/
