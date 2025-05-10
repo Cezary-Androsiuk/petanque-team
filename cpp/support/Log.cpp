@@ -105,6 +105,8 @@ QString Log::asprintf(cQS text, ...)
     const std::string strText = text.toStdString();
 
     va_list args;
+    #pragma clang diagnostic ignored "-Wvarargs" /// qtcreator uses clang
+    #pragma GCC diagnostic ignored "-Wvarargs" /// compiler uses gcc
     va_start(args, strText.c_str());
 
     QString str = Log::asprintf(strText.c_str(), args);
