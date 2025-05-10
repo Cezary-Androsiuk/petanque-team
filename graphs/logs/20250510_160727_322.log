@@ -1,0 +1,347 @@
+[2025-05-10 16:07:27.322]---------------------------------------- [APPLICATION STARTED] ----------------------------------------
+[2025-05-10 16:07:27.311] I                                                int main(int, char**)            started
+[2025-05-10 16:07:27.322] I                        ReadStartupJson::ReadStartupJson(const char*)            using json file 'graphCreator\startup_cpp-trimmed.json' selected by user
+[2025-05-10 16:07:27.334] I                     void ReadStartupJson::readVariables(const json&)            all keys readed correctly
+[2025-05-10 16:07:27.341] I                        ReadStartupJson::ReadStartupJson(const char*)            startup json loaded
+[2025-05-10 16:07:27.550] R                                        void Program::readDirectory()            
+<<START RAW>>
+Skipped files:
+
+<<END RAW>>
+[2025-05-10 16:07:27.551] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*" - 2384
+
+<<END RAW>>
+[2025-05-10 16:07:27.552] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.7z" - 1
+
+<<END RAW>>
+[2025-05-10 16:07:27.553] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.bat" - 1
+
+<<END RAW>>
+[2025-05-10 16:07:27.553] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.dll" - 62
+
+<<END RAW>>
+[2025-05-10 16:07:27.554] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.dot" - 1
+
+<<END RAW>>
+[2025-05-10 16:07:27.555] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.exe" - 37
+
+<<END RAW>>
+[2025-05-10 16:07:27.555] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.idx" - 2
+
+<<END RAW>>
+[2025-05-10 16:07:27.556] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.json" - 3
+
+<<END RAW>>
+[2025-05-10 16:07:27.557] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.log" - 22
+
+<<END RAW>>
+[2025-05-10 16:07:27.557] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.md" - 1
+
+<<END RAW>>
+[2025-05-10 16:07:27.558] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.pack" - 2
+
+<<END RAW>>
+[2025-05-10 16:07:27.559] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.png" - 5
+
+<<END RAW>>
+[2025-05-10 16:07:27.559] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.psd" - 1
+
+<<END RAW>>
+[2025-05-10 16:07:27.560] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.qml" - 30
+
+<<END RAW>>
+[2025-05-10 16:07:27.561] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.rev" - 2
+
+<<END RAW>>
+[2025-05-10 16:07:27.562] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.sample" - 14
+
+<<END RAW>>
+[2025-05-10 16:07:27.563] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.sh" - 1
+
+<<END RAW>>
+[2025-05-10 16:07:27.564] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.txt" - 2
+
+<<END RAW>>
+[2025-05-10 16:07:27.565] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.user" - 1
+
+<<END RAW>>
+[2025-05-10 16:07:27.565] R                                        void Program::readDirectory()            
+<<START RAW>>
+"build/" - 1
+
+<<END RAW>>
+[2025-05-10 16:07:27.566] R                                        void Program::readDirectory()            
+<<START RAW>>
+"cpp\DebugConstraints.h" - 1
+
+<<END RAW>>
+[2025-05-10 16:07:27.568] R                                        void Program::readDirectory()            
+<<START RAW>>
+"cpp\Serializable.cpp" - 1
+
+<<END RAW>>
+[2025-05-10 16:07:27.569] R                                        void Program::readDirectory()            
+<<START RAW>>
+"cpp\Serializable.h" - 1
+
+<<END RAW>>
+[2025-05-10 16:07:27.571] R                                        void Program::readDirectory()            
+<<START RAW>>
+"cpp\enums/" - 1
+
+<<END RAW>>
+[2025-05-10 16:07:27.572] R                                        void Program::readDirectory()            
+<<START RAW>>
+"cpp\storages\DefaultPersonalizationData.cpp" - 1
+
+<<END RAW>>
+[2025-05-10 16:07:27.574] R                                        void Program::readDirectory()            
+<<START RAW>>
+"cpp\storages\DefaultPersonalizationData.h" - 1
+
+<<END RAW>>
+[2025-05-10 16:07:27.577] R                                        void Program::readDirectory()            
+<<START RAW>>
+"cpp\storages\Personalization.cpp" - 1
+
+<<END RAW>>
+[2025-05-10 16:07:27.579] R                                        void Program::readDirectory()            
+<<START RAW>>
+"cpp\storages\Personalization.h" - 1
+
+<<END RAW>>
+[2025-05-10 16:07:27.581] R                                        void Program::readDirectory()            
+<<START RAW>>
+"cpp\support/" - 1
+
+<<END RAW>>
+[2025-05-10 16:07:27.582] R                                        void Program::readDirectory()            
+<<START RAW>>
+Accepted files:
+
+<<END RAW>>
+[2025-05-10 16:07:27.584] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\Backend.cpp
+
+<<END RAW>>
+[2025-05-10 16:07:27.584] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\Backend.h
+
+<<END RAW>>
+[2025-05-10 16:07:27.585] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\DoubleStartProtection.cpp
+
+<<END RAW>>
+[2025-05-10 16:07:27.587] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\DoubleStartProtection.h
+
+<<END RAW>>
+[2025-05-10 16:07:27.588] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\Login.cpp
+
+<<END RAW>>
+[2025-05-10 16:07:27.589] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\Login.h
+
+<<END RAW>>
+[2025-05-10 16:07:27.590] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\main.cpp
+
+<<END RAW>>
+[2025-05-10 16:07:27.590] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\SingletonManager.cpp
+
+<<END RAW>>
+[2025-05-10 16:07:27.592] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\SingletonManager.h
+
+<<END RAW>>
+[2025-05-10 16:07:27.593] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Event.cpp
+
+<<END RAW>>
+[2025-05-10 16:07:27.594] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Event.h
+
+<<END RAW>>
+[2025-05-10 16:07:27.595] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\GroupMatch.cpp
+
+<<END RAW>>
+[2025-05-10 16:07:27.598] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\GroupMatch.h
+
+<<END RAW>>
+[2025-05-10 16:07:27.599] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\GroupSelection.cpp
+
+<<END RAW>>
+[2025-05-10 16:07:27.601] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\GroupSelection.h
+
+<<END RAW>>
+[2025-05-10 16:07:27.602] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Match.cpp
+
+<<END RAW>>
+[2025-05-10 16:07:27.603] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Match.h
+
+<<END RAW>>
+[2025-05-10 16:07:27.605] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\MatchDublets.cpp
+
+<<END RAW>>
+[2025-05-10 16:07:27.606] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\MatchDublets.h
+
+<<END RAW>>
+[2025-05-10 16:07:27.607] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\MatchSingiels.cpp
+
+<<END RAW>>
+[2025-05-10 16:07:27.609] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\MatchSingiels.h
+
+<<END RAW>>
+[2025-05-10 16:07:27.610] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\MatchTriplets.cpp
+
+<<END RAW>>
+[2025-05-10 16:07:27.612] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\MatchTriplets.h
+
+<<END RAW>>
+[2025-05-10 16:07:27.614] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\MatchTypeBase.cpp
+
+<<END RAW>>
+[2025-05-10 16:07:27.616] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\MatchTypeBase.h
+
+<<END RAW>>
+[2025-05-10 16:07:27.617] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Phase.cpp
+
+<<END RAW>>
+[2025-05-10 16:07:27.619] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Phase.h
+
+<<END RAW>>
+[2025-05-10 16:07:27.620] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Player.cpp
+
+<<END RAW>>
+[2025-05-10 16:07:27.621] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Player.h
+
+<<END RAW>>
+[2025-05-10 16:07:27.622] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Round.cpp
+
+<<END RAW>>
+[2025-05-10 16:07:27.623] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Round.h
+
+<<END RAW>>
+[2025-05-10 16:07:27.624] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\SubPhase.cpp
+
+<<END RAW>>
+[2025-05-10 16:07:27.626] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\SubPhase.h
+
+<<END RAW>>
+[2025-05-10 16:07:27.627] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Team.cpp
+
+<<END RAW>>
+[2025-05-10 16:07:27.628] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Team.h
+
+<<END RAW>>
+[2025-05-10 16:07:27.630] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\storages\Memory.cpp
+
+<<END RAW>>
+[2025-05-10 16:07:27.631] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\storages\Memory.h
+
+<<END RAW>>
+[2025-05-10 16:07:27.647] I                            void Program::findRelationsBetweenFiles()            created relations between files
+[2025-05-10 16:07:27.669] E ### ###                                void Program::startGraphviz()            failed while starting graphviz with command: ".\Graphviz\Graphviz-12.2.1-win64\bin\dot.exe -Tpng .\graph_source.dot -o .\PetanqueTeamCPP-trimmed.png"

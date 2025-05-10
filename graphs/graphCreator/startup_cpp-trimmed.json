@@ -1,6 +1,6 @@
 {
-    "directory path": "D:/QtCreator/0_projects/PetanqueTeam",
-    "output image path": "D:/QtCreator/0_projects/PetanqueTeam/graphs/PetanqueTeamCPP.png",
+    "directory path": "./../../",
+    "output image path": "./../PetanqueTeamCPP-trimmed.png",
 
     "use accepted extesions": true,
     "accepted extesions": [
@@ -17,6 +17,15 @@
     ],
     "use ignored file names": true,
     "ignored file names": [
+        "Serializable.h",
+        "Serializable.cpp",
+        "LogTypeEnum.h",
+        "LogTypeEnum.cpp",
+        "DefaultPersonalizationData.cpp",
+        "DefaultPersonalizationData.h",
+        "Personalization.h",
+        "Personalization.cpp",
+        "DebugConstraints.h"
     ],
 
     "use accepted directories": false,
@@ -24,6 +33,9 @@
     ],
     "use ignored directories": true,
     "ignored directories": [
+        "support",
+        "enums",
+        "build"
     ],
 
     "display all readed files": true,

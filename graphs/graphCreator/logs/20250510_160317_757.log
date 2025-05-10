@@ -1,0 +1,5 @@
+[2025-05-10 16:03:17.757]---------------------------------------- [APPLICATION STARTED] ----------------------------------------
+[2025-05-10 16:03:17.748] I                                                int main(int, char**)            started
+[2025-05-10 16:03:17.757] W ###                    ReadStartupJson::ReadStartupJson(const char*)            selected by user path to json '.\startup_cpp-trimmed.json;' doesn't exist
+[2025-05-10 16:03:17.766] I                        ReadStartupJson::ReadStartupJson(const char*)            trying './startup.json' path
+[2025-05-10 16:03:17.773] E ### ###                ReadStartupJson::ReadStartupJson(const char*)            json file './startup.json', doesn't exist

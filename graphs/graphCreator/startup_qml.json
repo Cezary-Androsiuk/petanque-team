@@ -1,0 +1,35 @@
+{
+    "directory path": "./../../",
+    "output image path": "./../PetanqueTeamQML.png",
+
+    "use accepted extesions": true,
+    "accepted extesions": [
+        ".qml"
+    ],
+    "use ignored extesions": true,
+    "ignored extesions": [
+    ],
+
+    "use accepted file names": false,
+    "accepted file names": [
+    ],
+    "use ignored file names": true,
+    "ignored file names": [
+    ],
+
+    "use accepted directories": false,
+    "accepted directories": [
+    ],
+    "use ignored directories": true,
+    "ignored directories": [
+        "build"
+    ],
+
+    "display all readed files": true,
+    "display all ignored extensions": true,
+
+    "use qml improvement": true,
+    "use cpp improvement": false,
+
+    "graphviz dot.exe location" : "./Graphviz/Graphviz-12.2.1-win64/bin/dot.exe"
+}

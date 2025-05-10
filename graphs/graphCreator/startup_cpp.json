@@ -1,12 +1,9 @@
 {
-    "directory path": "C:/Users/cezar/Documents/QtCreator/0_projects/PetanqueTeam/graph",
-    "output image path": "C:/Users/cezar/Documents/QtCreator/0_projects/PetanqueTeam/graph/PetanqueTeamQML.png",
+    "directory path": "./../../",
+    "output image path": "./../PetanqueTeamCPP.png",
 
     "use accepted extesions": true,
     "accepted extesions": [
-        ".qml"
-    ],
-    "accepted extesions - not active": [
         ".cpp",
         ".hpp",
         ".h"
@@ -27,12 +24,14 @@
     ],
     "use ignored directories": true,
     "ignored directories": [
+        "build"
     ],
 
     "display all readed files": true,
     "display all ignored extensions": true,
 
-    "use qml improvement": true,
+    "use qml improvement": false,
+    "use cpp improvement": true,
 
     "graphviz dot.exe location" : "./Graphviz/Graphviz-12.2.1-win64/bin/dot.exe"
 }

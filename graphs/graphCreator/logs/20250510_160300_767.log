@@ -1,0 +1,5 @@
+[2025-05-10 16:03:00.768]---------------------------------------- [APPLICATION STARTED] ----------------------------------------
+[2025-05-10 16:03:00.759] I                                                int main(int, char**)            started
+[2025-05-10 16:03:00.768] W ###                    ReadStartupJson::ReadStartupJson(const char*)            selected by user path to json '.\startup_qml.json;' doesn't exist
+[2025-05-10 16:03:00.776] I                        ReadStartupJson::ReadStartupJson(const char*)            trying './startup.json' path
+[2025-05-10 16:03:00.783] E ### ###                ReadStartupJson::ReadStartupJson(const char*)            json file './startup.json', doesn't exist

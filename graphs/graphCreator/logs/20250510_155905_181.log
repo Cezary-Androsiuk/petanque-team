@@ -1,0 +1,737 @@
+[2025-05-10 15:59:05.182]---------------------------------------- [APPLICATION STARTED] ----------------------------------------
+[2025-05-10 15:59:05.174] I                                                int main(int, char**)            started
+[2025-05-10 15:59:05.182] I                        ReadStartupJson::ReadStartupJson(const char*)            using json file 'startup_qml.json' selected by user
+[2025-05-10 15:59:05.196] I                     void ReadStartupJson::readVariables(const json&)            all keys readed correctly
+[2025-05-10 15:59:05.204] I                        ReadStartupJson::ReadStartupJson(const char*)            startup json loaded
+[2025-05-10 15:59:05.588] R                                        void Program::readDirectory()            
+<<START RAW>>
+Skipped files:
+
+<<END RAW>>
+[2025-05-10 15:59:05.590] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*" - 2392
+
+<<END RAW>>
+[2025-05-10 15:59:05.590] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.7z" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:05.591] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.a" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:05.591] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.bat" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:05.592] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.bin" - 3
+
+<<END RAW>>
+[2025-05-10 15:59:05.592] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.check_cache" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:05.593] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.cmake" - 20
+
+<<END RAW>>
+[2025-05-10 15:59:05.594] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.conan" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:05.595] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.cpp" - 114
+
+<<END RAW>>
+[2025-05-10 15:59:05.596] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.d" - 27
+
+<<END RAW>>
+[2025-05-10 15:59:05.596] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.dll" - 62
+
+<<END RAW>>
+[2025-05-10 15:59:05.597] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.dot" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:05.598] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.exe" - 41
+
+<<END RAW>>
+[2025-05-10 15:59:05.599] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.gen" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:05.600] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.h" - 32
+
+<<END RAW>>
+[2025-05-10 15:59:05.600] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.idx" - 1657
+
+<<END RAW>>
+[2025-05-10 15:59:05.601] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.json" - 72
+
+<<END RAW>>
+[2025-05-10 15:59:05.602] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.log" - 21
+
+<<END RAW>>
+[2025-05-10 15:59:05.603] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.md" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:05.604] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.ninja" - 2
+
+<<END RAW>>
+[2025-05-10 15:59:05.604] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.obj" - 95
+
+<<END RAW>>
+[2025-05-10 15:59:05.605] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.pack" - 2
+
+<<END RAW>>
+[2025-05-10 15:59:05.606] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.png" - 2
+
+<<END RAW>>
+[2025-05-10 15:59:05.608] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.prev" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:05.609] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.psd" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:05.610] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.qmltypes" - 2
+
+<<END RAW>>
+[2025-05-10 15:59:05.611] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.qrc" - 3
+
+<<END RAW>>
+[2025-05-10 15:59:05.612] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.rev" - 2
+
+<<END RAW>>
+[2025-05-10 15:59:05.613] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.rsp" - 6
+
+<<END RAW>>
+[2025-05-10 15:59:05.615] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.sample" - 14
+
+<<END RAW>>
+[2025-05-10 15:59:05.617] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.sh" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:05.618] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.timestamp" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:05.620] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.txt" - 8
+
+<<END RAW>>
+[2025-05-10 15:59:05.621] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.user" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:05.621] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.yaml" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:05.622] R                                        void Program::readDirectory()            
+<<START RAW>>
+Accepted files:
+
+<<END RAW>>
+[2025-05-10 15:59:05.623] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\AppAlreadyRunning.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.627] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\ErrorPage.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.632] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.636] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\GamePlay_.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.640] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\LoginForm.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.644] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Main.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.648] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Popups.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.653] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Configure.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.658] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Continue.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.662] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Finish.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.667] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.672] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Settings.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.676] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Configure\Event.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.681] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Configure\InfoField.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.688] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Configure\Player.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.692] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Configure\PlayerDelegate.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.699] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Configure\Team.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.705] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Configure\TeamDelegate.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.710] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Configure\TeamsList.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.716] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Configure\Event\InfoField.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.721] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Configure\Event\TeamsList.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.725] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\Match.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.729] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\Matches.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.736] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\Phase.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.740] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\RoundSummary.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.745] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\SubPhase.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.751] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\Match\DubletsMatch.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.757] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\Match\DubletsSelection.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.762] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\Match\GroupMatch.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.769] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\Match\GroupSelection.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.774] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\Match\MatchTemplate.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.779] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\Match\RoundSummary.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.786] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\Match\RoundSummaryHalf.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.791] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\Match\SelectionTemplate.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.796] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\Match\SingielsMatch.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.803] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\Match\SingielsSelection.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.808] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\Match\TripletsMatch.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.813] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\Match\TripletsSelection.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.819] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\Match\MatchType\GroupMatch.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.825] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\Match\MatchType\GroupSelection.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.830] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\Match\MatchType\Match.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.836] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\Match\MatchType\MatchHalf.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.841] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\Match\MatchType\Selection.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.846] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\Match\MatchType\SelectionHalf.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.853] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\RoundSummary\Ranking.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.858] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Gameplay\Play\RoundSummary\Summary.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.863] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Popups\AskPopup.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.870] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Popups\ConfirmNextPopup.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.874] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\qml\Popups\InfoPopup.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.878] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\AppAlreadyRunning.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.886] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\ErrorPage.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.890] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.894] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\LoginForm.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.899] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Main.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.904] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Configure.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.908] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Finish.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.912] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Play.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.920] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Settings.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.925] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Configure\Event.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.929] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Configure\InfoField.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.937] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Configure\Player.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.942] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Configure\PlayerDelegate.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.947] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Configure\Team.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.953] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Configure\TeamDelegate.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.959] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Configure\TeamsList.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.964] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Play\Match.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.971] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Play\Matches.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.975] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Play\Phase.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.980] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Play\RoundSummary.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.986] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Play\SubPhase.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.991] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Play\Match\GroupMatch.qml
+
+<<END RAW>>
+[2025-05-10 15:59:05.996] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Play\Match\GroupSelection.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.004] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Play\Match\MatchType\MatchHalf.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.010] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Play\Match\MatchType\SelectionHalf.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.017] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Play\RoundSummary\Ranking.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.023] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Gameplay\Play\RoundSummary\Summary.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.028] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Popups\AskPopup.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.034] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Popups\ConfirmNextPopup.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.039] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\PetanqueTeam\source\qml\Popups\InfoPopup.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.044] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\AppAlreadyRunning.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.045] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\ErrorPage.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.046] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.048] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\LoginForm.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.049] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Main.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.050] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Configure.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.052] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Finish.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.054] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.055] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Settings.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.056] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Configure\Event.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.058] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Configure\InfoField.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.060] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Configure\Player.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.062] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Configure\PlayerDelegate.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.064] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Configure\Team.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.066] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Configure\TeamDelegate.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.069] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Configure\TeamsList.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.071] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\Match.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.072] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\Matches.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.074] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\Phase.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.075] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\RoundSummary.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.077] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\SubPhase.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.079] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\Match\GroupMatch.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.084] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\Match\GroupSelection.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.086] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\Match\MatchType\MatchHalf.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.089] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\Match\MatchType\SelectionHalf.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.092] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\RoundSummary\Ranking.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.094] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\RoundSummary\Summary.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.096] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Popups\AskPopup.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.098] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Popups\ConfirmNextPopup.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.100] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Popups\InfoPopup.qml
+
+<<END RAW>>
+[2025-05-10 15:59:06.169] I                            void Program::findRelationsBetweenFiles()            created relations between files
+[2025-05-10 15:59:08.447] I                                        void Program::startGraphviz()            graphviz executed successfully

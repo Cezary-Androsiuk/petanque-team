@@ -1,0 +1,917 @@
+[2025-05-10 15:59:17.002]---------------------------------------- [APPLICATION STARTED] ----------------------------------------
+[2025-05-10 15:59:16.994] I                                                int main(int, char**)            started
+[2025-05-10 15:59:17.002] I                        ReadStartupJson::ReadStartupJson(const char*)            using json file 'startup_cpp.json' selected by user
+[2025-05-10 15:59:17.020] I                     void ReadStartupJson::readVariables(const json&)            all keys readed correctly
+[2025-05-10 15:59:17.028] I                        ReadStartupJson::ReadStartupJson(const char*)            startup json loaded
+[2025-05-10 15:59:17.647] R                                        void Program::readDirectory()            
+<<START RAW>>
+Skipped files:
+
+<<END RAW>>
+[2025-05-10 15:59:17.649] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*" - 2392
+
+<<END RAW>>
+[2025-05-10 15:59:17.649] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.7z" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:17.650] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.a" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:17.650] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.bat" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:17.651] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.bin" - 3
+
+<<END RAW>>
+[2025-05-10 15:59:17.652] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.check_cache" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:17.652] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.cmake" - 20
+
+<<END RAW>>
+[2025-05-10 15:59:17.653] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.conan" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:17.654] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.d" - 27
+
+<<END RAW>>
+[2025-05-10 15:59:17.655] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.dll" - 62
+
+<<END RAW>>
+[2025-05-10 15:59:17.655] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.dot" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:17.656] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.exe" - 41
+
+<<END RAW>>
+[2025-05-10 15:59:17.657] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.gen" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:17.657] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.idx" - 1657
+
+<<END RAW>>
+[2025-05-10 15:59:17.658] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.json" - 72
+
+<<END RAW>>
+[2025-05-10 15:59:17.659] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.log" - 22
+
+<<END RAW>>
+[2025-05-10 15:59:17.660] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.md" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:17.661] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.ninja" - 2
+
+<<END RAW>>
+[2025-05-10 15:59:17.662] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.obj" - 95
+
+<<END RAW>>
+[2025-05-10 15:59:17.663] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.pack" - 2
+
+<<END RAW>>
+[2025-05-10 15:59:17.664] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.png" - 3
+
+<<END RAW>>
+[2025-05-10 15:59:17.664] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.prev" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:17.665] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.psd" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:17.666] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.qml" - 109
+
+<<END RAW>>
+[2025-05-10 15:59:17.667] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.qmltypes" - 2
+
+<<END RAW>>
+[2025-05-10 15:59:17.668] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.qrc" - 3
+
+<<END RAW>>
+[2025-05-10 15:59:17.668] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.rev" - 2
+
+<<END RAW>>
+[2025-05-10 15:59:17.669] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.rsp" - 6
+
+<<END RAW>>
+[2025-05-10 15:59:17.670] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.sample" - 14
+
+<<END RAW>>
+[2025-05-10 15:59:17.670] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.sh" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:17.671] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.timestamp" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:17.672] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.txt" - 8
+
+<<END RAW>>
+[2025-05-10 15:59:17.673] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.user" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:17.673] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.yaml" - 1
+
+<<END RAW>>
+[2025-05-10 15:59:17.674] R                                        void Program::readDirectory()            
+<<START RAW>>
+Accepted files:
+
+<<END RAW>>
+[2025-05-10 15:59:17.675] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\apppetanqueteam_qmltyperegistrations.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.681] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.qt\rcc\qrc_appPetanqueTeam_raw_qml_0.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.685] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.qt\rcc\qrc_qmake_PetanqueTeam.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.689] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qmlcache_loader.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.697] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\AppAlreadyRunning_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.702] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\ErrorPage_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.707] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.714] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\LoginForm_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.718] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Main_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.723] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Popups_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.730] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Configure_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.735] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Continue_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.740] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Finish_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.748] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.753] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Settings_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.758] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Configure\Event_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.766] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Configure\InfoField_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.772] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Configure\PlayerDelegate_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.780] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Configure\Player_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.785] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Configure\TeamDelegate_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.791] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Configure\TeamsList_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.798] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Configure\Team_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.803] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Configure\Event\InfoField_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.811] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Configure\Event\TeamsList_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.818] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\Matches_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.823] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\Match_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.830] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\Phase_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.836] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\RoundSummary_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.842] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\SubPhase_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.851] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\Match\DubletsMatch_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.857] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\Match\DubletsSelection_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.865] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\Match\GroupMatch_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.871] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\Match\GroupSelection_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.880] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\Match\MatchTemplate_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.885] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\Match\RoundSummaryHalf_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.892] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\Match\RoundSummary_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.899] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\Match\SelectionTemplate_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.905] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\Match\SingielsMatch_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.912] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\Match\SingielsSelection_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.919] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\Match\TripletsMatch_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.925] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\Match\TripletsSelection_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.932] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\Match\MatchType\GroupMatch_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.939] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\Match\MatchType\GroupSelection_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.948] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\Match\MatchType\MatchHalf_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.954] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\Match\MatchType\Match_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.961] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\Match\MatchType\SelectionHalf_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.968] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\Match\MatchType\Selection_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.974] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\RoundSummary\Ranking_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.983] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Gameplay\Play\RoundSummary\Summary_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.990] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Popups\AskPopup_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:17.996] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Popups\ConfirmNextPopup_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.001] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\.rcc\qmlcache\appPetanqueTeam_qml\Popups\InfoPopup_qml.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.006] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\mocs_compilation.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.011] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\moc_predefs.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.015] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\DPYYCPVWSP\moc_LogQML.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.020] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\DPYYCPVWSP\moc_LogSession.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.025] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\DPYYCPVWSP\moc_LogSessionPart.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.030] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\DPYYCPVWSP\moc_SingleLogSession.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.036] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\R27W3DRJWZ\moc_Event.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.040] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\R27W3DRJWZ\moc_GroupMatch.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.045] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\R27W3DRJWZ\moc_GroupSelection.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.050] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\R27W3DRJWZ\moc_Match.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.055] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\R27W3DRJWZ\moc_MatchDublets.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.060] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\R27W3DRJWZ\moc_MatchSingiels.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.069] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\R27W3DRJWZ\moc_MatchTriplets.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.074] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\R27W3DRJWZ\moc_MatchTypeBase.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.080] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\R27W3DRJWZ\moc_Phase.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.084] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\R27W3DRJWZ\moc_Player.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.089] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\R27W3DRJWZ\moc_Round.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.095] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\R27W3DRJWZ\moc_SubPhase.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.100] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\R27W3DRJWZ\moc_Team.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.105] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\S7U2V37YJM\moc_Memory.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.111] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\S7U2V37YJM\moc_Personalization.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.117] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\SVODSI3R2M\moc_Backend.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.122] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\SVODSI3R2M\moc_DoubleStartProtection.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.130] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\SVODSI3R2M\moc_Event.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.134] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\SVODSI3R2M\moc_Login.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.139] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\SVODSI3R2M\moc_Serializable.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.145] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\V74NPOUUGB\moc_FirstPhase.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.151] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\V74NPOUUGB\moc_Phase.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.155] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\appPetanqueTeam_autogen\V74NPOUUGB\moc_SecondPhase.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.162] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\CMakeFiles\3.27.7\CompilerIdCXX\CMakeCXXCompilerId.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.167] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\CMakeFiles\3.29.3\CompilerIdCXX\CMakeCXXCompilerId.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.172] R                                        void Program::readDirectory()            
+<<START RAW>>
+build\Desktop_Qt_6_7_3_MinGW_64_bit-Debug\CMakeFiles\3.30.5\CompilerIdCXX\CMakeCXXCompilerId.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.179] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\Backend.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.181] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\Backend.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.181] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\DebugConstraints.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.183] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\DoubleStartProtection.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.185] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\DoubleStartProtection.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.186] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\Login.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.187] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\Login.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.187] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\main.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.188] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\Serializable.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.189] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\Serializable.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.190] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\SingletonManager.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.192] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\SingletonManager.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.194] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\enums\AgeGroupEnum.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.196] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\enums\AgeGroupEnum.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.198] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\enums\GenderEnum.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.199] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\enums\GenderEnum.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.200] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\enums\PhaseEnum.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.202] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\enums\PhaseEnum.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.203] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\enums\RoundStageEnum.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.204] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\enums\RoundStageEnum.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.206] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\enums\StageEnum.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.207] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\enums\StageEnum.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.208] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Event.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.213] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Event.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.214] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\GroupMatch.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.216] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\GroupMatch.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.217] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\GroupSelection.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.218] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\GroupSelection.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.220] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Match.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.221] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Match.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.222] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\MatchDublets.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.224] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\MatchDublets.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.225] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\MatchSingiels.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.228] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\MatchSingiels.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.230] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\MatchTriplets.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.232] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\MatchTriplets.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.234] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\MatchTypeBase.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.235] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\MatchTypeBase.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.237] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Phase.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.238] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Phase.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.239] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Player.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.240] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Player.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.241] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Round.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.244] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Round.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.245] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\SubPhase.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.247] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\SubPhase.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.248] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Team.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.249] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\objects\Team.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.250] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\storages\DefaultPersonalizationData.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.252] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\storages\DefaultPersonalizationData.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.254] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\storages\Memory.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.256] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\storages\Memory.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.257] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\storages\Personalization.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.258] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\storages\Personalization.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.261] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\support\Log.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.263] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\support\Log.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.264] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\support\LogQML.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.265] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\support\LogQML.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.266] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\support\LogSession.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.268] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\support\LogSession.h
+
+<<END RAW>>
+[2025-05-10 15:59:18.269] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\support\LogSessionPart.cpp
+
+<<END RAW>>
+[2025-05-10 15:59:18.271] R                                        void Program::readDirectory()            
+<<START RAW>>
+cpp\support\LogSessionPart.h
+
+<<END RAW>>
+[2025-05-10 15:59:19.435] I                            void Program::findRelationsBetweenFiles()            created relations between files
+[2025-05-10 15:59:20.535] I                                        void Program::startGraphviz()            graphviz executed successfully

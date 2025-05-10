@@ -1,0 +1,276 @@
+[2025-05-10 16:52:37.195]---------------------------------------- [APPLICATION STARTED] ----------------------------------------
+[2025-05-10 16:52:37.189] R                                                int main(int, char**)            
+<<START RAW>>
+Starting Application Code Files to Graph, version: 1.2.1
+
+<<END RAW>>
+[2025-05-10 16:52:37.195] I                        ReadStartupJson::ReadStartupJson(const char*)            using json file 'startup_qml.json' selected by user
+[2025-05-10 16:52:37.202] I                     void ReadStartupJson::readVariables(const json&)            all keys readed correctly
+[2025-05-10 16:52:37.207] I                        ReadStartupJson::ReadStartupJson(const char*)            startup json loaded
+[2025-05-10 16:52:37.431] R                                        void Program::readDirectory()            
+<<START RAW>>
+Skipped files:
+
+<<END RAW>>
+[2025-05-10 16:52:37.433] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*" - 2522
+
+<<END RAW>>
+[2025-05-10 16:52:37.433] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.7z" - 1
+
+<<END RAW>>
+[2025-05-10 16:52:37.434] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.bat" - 1
+
+<<END RAW>>
+[2025-05-10 16:52:37.435] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.cpp" - 31
+
+<<END RAW>>
+[2025-05-10 16:52:37.435] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.dll" - 62
+
+<<END RAW>>
+[2025-05-10 16:52:37.436] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.dot" - 1
+
+<<END RAW>>
+[2025-05-10 16:52:37.437] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.exe" - 37
+
+<<END RAW>>
+[2025-05-10 16:52:37.437] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.h" - 31
+
+<<END RAW>>
+[2025-05-10 16:52:37.438] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.idx" - 2
+
+<<END RAW>>
+[2025-05-10 16:52:37.439] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.json" - 3
+
+<<END RAW>>
+[2025-05-10 16:52:37.439] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.log" - 41
+
+<<END RAW>>
+[2025-05-10 16:52:37.440] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.md" - 1
+
+<<END RAW>>
+[2025-05-10 16:52:37.441] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.pack" - 2
+
+<<END RAW>>
+[2025-05-10 16:52:37.441] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.png" - 5
+
+<<END RAW>>
+[2025-05-10 16:52:37.442] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.psd" - 1
+
+<<END RAW>>
+[2025-05-10 16:52:37.443] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.rev" - 2
+
+<<END RAW>>
+[2025-05-10 16:52:37.443] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.sample" - 14
+
+<<END RAW>>
+[2025-05-10 16:52:37.444] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.sh" - 1
+
+<<END RAW>>
+[2025-05-10 16:52:37.445] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.txt" - 2
+
+<<END RAW>>
+[2025-05-10 16:52:37.446] R                                        void Program::readDirectory()            
+<<START RAW>>
+"*.user" - 1
+
+<<END RAW>>
+[2025-05-10 16:52:37.446] R                                        void Program::readDirectory()            
+<<START RAW>>
+"build/" - 1
+
+<<END RAW>>
+[2025-05-10 16:52:37.447] R                                        void Program::readDirectory()            
+<<START RAW>>
+Accepted files:
+
+<<END RAW>>
+[2025-05-10 16:52:37.448] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\AppAlreadyRunning.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.449] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\ErrorPage.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.450] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.451] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\LoginForm.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.452] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Main.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.453] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Configure.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.454] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Finish.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.455] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.457] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Settings.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.458] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Configure\Event.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.460] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Configure\InfoField.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.462] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Configure\Player.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.465] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Configure\PlayerDelegate.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.467] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Configure\Team.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.469] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Configure\TeamDelegate.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.471] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Configure\TeamsList.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.473] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\Match.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.475] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\Matches.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.477] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\Phase.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.479] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\RoundSummary.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.481] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\SubPhase.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.482] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\Match\GroupMatch.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.485] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\Match\GroupSelection.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.487] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\Match\MatchType\MatchHalf.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.490] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\Match\MatchType\SelectionHalf.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.492] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\RoundSummary\Ranking.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.495] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Gameplay\Play\RoundSummary\Summary.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.497] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Popups\AskPopup.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.499] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Popups\ConfirmNextPopup.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.501] R                                        void Program::readDirectory()            
+<<START RAW>>
+qml\Popups\InfoPopup.qml
+
+<<END RAW>>
+[2025-05-10 16:52:37.509] I                            void Program::findRelationsBetweenFiles()            created relations between files
+[2025-05-10 16:52:38.110] I                                        void Program::startGraphviz()            graphviz executed successfully
