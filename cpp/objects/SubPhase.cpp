@@ -15,26 +15,26 @@ SubPhase::~SubPhase()
 
 void SubPhase::onStart()
 {
-    D(QAPF("before subPhase start: %p", this), Log::Action::SaveSession)
+    DA(Log::Action::SaveSession, "before subPhase start: %p", this);
     this->roundStart();
 }
 
 void SubPhase::onEnd()
 {
-    D(QAPF("after subPhase end: %p", this), Log::Action::SaveSession)
+    DA(Log::Action::SaveSession, "after subPhase end: %p", this);
     this->roundEnd();
 }
 
 void SubPhase::initRounds(QJsonArray jArrangements)
 {
-    D(QAPF("init rounds: %p", this), Log::Action::SaveSession)
+    DA(Log::Action::SaveSession, "init rounds: %p", this);
 
     int roundsCount = m_rounds.size() > jArrangements.size() ? jArrangements.size() : m_rounds.size();
     /// if rounds count not equal to arrangement count, display error and use least value
     if(m_rounds.size() != jArrangements.size())
     {
-        E(QAPF("m_rounds size(%lld) != arrangment size(%lld) using %d size",
-               m_rounds.size(), jArrangements.size(), roundsCount))
+        E("m_rounds size(%lld) != arrangment size(%lld) using %d size",
+          m_rounds.size(), jArrangements.size(), roundsCount);
     }
 
     /// for each round set their part of berger's table
@@ -70,7 +70,7 @@ QJsonObject SubPhase::serialize() const
     {
         if(roundPtr.isNull())
         {
-            W("cannot serialize not existing round")
+            W("cannot serialize not existing round");
             jRounds.append( QJsonObject() );
         }
         else jRounds.append( roundPtr->serialize() );
@@ -110,7 +110,7 @@ void SubPhase::deserializeRounds(const QJsonObject &jSubPhase)
 {
     if(!jSubPhase.contains(SERL_ROUNDS_KEY))
     {
-        E("cannot deserialize rounds due to missing key in json: " SERL_ROUNDS_KEY)
+        E("cannot deserialize rounds due to missing key in json: " SERL_ROUNDS_KEY);
         return;
     }
 
@@ -118,16 +118,16 @@ void SubPhase::deserializeRounds(const QJsonObject &jSubPhase)
 
     if(m_rounds.size() != jRounds.size())
     {
-        E(QAPF("cannot deserialize rounds due to inconsistent size: "
-               "m_rounds(%lld) list and jRounds(%lld) list",
-               m_rounds.size(), jRounds.size() ))
+        E("cannot deserialize rounds due to inconsistent size: "
+          "m_rounds(%lld) list and jRounds(%lld) list",
+          m_rounds.size(), jRounds.size() );
         return;
     }
 
     for(int i=0; i<m_rounds.size(); i++)
     {
         if(m_rounds[i].isNull())
-            E("cannot deserialize, due to not exiting round")
+            E("cannot deserialize, due to not exiting round");
         else
             m_rounds[i]->deserialize( jRounds[i].toObject() );
     }
@@ -185,8 +185,8 @@ void SubPhase::assignExampleData()
 {
     if(m_rounds.size() <= m_currentRoundIndex)
     {
-        E(QAPF("cannot read index out of bounds: m_rounds %lld, m_currentRoundIndex %d",
-               m_rounds.size(), m_currentRoundIndex))
+        E("cannot read index out of bounds: m_rounds %lld, m_currentRoundIndex %d",
+          m_rounds.size(), m_currentRoundIndex);
         return;
     }
 

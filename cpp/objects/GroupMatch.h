@@ -81,7 +81,7 @@ private:
     IntList m_matchPoints;
     TeamPtr m_team;
 
-    static const int maxPointsInMatch;
+    int m_maxPointsInMatch;
 };
 
 typedef QSharedPointer<GroupMatch> GroupMatchPtr;

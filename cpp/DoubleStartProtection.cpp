@@ -26,7 +26,7 @@ void DoubleStartProtection::verify() noexcept
 
 bool DoubleStartProtection::testIfApplicationAlreadyRunning() noexcept
 {
-    D("testing IfApplicationAlreadyRunning")
+    D("testing IfApplicationAlreadyRunning");
     static QSharedMemory sharedMemory;
     sharedMemory.setKey(UNIQUE_KEY_PREVENT_DOUBLE_RUN);
 

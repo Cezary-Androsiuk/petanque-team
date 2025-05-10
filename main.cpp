@@ -4,6 +4,7 @@
 #include <QQmlContext>
 #include <QPointer>
 
+#include "cpp/SingletonManager.h"
 #include "cpp/DoubleStartProtection.h"
 #include "cpp/Login.h"
 #include "cpp/Backend.h"
@@ -11,30 +12,44 @@
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication app(argc, argv);
-    QQmlApplicationEngine engine;
+    std::unique_ptr<SingletonManager> sm =
+        std::make_unique<SingletonManager>();
 
-    QPointer<Backend> backend(new Backend(&app));
-    QPointer<Login> login(new Login(&app));
-    QPointer<LogQML> logQML(new LogQML(&app));
+    std::unique_ptr<QGuiApplication> app =
+        std::make_unique<QGuiApplication>(argc, argv);
+    std::unique_ptr<QQmlApplicationEngine> engine =
+        std::make_unique<QQmlApplicationEngine>();
 
-    engine.rootContext()->setContextProperty("DoubleStartProtection", DoubleStartProtection::getInstance());
-    engine.rootContext()->setContextProperty("Backend", backend);
-    engine.rootContext()->setContextProperty("Login", login);
-    engine.rootContext()->setContextProperty("log", logQML);
+    QPointer<Backend> backend(new Backend(app.get()));
+    QPointer<Login> login(new Login(app.get()));
+    QPointer<LogQML> logQML(new LogQML(app.get()));
+
+    engine->rootContext()->setContextProperty("DoubleStartProtection", DoubleStartProtection::getInstance());
+    engine->rootContext()->setContextProperty("Backend", backend);
+    engine->rootContext()->setContextProperty("Login", login);
+    engine->rootContext()->setContextProperty("log", logQML);
 
     QObject::connect(
-        &engine,
+        engine.get(),
         &QQmlApplicationEngine::objectCreationFailed,
-        &app,
+        app.get(),
         []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
     QObject::connect(
-        &engine,
+        engine.get(),
         &QQmlApplicationEngine::objectCreated,
         DoubleStartProtection::getInstance(),
         &DoubleStartProtection::verify);
-    engine.loadFromModule("PetanqueTeam", "Main");
+    engine->loadFromModule("PetanqueTeam", "Main");
 
-    return app.exec();
+    int exitValue = app->exec(); /// Loop
+
+    /// reset QGuiApplication and QQmlApplicationEngine
+    engine.reset();
+    app.reset();
+
+    /// SingletonManager - delete all singletons
+    sm.reset();
+
+    return exitValue;
 }

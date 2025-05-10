@@ -50,7 +50,7 @@ private:
     ~Personalization();
 
 public:
-    static Personalization *const getInstance() noexcept;
+    static Personalization *getInstance() noexcept;
 
     void setDefault();
     void load();
@@ -85,6 +85,9 @@ private:
     QJsonObject m_roundsMatches;
     QJsonObject m_exampleData;
     int m_roundsCount;
+
+    static Personalization* instance;
+    friend class SingletonManager;
 };
 
 #endif // PERSONALIZATION_H

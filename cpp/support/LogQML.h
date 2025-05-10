@@ -10,13 +10,10 @@
 class LogQML : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(const QString &currentSession READ getCurrentSession CONSTANT FINAL)
 public:
     explicit LogQML(QObject *parent = nullptr);
 
     typedef const QString &cQS;
-
-    cQS getCurrentSession() const;
 
 public slots:
     Log::Action toAction(const QString &action);
@@ -27,6 +24,8 @@ public slots:
     void w(cQS log, QString func = "", Log::Action action = Log::Action::All);
     void e(cQS log, QString func = "", Log::Action action = Log::Action::All);
     void d(cQS log, QString func = "", Log::Action action = Log::Action::All);
+
+    QString getCurrentSession();
 
 signals:
 };

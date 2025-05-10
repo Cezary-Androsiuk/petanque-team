@@ -22,19 +22,19 @@ MatchTypeBase::~MatchTypeBase()
 
 void MatchTypeBase::onSelectionStart()
 {
-    D(QAPF("before matchTypeBase selection start: %p", this), Log::Action::SaveSession)
+    DA(Log::Action::SaveSession, "before matchTypeBase selection start: %p", this);
 
     this->initSelection();
 
     if(m_groupSelectionLeft.isNull())
     {
-        W("groupSelectionLeft is null")
+        W("groupSelectionLeft is null");
         return;
     }
 
     if(m_groupSelectionRight.isNull())
     {
-        W("groupSelectionRight is null")
+        W("groupSelectionRight is null");
         return;
     }
 
@@ -44,17 +44,17 @@ void MatchTypeBase::onSelectionStart()
 
 void MatchTypeBase::onSelectionEnd()
 {
-    D(QAPF("after matchTypeBase selection end: %p", this), Log::Action::SaveSession)
+    DA(Log::Action::SaveSession, "after matchTypeBase selection end: %p", this);
 
     if(m_groupSelectionLeft.isNull())
     {
-        W("groupSelectionLeft is null")
+        W("groupSelectionLeft is null");
         return;
     }
 
     if(m_groupSelectionRight.isNull())
     {
-        W("groupSelectionRight is null")
+        W("groupSelectionRight is null");
         return;
     }
 
@@ -64,19 +64,19 @@ void MatchTypeBase::onSelectionEnd()
 
 void MatchTypeBase::onMatchStart()
 {
-    D(QAPF("before matchTypeBase match start: %p", this), Log::Action::SaveSession)
+    DA(Log::Action::SaveSession, "before matchTypeBase match start: %p", this);
 
     this->initMatch();
 
     if(m_groupMatchLeft.isNull())
     {
-        W("groupMatchLeft is null")
+        W("groupMatchLeft is null");
         return;
     }
 
     if(m_groupMatchRight.isNull())
     {
-        W("groupMatchRight is null")
+        W("groupMatchRight is null");
         return;
     }
 
@@ -86,17 +86,17 @@ void MatchTypeBase::onMatchStart()
 
 void MatchTypeBase::onMatchEnd()
 {
-    D(QAPF("after matchTypeBase match end: %p", this), Log::Action::SaveSession)
+    DA(Log::Action::SaveSession, "after matchTypeBase match end: %p", this);
 
     if(m_groupMatchLeft.isNull())
     {
-        W("groupMatchLeft is null")
+        W("groupMatchLeft is null");
         return;
     }
 
     if(m_groupMatchRight.isNull())
     {
-        W("groupMatchRight is null")
+        W("groupMatchRight is null");
         return;
     }
 
@@ -108,11 +108,11 @@ void MatchTypeBase::onMatchEnd()
 
 void MatchTypeBase::initSelection()
 {
-    D(QAPF("init selection: %p", this), Log::Action::SaveSession)
+    DA(Log::Action::SaveSession, "init selection: %p", this);
 
     if(m_selectionInitialized)
     {
-        I("prevented double initialization", Log::Action::SaveSession)
+        IA(Log::Action::SaveSession, "prevented double initialization");
         return;
     }
 
@@ -120,7 +120,7 @@ void MatchTypeBase::initSelection()
         m_groupsCount, m_minPlayersInGroup, m_maxPlayersInGroup);
     if(m_groupSelectionLeft.isNull())
     {
-        E("can't init left selection, due to not exising left selection pointer")
+        E("can't init left selection, due to not exising left selection pointer");
     }
     else
     {
@@ -134,7 +134,7 @@ void MatchTypeBase::initSelection()
         m_groupsCount, m_minPlayersInGroup, m_maxPlayersInGroup);
     if(m_groupSelectionRight.isNull())
     {
-        E("can't init right selection, due to not exising right selection pointer")
+        E("can't init right selection, due to not exising right selection pointer");
     }
     else
     {
@@ -150,22 +150,22 @@ void MatchTypeBase::initSelection()
 
 void MatchTypeBase::initMatch()
 {
-    D(QAPF("init match: %p", this), Log::Action::SaveSession)
+    DA(Log::Action::SaveSession, "init match: %p", this);
 
     if(m_matchInitialized)
     {
-        I("prevented double initialization", Log::Action::SaveSession)
+        IA(Log::Action::SaveSession, "prevented double initialization");
         return;
     }
 
     m_groupMatchLeft = GroupMatchPtr::create();
     if(m_groupSelectionLeft.isNull())
     {
-        E("can't init left match, due to not exising left selection pointer")
+        E("can't init left match, due to not exising left selection pointer");
     }
     else if(m_groupMatchLeft.isNull())
     {
-        E("can't init left match, due to not exising left match pointer")
+        E("can't init left match, due to not exising left match pointer");
     }
     else
     {
@@ -181,11 +181,11 @@ void MatchTypeBase::initMatch()
     m_groupMatchRight = GroupMatchPtr::create();
     if(m_groupSelectionRight.isNull())
     {
-        E("can't init right match, due to not exising right selection pointer")
+        E("can't init right match, due to not exising right selection pointer");
     }
     else if(m_groupMatchRight.isNull())
     {
-        E("can't init right match, due to not exising right match pointer")
+        E("can't init right match, due to not exising right match pointer");
     }
     else
     {
@@ -204,7 +204,7 @@ void MatchTypeBase::initMatch()
 
 void MatchTypeBase::addPoints()
 {
-    D("adding points after match", Log::Action::SaveSession)
+    DA(Log::Action::SaveSession, "adding points after match");
 
     this->addPointsForTeams();
 
@@ -220,13 +220,13 @@ void MatchTypeBase::addPointsForTeams()
 
     if(size != rightPoints.size())
     {
-        W("left and right matches has different sizes of points lists")
+        W("left and right matches has different sizes of points lists");
         return;
     }
 
     if(m_teamLeft.isNull() || m_teamRight.isNull())
     {
-        W("one of the teams is null")
+        W("one of the teams is null");
         return;
     }
 
@@ -257,7 +257,7 @@ void MatchTypeBase::addPointsForPlayers()
     size = leftPoints.size();
     if(size != leftGroupsOfPlayers.size())
     {
-        W("in left match groups of players and points have different sizes")
+        W("in left match groups of players and points have different sizes");
         return;
     }
 
@@ -265,13 +265,13 @@ void MatchTypeBase::addPointsForPlayers()
     IntList rightPoints = m_groupMatchRight->getMatchPoints();
     if(rightPoints.size() != rightGroupsOfPlayers.size())
     {
-        W("in right match groups of players and points have different sizes")
+        W("in right match groups of players and points have different sizes");
         return;
     }
 
     if(size != rightPoints.size())
     {
-        W("left and right matches has different sizes of points lists")
+        W("left and right matches has different sizes of points lists");
         return;
     }
 
@@ -322,7 +322,7 @@ QJsonObject MatchTypeBase::serialize() const
     if(m_groupSelectionLeft.isNull() != m_groupSelectionRight.isNull())
     {
         /// one selection is null but other don't
-        W("one of the group selections are not exit, both won't be serialized")
+        W("one of the group selections are not exit, both won't be serialized");
     }
     else if(m_groupSelectionLeft.isNull())
     {
@@ -339,7 +339,7 @@ QJsonObject MatchTypeBase::serialize() const
     if(m_groupMatchLeft.isNull() != m_groupMatchRight.isNull())
     {
         /// one selection is null but other don't
-        W("one of the group match are not exit, both won't be serialized")
+        W("one of the group match are not exit, both won't be serialized");
     }
     else if(m_groupMatchLeft.isNull())
     {
@@ -376,7 +376,7 @@ void MatchTypeBase::deserialize(const QJsonObject &jMatchTypeBase)
     if(csl != csr)
     {
         /// one selection is null but other don't
-        W("one of the group selections are not exit in json, both won't be deserialized")
+        W("one of the group selections are not exit in json, both won't be deserialized");
     }
     else if(!csl)
     {
@@ -395,12 +395,12 @@ void MatchTypeBase::deserialize(const QJsonObject &jMatchTypeBase)
     if(cml != cmr)
     {
         /// one selection is null but other don't
-        W("one of the group match are not exit in json, both won't be deserialized")
+        W("one of the group match are not exit in json, both won't be deserialized");
     }
     else if(!cml)
     {
         /// both selection are null
-        I("group match not created, then not be deserialized", Log::Action::Save);
+        IA(Log::Action::Save, "group match not created, then not be deserialized");
     }
     else
     {
@@ -421,7 +421,7 @@ QString MatchTypeBase::serializeTeam(cTeamWPtr wteam) const
 {
     if(wteam.isNull())
     {
-        W("team is null")
+        W("team is null");
         return "";
     }
     return wteam.toStrongRef()->getName();
@@ -431,13 +431,13 @@ bool MatchTypeBase::verifySelection(QString &message)
 {
     if(m_groupSelectionLeft.isNull())
     {
-        E("cannot verify, due to not exising left selection pointer")
+        E("cannot verify, due to not exising left selection pointer");
         return false;
     }
 
     if(m_groupSelectionRight.isNull())
     {
-        E("cannot verify, due to not exising right selection pointer")
+        E("cannot verify, due to not exising right selection pointer");
         return false;
     }
 
@@ -460,13 +460,13 @@ bool MatchTypeBase::verifyMatch(QString &message)
 {
     if(m_groupMatchLeft.isNull())
     {
-        E("cannot verify, due to not exising left match pointer")
+        E("cannot verify, due to not exising left match pointer");
         return false;
     }
 
     if(m_groupMatchRight.isNull())
     {
-        E("cannot verify, due to not exising right match pointer")
+        E("cannot verify, due to not exising right match pointer");
         return false;
     }
 
@@ -475,8 +475,8 @@ bool MatchTypeBase::verifyMatch(QString &message)
 
     if(leftMatchesPoints.size() != rightMatchesPoints.size())
     {
-        W(QAPF("matchPoints have different sizes: left(%lld) right(%lld)",
-               leftMatchesPoints.size(), rightMatchesPoints.size()));
+        W("matchPoints have different sizes: left(%lld) right(%lld)",
+          leftMatchesPoints.size(), rightMatchesPoints.size());
         return false;
     }
 
@@ -488,21 +488,21 @@ bool MatchTypeBase::verifyMatch(QString &message)
 
         if(lValue > maxPointsInMatch)
         {
-            message = QAPF("in group %d, the left points are %d, but cannot be larger than %d",
+            message = SAPF("in group %d, the left points are %d, but cannot be larger than %d",
                            i+1, lValue, maxPointsInMatch);
             return false;
         }
 
         if(rValue > maxPointsInMatch)
         {
-            message = QAPF("in group %d, the right points are %d, but cannot be larger than %d",
+            message = SAPF("in group %d, the right points are %d, but cannot be larger than %d",
                            i+1, rValue, maxPointsInMatch);
             return false;
         }
 
         if(lValue == rValue)
         {
-            message = QAPF("in group %d, the left and right points are equal (value: %d), but they should not be",
+            message = SAPF("in group %d, the left and right points are equal (value: %d), but they should not be",
                            i+1, lValue);
             return false;
         }
@@ -517,7 +517,7 @@ QList<PlayerPtrList> MatchTypeBase::makeGroupsOfPlayersList(const PlayerPtrList 
 
     if(players.size() != selection.size())
     {
-        E("players count received from team agument is different than set selections size")
+        E("players count received from team agument is different than set selections size");
         return groupsOfPlayers;
     }
 
@@ -530,7 +530,7 @@ QList<PlayerPtrList> MatchTypeBase::makeGroupsOfPlayersList(const PlayerPtrList 
         {
             QString selectionsStr;
             for(int playerGroupIndex : selection)
-                selectionsStr.append( QAPF("%d ", playerGroupIndex) );
+                selectionsStr.append( SAPF("%d ", playerGroupIndex) );
             W("player selection contains to hight groupID value: [ " + selectionsStr + "]");
             continue;
         }
@@ -552,13 +552,13 @@ void MatchTypeBase::assignMatchExampleData()
 {
     if(m_groupMatchLeft.isNull())
     {
-        E("cannot assign example data, due to not exising left match pointer")
+        E("cannot assign example data, due to not exising left match pointer");
         return;
     }
 
     if(m_groupMatchRight.isNull())
     {
-        E("cannot assign example data, due to not exising right match pointer")
+        E("cannot assign example data, due to not exising right match pointer");
         return;
     }
 
@@ -570,8 +570,8 @@ void MatchTypeBase::assignMatchExampleData()
 
     if(leftMatchPointsSize != rightMatchPointsSize)
     {
-        W(QAPF("cannot assign example data, matchPoints have different sizes: "
-               "left(%lld) right(%lld)", leftMatchPointsSize, rightMatchPointsSize));
+        W("cannot assign example data, matchPoints have different sizes: "
+          "left(%lld) right(%lld)", leftMatchPointsSize, rightMatchPointsSize);
         return;
     }
 
@@ -604,8 +604,10 @@ void MatchTypeBase::generateTwoRandomValues(int &v1, int &v2, int max)
 
     if(randomPoint1 < 0 || randomPoint1 > max || randomPoint2 < 0 || randomPoint2 > max)
     {
-        I(QAPF("%d, %d not belong to  [0, %d] , generated values are not match required range",
-               randomPoint1, randomPoint2, max), Log::Action::Save);
+        IA(Log::Action::Save,
+           "%d, %d not belong to  [0, %d], "
+           "generated values are not match required range",
+           randomPoint1, randomPoint2, max);
 
         /// if that happend assign my own random data xd
         randomPoint1 = 6;

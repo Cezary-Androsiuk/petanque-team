@@ -95,7 +95,7 @@ void Player::copyFromOtherPlayer(const Player &sourcePlayer)
 {
     if(this == &sourcePlayer)
     {
-        W("trying to copy data from itself")
+        W("trying to copy data from itself");
         return;
     }
 

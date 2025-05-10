@@ -82,7 +82,7 @@ void Team::createDetachedPlayer()
 {
     if(!m_detachedPlayer.isNull())
     {
-        W("creating new detached Player, while old wasn't deleted")
+        W("creating new detached Player, while old wasn't deleted");
     }
 
     m_detachedPlayer = PlayerPtr::create();
@@ -93,7 +93,7 @@ void Team::deleteDetachedPlayer()
 {
     if(m_detachedPlayer.isNull())
     {
-        E("trying to delete aleady deleted detached Player")
+        E("trying to delete aleady deleted detached Player");
         return;
     }
 
@@ -145,7 +145,7 @@ void Team::addDetachedPlayer()
 {
     if(m_detachedPlayer.isNull())
     {
-        E("cannot add not existing detached player to list")
+        E("cannot add not existing detached player to list");
         return;
     }
 

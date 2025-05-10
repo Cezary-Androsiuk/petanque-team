@@ -15,8 +15,8 @@ QString Login::computePasswordHash(QString password)
 
 void Login::authenticate(QString login, QString password)
 {
-    D("login: " + login)
-    D("password: " + password)
+    D("login: " + login);
+    D("password: " + password);
 
     if(login.isEmpty())
     {
@@ -45,7 +45,7 @@ void Login::authenticate(QString login, QString password)
 
 void Login::sendRequest()
 {
-    D("sending request to server...")
+    D("sending request to server...");
 
     /// send request to server
 
@@ -53,7 +53,7 @@ void Login::sendRequest()
 
 void Login::waitForResponse()
 {
-    D("waiting for response...")
+    D("waiting for response...");
 
     /// temp
     bool credentialsCorrected = true;

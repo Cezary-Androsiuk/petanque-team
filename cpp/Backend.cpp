@@ -26,7 +26,7 @@ void Backend::restartEvent()
 
     m_memoryPtr->setSerializablePtr(m_eventPtr);
     emit this->restartedEvent();
-    I("event restarted")
+    I("event restarted");
 }
 
 Memory *Backend::getMemoryPtrQml() const

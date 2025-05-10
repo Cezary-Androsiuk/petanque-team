@@ -50,7 +50,7 @@ qt_add_qml_module(appPetanqueTeam
     SOURCES cpp/enums/StageEnum.h cpp/enums/StageEnum.cpp
     SOURCES cpp/enums/PhaseEnum.h cpp/enums/PhaseEnum.cpp
     SOURCES cpp/enums/RoundStageEnum.h cpp/enums/RoundStageEnum.cpp
-    SOURCES cpp/enums/LogTypeEnum.h cpp/enums/LogTypeEnum.cpp
+    SOURCES
 
 
 
@@ -88,6 +88,7 @@ qt_add_qml_module(appPetanqueTeam
     ################################ Finish
     QML_FILES qml/Gameplay/Finish.qml
     QML_FILES qml/Popups/AskPopup.qml
+    SOURCES cpp/SingletonManager.h cpp/SingletonManager.cpp
 
 )
 

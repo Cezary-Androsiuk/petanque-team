@@ -1,11 +1,10 @@
 #include "GroupMatch.h"
 
-const int GroupMatch::maxPointsInMatch = Personalization::getInstance()->getMaxPointsInMatch();
-
 GroupMatch::GroupMatch(QObject *parent)
     : QObject{parent}
     , m_groupsCount{0}
     , m_defaultPlayersCountInGroup{0}
+    , m_maxPointsInMatch{Personalization::getInstance()->getMaxPointsInMatch()}
 {
     DOLT(this)
 }
@@ -17,12 +16,12 @@ GroupMatch::~GroupMatch()
 
 void GroupMatch::onStart()
 {
-    D(QAPF("before groupMatch start: %p", this), Log::Action::SaveSession)
+    DA(Log::Action::SaveSession, "before groupMatch start: %p", this);
 }
 
 void GroupMatch::onEnd()
 {
-    D(QAPF("after groupMatch end: %p", this), Log::Action::SaveSession)
+    DA(Log::Action::SaveSession, "after groupMatch end: %p", this);
 }
 
 QJsonObject GroupMatch::serialize() const
@@ -42,7 +41,7 @@ QJsonObject GroupMatch::serialize() const
 
     if(m_team.isNull())
     {
-        W("cannot read team because is null")
+        W("cannot read team because is null");
         jGroupMatch[SERL_GROUP_MATCH_TEAM_NAME_KEY] = "";
     }
     else
@@ -92,7 +91,7 @@ void GroupMatch::setGroupPoints(int group, int points)
 {
     if(group >= m_matchPoints.size() || group < 0)
     {
-        W("trying to assign points to a non-existing group")
+        W("trying to assign points to a non-existing group");
         return;
     }
 
@@ -118,8 +117,8 @@ void GroupMatch::assignExampleData(const IntList &data)
     }
     else if(m_matchPoints.size() != data.size())
     {
-        W(QAPF("cannot assign example data: m_matchPoints.size(%lld) != data.size(%lld)",
-               m_matchPoints.size(), data.size()));
+        W("cannot assign example data: m_matchPoints.size(%lld) != data.size(%lld)",
+          m_matchPoints.size(), data.size());
     }
     else
     {
@@ -169,7 +168,7 @@ const Team *GroupMatch::getTeamQml() const
 
 int GroupMatch::getMaxPointsInMatch() const
 {
-    return GroupMatch::maxPointsInMatch;
+    return GroupMatch::m_maxPointsInMatch;
 }
 
 void GroupMatch::setGroupsCount(int groupsCount)
@@ -200,10 +199,10 @@ void GroupMatch::setMatchPointsSize(int matchPointsSize)
 {
     if(!m_matchPoints.empty())
     {
-        I("resizing matchPoints list")
+        I("resizing matchPoints list");
         if(m_matchPoints.size() > matchPointsSize)
         {
-            W("trying to shrink matchPoints list")
+            W("trying to shrink matchPoints list");
             return;
         }
     }

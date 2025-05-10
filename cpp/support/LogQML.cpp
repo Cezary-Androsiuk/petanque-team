@@ -32,7 +32,7 @@ Log::Action LogQML::toAction(const QString &action)
 
     if(_action == "all")            return Log::Action::All;            else
     {
-        W(QAPF("unknown QString action: %s", action.toStdString().c_str()));
+        W(SAPF("unknown QString action: %s", action.toStdString().c_str()));
         I("returning Log::Action::All");
         return Log::Action::All;
     }
@@ -48,32 +48,32 @@ Log::Action LogQML::toAction(int action)
         return static_cast<Log::Action>(action);
     }
 
-    W(QAPF("unknown int action: %d, range is: [%d, %d]", action, bottom, top));
+    W(SAPF("unknown int action: %d, range is: [%d, %d]", action, bottom, top));
     I("returning Log::Action::All");
     return Log::Action::All;
 }
 
-LogQML::cQS LogQML::getCurrentSession() const
-{
-    return Log::currentSession;
-}
-
 void LogQML::i(cQS log, QString func, Log::Action action)
 {
-    Log::info( QML_LOG_PREFIX(func), log, action );
+    Log::instance->info( QML_LOG_PREFIX(func), log, action );
 }
 
 void LogQML::w(cQS log, QString func, Log::Action action)
 {
-    Log::warning( QML_LOG_PREFIX(func), log, action );
+    Log::instance->warning( QML_LOG_PREFIX(func), log, action );
 }
 
 void LogQML::e(cQS log, QString func, Log::Action action)
 {
-    Log::error( QML_LOG_PREFIX(func), log, action );
+    Log::instance->error( QML_LOG_PREFIX(func), log, action );
 }
 
 void LogQML::d(cQS log, QString func, Log::Action action)
 {
-    Log::debug( QML_LOG_PREFIX(func), log, action );
+    Log::instance->debug( QML_LOG_PREFIX(func), log, action );
+}
+
+QString LogQML::getCurrentSession()
+{
+    return Log::instance->currentSession.c_str();
 }

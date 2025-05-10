@@ -17,19 +17,20 @@ Round::~Round()
 
 void Round::onStart()
 {
-    D(QAPF("before round start: %p", this), Log::Action::SaveSession)
+    DA(Log::Action::SaveSession, "before round start: %p", this);
+
     this->matchStart();
 }
 
 void Round::onEnd()
 {
-    D(QAPF("after round end: %p", this), Log::Action::SaveSession)
+    DA(Log::Action::SaveSession, "after round end: %p", this);
     this->matchEnd();
 }
 
 void Round::initMatches()
 {
-    D(QAPF("init matches: %p", this), Log::Action::SaveSession)
+    DA(Log::Action::SaveSession, "init matches: %p", this);
 
     const int teamSize = m_teams.size();
 
@@ -42,8 +43,8 @@ void Round::initMatches()
         int t2 = matchArrangement.second;
         if(t1 >= teamSize || t2 >= teamSize)
         {
-            W(QAPF("cannot assing team to match t1(%d), t2(%d), teamSize(%d),"
-                   " then match will not be created", t1, t2, teamSize))
+            W("cannot assing team to match t1(%d), t2(%d), teamSize(%d),"
+              " then match will not be created", t1, t2, teamSize);
             continue;
         }
 
@@ -82,7 +83,7 @@ QJsonObject Round::serialize() const
     {
         if(matchPtr.isNull())
         {
-            W("cannot serialize not existing match")
+            W("cannot serialize not existing match");
             jMatches.append( QJsonObject() );
         }
         else jMatches.append( matchPtr->serialize() );
@@ -112,7 +113,7 @@ void Round::deserializeMatches(const QJsonObject &jRound)
 {
     if(!jRound.contains( SERL_MATCHES_KEY ))
     {
-        E("cannot deserialize matches due to missing key in json: " SERL_MATCHES_KEY)
+        E("cannot deserialize matches due to missing key in json: " SERL_MATCHES_KEY);
         return;
     }
 
@@ -120,16 +121,16 @@ void Round::deserializeMatches(const QJsonObject &jRound)
 
     if(m_matches.size() != jMatches.size())
     {
-        E(QAPF("cannot deserialize matches due to inconsistent size: "
-               "m_matches(%lld) list and jMatches(%lld) list",
-               m_matches.size(), jMatches.size() ))
+        E("cannot deserialize matches due to inconsistent size: "
+          "m_matches(%lld) list and jMatches(%lld) list",
+          m_matches.size(), jMatches.size() );
         return;
     }
 
     for(int i=0; i<m_matches.size(); i++)
     {
         if(m_matches[i].isNull())
-            E("cannot deserialize, due to not exising match")
+            E("cannot deserialize, due to not exising match");
         else
             m_matches[i]->deserialize( jMatches[i].toObject() );
     }

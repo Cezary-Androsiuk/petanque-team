@@ -39,14 +39,14 @@ QJsonObject Event::serialize() const
 
     if(m_phases[PhaseEnum::First].isNull())
     {
-        I("skipping first phase serialization because, phase not started yet")
+        I("skipping first phase serialization because, phase not started yet");
         jEvent[ SERL_PHASE_FIRST_KEY ] = QJsonObject();
     }
     else jEvent[ SERL_PHASE_FIRST_KEY ] = m_phases[PhaseEnum::First]->serialize();
 
     if(m_phases[PhaseEnum::Second].isNull())
     {
-        I("skipping second phase serialization because, phase not started yet")
+        I("skipping second phase serialization because, phase not started yet");
         jEvent[ SERL_PHASE_SECOND_KEY ] = QJsonObject();
     }
     else jEvent[ SERL_PHASE_SECOND_KEY ] = m_phases[PhaseEnum::Second]->serialize();
@@ -56,7 +56,7 @@ QJsonObject Event::serialize() const
     for(const auto &teamPtr : m_teams)
     {
         if(teamPtr.isNull())
-            W("cannot serialize not exiting team")
+            W("cannot serialize not exiting team");
         else
             jTeams.append( teamPtr->serialize() );
     }
@@ -93,7 +93,7 @@ void Event::deserialize(const QJsonObject &jEvent)
 
     if(!jEvent.contains(SERL_PHASE_FIRST_KEY))
     {
-        E("cannot deserialize first phase due to missing key in json: " SERL_PHASE_FIRST_KEY)
+        E("cannot deserialize first phase due to missing key in json: " SERL_PHASE_FIRST_KEY);
     }
     else
     {
@@ -105,19 +105,19 @@ void Event::deserialize(const QJsonObject &jEvent)
             this->startFirstPhase();
 
             if(m_phases[PhaseEnum::First].isNull())
-                W("cannot deserialize not existing first phase")
+                W("cannot deserialize not existing first phase");
             else
                 m_phases[PhaseEnum::First]->deserialize( jPhase );
         }
         else
         {
-            I("skipped initialization of first phase, because it hasn't started yet")
+            I("skipped initialization of first phase, because it hasn't started yet");
         }
     }
 
     if(!jEvent.contains(SERL_PHASE_SECOND_KEY))
     {
-        E("cannot deserialize second phase due to missing key in json: " SERL_PHASE_SECOND_KEY)
+        E("cannot deserialize second phase due to missing key in json: " SERL_PHASE_SECOND_KEY);
     }
     else
     {
@@ -129,18 +129,18 @@ void Event::deserialize(const QJsonObject &jEvent)
             this->startSecondPhase();
 
             if(m_phases[PhaseEnum::Second].isNull())
-                W("cannot deserialize not existing second phase")
+                W("cannot deserialize not existing second phase");
             else
                 m_phases[PhaseEnum::Second]->deserialize( jPhase );
         }
         else
         {
-            I("skipped initialization of second phase, because it hasn't started yet")
+            I("skipped initialization of second phase, because it hasn't started yet");
         }
     }
     emit this->phasesChanged();
 
-    D("deserialized event")
+    D("deserialized event");
 }
 
 void Event::clear(bool emitting)
@@ -190,7 +190,7 @@ void Event::goToPrevStage()
 
 void Event::startFinishStage()
 {
-    D("start finish stage")
+    D("start finish stage");
     this->goToNextStage();
 }
 
@@ -201,7 +201,7 @@ bool Event::hasNextPhase() const
 
 void Event::startFirstPhase()
 {
-    D("start first phase")
+    D("start first phase");
 
     TeamPtrList teams1;
     this->createListForFirstPhase(teams1);
@@ -219,7 +219,7 @@ void Event::startSecondPhase()
 {
     m_phases[PhaseEnum::First]->onEnd();
 
-    D("start second phase")
+    D("start second phase");
 
     TeamPtrList teams2a, teams2b;
     this->createListForSecondPhase(teams2a, teams2b);
@@ -241,7 +241,7 @@ void Event::createDetachedTeam()
     // I("Creating detached Team")
     if(!m_detachedTeam.isNull())
     {
-        W("Creating new detached Team, while old wasn't deleted")
+        W("Creating new detached Team, while old wasn't deleted");
     }
 
     m_detachedTeam = TeamPtr::create();
@@ -253,7 +253,7 @@ void Event::deleteDetachedTeam()
     // I("Deleting detached Team")
     if(m_detachedTeam.isNull())
     {
-        E("trying to delete aleady deleted detached Team")
+        E("trying to delete aleady deleted detached Team");
         return;
     }
 
@@ -296,7 +296,7 @@ void Event::addDetachedTeam()
     // I("Adding detached Team to Event")
     if(m_detachedTeam.isNull())
     {
-        E("cannot add not existing detached team to list")
+        E("cannot add not existing detached team to list");
         return;
     }
 
@@ -487,7 +487,7 @@ void Event::createListForSecondPhase(TeamPtrList &teams2a, TeamPtrList &teams2b)
             teams2b.append(m_teams[4+i]);
     }
     else
-        W("teams size != 8")
+        W("teams size != 8");
 
 }
 

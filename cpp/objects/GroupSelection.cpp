@@ -17,12 +17,12 @@ GroupSelection::~GroupSelection()
 
 void GroupSelection::onStart()
 {
-    D(QAPF("before groupSelection start: %p", this), Log::Action::SaveSession)
+    DA(Log::Action::SaveSession, "before groupSelection start: %p", this);
 }
 
 void GroupSelection::onEnd()
 {
-    D(QAPF("after groupSelection end: %p", this), Log::Action::SaveSession)
+    DA(Log::Action::SaveSession, "after groupSelection end: %p", this);
 }
 
 QJsonObject GroupSelection::serialize() const
@@ -42,7 +42,7 @@ QJsonObject GroupSelection::serialize() const
     /// Serialize team name
     if(m_team.isNull())
     {
-        W("cannot read team because is null")
+        W("cannot read team because is null");
         jGroupSelection[SERL_GROUP_SELECTION_TEAM_NAME_KEY] = "";
     }
     else
@@ -85,10 +85,10 @@ bool GroupSelection::verify(QString &message)
             continue;
 
         QString difference = (m_minPlayersInGroup == m_maxPlayersInGroup) ?
-                                 QAPF("%d", m_minPlayersInGroup) :
-                                 QAPF("%d or %d", m_minPlayersInGroup, m_maxPlayersInGroup);
+                                 SAPF("%d", m_minPlayersInGroup) :
+                                 SAPF("%d or %d", m_minPlayersInGroup, m_maxPlayersInGroup);
 
-        message = QAPF("in group %d, %d players were selected, but %s were expected",
+        message = SAPF("in group %d, %d players were selected, but %s were expected",
                        i+1, foundPlayersInGroup, difference.toStdString().c_str());
 
         return false;
@@ -101,14 +101,14 @@ void GroupSelection::setSelectionSize(qsizetype size)
 {
     if(!m_playerSelections.isEmpty() && size > m_playerSelections.size())
     {
-        I("resizing selection size")
+        I("resizing selection size");
         m_playerSelections.resize(size, GroupSelection::defaultSelectionValue);
         return;
     }
 
     if(!m_playerSelections.isEmpty())
     {
-        W("trying to shrink selection size!")
+        W("trying to shrink selection size!");
         return;
     }
 
@@ -163,16 +163,15 @@ void GroupSelection::setPlayerGroup(int playerIndex, int groupIndex)
     /// input value protection (always use protection)
     if(playerIndex >= m_playerSelections.size())
     {
-        W(QAPF("trying to access %d playerIndex, while list contains %lld players",
-               playerIndex, m_playerSelections.size()))
+        W("trying to access %d playerIndex, while list contains %lld players",
+          playerIndex, m_playerSelections.size());
         return;
     }
 
     if(groupIndex >= m_groupsCount)
     {
-        W(QAPF(
-            "trying to assign %d group for %d playerIndex, while groupsCount is %d",
-            groupIndex, playerIndex, m_groupsCount ));
+        W("trying to assign %d group for %d playerIndex, while groupsCount is %d",
+          groupIndex, playerIndex, m_groupsCount );
         return;
     }
 

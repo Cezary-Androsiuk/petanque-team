@@ -1,7 +1,7 @@
 #include "LogSessionPart.h"
 
 LogSessionPart::LogSessionPart(
-    LogTypeEnum logType,
+    Log::Type logType,
     const QString &function,
     const QString &message,
     QObject *parent)
@@ -12,7 +12,7 @@ LogSessionPart::LogSessionPart(
     , m_message{message}
 { }
 
-LogTypeEnum LogSessionPart::getLogType() const
+Log::Type LogSessionPart::getLogType() const
 {
     return m_logType;
 }

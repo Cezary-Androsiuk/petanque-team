@@ -6,12 +6,12 @@ LogSession::LogSession(QObject *parent)
 
 LogSession::~LogSession()
 {
-    for(const auto &part : m_parts)
-        delete part;
+    for(int i=0; i<m_parts.size(); i++)
+        delete m_parts[i];
 }
 
 void LogSession::addPart(
-    LogTypeEnum logType,
+    Log::Type logType,
     const QString &function,
     const QString &message)
 {

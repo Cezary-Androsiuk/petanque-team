@@ -3,6 +3,7 @@
 
 #include <QObject>
 
+#include "Log.h"
 #include "LogSessionPart.h"
 
 class LogSession : public QObject
@@ -15,7 +16,7 @@ public:
     ~LogSession();
 
     void addPart(
-        LogTypeEnum logType,
+        Log::Type logType,
         const QString &function,
         const QString &message);
 

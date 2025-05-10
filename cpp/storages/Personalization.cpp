@@ -1,5 +1,6 @@
 #include "cpp/storages/Personalization.h"
 
+Personalization *Personalization::instance = nullptr;
 
 Personalization::Personalization(QObject *parent)
     : QObject{parent}
@@ -11,14 +12,14 @@ Personalization::Personalization(QObject *parent)
 
 Personalization::~Personalization()
 {
-    // DOLT(this) // causing crash
+    DOLT(this)
     this->save();
 }
 
-Personalization *const Personalization::getInstance() noexcept
+Personalization *Personalization::getInstance() noexcept
 {
-    static Personalization p;
-    return &p;
+    // static Personalization p; /// lazy initialization
+    return instance; /// handled by SingletonManager
 }
 
 void Personalization::setDefault()
@@ -72,9 +73,9 @@ void Personalization::load()
 
     if(jp[KEY_PERSONALIZATION_VERSION].toInt() != personalizationVersion)
     {
-        W("Personalization data version changed")
-        W("After exiting the application new version will override personalization json file")
-        W("Using new Default personalization data")
+        W("Personalization data version changed");
+        W("After exiting the application new version will override personalization json file");
+        W("Using new Default personalization data");
 
         /// do not read deprecated personalization file, exit method (use new default data)
         emit this->loaded();

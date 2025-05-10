@@ -33,7 +33,7 @@ void Memory::load()
 
     if(m_serializablePtr.isNull())
     {
-        W("cannot load memory to non existing serializable object")
+        W("cannot load memory to non existing serializable object");
         return;
     }
 
@@ -77,7 +77,7 @@ void Memory::save()
 {
     if(m_serializablePtr.isNull())
     {
-        W("cannot save memory from non existing serializable object")
+        W("cannot save memory from non existing serializable object");
         return;
     }
 
