@@ -102,6 +102,9 @@ public:
     static QString asprintf(const char *text, ...);
     static QString asprintf(cQS text, ...);
 
+    const std::string &getCurrentSession() const;
+    // const LogSession &getCurrentSession() const;
+
 private:
     std::string time(bool simpleSeparators = false);
     std::string buildPrefix(Type logType, cstr funName);
@@ -123,14 +126,13 @@ public:
     };
 
 private:
-    // static LogSession currentSession;
-    std::string currentSession;
+    // LogSession m_currentSession;
+    std::string m_currentSession;
 
     std::string m_fileName;
     std::ofstream m_outFile;
 
     static Log* instance;
-    friend class LogQML;
     friend class SingletonManager;
 };
 

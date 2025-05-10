@@ -49,7 +49,7 @@ const char *Log::logActionToStr(Action action)
 Log *Log::getInstance()
 {
     // static Log *log = new Log(); /// lazy initialization
-    return instance; /// handled by SingletonManager
+    return Log::instance; /// handled by SingletonManager
 }
 
 void Log::info(cQS func, cQS log, Log::Action action)
@@ -113,6 +113,16 @@ QString Log::asprintf(cQS text, ...)
 
     return str;
 }
+
+const std::string &Log::getCurrentSession() const
+{
+    return m_currentSession;
+}
+
+// const LogSession &Log::getCurrentSession() const
+// {
+//     return m_currentSession;
+// }
 
 std::string Log::time(bool simpleSeparators)
 {
@@ -180,12 +190,12 @@ std::string Log::buildPrefix(Log::Type logType, cstr funName)
 
 std::string Log::buildStartPrefix()
 {
-    static const char *startText = "--- [APPLICATION STARTED] ---";
+    static const char startText[] = "--- [APPLICATION STARTED] ---";
     static const std::string spaceText =
-        std::string(EST_FUNCTION_LENGTH -8 -28 +3, '-');
+        std::string(EST_FUNCTION_LENGTH - sizeof(startText)/2 + 3 + 4, '-');
 
     std::string prefix;
-    prefix = /*"\n\n"*/ "[" + Log::time() +  "]";
+    prefix = /*"\n\n"*/ "[" + this->time() +  "]";
 
     return prefix + spaceText + startText + spaceText;
 }
@@ -198,7 +208,7 @@ void Log::log(Log::Type logType, cstr funName, cstr log, Log::Action action)
     std::string prefix;
 
     try{
-        time = "[" + Log::time() +  "]" + " ";
+        time = "[" + this->time() +  "]" + " ";
     }
     catch (const std::exception &e) {
         fprintf(stderr, "creating time prefix failed, reason: %s\n", e.what());
@@ -218,12 +228,12 @@ void Log::log(Log::Type logType, cstr funName, cstr log, Log::Action action)
         if(isRaw)
         {
             if(limitedAction & Action::Print)
-                Log::print(log, false);
+                this->print(log, false);
         }
         else
         {
             if(limitedAction & Action::Print)
-                Log::print(prefix + log, true);
+                this->print(prefix + log, true);
         }
     }
     catch (const std::exception &e) {
@@ -235,12 +245,12 @@ void Log::log(Log::Type logType, cstr funName, cstr log, Log::Action action)
         if(isRaw)
         {
             if(limitedAction & Action::Save)
-                Log::saveFile(time + prefix + "\n""<<START RAW>>""\n" + log + "\n""<<END RAW>>");
+                this->saveFile(time + prefix + "\n""<<START RAW>>""\n" + log + "\n""<<END RAW>>");
         }
         else
         {
             if(limitedAction & Action::Save)
-                Log::saveFile(time + prefix + log);
+                this->saveFile(time + prefix + log);
         }
     }
     catch (const std::exception &e) {
@@ -253,16 +263,16 @@ void Log::log(Log::Type logType, cstr funName, cstr log, Log::Action action)
         {
             if(limitedAction & Action::Session)
             {
-                Log::addSession(log, false);
-                // Log::addSession(logType, funName, log);
+                this->addSession(log, false);
+                // this->addSession(logType, funName, log);
             }
         }
         else
         {
             if(limitedAction & Action::Session)
             {
-                Log::addSession(prefix + log, true);
-                // Log::addSession(logType, funName, log);
+                this->addSession(prefix + log, true);
+                // this->addSession(logType, funName, log);
             }
         }
     }
@@ -275,7 +285,7 @@ void Log::log(Log::Type logType, cstr funName, cstr log, Log::Action action)
 void Log::safeLog(Log::Type logType, cstr funName, cstr log, Action action)
 {
     try {
-        Log::log(logType, funName, log, action);
+        this->log(logType, funName, log, action);
     } catch (const std::exception &e) {
         fprintf(stderr, "logging failed, reason: %s\n", e.what());
         fflush(stderr);
@@ -300,7 +310,7 @@ void Log::openFile()
         }
     }
 
-    m_fileName = outputDirectory + Log::time(true) + ".log";
+    m_fileName = outputDirectory + this->time(true) + ".log";
 
     // std::fstream outFileVar;
     // outFileVar.open(m_fileName);
@@ -313,14 +323,14 @@ void Log::openFile()
         return;
     }
 
-    m_outFile << Log::buildStartPrefix() << "\n";
+    m_outFile << this->buildStartPrefix() << "\n";
 }
 
 void Log::saveFile(cstr content)
 {
     if(!m_outFile.is_open())
     {
-        Log::openFile();
+        this->openFile();
     }
 
     m_outFile << content << "\n";
@@ -329,12 +339,12 @@ void Log::saveFile(cstr content)
 
 void Log::addSession(cstr content, bool newLine)
 {
-    Log::currentSession += content + (newLine ? "\n" : "");
+    m_currentSession += content + (newLine ? "\n" : "");
 }
 
 // void Log::addSession(Log::Type logType, const QString &funName, const QString &message)
 // {
-//     Log::currentSession.addPart(logType, funName, message);
+//     m_currentSession.addPart(logType, funName, message);
 // }
 
 

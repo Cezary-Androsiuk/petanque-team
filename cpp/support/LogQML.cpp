@@ -55,25 +55,25 @@ Log::Action LogQML::toAction(int action)
 
 void LogQML::i(cQS log, QString func, Log::Action action)
 {
-    Log::instance->info( QML_LOG_PREFIX(func), log, action );
+    Log::getInstance()->info( QML_LOG_PREFIX(func), log, action );
 }
 
 void LogQML::w(cQS log, QString func, Log::Action action)
 {
-    Log::instance->warning( QML_LOG_PREFIX(func), log, action );
+    Log::getInstance()->warning( QML_LOG_PREFIX(func), log, action );
 }
 
 void LogQML::e(cQS log, QString func, Log::Action action)
 {
-    Log::instance->error( QML_LOG_PREFIX(func), log, action );
+    Log::getInstance()->error( QML_LOG_PREFIX(func), log, action );
 }
 
 void LogQML::d(cQS log, QString func, Log::Action action)
 {
-    Log::instance->debug( QML_LOG_PREFIX(func), log, action );
+    Log::getInstance()->debug( QML_LOG_PREFIX(func), log, action );
 }
 
 QString LogQML::getCurrentSession()
 {
-    return Log::instance->currentSession.c_str();
+    return Log::getInstance()->getCurrentSession().c_str();
 }
