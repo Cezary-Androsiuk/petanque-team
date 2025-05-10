@@ -1,6 +1,6 @@
-#include "cpp/storages/Personalization.h"
+#include "Personalization.h"
 
-#include "cpp/storages/DefaultPersonalizationData.h"
+#include "storages/DefaultPersonalizationData.h"
 
 Personalization *Personalization::instance = nullptr;
 

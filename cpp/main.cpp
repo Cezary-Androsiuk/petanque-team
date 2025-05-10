@@ -4,11 +4,11 @@
 #include <QQmlContext>
 #include <QPointer>
 
-#include "cpp/SingletonManager.h"
-#include "cpp/DoubleStartProtection.h"
-#include "cpp/Login.h"
-#include "cpp/Backend.h"
-#include "cpp/support/LogQML.h"
+#include "SingletonManager.h"
+#include "DoubleStartProtection.h"
+#include "Login.h"
+#include "Backend.h"
+#include "support/LogQML.h"
 
 int main(int argc, char *argv[])
 {

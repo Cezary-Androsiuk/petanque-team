@@ -1,5 +1,7 @@
 #include "AgeGroupEnum.h"
 
+#include "support/Log.h"
+
 QString EnumConvert::AgeGroupToQString(AgeGroupEnum ageGroup)
 {
     switch (ageGroup) {

@@ -5,10 +5,9 @@
 #include <QList>
 #include <QSharedPointer>
 
-#include "cpp/support/Log.h"
-#include "cpp/Serializable.h"
-#include "cpp/objects/Round.h"
-#include "cpp/objects/Team.h"
+#include "Serializable.h"
+#include "objects/Round.h"
+#include "objects/Team.h"
 
 #define SERL_SUB_PHASE_NAME_KEY "name"
 #define SERL_CURRENT_ROUND_INDEX_KEY "current round index"

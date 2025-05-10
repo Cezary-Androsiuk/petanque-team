@@ -5,12 +5,10 @@
 #include <QList>
 #include <QSharedPointer>
 
-#include "cpp/support/Log.h"
-#include "cpp/Serializable.h"
-#include "cpp/objects/Match.h"
-#include "cpp/enums/RoundStageEnum.h"
-#include "cpp/objects/Team.h"
-#include "cpp/DebugConstraints.h"
+#include "Serializable.h"
+#include "objects/Match.h"
+#include "enums/RoundStageEnum.h"
+#include "objects/Team.h"
 
 #define SERL_CURRENT_ROUND_STAGE_KEY "current round stage"
 #define SERL_ARRANGEMENT_KEY "arrangement"

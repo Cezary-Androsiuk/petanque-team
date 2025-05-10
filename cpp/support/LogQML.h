@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#include "cpp/support/Log.h"
+#include "support/Log.h"
 
 #define QML_LOG_PREFIX(funcName) (funcName.isEmpty() ? QString("QML(...)") : ("QML(" + funcName + ")"))
 

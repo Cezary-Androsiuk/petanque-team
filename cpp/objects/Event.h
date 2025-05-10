@@ -5,14 +5,12 @@
 #include <QVector>
 #include <QSharedPointer>
 
-#include "cpp/support/Log.h"
-#include "cpp/storages/Personalization.h"
-#include "cpp/Serializable.h"
-#include "cpp/objects/Team.h"
-#include "cpp/objects/Phase.h"
+#include "Serializable.h"
+#include "objects/Team.h"
+#include "objects/Phase.h"
 
-#include "cpp/enums/PhaseEnum.h"
-#include "cpp/enums/StageEnum.h"
+#include "enums/PhaseEnum.h"
+#include "enums/StageEnum.h"
 
 /// KEYS FOR JSON - SERIALIZE AND DESERIALIZE PURPOSES
 #define SERL_EVENT_NAME_KEY     "name"

@@ -1,5 +1,7 @@
 #include "MatchSingiels.h"
 
+#include "support/Log.h"
+
 MatchSingiels::MatchSingiels(const TeamWPtr &tl, const TeamWPtr &tr, QObject *parent)
     : MatchTypeBase(tl, tr,
                     SINGIELS_GROUPS_COUNT,

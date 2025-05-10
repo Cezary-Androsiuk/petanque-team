@@ -1,5 +1,8 @@
 #include "GroupMatch.h"
 
+#include "support/Log.h"
+#include "storages/Personalization.h"
+
 GroupMatch::GroupMatch(QObject *parent)
     : QObject{parent}
     , m_groupsCount{0}

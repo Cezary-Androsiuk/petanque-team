@@ -4,8 +4,8 @@
 #include <QObject>
 #include <QSharedPointer>
 
-#include "cpp/objects/Event.h"
-#include "cpp/storages/Memory.h"
+#include "objects/Event.h"
+#include "storages/Memory.h"
 
 class Backend : public QObject
 {

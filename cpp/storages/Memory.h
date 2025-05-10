@@ -12,9 +12,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 
-#include "cpp/support/Log.h"
-#include "cpp/Serializable.h"
-
+#include "Serializable.h"
 
 #define MEMORY_FILE "petanque_team_memory.json"
 #define DELETE_MEMORY_AT_START false

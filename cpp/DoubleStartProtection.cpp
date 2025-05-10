@@ -1,5 +1,7 @@
 #include "DoubleStartProtection.h"
 
+#include "support/Log.h"
+
 DoubleStartProtection::DoubleStartProtection(QObject *parent)
     : QObject{parent}
 {}

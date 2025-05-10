@@ -3,8 +3,6 @@
 
 #include <QString>
 
-#include "cpp/support/Log.h"
-
 enum AgeGroupEnum{
     Junior = 0,
     Youth,

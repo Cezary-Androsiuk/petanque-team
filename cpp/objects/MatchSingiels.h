@@ -5,8 +5,7 @@
 #include <QList>
 #include <QSharedPointer>
 
-#include "cpp/support/Log.h"
-#include "cpp/objects/MatchTypeBase.h"
+#include "objects/MatchTypeBase.h"
 
 #define SINGIELS_GROUPS_COUNT 6
 #define SINGIELS_MIN_PLAYERS_IN_GROUP 1

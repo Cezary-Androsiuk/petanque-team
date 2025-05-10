@@ -1,5 +1,8 @@
 #include "Phase.h"
 
+#include "support/Log.h"
+#include "storages/Personalization.h"
+
 Phase::Phase(PhaseEnum phase, QObject *parent)
     : QObject{parent}
     , m_phase{phase}

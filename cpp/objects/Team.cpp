@@ -1,5 +1,8 @@
 #include "Team.h"
 
+#include "support/Log.h"
+#include "storages/Personalization.h"
+
 Team::Team(QObject *parent)
     : QObject{parent}
     , m_smallPoints{0}

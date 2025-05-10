@@ -1,7 +1,9 @@
 #include "Match.h"
-#include "cpp/objects/MatchSingiels.h"
-#include "cpp/objects/MatchDublets.h"
-#include "cpp/objects/MatchTriplets.h"
+
+#include "support/Log.h"
+#include "objects/MatchSingiels.h"
+#include "objects/MatchDublets.h"
+#include "objects/MatchTriplets.h"
 
 Match::Match(RoundStageEnumRPtr roundStageRef, QObject *parent)
     : QObject{parent}

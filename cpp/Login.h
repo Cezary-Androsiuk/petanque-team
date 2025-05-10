@@ -5,8 +5,6 @@
 #include <QCryptographicHash>
 #include <QByteArray>
 
-#include "cpp/support/Log.h"
-
 class Login : public QObject
 {
     Q_OBJECT

@@ -1,5 +1,7 @@
 #include "StageEnum.h"
 
+#include "support/Log.h"
+
 QString EnumConvert::StageToQString(StageEnum stage)
 {
     switch (stage) {

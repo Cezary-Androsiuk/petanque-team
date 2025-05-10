@@ -1,5 +1,8 @@
 #include "Event.h"
 
+#include "support/Log.h"
+#include "storages/Personalization.h"
+
 Event::Event(QObject *parent)
     : QObject{parent}
     , m_phases(2, PhasePtr())

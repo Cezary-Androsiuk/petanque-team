@@ -7,10 +7,8 @@
 #include <QWeakPointer>
 #include <QSharedPointer>
 
-#include "cpp/support/Log.h"
-#include "cpp/storages/Personalization.h"
-#include "cpp/objects/Player.h"
-#include "cpp/Serializable.h"
+#include "objects/Player.h"
+#include "Serializable.h"
 
 /// KEYS FOR JSON - SERIALIZE AND DESERIALIZE PURPOSES
 #define SERL_TEAM_NAME_KEY          "name"

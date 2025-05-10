@@ -1,5 +1,7 @@
 #include "GroupSelection.h"
 
+#include "support/Log.h"
+
 GroupSelection::GroupSelection(int groupsCount, int minPlayersInGroup, int maxPlayersInGroup, QObject *parent)
     : QObject{parent}
     , m_groupsCount{groupsCount}

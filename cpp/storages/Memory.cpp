@@ -1,5 +1,7 @@
 #include "Memory.h"
 
+#include "support/Log.h"
+
 Memory::Memory(QObject *parent)
     : QObject{parent}
 {

@@ -5,10 +5,9 @@
 #include <QList>
 #include <QSharedPointer>
 
-#include "cpp/support/Log.h"
-#include "cpp/Serializable.h"
-#include "cpp/objects/Team.h"
-#include "cpp/objects/Player.h"
+#include "Serializable.h"
+#include "objects/Team.h"
+#include "objects/Player.h"
 
 #define SERL_GROUP_MATCH_GROUPS_COUNT_KEY "groups count"
 #define SERL_GROUP_MATCH_DEFAULT_PLAYERS_COUNT_IN_GROUP_KEY "default players count in group"

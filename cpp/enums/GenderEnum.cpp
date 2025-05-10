@@ -1,5 +1,7 @@
 #include "GenderEnum.h"
 
+#include "support/Log.h"
+
 QString EnumConvert::GenderToQString(GenderEnum gender)
 {
     switch (gender) {

@@ -1,5 +1,7 @@
 #include "SubPhase.h"
 
+#include "support/Log.h"
+
 SubPhase::SubPhase(int roundsCount, QObject *parent)
     : QObject{parent}
     , m_currentRoundIndex{0}

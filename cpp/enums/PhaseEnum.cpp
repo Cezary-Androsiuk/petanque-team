@@ -1,5 +1,6 @@
 #include "PhaseEnum.h"
 
+#include "support/Log.h"
 
 QString EnumConvert::PhaseToQString(PhaseEnum phase)
 {

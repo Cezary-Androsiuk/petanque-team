@@ -7,10 +7,9 @@
 #include <QWeakPointer>
 #include <QSharedPointer>
 
-#include "cpp/support/Log.h"
-#include "cpp/enums/GenderEnum.h"
-#include "cpp/enums/AgeGroupEnum.h"
-#include "cpp/Serializable.h"
+#include "enums/GenderEnum.h"
+#include "enums/AgeGroupEnum.h"
+#include "Serializable.h"
 
 /// KEYS FOR JSON - SERIALIZE AND DESERIALIZE PURPOSES
 #define SERL_FIRST_NAME_KEY             "first name"

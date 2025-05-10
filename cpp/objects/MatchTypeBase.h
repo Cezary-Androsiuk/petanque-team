@@ -6,11 +6,10 @@
 #include <QSharedPointer>
 #include <QRandomGenerator>
 
-#include "cpp/support/Log.h"
-#include "cpp/Serializable.h"
-#include "cpp/objects/GroupSelection.h"
-#include "cpp/objects/GroupMatch.h"
-#include "cpp/objects/Team.h"
+#include "Serializable.h"
+#include "objects/GroupSelection.h"
+#include "objects/GroupMatch.h"
+#include "objects/Team.h"
 
 #define SERL_MATCH_TYPE_TEAM_LEFT_NAME_KEY "team left name"
 #define SERL_MATCH_TYPE_TEAM_RIGHT_NAME_KEY "team right name"

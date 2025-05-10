@@ -5,11 +5,9 @@
 #include <QList>
 #include <QSharedPointer>
 
-#include "cpp/support/Log.h"
-#include "cpp/Serializable.h"
-#include "cpp/objects/SubPhase.h"
-#include "cpp/enums/PhaseEnum.h"
-#include "cpp/storages/Personalization.h"
+#include "Serializable.h"
+#include "objects/SubPhase.h"
+#include "enums/PhaseEnum.h"
 
 #define SERL_SUB_PHASES_KEY "sub phases"
 

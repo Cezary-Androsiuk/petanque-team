@@ -1,5 +1,7 @@
 #include "Player.h"
 
+#include "support/Log.h"
+
 Player::Player(QObject *parent)
     : QObject{parent}
     , m_ageGroup{AgeGroupEnum::Junior}

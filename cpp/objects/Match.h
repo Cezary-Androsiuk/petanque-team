@@ -6,11 +6,10 @@
 #include <QWeakPointer>
 #include <QSharedPointer>
 
-#include "cpp/support/Log.h"
-#include "cpp/Serializable.h"
-#include "cpp/objects/Team.h"
-#include "cpp/enums/RoundStageEnum.h"
-#include "cpp/objects/MatchTypeBase.h"
+#include "Serializable.h"
+#include "objects/Team.h"
+#include "enums/RoundStageEnum.h"
+#include "objects/MatchTypeBase.h"
 
 #define SERL_MATCH_TEAM_LEFT_NAME_KEY "team left name"
 #define SERL_MATCH_TEAM_RIGHT_NAME_KEY "team right name"

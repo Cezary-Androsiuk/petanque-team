@@ -6,9 +6,8 @@
 #include <QSharedPointer>
 #include <QRandomGenerator>
 
-#include "cpp/support/Log.h"
-#include "cpp/Serializable.h"
-#include "cpp/objects/Team.h"
+#include "Serializable.h"
+#include "objects/Team.h"
 
 #define SERL_GROUP_SELECTION_GROUPS_COUNT_KEY "groups count"
 #define SERL_GROUP_SELECTION_MIN_PLAYERS_IN_GROUP_KEY "min players in group"

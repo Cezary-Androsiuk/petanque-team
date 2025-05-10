@@ -3,8 +3,6 @@
 
 #include <QString>
 
-#include "cpp/support/Log.h"
-
 enum RoundStageEnum{
     SingielsSelection = 0,
     SingielsMatch,

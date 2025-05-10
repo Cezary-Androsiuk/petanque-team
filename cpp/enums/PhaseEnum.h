@@ -3,8 +3,6 @@
 
 #include <QString>
 
-#include "cpp/support/Log.h"
-
 enum PhaseEnum{
     First,
     Second,

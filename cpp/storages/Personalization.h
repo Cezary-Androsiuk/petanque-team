@@ -12,7 +12,7 @@
 #include <QJsonArray>
 #include <QFileInfo>
 
-#include "cpp/support/Log.h"
+#include "support/Log.h"
 
 #define JSON_FILE "petanque_team_personalization.json"
 #define PRINT_VALUES false // if true, prints values after loadPersonalization and before savePersonalization

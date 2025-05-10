@@ -3,8 +3,6 @@
 
 #include <QString>
 
-#include "cpp/support/Log.h"
-
 enum StageEnum{
     None = 0,
     Configure,

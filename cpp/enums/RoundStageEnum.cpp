@@ -1,5 +1,7 @@
 #include "RoundStageEnum.h"
 
+#include "support/Log.h"
+
 QString EnumConvert::RoundStageToQString(RoundStageEnum roundStage)
 {
     switch (roundStage) {

@@ -1,5 +1,8 @@
 #include "Round.h"
 
+#include "support/Log.h"
+#include "DebugConstraints.h"
+
 Round::Round(TeamPtrList &teams, QObject *parent)
     : QObject{parent}
     , m_teams{teams}

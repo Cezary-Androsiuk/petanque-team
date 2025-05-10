@@ -1,5 +1,8 @@
 #include "MatchTypeBase.h"
 
+#include "support/Log.h"
+#include "storages/Personalization.h"
+
 MatchTypeBase::MatchTypeBase(TeamPtr teamL, TeamPtr teamR, int groupsCount, int minPlayersInGroup, int maxPlayersInGroup, QObject *parent)
     : QObject{parent}
     , m_teamLeft{teamL}

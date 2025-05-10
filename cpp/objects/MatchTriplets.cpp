@@ -1,5 +1,7 @@
 #include "MatchTriplets.h"
 
+#include "support/Log.h"
+
 MatchTriplets::MatchTriplets(const TeamWPtr &tl, const TeamWPtr &tr, QObject *parent)
     : MatchTypeBase(tl, tr,
                     TRIPLETS_GROUPS_COUNT,

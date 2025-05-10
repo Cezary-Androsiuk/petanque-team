@@ -1,5 +1,7 @@
 #include "Login.h"
 
+#include "support/Log.h"
+
 Login::Login(QObject *parent)
     : QObject{parent}
 {}

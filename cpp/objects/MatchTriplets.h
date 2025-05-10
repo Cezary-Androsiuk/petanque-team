@@ -5,8 +5,7 @@
 #include <QList>
 #include <QSharedPointer>
 
-#include "cpp/support/Log.h"
-#include "cpp/objects/MatchTypeBase.h"
+#include "objects/MatchTypeBase.h"
 
 #define TRIPLETS_GROUPS_COUNT 2
 #define TRIPLETS_MIN_PLAYERS_IN_GROUP 3
