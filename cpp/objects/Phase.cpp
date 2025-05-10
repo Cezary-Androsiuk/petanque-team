@@ -133,12 +133,12 @@ void Phase::clear(bool emitting)
 
 void Phase::verify()
 {
-    for(const auto &subPhasePtr : m_subPhases)
+    for(int i=0; i<m_subPhases.size(); i++)
     {
         QString message;
-        if(!subPhasePtr->verify(message))
+        if(!m_subPhases[i]->verify(message))
         {
-            QString prefix( "In "+ subPhasePtr->getName() +" phase: " );
+            QString prefix( "In "+ m_subPhases[i]->getName() +" phase: " );
             emit this->verificationFailed(prefix + message);
             return;
         }
@@ -149,9 +149,9 @@ void Phase::verify()
 bool Phase::hasNext()
 {
     bool hasNextRound = true;
-    for(const auto &subPhasePtr : m_subPhases)
+    for(int i=0; i<m_subPhases.size(); i++)
     {
-        if(!subPhasePtr->hasNext())
+        if(!m_subPhases[i]->hasNext())
         {
             hasNextRound = false;
             break;

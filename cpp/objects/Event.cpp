@@ -85,10 +85,11 @@ void Event::deserialize(const QJsonObject &jEvent)
     emit this->currentStageChanged();
 
     QJsonArray jTeams = jEvent[ SERL_TEAMS_KEY ].toArray();
-    for(const auto &jTeam : jTeams)
+
+    for(int i=0; i<jTeams.size(); i++)
     {
         TeamPtr teamPtr = TeamPtr::create();
-        teamPtr->deserialize( jTeam.toObject() );
+        teamPtr->deserialize( jTeams[i].toObject() );
         m_teams.append(teamPtr);
     }
 
@@ -282,9 +283,9 @@ void Event::validateDetachedTeam()
     }
 
     /// Check unique parameter
-    for(const auto &teamPtr : m_teams)
+    for(int i=0; i<m_teams.size(); i++)
     {
-        if(m_detachedTeam->getName() == teamPtr->getName())
+        if(m_detachedTeam->getName() == m_teams[i]->getName())
         {
             emit this->detachedTeamValidationFailed("Team name is not unique in this event!");
             return;
@@ -338,10 +339,10 @@ void Event::validateEvent()
     }
 
     /// check data for teams:
-    for(const auto &teamPtr : m_teams)
+    for(int i=0; i<m_teams.size(); i++)
     {
-        const QString &teamName = teamPtr->getName();
-        const PlayerPtrList &players = teamPtr->getPlayers();
+        const QString &teamName = m_teams[i]->getName();
+        const PlayerPtrList &players = m_teams[i]->getPlayers();
 
         /// check if team has at least 6 players
         if(players.size() < p->getMinimumPlayersInTeam())

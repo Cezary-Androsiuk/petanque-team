@@ -1,7 +1,6 @@
 #include "Team.h"
 
 #include "support/Log.h"
-#include "storages/Personalization.h"
 
 Team::Team(QObject *parent)
     : QObject{parent}
@@ -54,10 +53,10 @@ void Team::deserialize(const QJsonObject &jTeam)
     emit this->detachedPlayerChanged();
 
     QJsonArray jPlayers = jTeam[ SERL_PLAYERS_KEY ].toArray();
-    for(const auto &jPlayer : jPlayers)
+    for(int i=0; i<jPlayers.size(); i++)
     {
         PlayerPtr playerPtr = PlayerPtr::create();
-        playerPtr->deserialize( jPlayer.toObject() );
+        playerPtr->deserialize( jPlayers[i].toObject() );
         m_players.append( playerPtr );
     }
     emit this->playersChanged();
@@ -132,9 +131,9 @@ void Team::validateDetachedPlayer()
     }
 
     /// Check unique parameter
-    for(const auto &playerPtr : m_players)
+    for(int i=0; i<m_players.size(); i++)
     {
-        if(m_detachedPlayer->getLicense() == playerPtr->getLicense())
+        if(m_detachedPlayer->getLicense() == m_players[i]->getLicense())
         {
             emit this->detachedPlayerValidationFailed("Player's license is not unique in this team!");
             return;

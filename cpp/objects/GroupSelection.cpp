@@ -64,8 +64,9 @@ void GroupSelection::deserialize(const QJsonObject &jGroupSelection)
 
     m_playerSelections.clear();
     QJsonArray jPlayerSelections( jGroupSelection[SERL_GROUP_SELECTION_PLAYER_SELECTIONS_KEY].toArray() );
-    for(const auto &jPlayerSelection : jPlayerSelections)
-        m_playerSelections.append( jPlayerSelection.toInt() );
+
+    for(int i=0; i<jPlayerSelections.size(); i++)
+        m_playerSelections.append( jPlayerSelections[i].toInt() );
     emit this->playerSelectionsChanged();
 
     /// team don't need to be deserialized
@@ -77,9 +78,10 @@ bool GroupSelection::verify(QString &message)
     for(int i=0; i<m_groupsCount; i++)
     {
         int foundPlayersInGroup = 0;
-        for(int playerGroup : m_playerSelections)
+
+        for(int j=0; j<m_playerSelections.size(); j++)
         {
-            if(playerGroup == i)
+            if(m_playerSelections[j] == i)
                 ++ foundPlayersInGroup;
         }
 

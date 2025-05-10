@@ -64,8 +64,8 @@ void GroupMatch::deserialize(const QJsonObject &jGroupMatch)
 
     m_matchPoints.clear();
     QJsonArray jMatchPoints( jGroupMatch[SERL_GROUP_MATCH_MATCH_POINTS_KEY].toArray() );
-    for(const auto &jMatchPoint : jMatchPoints)
-        m_matchPoints.append( jMatchPoint.toInt() );
+    for(int i=0; i<jMatchPoints.size(); i++)
+        m_matchPoints.append( jMatchPoints[i].toInt() );
     emit this->matchPointsChanged();
 
     /// team don't need to be deserialized
