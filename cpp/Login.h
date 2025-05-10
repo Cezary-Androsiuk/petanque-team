@@ -17,11 +17,12 @@ private:
 public slots:
     void authenticate(QString login, QString password);
 
-private:
-    void sendRequest();
-    void waitForResponse();
+    void onCredentialsCorrect();
+    void onCredentialsInvalid();
 
 signals:
+    void needCredentialsCheck(QString login, QString passwordHash);
+
     void authenticated();
     void authenticationFailed(QString message);
 

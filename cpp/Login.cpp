@@ -40,32 +40,18 @@ void Login::authenticate(QString login, QString password)
     // D("m_login: " + m_login)
     // D("m_passwordHash: " + m_passwordHash)
 
-    this->sendRequest();
-
-    this->waitForResponse();
+    D("");
+    emit this->needCredentialsCheck(m_login, m_passwordHash);
 }
 
-void Login::sendRequest()
+void Login::onCredentialsCorrect()
 {
-    D("sending request to server...");
-
-    /// send request to server
-
+    D("onCredentialsCorrect");
+    emit this->authenticated();
 }
 
-void Login::waitForResponse()
+void Login::onCredentialsInvalid()
 {
-    D("waiting for response...");
-
-    /// temp
-    bool credentialsCorrected = true;
-
-    if(credentialsCorrected)
-    {
-        emit this->authenticated();
-    }
-    else
-    {
-        emit this->authenticationFailed(tr("Invalid credentials!"));
-    }
+    D("onCredentialsInvalid");
+    emit this->authenticationFailed(tr("Invalid credentials!"));
 }

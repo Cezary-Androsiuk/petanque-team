@@ -24,6 +24,7 @@ qt_add_qml_module(${PROJECT_NAME}
     SOURCES cpp/Serializable.h cpp/Serializable.cpp
     SOURCES cpp/DebugConstraints.h
     SOURCES cpp/SingletonManager.h cpp/SingletonManager.cpp
+    SOURCES cpp/NetworkManager.h cpp/NetworkManager.cpp
     ################################
     SOURCES cpp/storages/Memory.h cpp/storages/Memory.cpp
     SOURCES cpp/storages/DefaultPersonalizationData.h cpp/storages/DefaultPersonalizationData.cpp
@@ -90,7 +91,6 @@ qt_add_qml_module(${PROJECT_NAME}
     ################################ Finish
     QML_FILES qml/Gameplay/Finish.qml
     QML_FILES qml/Popups/AskPopup.qml
-    QML_FILES
 
 )
 

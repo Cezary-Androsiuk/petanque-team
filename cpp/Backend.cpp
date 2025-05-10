@@ -6,10 +6,15 @@
 Backend::Backend(QObject *parent)
     : QObject{parent}
     , m_loginPtr(QSharedPointer<Login>::create(nullptr))
+    , m_networkManager(QSharedPointer<NetworkManager>::create(nullptr))
     , m_memoryPtr(QSharedPointer<Memory>::create(nullptr))
     , m_eventPtr(QSharedPointer<Event>::create(nullptr))
 {
     DOLT(this)
+
+    QObject::connect(m_loginPtr.data(), &Login::needCredentialsCheck, m_networkManager.data(), &NetworkManager::authenticateCredentials);
+    QObject::connect(m_networkManager.data(), &NetworkManager::credentialsCorrect, m_loginPtr.data(), &Login::onCredentialsCorrect);
+    QObject::connect(m_networkManager.data(), &NetworkManager::credentialsInvalid, m_loginPtr.data(), &Login::onCredentialsInvalid);
 
     m_memoryPtr->setSerializablePtr(m_eventPtr);
 }

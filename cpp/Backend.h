@@ -5,6 +5,7 @@
 #include <QSharedPointer>
 
 #include "Login.h"
+#include "NetworkManager.h"
 #include "objects/Event.h"
 #include "storages/Memory.h"
 
@@ -39,6 +40,7 @@ signals:
 
 private:
     const QSharedPointer<Login> m_loginPtr;
+    const QSharedPointer<NetworkManager> m_networkManager;
     const QSharedPointer<Memory> m_memoryPtr;
     QSharedPointer<Event> m_eventPtr;
 };
