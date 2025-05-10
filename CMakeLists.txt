@@ -9,8 +9,10 @@ find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
 qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(appPetanqueTeam
-    main.cpp
+    cpp/main.cpp
 )
+
+include_directories(${CMAKE_SOURCE_DIR}/cpp)
 
 qt_add_qml_module(appPetanqueTeam
     URI PetanqueTeam
@@ -21,6 +23,7 @@ qt_add_qml_module(appPetanqueTeam
     SOURCES cpp/Backend.h cpp/Backend.cpp
     SOURCES cpp/Serializable.h cpp/Serializable.cpp
     SOURCES cpp/DebugConstraints.h
+    SOURCES cpp/SingletonManager.h cpp/SingletonManager.cpp
     ################################
     SOURCES cpp/storages/Memory.h cpp/storages/Memory.cpp
     SOURCES cpp/storages/DefaultPersonalizationData.h cpp/storages/DefaultPersonalizationData.cpp
@@ -50,7 +53,6 @@ qt_add_qml_module(appPetanqueTeam
     SOURCES cpp/enums/StageEnum.h cpp/enums/StageEnum.cpp
     SOURCES cpp/enums/PhaseEnum.h cpp/enums/PhaseEnum.cpp
     SOURCES cpp/enums/RoundStageEnum.h cpp/enums/RoundStageEnum.cpp
-    SOURCES
 
 
 
@@ -88,7 +90,6 @@ qt_add_qml_module(appPetanqueTeam
     ################################ Finish
     QML_FILES qml/Gameplay/Finish.qml
     QML_FILES qml/Popups/AskPopup.qml
-    SOURCES cpp/SingletonManager.h cpp/SingletonManager.cpp
 
 )
 
