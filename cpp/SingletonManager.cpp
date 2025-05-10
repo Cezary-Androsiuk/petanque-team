@@ -1,7 +1,7 @@
 #include "SingletonManager.h"
 
-#include "support/Log.h"
 #include "storages/Personalization.h"
+#include "support/Log.h"
 
 SingletonManager::SingletonManager()
 {

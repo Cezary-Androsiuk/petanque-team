@@ -1,5 +1,7 @@
 #include "cpp/storages/Personalization.h"
 
+#include "cpp/storages/DefaultPersonalizationData.h"
+
 Personalization *Personalization::instance = nullptr;
 
 Personalization::Personalization(QObject *parent)
@@ -145,8 +147,7 @@ void Personalization::save()
 
 void Personalization::computeRoundsCount()
 {
-    m_roundsCount = 0;
-    for(const auto &roundMatch : m_roundsMatches)
+    m_roundsCount = m_roundsMatches.size();
         m_roundsCount++;
 }
 

@@ -114,15 +114,6 @@ QString Log::asprintf(cQS text, ...)
     return str;
 }
 
-QString Log::asprintf(int)
-{
-
-
-
-    return "";
-}
-
-
 std::string Log::time(bool simpleSeparators)
 {
     auto now = std::chrono::system_clock::now();
@@ -311,18 +302,18 @@ void Log::openFile()
 
     m_fileName = outputDirectory + Log::time(true) + ".log";
 
-    std::fstream outFileVar;
-    outFileVar.open(m_fileName);
+    // std::fstream outFileVar;
+    // outFileVar.open(m_fileName);
 
-    // Log::outFile.open(m_fileName);
-    if(!outFileVar.is_open())
+    m_outFile.open(m_fileName);
+    if(!m_outFile.is_open())
     {
         fprintf(stderr, "Error while creating log file!\n");
         fflush(stderr);
         return;
     }
 
-    outFileVar << Log::buildStartPrefix() << "\n";
+    m_outFile << Log::buildStartPrefix() << "\n";
 }
 
 void Log::saveFile(cstr content)

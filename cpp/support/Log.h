@@ -101,7 +101,6 @@ public:
 
     static QString asprintf(const char *text, ...);
     static QString asprintf(cQS text, ...);
-    static QString asprintf(int);
 
 private:
     std::string time(bool simpleSeparators = false);
