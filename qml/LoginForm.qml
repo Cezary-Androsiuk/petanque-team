@@ -14,7 +14,7 @@ Item {
     }
 
     Connections{
-        target: Login
+        target: Backend.login
         function onAuthenticationFailed(message){
             log.i("Received failed authentication signal: " + message)
             errorInfoLabel.visible = true
@@ -114,7 +114,7 @@ Item {
                     if(password === "") password = "example password";
                 }
 
-                Login.authenticate(login, password)
+                Backend.login.authenticate(login, password)
             }
         }
 
@@ -150,7 +150,7 @@ Item {
                     if(password === "") password = "example password";
                 }
 
-                Login.authenticate(login, password)
+                Backend.login.authenticate(login, password)
             }
         }
 

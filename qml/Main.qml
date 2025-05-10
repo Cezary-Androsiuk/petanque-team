@@ -45,7 +45,7 @@ ApplicationWindow {
     }
 
     Connections{
-        target: Login
+        target: Backend.login
         function onAuthenticated(){
             log.i("authenticated login" , "Main.qml -> onAuthenticated")
             Backend.memory.load()

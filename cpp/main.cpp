@@ -21,12 +21,10 @@ int main(int argc, char *argv[])
         std::make_unique<QQmlApplicationEngine>();
 
     QPointer<Backend> backend(new Backend(app.get()));
-    QPointer<Login> login(new Login(app.get()));
     QPointer<LogQML> logQML(new LogQML(app.get()));
 
     engine->rootContext()->setContextProperty("DoubleStartProtection", DoubleStartProtection::getInstance());
     engine->rootContext()->setContextProperty("Backend", backend);
-    engine->rootContext()->setContextProperty("Login", login);
     engine->rootContext()->setContextProperty("log", logQML);
 
     QObject::connect(

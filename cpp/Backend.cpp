@@ -5,6 +5,7 @@
 
 Backend::Backend(QObject *parent)
     : QObject{parent}
+    , m_loginPtr(QSharedPointer<Login>::create(nullptr))
     , m_memoryPtr(QSharedPointer<Memory>::create(nullptr))
     , m_eventPtr(QSharedPointer<Event>::create(nullptr))
 {
@@ -27,6 +28,11 @@ void Backend::restartEvent()
     m_memoryPtr->setSerializablePtr(m_eventPtr);
     emit this->restartedEvent();
     I("event restarted");
+}
+
+Login *Backend::getLoginPtrQml() const
+{
+    return m_loginPtr.data();
 }
 
 Memory *Backend::getMemoryPtrQml() const

@@ -4,12 +4,14 @@
 #include <QObject>
 #include <QSharedPointer>
 
+#include "Login.h"
 #include "objects/Event.h"
 #include "storages/Memory.h"
 
 class Backend : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(Login *login READ getLoginPtrQml CONSTANT FINAL)
     Q_PROPERTY(Memory *memory READ getMemoryPtrQml CONSTANT FINAL)
     Q_PROPERTY(Event *event READ getEventPtrQml NOTIFY eventChanged FINAL)
     Q_PROPERTY(bool isDebugMode READ getIsDebugMode CONSTANT FINAL)
@@ -23,6 +25,7 @@ public slots:
     void restartEvent();
 
 public:
+    Login *getLoginPtrQml() const;
     Memory *getMemoryPtrQml() const;
     Event *getEventPtrQml() const;
 
@@ -35,6 +38,7 @@ signals:
     void restartedEvent();
 
 private:
+    const QSharedPointer<Login> m_loginPtr;
     const QSharedPointer<Memory> m_memoryPtr;
     QSharedPointer<Event> m_eventPtr;
 };
