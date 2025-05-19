@@ -6,12 +6,14 @@
 SingletonManager::SingletonManager()
 {
     Log::instance = new Log();
+    DOLT(this);
 
     Personalization::instance = new Personalization();
 }
 
 SingletonManager::~SingletonManager()
 {
+    DOLT(this);
 
     if(Personalization::instance)
         delete Personalization::instance;

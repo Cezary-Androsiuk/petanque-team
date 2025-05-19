@@ -43,8 +43,11 @@ int main(int argc, char *argv[])
     int exitValue = app->exec(); /// Loop
 
     /// reset QGuiApplication and QQmlApplicationEngine
+    /// this will remove all related pointers
     engine.reset();
     app.reset();
+
+    I("engine and app deleted");
 
     /// SingletonManager - delete all singletons
     sm.reset();
