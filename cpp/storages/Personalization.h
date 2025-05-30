@@ -33,7 +33,7 @@
 #define KEY_REQUIRED_JUNIORS "requires juniors"
 #define KEY_MAX_POINTS_IN_MATCH "max points in match"
 #define KEY_ROUND_MATCHES "rounds matches"
-
+#define KEY_SERVER_ADDRESS "server address"
 
 // Singleton
 class Personalization : public QObject
@@ -69,6 +69,7 @@ public:
     const QJsonObject &getRoundsMatches() const;
     const QJsonObject &getExampleData() const;
     int getRoundsCount() const;
+    const QString &getServerAddress() const;
 
 signals:
     void loaded();
@@ -84,6 +85,7 @@ private:
     QJsonObject m_roundsMatches;
     QJsonObject m_exampleData;
     int m_roundsCount;
+    QString m_serverAddress;
 
     static Personalization* instance;
     friend class SingletonManager;

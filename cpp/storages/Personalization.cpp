@@ -33,6 +33,7 @@ void Personalization::setDefault()
     m_roundsMatches = QJsonDocument::fromJson(defaultRoundsMatches).object();
     this->computeRoundsCount();
     m_exampleData = QJsonDocument::fromJson(defaultExampleData).object();
+    m_serverAddress = defaultServerAddress;
 }
 
 void Personalization::load()
@@ -110,6 +111,10 @@ void Personalization::load()
     if(jp.contains(key)) m_exampleData = jp[key].toObject();
     else KEY_NOT_FOUND_MESSAGE;
 
+    key = KEY_SERVER_ADDRESS;
+    if(jp.contains(key)) m_serverAddress = jp[key].toString();
+    else KEY_NOT_FOUND_MESSAGE;
+
     I("personalization data loaded");
 
     emit this->loaded();
@@ -127,6 +132,7 @@ void Personalization::save()
     jsonObject[KEY_MAX_POINTS_IN_MATCH] = this->getMaxPointsInMatch();
     jsonObject[KEY_ROUND_MATCHES] = this->getRoundsMatches();
     jsonObject[KEY_EXAMPLE_DATA] = this->getExampleData();
+    jsonObject[KEY_SERVER_ADDRESS] = this->getServerAddress();
 
     QJsonDocument jsonData(jsonObject);
 
@@ -185,5 +191,10 @@ const QJsonObject &Personalization::getExampleData() const
 int Personalization::getRoundsCount() const
 {
     return m_roundsCount;
+}
+
+const QString &Personalization::getServerAddress() const
+{
+    return m_serverAddress;
 }
 
