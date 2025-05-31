@@ -1,7 +1,8 @@
 #include "DefaultPersonalizationData.h"
 
-// const char *defaultServerAddress = "http://127.0.0.1:5000/api";
-const char *defaultServerAddress = "http://192.168.0.70:5000/api";
+const char *defaultServerAddress = "http://127.0.0.1:5000/api";
+// const char *defaultServerAddress = "http://192.168.0.70:5000/api";
+// const char *defaultServerAddress = "http://192.168.0.72:5000/api";
 
 const char *defaultRoundsMatches = // Berger's Table
 R"(

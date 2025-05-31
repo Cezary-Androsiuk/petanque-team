@@ -3,6 +3,10 @@
 
 #include <QObject>
 
+#include <QNetworkAccessManager>
+#include <QJsonObject>
+#include <QJsonDocument>
+
 class NetworkManager : public QObject
 {
     Q_OBJECT
@@ -24,16 +28,25 @@ private slots:
     void handleResponse();
 
 private:
+    void deleteReply();
     void handleAuthenticationResponse();
     void handleSendingDataResponse();
 
 signals:
     void credentialsCorrect();
+    void credentialsVerificationFailed(QString details);
     void credentialsInvalid();
 
 private:
     Action m_action;
 
+    QNetworkAccessManager * const m_networkManager;
+    QNetworkReply *m_reply;
+
+    struct{
+        int statusCode;
+        QJsonObject jsonData;
+    } m_lastResponse;
 };
 
 #endif // NETWORKMANAGER_H

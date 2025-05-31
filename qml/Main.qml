@@ -18,19 +18,19 @@ ApplicationWindow {
     Material.theme: Material.Dark
 
     /// Focus tracker START
-    property Item currentFocusItem: activeFocusItem
+    // property Item currentFocusItem: activeFocusItem
 
-    Binding {
-        target: null
-        property: "currentFocusItem"
-        value: Window.activeFocusItem
-        delayed: true
-    }
+    // Binding {
+    //     target: null
+    //     property: "currentFocusItem"
+    //     value: Window.activeFocusItem
+    //     delayed: true
+    // }
 
-    onCurrentFocusItemChanged: {
-        var strFocusText = "GUI focus was changed to: " + currentFocusItem
-        log.i(strFocusText, "Main.qml onCurrentFocusItemChanged");
-    }
+    // onCurrentFocusItemChanged: {
+    //     var strFocusText = "GUI focus was changed to: " + currentFocusItem
+    //     log.i(strFocusText, "Main.qml onCurrentFocusItemChanged");
+    // }
     /// Focus tracker END
 
     Connections{
