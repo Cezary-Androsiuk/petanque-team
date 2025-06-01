@@ -5,29 +5,29 @@
 QString EnumConvert::RoundStageToQString(RoundStageEnum roundStage)
 {
     switch (roundStage) {
-    case RoundStageEnum::SingielsSelection: return "Singiels Selection";
-    case RoundStageEnum::SingielsMatch:     return "Singiels Match";
-    case RoundStageEnum::DubletsSelection:  return "Dublets Selection";
-    case RoundStageEnum::DubletsMatch:      return "Dublets Match";
-    case RoundStageEnum::TripletsSelection: return "Triplets Selection";
-    case RoundStageEnum::TripletsMatch:     return "Triplets Match";
+    case RoundStageEnum::SinglesSelection:  return "Singles Selection";
+    case RoundStageEnum::SinglesMatch:      return "Singles Match";
+    case RoundStageEnum::DoublesSelection:  return "Doubles Selection";
+    case RoundStageEnum::DoublesMatch:      return "Doubles Match";
+    case RoundStageEnum::TriplesSelection:  return "Triples Selection";
+    case RoundStageEnum::TriplesMatch:      return "Triples Match";
     case RoundStageEnum::RoundSummary:      return "Round Summary";
     default:
-        W("unknown round stage, returning Singiels Selection string");
-        return "Singiels Selection";
+        W("unknown round stage, returning Singles Selection string");
+        return "Singles Selection";
     }
 }
 
 RoundStageEnum EnumConvert::QStringToRoundStage(const QString &roundStage)
 {
-    if(roundStage == "Singiels Selection")  return RoundStageEnum::SingielsSelection;
-    if(roundStage == "Singiels Match")      return RoundStageEnum::SingielsMatch;
-    if(roundStage == "Dublets Selection")   return RoundStageEnum::DubletsSelection;
-    if(roundStage == "Dublets Match")       return RoundStageEnum::DubletsMatch;
-    if(roundStage == "Triplets Selection")  return RoundStageEnum::TripletsSelection;
-    if(roundStage == "Triplets Match")      return RoundStageEnum::TripletsMatch;
+    if(roundStage == "Singles Selection")   return RoundStageEnum::SinglesSelection;
+    if(roundStage == "Singles Match")       return RoundStageEnum::SinglesMatch;
+    if(roundStage == "Doubles Selection")   return RoundStageEnum::DoublesSelection;
+    if(roundStage == "Doubles Match")       return RoundStageEnum::DoublesMatch;
+    if(roundStage == "Triples Selection")   return RoundStageEnum::TriplesSelection;
+    if(roundStage == "Triples Match")       return RoundStageEnum::TriplesMatch;
     if(roundStage == "Round Summary")       return RoundStageEnum::RoundSummary;
 
     W("unknown round stage string: " "\"" + roundStage + "\"" ", returning Singlets Selection enum");
-    return RoundStageEnum::SingielsSelection;
+    return RoundStageEnum::SinglesSelection;
 }

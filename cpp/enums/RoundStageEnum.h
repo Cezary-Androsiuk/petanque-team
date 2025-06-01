@@ -4,12 +4,12 @@
 #include <QString>
 
 enum RoundStageEnum{
-    SingielsSelection = 0,
-    SingielsMatch,
-    DubletsSelection,
-    DubletsMatch,
-    TripletsSelection,
-    TripletsMatch,
+    SinglesSelection = 0,
+    SinglesMatch,
+    DoublesSelection,
+    DoublesMatch,
+    TriplesSelection,
+    TriplesMatch,
     RoundSummary,
 };
 

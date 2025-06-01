@@ -43,9 +43,9 @@ qt_add_qml_module(${PROJECT_NAME}
     SOURCES cpp/objects/Round.h cpp/objects/Round.cpp
     SOURCES cpp/objects/Match.h cpp/objects/Match.cpp
     SOURCES cpp/objects/MatchTypeBase.h cpp/objects/MatchTypeBase.cpp
-    SOURCES cpp/objects/MatchSingiels.h cpp/objects/MatchSingiels.cpp
-    SOURCES cpp/objects/MatchDublets.h cpp/objects/MatchDublets.cpp
-    SOURCES cpp/objects/MatchTriplets.h cpp/objects/MatchTriplets.cpp
+    SOURCES cpp/objects/MatchSingles.h cpp/objects/MatchSingles.cpp
+    SOURCES cpp/objects/MatchDoubles.h cpp/objects/MatchDoubles.cpp
+    SOURCES cpp/objects/MatchTriples.h cpp/objects/MatchTriples.cpp
     SOURCES cpp/objects/GroupMatch.h cpp/objects/GroupMatch.cpp
     SOURCES cpp/objects/GroupSelection.h cpp/objects/GroupSelection.cpp
     ################################

@@ -5,7 +5,7 @@
 Round::Round(TeamPtrList &teams, QObject *parent)
     : QObject{parent}
     , m_teams{teams}
-    , m_currentRoundStage{RoundStageEnum::SingielsSelection}
+    , m_currentRoundStage{RoundStageEnum::SinglesSelection}
 {
     DOLT(this)
 

@@ -14,9 +14,9 @@
 #define SERL_MATCH_TEAM_LEFT_NAME_KEY "team left name"
 #define SERL_MATCH_TEAM_RIGHT_NAME_KEY "team right name"
 #define SERL_MATCH_TYPES_KEY "match types"
-#define SERL_MATCH_TYPE_SINGIELS_KEY "singiels"
-#define SERL_MATCH_TYPE_DUBLETS_KEY "dublets"
-#define SERL_MATCH_TYPE_TRIPLETS_KEY "triplets"
+#define SERL_MATCH_TYPE_SINGLES_KEY "singles"
+#define SERL_MATCH_TYPE_DOUBLES_KEY "doubles"
+#define SERL_MATCH_TYPE_TRIPLES_KEY "triples"
 
 typedef const RoundStageEnum *const RoundStageEnumRPtr;
 

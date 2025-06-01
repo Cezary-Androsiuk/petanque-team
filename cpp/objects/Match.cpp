@@ -1,9 +1,9 @@
 #include "Match.h"
 
 #include "support/Log.h"
-#include "objects/MatchSingiels.h"
-#include "objects/MatchDublets.h"
-#include "objects/MatchTriplets.h"
+#include "objects/MatchSingles.h"
+#include "objects/MatchDoubles.h"
+#include "objects/MatchTriples.h"
 
 Match::Match(RoundStageEnumRPtr roundStageRef, QObject *parent)
     : QObject{parent}
@@ -67,11 +67,11 @@ void Match::initMatchesTypes()
 {
     DA(Log::Action::SaveSession, "init matchTypes: %p", this);
 
-    m_matchTypes[0] = MatchSingielsPtr::create(m_teamLeft, m_teamRight);
+    m_matchTypes[0] = MatchSinglesPtr::create(m_teamLeft, m_teamRight);
 
-    m_matchTypes[1] = MatchDubletsPtr::create(m_teamLeft, m_teamRight);
+    m_matchTypes[1] = MatchDoublesPtr::create(m_teamLeft, m_teamRight);
 
-    m_matchTypes[2] = MatchTripletsPtr::create(m_teamLeft, m_teamRight);
+    m_matchTypes[2] = MatchTriplesPtr::create(m_teamLeft, m_teamRight);
 }
 
 QJsonObject Match::serialize() const
@@ -83,9 +83,9 @@ QJsonObject Match::serialize() const
     /// m_currentRoundStage - don't need to be deserialized
 
     QJsonObject jMatchTypes;
-    jMatchTypes[ SERL_MATCH_TYPE_SINGIELS_KEY ] = this->serializeMatchType(0);
-    jMatchTypes[ SERL_MATCH_TYPE_DUBLETS_KEY ] = this->serializeMatchType(1);
-    jMatchTypes[ SERL_MATCH_TYPE_TRIPLETS_KEY ] = this->serializeMatchType(2);
+    jMatchTypes[ SERL_MATCH_TYPE_SINGLES_KEY ] = this->serializeMatchType(0);
+    jMatchTypes[ SERL_MATCH_TYPE_DOUBLES_KEY ] = this->serializeMatchType(1);
+    jMatchTypes[ SERL_MATCH_TYPE_TRIPLES_KEY ] = this->serializeMatchType(2);
     jMatch[ SERL_MATCH_TYPES_KEY ] = jMatchTypes;
     return jMatch;
 }
@@ -148,28 +148,28 @@ void Match::deserializeMatchTypes(const QJsonObject &jMatch)
 
     QJsonObject jMatchTypes = jMatch[ SERL_MATCH_TYPES_KEY ].toObject();
 
-    if(!jMatchTypes.contains( SERL_MATCH_TYPE_SINGIELS_KEY ))
-        E("cannot deserialize match types singiels due to missing key: " SERL_MATCH_TYPE_SINGIELS_KEY);
+    if(!jMatchTypes.contains( SERL_MATCH_TYPE_SINGLES_KEY ))
+        E("cannot deserialize match types singles due to missing key: " SERL_MATCH_TYPE_SINGLES_KEY);
     else if(m_matchTypes[0].isNull())
-        E("cannot deserialize due to not existing match type singiels");
+        E("cannot deserialize due to not existing match type singles");
     else
-        m_matchTypes[0]->deserialize( jMatchTypes[ SERL_MATCH_TYPE_SINGIELS_KEY ].toObject() );
+        m_matchTypes[0]->deserialize( jMatchTypes[ SERL_MATCH_TYPE_SINGLES_KEY ].toObject() );
 
 
-    if(!jMatchTypes.contains( SERL_MATCH_TYPE_DUBLETS_KEY ))
-        E("cannot deserialize match types dublets due to missing key: " SERL_MATCH_TYPE_DUBLETS_KEY);
+    if(!jMatchTypes.contains( SERL_MATCH_TYPE_DOUBLES_KEY ))
+        E("cannot deserialize match types doubles due to missing key: " SERL_MATCH_TYPE_DOUBLES_KEY);
     else if(m_matchTypes[1].isNull())
-        E("cannot deserialize due to not existing match type dublets");
+        E("cannot deserialize due to not existing match type doubles");
     else
-        m_matchTypes[1]->deserialize( jMatchTypes[ SERL_MATCH_TYPE_DUBLETS_KEY ].toObject() );
+        m_matchTypes[1]->deserialize( jMatchTypes[ SERL_MATCH_TYPE_DOUBLES_KEY ].toObject() );
 
 
-    if(!jMatchTypes.contains( SERL_MATCH_TYPE_TRIPLETS_KEY ))
-        E("cannot deserialize match types triplets due to missing key: " SERL_MATCH_TYPE_TRIPLETS_KEY);
+    if(!jMatchTypes.contains( SERL_MATCH_TYPE_TRIPLES_KEY ))
+        E("cannot deserialize match types triples due to missing key: " SERL_MATCH_TYPE_TRIPLES_KEY);
     else if(m_matchTypes[2].isNull())
-        E("cannot deserialize due to not existing match type triplets");
+        E("cannot deserialize due to not existing match type triples");
     else
-        m_matchTypes[2]->deserialize( jMatchTypes[ SERL_MATCH_TYPE_TRIPLETS_KEY ].toObject() );
+        m_matchTypes[2]->deserialize( jMatchTypes[ SERL_MATCH_TYPE_TRIPLES_KEY ].toObject() );
 }
 
 bool Match::verify(QString &message) const
