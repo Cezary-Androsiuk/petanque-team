@@ -7,9 +7,12 @@
 #include <cstring>
 #include <filesystem>
 
+const char *version = "v1.3.0";
 const char *outputDirectory = "logs/";
 
+#if ENABLE_MANAGING_LOG_INSTANCE_LIFE_TIME
 Log *Log::instance = nullptr;
+#endif
 
 const char *Log::logTypeToStr(Type type)
 {
@@ -48,8 +51,12 @@ const char *Log::logActionToStr(Action action)
 
 Log *Log::getInstance()
 {
-    // static Log *log = new Log(); /// lazy initialization
+#if ENABLE_MANAGING_LOG_INSTANCE_LIFE_TIME
     return Log::instance; /// handled by SingletonManager
+#else
+    static Log log;
+    return &log;
+#endif
 }
 
 void Log::info(cQS func, cQS log, Log::Action action)
@@ -75,6 +82,46 @@ void Log::debug(cQS func, cQS log, Log::Action action)
 void Log::raw(cQS func, cQS log, Action action)
 {
     this->safeLog(Type::Raw, func.toStdString(), log.toStdString(), action);
+}
+
+void Log::trace(std::string file, cstr func, int line)
+{
+    std::string time;
+
+    try{
+        time = "[" + this->time() +  "]" + " ";
+    }
+    catch (const std::exception &e) {
+        fprintf(stderr, "creating time prefix failed, reason: %s\n", e.what());
+        fflush(stderr);
+    }
+
+
+    /// assert path for the project (while compilation) not contains '|' sign
+    /// or in worst case at least not contains pattern like "| 0123 |" - start and end with '|', and numers with space inside
+    /// but better change any occurance to #, because path is not that required
+    for(int i=0; i<file.size(); i++)
+    {
+        if(file[i] == '|')
+            file[i] = '#';
+    }
+
+    std::string strLine = asprintf("%6d", line).toStdString(); /// assert that any file not contains more than 1 milion lines
+    std::string traceText = "" + file + "|" + strLine + "|" + func;
+
+    /// to create algorithm reading trace path:
+    /// 1. find "] T " pattern
+    /// 2. copy letters to path string until '|' occur
+    /// 3. copy letters to line string until '|' occur again (string shoud be trimmed from all space characters)
+    /// 4. copy letters that left to function name string
+
+    try{
+        this->saveFile(time + "T " + traceText);
+    }
+    catch (const std::exception &e) {
+        fprintf(stderr, "saving trace failed, reason: %s\n", e.what());
+        fflush(stderr);
+    }
 }
 
 QString Log::asprintf(const char *text, ...)

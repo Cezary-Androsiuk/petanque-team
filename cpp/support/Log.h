@@ -12,9 +12,24 @@
 
 // #include "LogSession.h"
 
-#define SAPF(...) Log::asprintf(__VA_ARGS__) /* string as printf */
+extern const char *version;
+extern const char *outputDirectory;
 
-#define DISPLAY_OBJECT_LIFE_TIME true
+#define ENABLE_MANAGING_LOG_INSTANCE_LIFE_TIME true /// decides if 'SingletonManager' class is a friend and could manage singleton life time by Log::instance
+#define EST_FUNCTION_LENGTH 90 /// estimated function name length what will be reserved while creating log
+#define SHORTER_FUNCTION_FILL_CHARACTER ' ' /// characters that fills area before function name to fit estimated function name length
+#define CONTENT_SPACE 10 /// space between function name and content
+#define CONTENT_SPACE_CHARACTER ' ' /// characters that fills space between function name and content
+#define SPACE_BETWEEN_CONTENT_SPACE_AND_CONTENT true /// creates spaces between space: "x ........ y" instead of "x........y"
+#define DISPLAY_OBJECT_LIFE_TIME true /// decides if Display Object Life Time (DOLT) is enabled
+#define ENABLE_TRACE_LOGGING true /// decides if trace logging is enabled and functions names will be saved to logs
+
+
+/// String As PrintF
+#define SAPF(...) Log::asprintf(__VA_ARGS__)
+
+/// DOLT wtih 'Force' allows to disable all other DOLT and focus on only one class
+/// DOLT Variable (DOLTV) allows to pass arguments that are used in constructor/destructor
 
 /// Display Object Life Time Variable - Force
 #define DOLTV_F(ptr, argsStr) {                                             \
@@ -30,36 +45,40 @@
 /// Display Object Life Time - Force
 #define DOLT_F(ptr) DOLTV_F(ptr, "")
 
-/// Display Object Life Time Variable
-#define DOLTV(ptr, argsStr) if(DISPLAY_OBJECT_LIFE_TIME) { DOLTV_F(ptr, argsStr) }
+#if DISPLAY_OBJECT_LIFE_TIME
+    /// Display Object Life Time Variable
+    #define DOLTV(ptr, argsStr) DOLTV_F(ptr, argsStr)
 
-/// Display Object Life Time
-#define DOLT(ptr) DOLTV(ptr, "")
+    /// Display Object Life Time
+    #define DOLT(ptr) DOLTV(ptr, "")
+#else
+    /// Display Object Life Time Variable
+    #define DOLTV(ptr, argsStr)
 
-
-
-
-#define I(...) Log::getInstance()->info    (__PRETTY_FUNCTION__, SAPF(__VA_ARGS__)) // info
-#define W(...) Log::getInstance()->warning (__PRETTY_FUNCTION__, SAPF(__VA_ARGS__)) // warning
-#define E(...) Log::getInstance()->error   (__PRETTY_FUNCTION__, SAPF(__VA_ARGS__)) // error
-#define D(...) Log::getInstance()->debug   (__PRETTY_FUNCTION__, SAPF(__VA_ARGS__)) // debug
-#define R(...) Log::getInstance()->raw     (__PRETTY_FUNCTION__, SAPF(__VA_ARGS__)) // raw
-
-#define IA(a, ...) Log::getInstance()->info    (__PRETTY_FUNCTION__, SAPF(__VA_ARGS__), Log::Action(a)); // info
-#define WA(a, ...) Log::getInstance()->warning (__PRETTY_FUNCTION__, SAPF(__VA_ARGS__), Log::Action(a)); // warning
-#define EA(a, ...) Log::getInstance()->error   (__PRETTY_FUNCTION__, SAPF(__VA_ARGS__), Log::Action(a)); // error
-#define DA(a, ...) Log::getInstance()->debug   (__PRETTY_FUNCTION__, SAPF(__VA_ARGS__), Log::Action(a)); // debug
-#define RA(a, ...) Log::getInstance()->raw     (__PRETTY_FUNCTION__, SAPF(__VA_ARGS__), Log::Action(a)); // raw
+    /// Display Object Life Time
+    #define DOLT(ptr)
+#endif
 
 
 
-extern const char *outputDirectory;
 
-#define EST_FUNCTION_LENGTH 70 // estimated function name length what will be reserved while creating log
-#define SHORTER_FUNCTION_FILL_CHARACTER ' ' // characters that fills area before function name to fit estimated function name length
-#define CONTENT_SPACE 10 // space between function name and content
-#define CONTENT_SPACE_CHARACTER ' ' // characters that fills space between function name and content
-#define SPACE_BETWEEN_CONTENT_SPACE_AND_CONTENT true // creates spaces between space: "x ........ y" instead of "x........y"
+#define I(...) Log::getInstance()->info    (__PRETTY_FUNCTION__, SAPF(__VA_ARGS__)) /// info
+#define W(...) Log::getInstance()->warning (__PRETTY_FUNCTION__, SAPF(__VA_ARGS__)) /// warning
+#define E(...) Log::getInstance()->error   (__PRETTY_FUNCTION__, SAPF(__VA_ARGS__)) /// error
+#define D(...) Log::getInstance()->debug   (__PRETTY_FUNCTION__, SAPF(__VA_ARGS__)) /// debug
+#define R(...) Log::getInstance()->raw     (__PRETTY_FUNCTION__, SAPF(__VA_ARGS__)) /// raw
+
+#define IA(a, ...) Log::getInstance()->info    (__PRETTY_FUNCTION__, SAPF(__VA_ARGS__), Log::Action(a)); /// info
+#define WA(a, ...) Log::getInstance()->warning (__PRETTY_FUNCTION__, SAPF(__VA_ARGS__), Log::Action(a)); /// warning
+#define EA(a, ...) Log::getInstance()->error   (__PRETTY_FUNCTION__, SAPF(__VA_ARGS__), Log::Action(a)); /// error
+#define DA(a, ...) Log::getInstance()->debug   (__PRETTY_FUNCTION__, SAPF(__VA_ARGS__), Log::Action(a)); /// debug
+#define RA(a, ...) Log::getInstance()->raw     (__PRETTY_FUNCTION__, SAPF(__VA_ARGS__), Log::Action(a)); /// raw
+
+#if ENABLE_TRACE_LOGGING
+#define TR Log::getInstance()->trace        (__FILE__, /*__FUNCTION__,*/ __PRETTY_FUNCTION__, __LINE__); /// trace
+#else
+#define TR
+#endif
 
 class Log
 {
@@ -88,8 +107,8 @@ public:
     typedef const std::string &cstr;
     typedef const QString &cQS;
 
-    static constexpr Action actionForceHighest = Action::All; // set highest ( will be compared with & sign )
-    static constexpr Action actionForceLowest = Action::None;  // set lowest ( will be compared with | sign )
+    static constexpr Action actionForceHighest = Action::All; /// set highest ( will be compared with & sign )
+    static constexpr Action actionForceLowest = Action::None;  /// set lowest ( will be compared with | sign )
 
     static Log *getInstance();
 
@@ -98,6 +117,8 @@ public:
     void error(cQS func, cQS log, Action action = Action(Action::All));
     void debug(cQS func, cQS log, Action action = Action(Action::All));
     void raw(cQS func, cQS log, Action action = Action(Action::All));
+
+    void trace(std::string file, cstr func, int line);
 
     static QString asprintf(const char *text, ...);
     static QString asprintf(cQS text, ...);
@@ -131,9 +152,10 @@ private:
 
     std::string m_fileName;
     std::ofstream m_outFile;
-
+#if ENABLE_MANAGING_LOG_INSTANCE_LIFE_TIME
     static Log* instance;
     friend class SingletonManager;
+#endif
 };
 
 #endif // LOG_H
