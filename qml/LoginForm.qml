@@ -11,6 +11,8 @@ Item {
     readonly property string emptyDebugLogin: "example login"
     readonly property string emptyDebugPassword: "example password"
 
+    property bool youSpinMeRound: false
+
     Component.onCompleted: {
         rootWindow.minimumWidth = targetWidth + 50;
         rootWindow.minimumHeight = targetHeight + 50;
@@ -22,6 +24,7 @@ Item {
             log.i("Received failed authentication signal: " + message)
             errorInfoLabel.visible = true
             errorInfoLabel.text = message
+            youSpinMeRound = false
         }
     }
 
@@ -48,6 +51,7 @@ Item {
             return;
         }
 
+        youSpinMeRound = true
         Backend.login.authenticate(login, password)
     }
 
@@ -116,6 +120,7 @@ Item {
             anchors{
                 horizontalCenter: parent.horizontalCenter
                 bottom: loginButton.top
+                bottomMargin: 5
             }
             visible: true
             color: Qt.rgba(0.8, 0.3, 0.3)
@@ -127,6 +132,7 @@ Item {
                 bottom: parent.bottom
                 horizontalCenter: parent.horizontalCenter
             }
+            visible: !youSpinMeRound
             width: 150
             height: 60
 
@@ -134,6 +140,16 @@ Item {
             onClicked:{
                 authenticate(loginTextField.text, passwordTextField.text);
             }
+        }
+
+        BusyIndicator{
+            id: loginBusyInficator
+            anchors{
+                bottom: parent.bottom
+                horizontalCenter: parent.horizontalCenter
+            }
+            visible: youSpinMeRound
+            running: youSpinMeRound
         }
 
         Button{
@@ -148,7 +164,12 @@ Item {
 
             visible: {
                 if(Backend.isDebugMode && Backend.memory)
-                    Backend.memory.debugMemoryFileExist();
+                {
+                    if(youSpinMeRound)
+                        false;
+                    else
+                        Backend.memory.debugMemoryFileExist();
+                }
                 else
                     false;
             }

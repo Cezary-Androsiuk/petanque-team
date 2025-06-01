@@ -34,8 +34,8 @@ private:
 
 signals:
     void credentialsCorrect();
-    void credentialsVerificationFailed(QString details);
     void credentialsInvalid();
+    void credentialsVerificationFailed(QString details);
 
 private:
     Action m_action;

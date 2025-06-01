@@ -17,12 +17,15 @@ private:
 public slots:
     void authenticate(QString login, QString password);
 
+    /// called by signals emited by NetworkManager (connected in Backend)
     void onCredentialsCorrect();
     void onCredentialsInvalid();
+    void onAuthenticationFailed();
 
 signals:
     void needCredentialsCheck(QString login, QString passwordHash);
 
+    /// signals for QML
     void authenticated();
     void authenticationFailed(QString message);
 

@@ -55,3 +55,9 @@ void Login::onCredentialsInvalid()
     D("onCredentialsInvalid");
     emit this->authenticationFailed(tr("Invalid credentials!"));
 }
+
+void Login::onAuthenticationFailed()
+{
+    D("onAuthenticationFailed");
+    emit this->authenticationFailed(tr("Server connection failed!"));
+}

@@ -15,6 +15,7 @@ Backend::Backend(QObject *parent)
     QObject::connect(m_loginPtr.data(), &Login::needCredentialsCheck, m_networkManager.data(), &NetworkManager::authenticateCredentials);
     QObject::connect(m_networkManager.data(), &NetworkManager::credentialsCorrect, m_loginPtr.data(), &Login::onCredentialsCorrect);
     QObject::connect(m_networkManager.data(), &NetworkManager::credentialsInvalid, m_loginPtr.data(), &Login::onCredentialsInvalid);
+    QObject::connect(m_networkManager.data(), &NetworkManager::credentialsVerificationFailed, m_loginPtr.data(), &Login::onAuthenticationFailed);
 
     m_memoryPtr->setSerializablePtr(m_eventPtr);
 }
