@@ -141,7 +141,7 @@ void NetworkManager::handleAuthenticationResponse()
         return;
     }
 
-    D("response json is OK");
+    DA(Log::Action::Save, "response json is OK");
 
     QJsonObject rootJsonObject = responseJson.object();
 

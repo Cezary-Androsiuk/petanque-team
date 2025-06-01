@@ -40,24 +40,20 @@ void Login::authenticate(QString login, QString password)
     // D("m_login: " + m_login)
     // D("m_passwordHash: " + m_passwordHash)
 
-    D("");
     emit this->needCredentialsCheck(m_login, m_passwordHash);
 }
 
 void Login::onCredentialsCorrect()
 {
-    D("onCredentialsCorrect");
     emit this->authenticated();
 }
 
 void Login::onCredentialsInvalid()
 {
-    D("onCredentialsInvalid");
     emit this->authenticationFailed(tr("Invalid credentials!"));
 }
 
-void Login::onAuthenticationFailed()
+void Login::onAuthenticationFailed(QString details)
 {
-    D("onAuthenticationFailed");
-    emit this->authenticationFailed(tr("Server connection failed!"));
+    emit this->authenticationFailed(tr("Server connection failed!")/* + " " + details*/);
 }

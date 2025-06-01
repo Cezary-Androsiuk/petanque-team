@@ -20,7 +20,7 @@ public slots:
     /// called by signals emited by NetworkManager (connected in Backend)
     void onCredentialsCorrect();
     void onCredentialsInvalid();
-    void onAuthenticationFailed();
+    void onAuthenticationFailed(QString details);
 
 signals:
     void needCredentialsCheck(QString login, QString passwordHash);
