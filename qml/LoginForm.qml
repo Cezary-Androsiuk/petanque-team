@@ -8,6 +8,9 @@ Item {
     property int targetWidth: 230
     property int targetHeight: 260
 
+    readonly property string emptyDebugLogin: "example login"
+    readonly property string emptyDebugPassword: "example password"
+
     Component.onCompleted: {
         rootWindow.minimumWidth = targetWidth + 50;
         rootWindow.minimumHeight = targetHeight + 50;
@@ -20,6 +23,32 @@ Item {
             errorInfoLabel.visible = true
             errorInfoLabel.text = message
         }
+    }
+
+    function authenticate(login, password)
+    {
+        errorInfoLabel.visible = false
+
+        if(Backend.isDebugMode)
+        {
+            if(login === "") login = emptyDebugLogin;
+            if(password === "") password = emptyDebugPassword;
+        }
+
+        if(login === "")
+        {
+            errorInfoLabel.visible = true
+            errorInfoLabel.text = "Login field is empty!"
+            return;
+        }
+        if(password === "")
+        {
+            errorInfoLabel.visible = true
+            errorInfoLabel.text = "Password field is empty!"
+            return;
+        }
+
+        Backend.login.authenticate(login, password)
     }
 
     MouseArea{
@@ -103,18 +132,7 @@ Item {
 
             text: qsTr("Login")
             onClicked:{
-                var login = loginTextField.text;
-                var password = passwordTextField.text;
-
-                errorInfoLabel.visible = false
-
-                if(Backend.isDebugMode)
-                {
-                    if(login === "") login = "example login";
-                    if(password === "") password = "example password";
-                }
-
-                Backend.login.authenticate(login, password)
+                authenticate(loginTextField.text, passwordTextField.text);
             }
         }
 
@@ -138,20 +156,29 @@ Item {
             text: qsTr("Login No Memory")
             onClicked:{
                 Backend.memory.debugDeleteMemory();
-
-                var login = loginTextField.text;
-                var password = passwordTextField.text;
-
-                errorInfoLabel.visible = false
-
-                if(Backend.isDebugMode)
-                {
-                    if(login === "") login = "example login";
-                    if(password === "") password = "example password";
-                }
-
-                Backend.login.authenticate(login, password)
+                authenticate(loginTextField.text, passwordTextField.text);
             }
+        }
+
+        Label{
+            id: debugInfoLabel
+            anchors{
+                top: loginNoMemoryButton.bottom
+                topMargin: 20
+                horizontalCenter: parent.horizontalCenter
+            }
+            opacity: 0.4
+            font.pixelSize: 20
+            font.bold: true
+            text: "Application works in debug mode\n\n" +
+                  "Debug Credentials\n" +
+                  "Empty login: '" + emptyDebugLogin + "'\n" +
+                  "Empty password: '" + emptyDebugPassword + "'"
+
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+
+
         }
 
     }
