@@ -3,10 +3,10 @@
 
 #include <QQmlContext>
 #include <QPointer>
+#include <QIcon>
 
 #include "SingletonManager.h"
 #include "DoubleStartProtection.h"
-#include "Login.h"
 #include "Backend.h"
 #include "support/LogQML.h"
 
@@ -19,6 +19,8 @@ int main(int argc, char *argv[])
         std::make_unique<QGuiApplication>(argc, argv);
     std::unique_ptr<QQmlApplicationEngine> engine =
         std::make_unique<QQmlApplicationEngine>();
+
+    app->setWindowIcon(QIcon("./PetanqueTeam/icons/appIcon/PetanqueTeam.png"));
 
     QPointer<Backend> backend(new Backend(app.get()));
     QPointer<LogQML> logQML(new LogQML(app.get()));

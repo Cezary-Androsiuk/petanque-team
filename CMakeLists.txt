@@ -92,6 +92,10 @@ qt_add_qml_module(${PROJECT_NAME}
     QML_FILES qml/Gameplay/Finish.qml
     QML_FILES qml/Popups/AskPopup.qml
 
+
+
+    RESOURCES icons/appIcon/PetanqueTeam.png
+
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
