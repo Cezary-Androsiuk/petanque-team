@@ -34,6 +34,7 @@ void Personalization::setDefault()
     this->computeRoundsCount();
     m_exampleData = QJsonDocument::fromJson(defaultExampleData).object();
     m_serverAddress = defaultServerAddress;
+    m_useExternalServer = defaultUseExternalServer;
 }
 
 void Personalization::load()
@@ -115,6 +116,10 @@ void Personalization::load()
     if(jp.contains(key)) m_serverAddress = jp[key].toString();
     else KEY_NOT_FOUND_MESSAGE;
 
+    key = KEY_USE_EXTERNAL_SERVER;
+    if(jp.contains(key)) m_useExternalServer = jp[key].toBool();
+    else KEY_NOT_FOUND_MESSAGE;
+
     I("personalization data loaded");
 
     emit this->loaded();
@@ -133,6 +138,7 @@ void Personalization::save()
     jsonObject[KEY_ROUND_MATCHES] = this->getRoundsMatches();
     jsonObject[KEY_EXAMPLE_DATA] = this->getExampleData();
     jsonObject[KEY_SERVER_ADDRESS] = this->getServerAddress();
+    jsonObject[KEY_USE_EXTERNAL_SERVER] = this->getUseExternalServer();
 
     QJsonDocument jsonData(jsonObject);
 
@@ -196,5 +202,10 @@ int Personalization::getRoundsCount() const
 const QString &Personalization::getServerAddress() const
 {
     return m_serverAddress;
+}
+
+bool Personalization::getUseExternalServer() const
+{
+    return m_useExternalServer;
 }
 

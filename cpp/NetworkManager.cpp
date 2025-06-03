@@ -9,6 +9,8 @@
 #include <QUrl>
 #include <QUrlQuery>
 
+#include "storages/Personalization.h"
+
 NetworkManager::NetworkManager(QObject *parent)
     : QObject{parent}
     , m_action{Action::None}
@@ -20,10 +22,16 @@ NetworkManager::NetworkManager(QObject *parent)
 void NetworkManager::authenticateCredentials(QString login, QString passwordHash)
 { D("");
 
+
+    if(!Personalization::getInstance()->getUseExternalServer())
+    {
+        emit this->credentialsCorrect();
+        return;
+    }
+
     if(m_reply)
     {
         D("still waiting for the reply, can't start the new one");
-        // add some queue or linked list for storing multiple replies
         return;
     }
 
@@ -49,6 +57,11 @@ void NetworkManager::authenticateCredentials(QString login, QString passwordHash
 
 void NetworkManager::sendData(QString login, QString passwordHash, QString data)
 { D("");
+
+    if(!Personalization::getInstance()->getUseExternalServer())
+    {
+        return;
+    }
 
     m_action = Action::SendingData;
 

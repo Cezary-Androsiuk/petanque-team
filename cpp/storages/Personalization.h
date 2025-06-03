@@ -34,6 +34,7 @@
 #define KEY_MAX_POINTS_IN_MATCH "max points in match"
 #define KEY_ROUND_MATCHES "rounds matches"
 #define KEY_SERVER_ADDRESS "server address"
+#define KEY_USE_EXTERNAL_SERVER "use external server"
 
 // Singleton
 class Personalization : public QObject
@@ -70,6 +71,7 @@ public:
     const QJsonObject &getExampleData() const;
     int getRoundsCount() const;
     const QString &getServerAddress() const;
+    bool getUseExternalServer() const;
 
 signals:
     void loaded();
@@ -86,6 +88,7 @@ private:
     QJsonObject m_exampleData;
     int m_roundsCount;
     QString m_serverAddress;
+    bool m_useExternalServer;
 
     static Personalization* instance;
     friend class SingletonManager;
