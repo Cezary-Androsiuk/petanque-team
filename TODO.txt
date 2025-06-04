@@ -7,6 +7,7 @@ Editing player in configure stage - there is no verification right now, copy pla
 Editing team in configure stage - there is no verification right now, copy team to delegate, after pressing save swap them
 make memory save at reset and match stage change from singles to doubles etc. (for now memory is saved only on app exit)
 implement storing all older memory files - after reset (it will help with offline application)
+update DOLT - remove this argument
 
 IMPLEMENT:
 OK - Player: points

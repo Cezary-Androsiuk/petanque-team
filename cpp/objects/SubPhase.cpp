@@ -6,29 +6,29 @@ SubPhase::SubPhase(int roundsCount, QObject *parent)
     : QObject{parent}
     , m_currentRoundIndex{0}
     , m_rounds(roundsCount, RoundPtr())
-{
+{TR
     DOLTV(this, QString::number(roundsCount));
 }
 
 SubPhase::~SubPhase()
-{
+{TR
     DOLT(this)
 }
 
 void SubPhase::onStart()
-{
+{TR
     DA(Log::Action::SaveSession, "before subPhase start: %p", this);
     this->roundStart();
 }
 
 void SubPhase::onEnd()
-{
+{TR
     DA(Log::Action::SaveSession, "after subPhase end: %p", this);
     this->roundEnd();
 }
 
 void SubPhase::initRounds(QJsonArray jArrangements)
-{
+{TR
     DA(Log::Action::SaveSession, "init rounds: %p", this);
 
     int roundsCount = m_rounds.size() > jArrangements.size() ? jArrangements.size() : m_rounds.size();
@@ -61,7 +61,7 @@ void SubPhase::initRounds(QJsonArray jArrangements)
 }
 
 QJsonObject SubPhase::serialize() const
-{
+{TR
     QJsonObject jSubPhase;
 
     jSubPhase[ SERL_SUB_PHASE_NAME_KEY ] = m_name;
@@ -83,7 +83,7 @@ QJsonObject SubPhase::serialize() const
 }
 
 void SubPhase::deserialize(const QJsonObject &jSubPhase)
-{
+{TR
     this->clear(false);
 
     if(!jSubPhase.contains(SERL_SUB_PHASE_NAME_KEY))
