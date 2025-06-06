@@ -4,11 +4,11 @@
 
 Login::Login(QObject *parent)
     : QObject{parent}
-{TR
+{TR;
 }
 
 QString Login::computePasswordHash(QString password)
-{TR
+{TR;
     QByteArray passwordBytes = password.toUtf8();
 
     QCryptographicHash hash(QCryptographicHash::Algorithm::Sha3_512);
@@ -17,7 +17,7 @@ QString Login::computePasswordHash(QString password)
 }
 
 void Login::authenticate(QString login, QString password)
-{TR
+{TR;
     D("login: " + login);
     D("password: " + password);
 
@@ -45,16 +45,16 @@ void Login::authenticate(QString login, QString password)
 }
 
 void Login::onCredentialsCorrect()
-{TR
+{TR;
     emit this->authenticated();
 }
 
 void Login::onCredentialsInvalid()
-{TR
+{TR;
     emit this->authenticationFailed(tr("Invalid credentials!"));
 }
 
 void Login::onAuthenticationFailed(QString details)
-{TR
+{TR;
     emit this->authenticationFailed(tr("Server connection failed!")/* + " " + details*/);
 }

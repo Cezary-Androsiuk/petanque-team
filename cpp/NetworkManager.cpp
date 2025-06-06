@@ -17,12 +17,12 @@ NetworkManager::NetworkManager(QObject *parent)
     , m_reply{nullptr}
     , m_networkManager{new QNetworkAccessManager(this)}
     , m_lastResponse{-1, QJsonObject()}
-{TR
+{TR;
 
 }
 
 void NetworkManager::authenticateCredentials(QString login, QString passwordHash)
-{TR
+{TR;
     if(!Personalization::getInstance()->getUseExternalServer())
     {
         emit this->credentialsCorrect();
@@ -56,7 +56,7 @@ void NetworkManager::authenticateCredentials(QString login, QString passwordHash
 }
 
 void NetworkManager::sendData(QString login, QString passwordHash, QString data)
-{TR
+{TR;
 
     if(!Personalization::getInstance()->getUseExternalServer())
     {
@@ -70,7 +70,7 @@ void NetworkManager::sendData(QString login, QString passwordHash, QString data)
 }
 
 void NetworkManager::handleResponse()
-{TR
+{TR;
 
     m_lastResponse.jsonData = QJsonObject();
     m_lastResponse.statusCode = -1;
@@ -95,7 +95,7 @@ void NetworkManager::handleResponse()
 }
 
 void NetworkManager::deleteReply()
-{TR
+{TR;
 
     if(!m_reply)
     {
@@ -113,7 +113,7 @@ void NetworkManager::deleteReply()
 }
 
 void NetworkManager::handleAuthenticationResponse()
-{TR
+{TR;
 
     if(!m_reply)
     {
@@ -183,7 +183,7 @@ void NetworkManager::handleAuthenticationResponse()
 }
 
 void NetworkManager::handleSendingDataResponse()
-{TR
+{TR;
 
 
 }
