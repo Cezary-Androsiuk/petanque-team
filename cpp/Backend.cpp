@@ -9,8 +9,7 @@ Backend::Backend(QObject *parent)
     , m_networkManager(QSharedPointer<NetworkManager>::create(nullptr))
     , m_memoryPtr(QSharedPointer<Memory>::create(nullptr))
     , m_eventPtr(QSharedPointer<Event>::create(nullptr))
-{TR;
-    DOLT(this)
+{TRM; DOLTV(SAPF("%p", parent));
 
     QObject::connect(m_loginPtr.data(), &Login::needCredentialsCheck, m_networkManager.data(), &NetworkManager::authenticateCredentials);
     QObject::connect(m_networkManager.data(), &NetworkManager::credentialsCorrect, m_loginPtr.data(), &Login::onCredentialsCorrect);
@@ -21,12 +20,12 @@ Backend::Backend(QObject *parent)
 }
 
 Backend::~Backend()
-{TR;
-    DOLT(this)
+{TRM; DOLT;
+
 }
 
 void Backend::restartEvent()
-{TR;
+{TRM;
     m_eventPtr.clear();
     m_eventPtr = QSharedPointer<Event>::create(nullptr);
     emit this->eventChanged();
@@ -37,26 +36,26 @@ void Backend::restartEvent()
 }
 
 Login *Backend::getLoginPtrQml() const
-{TR;
+{TRM;
     return m_loginPtr.data();
 }
 
 Memory *Backend::getMemoryPtrQml() const
-{TR;
+{TRM;
     return m_memoryPtr.data();
 }
 
 Event *Backend::getEventPtrQml() const
-{TR;
+{TRM;
     return m_eventPtr.data();
 }
 
 bool Backend::getIsDebugMode() const
-{TR;
+{TRF;
     return DEBUG_MODE;
 }
 
 bool Backend::getEnabledPopups() const
-{TR;
+{TRF;
     return ENABLE_POPUPS;
 }

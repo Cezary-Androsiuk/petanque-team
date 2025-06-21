@@ -6,29 +6,29 @@
 Phase::Phase(PhaseEnum phase, QObject *parent)
     : QObject{parent}
     , m_phase{phase}
-{
-    DOLT(this)
+{TRM; DOLTV(SAPF("%s, %p", EnumConvert::PhaseToQString(phase).toStdString().c_str(), parent));
+
 }
 
 Phase::~Phase()
-{
-    DOLT(this)
+{TRM; DOLT;
+
 }
 
 void Phase::onStart()
-{
+{TRM;
     DA(Log::Action::SaveSession, "before phase start: %p", this);
     this->subPhaseStart();
 }
 
 void Phase::onEnd()
-{
+{TRM;
     DA(Log::Action::SaveSession, "after phase end: %p", this);
     this->subPhaseEnd();
 }
 
 void Phase::initSubPhases(const TeamPtrLists &listsOfTeams)
-{
+{TRM;
     Personalization *const p = Personalization::getInstance();
     const QJsonObject &roundsMatches = p->getRoundsMatches();
 
@@ -70,7 +70,7 @@ void Phase::initSubPhases(const TeamPtrLists &listsOfTeams)
 }
 
 QJsonObject Phase::serialize() const
-{
+{TRM;
     QJsonObject jPhase;
 
     /// m_phase - don't need to be serialized
@@ -91,7 +91,7 @@ QJsonObject Phase::serialize() const
 }
 
 void Phase::deserialize(const QJsonObject &jPhase)
-{
+{TRM;
     this->clear(false);
 
     /// m_phase - don't need to be deserialized
@@ -100,7 +100,7 @@ void Phase::deserialize(const QJsonObject &jPhase)
 }
 
 void Phase::deserializeSubPhases(const QJsonObject &jPhase)
-{
+{TRM;
     if(!jPhase.contains( SERL_SUB_PHASES_KEY ))
     {
         E("cannot deserialize subphases due to missing key in json: " SERL_SUB_PHASES_KEY);
@@ -127,12 +127,12 @@ void Phase::deserializeSubPhases(const QJsonObject &jPhase)
 }
 
 void Phase::clear(bool emitting)
-{
+{TRM;
 
 }
 
 void Phase::verify()
-{
+{TRM;
     for(int i=0; i<m_subPhases.size(); i++)
     {
         QString message;
@@ -147,7 +147,7 @@ void Phase::verify()
 }
 
 bool Phase::hasNext()
-{
+{TRM;
     bool hasNextRound = true;
     for(int i=0; i<m_subPhases.size(); i++)
     {
@@ -161,7 +161,7 @@ bool Phase::hasNext()
 }
 
 void Phase::goToNext()
-{
+{TRM;
     if(!this->hasNext())
     {
         W("trying to go next, where is no next");
@@ -175,36 +175,36 @@ void Phase::goToNext()
 }
 
 void Phase::assignExampleData()
-{
+{TRM;
     /// for all subPhases
     for(auto &subPhasePtr : m_subPhases)
         subPhasePtr->assignExampleData();
 }
 
 void Phase::subPhaseStart()
-{
+{TRM;
     for(auto &subPhase : m_subPhases)
         subPhase->onStart();
 }
 
 void Phase::subPhaseEnd()
-{
+{TRM;
     for(auto &subPhase : m_subPhases)
         subPhase->onEnd();
 }
 
 int Phase::getSubPhasesCount() const
-{
+{TRM;
     return m_subPhases.size();
 }
 
 const SubPhasePtrVector &Phase::getSubPhases() const
-{
+{TRM;
     return m_subPhases;
 }
 
 QString Phase::getCurrentName() const
-{
+{TRM;
     /// Prevent crashing app
     if(Q_UNLIKELY(m_subPhases.size() < 1))
     {
@@ -219,7 +219,7 @@ QString Phase::getCurrentName() const
 }
 
 QString Phase::getNextName() const
-{
+{TRM;
     /// Prevent crashing app
     if(Q_UNLIKELY(m_subPhases.size() < 1))
     {
@@ -234,7 +234,7 @@ QString Phase::getNextName() const
 }
 
 QmlSubPhasePtrVector Phase::getSubPhasesQml() const
-{
+{TRM;
     QmlSubPhasePtrVector retVec;
     retVec.reserve( m_subPhases.size() );
     for(const auto &subPhasePtr : m_subPhases)

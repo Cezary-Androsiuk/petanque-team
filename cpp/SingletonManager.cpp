@@ -6,14 +6,13 @@
 SingletonManager::SingletonManager()
 {
     Log::instance = new Log();
-    TR; DOLT(this);
+    TRM; DOLT; /// after log creation
 
     Personalization::instance = new Personalization();
 }
 
 SingletonManager::~SingletonManager()
-{TR;
-    DOLT(this);
+{TRM; DOLT;
 
     if(Personalization::instance)
         delete Personalization::instance;

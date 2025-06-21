@@ -7,11 +7,11 @@ MatchSingles::MatchSingles(const TeamWPtr &tl, const TeamWPtr &tr, QObject *pare
                     SINGLES_GROUPS_COUNT,
                     SINGLES_MIN_PLAYERS_IN_GROUP,
                     SINGLES_MAX_PLAYERS_IN_GROUP, parent)
-{
-    DOLT(this)
+{TRM; DOLTV(SAPF("%p, %p, %p", tl.lock().data(), tr.lock().data(), parent));
+
 }
 
 MatchSingles::~MatchSingles()
-{
-    DOLT(this)
+{TRM; DOLT;
+
 }

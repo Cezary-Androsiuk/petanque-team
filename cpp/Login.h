@@ -10,6 +10,7 @@ class Login : public QObject
     Q_OBJECT
 public:
     explicit Login(QObject *parent = nullptr);
+    ~Login();
 
 private:
     static QString computePasswordHash(QString password);

@@ -6,26 +6,24 @@ Personalization *Personalization::instance = nullptr;
 
 Personalization::Personalization(QObject *parent)
     : QObject{parent}
-{TR;
-    DOLT(this)
+{TRM; DOLTV(SAPF("%p", parent));
     this->setDefault();
     this->load();
 }
 
 Personalization::~Personalization()
-{TR;
-    DOLT(this)
+{TRM; DOLT;
     this->save();
 }
 
 Personalization *Personalization::getInstance() noexcept
-{TR;
+{TRF;
     // static Personalization p; /// lazy initialization
     return instance; /// handled by SingletonManager
 }
 
 void Personalization::setDefault()
-{TR;
+{TRM;
     m_requiredTeamsCount = defaultRequiredTeamsCount;
     m_minimumPlayersInTeam = defaultMinimumPlayersInTeam;
     m_requiresJuniors = defaultRequiresJuniors;
@@ -38,7 +36,7 @@ void Personalization::setDefault()
 }
 
 void Personalization::load()
-{TR;
+{TRM;
     // I("loading personalization");
 
     if(!QFile(JSON_FILE).exists()){
@@ -126,7 +124,7 @@ void Personalization::load()
 }
 
 void Personalization::save()
-{TR;
+{TRM;
     QJsonObject jsonObject;
     jsonObject[KEY_NOTE] = QString(DEFAULT_NOTE);
     jsonObject[KEY_PERSONALIZATION_VERSION] = personalizationVersion;
@@ -158,54 +156,54 @@ void Personalization::save()
 }
 
 void Personalization::computeRoundsCount()
-{TR;
+{TRM;
     m_roundsCount = m_roundsMatches.size();
         m_roundsCount++;
 }
 
 
 int Personalization::getMinimumPlayersInTeam() const
-{TR;
+{TRM;
     return m_minimumPlayersInTeam;
 }
 
 int Personalization::getRequiredTeamsCount() const
-{TR;
+{TRM;
     return m_requiredTeamsCount;
 }
 
 bool Personalization::getRequiresJuniors() const
-{TR;
+{TRM;
     return m_requiresJuniors;
 }
 
 int Personalization::getMaxPointsInMatch() const
-{TR;
+{TRM;
     return m_maxPointsInMatch;
 }
 
 const QJsonObject &Personalization::getRoundsMatches() const
-{TR;
+{TRM;
     return m_roundsMatches;
 }
 
 const QJsonObject &Personalization::getExampleData() const
-{TR;
+{TRM;
     return m_exampleData;
 }
 
 int Personalization::getRoundsCount() const
-{TR;
+{TRM;
     return m_roundsCount;
 }
 
 const QString &Personalization::getServerAddress() const
-{TR;
+{TRM;
     return m_serverAddress;
 }
 
 bool Personalization::getUseExternalServer() const
-{TR;
+{TRM;
     return m_useExternalServer;
 }
 

@@ -5,7 +5,7 @@
 
 #include "support/Log.h"
 
-#define QML_LOG_PREFIX(funcName) (funcName.isEmpty() ? QString("QML(...)") : ("QML(" + funcName + ")"))
+#define QML_LOG_PREFIX(funcName) (funcName.isEmpty() ? QString("QML(...)") : ("QML(" + funcName + ")")).toStdString()
 
 class LogQML : public QObject
 {

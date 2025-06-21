@@ -9,17 +9,17 @@ Player::Player(QObject *parent)
     , m_isTeamLeader{false}
     , m_smallPoints{0}
     , m_largePoints{0}
-{
-    DOLT(this)
+{TRM; DOLTV(SAPF("%p", parent));
+
 }
 
 Player::~Player()
-{
-    DOLT(this)
+{TRM; DOLT;
+
 }
 
 QJsonObject Player::serialize() const
-{
+{TRM;
     /// save to json
     QJsonObject jPlayer;
     jPlayer[ SERL_FIRST_NAME_KEY ] = m_firstName;
@@ -35,7 +35,7 @@ QJsonObject Player::serialize() const
 }
 
 void Player::deserialize(const QJsonObject &jPlayer)
-{
+{TRM;
     this->clear(false);
 
     /// read from json
@@ -67,7 +67,7 @@ void Player::deserialize(const QJsonObject &jPlayer)
 }
 
 void Player::clear(bool emitting)
-{
+{TRM;
     m_firstName.clear();
     if(emitting) emit this->firstNameChanged();
 
@@ -94,7 +94,7 @@ void Player::clear(bool emitting)
 }
 
 void Player::copyFromOtherPlayer(const Player &sourcePlayer)
-{
+{TRM;
     if(this == &sourcePlayer)
     {
         W("trying to copy data from itself");
@@ -121,7 +121,7 @@ void Player::copyFromOtherPlayer(const Player &sourcePlayer)
 }
 
 void Player::assignExampleData(const QJsonObject &jPlayer)
-{
+{TRM;
     m_firstName = jPlayer["first name"].toString();
     m_lastName = jPlayer["last name"].toString();
     m_license = jPlayer["license"].toString();
@@ -131,47 +131,47 @@ void Player::assignExampleData(const QJsonObject &jPlayer)
 }
 
 const QString &Player::getFirstName() const
-{
+{TRM;
     return m_firstName;
 }
 
 const QString &Player::getLastName() const
-{
+{TRM;
     return m_lastName;
 }
 
 const QString &Player::getLicense() const
-{
+{TRM;
     return m_license;
 }
 
 AgeGroupEnum Player::getAgeGroup() const
-{
+{TRM;
     return m_ageGroup;
 }
 
 GenderEnum Player::getGender() const
-{
+{TRM;
     return m_gender;
 }
 
 bool Player::getIsTeamLeader() const
-{
+{TRM;
     return m_isTeamLeader;
 }
 
 int Player::getSmallPoints() const
-{
+{TRM;
     return m_smallPoints;
 }
 
 int Player::getLargePoints() const
-{
+{TRM;
     return m_largePoints;
 }
 
 void Player::setFirstName(const QString &firstName)
-{
+{TRM;
     if (m_firstName == firstName)
         return;
     m_firstName = firstName;
@@ -179,7 +179,7 @@ void Player::setFirstName(const QString &firstName)
 }
 
 void Player::setLastName(const QString &lastName)
-{
+{TRM;
     if (m_lastName == lastName)
         return;
     m_lastName = lastName;
@@ -187,7 +187,7 @@ void Player::setLastName(const QString &lastName)
 }
 
 void Player::setLicense(const QString &license)
-{
+{TRM;
     if (m_license == license)
         return;
     m_license = license;
@@ -195,7 +195,7 @@ void Player::setLicense(const QString &license)
 }
 
 void Player::setAgeGroup(AgeGroupEnum ageGroup)
-{
+{TRM;
     if (m_ageGroup == ageGroup)
         return;
     m_ageGroup = ageGroup;
@@ -203,7 +203,7 @@ void Player::setAgeGroup(AgeGroupEnum ageGroup)
 }
 
 void Player::setGender(GenderEnum gender)
-{
+{TRM;
     if (m_gender == gender)
         return;
     m_gender = gender;
@@ -211,7 +211,7 @@ void Player::setGender(GenderEnum gender)
 }
 
 void Player::setIsTeamLeader(bool isTeamLeader)
-{
+{TRM;
     if (m_isTeamLeader == isTeamLeader)
         return;
     m_isTeamLeader = isTeamLeader;
@@ -219,7 +219,7 @@ void Player::setIsTeamLeader(bool isTeamLeader)
 }
 
 void Player::setSmallPoints(int smallPoints)
-{
+{TRM;
     if(m_smallPoints == smallPoints)
         return;
 
@@ -228,7 +228,7 @@ void Player::setSmallPoints(int smallPoints)
 }
 
 void Player::setLargePoints(int largePoints)
-{
+{TRM;
     if(m_largePoints == largePoints)
         return;
 
@@ -237,7 +237,7 @@ void Player::setLargePoints(int largePoints)
 }
 
 void Player::addSmallPoints(int smallPoints)
-{
+{TRM;
     if(smallPoints <= 0)
         return;
 
@@ -246,7 +246,7 @@ void Player::addSmallPoints(int smallPoints)
 }
 
 void Player::addLargePoints(int largePoints)
-{
+{TRM;
     if(largePoints <= 0)
         return;
 

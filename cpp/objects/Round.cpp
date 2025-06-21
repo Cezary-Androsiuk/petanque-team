@@ -6,32 +6,38 @@ Round::Round(TeamPtrList &teams, QObject *parent)
     : QObject{parent}
     , m_teams{teams}
     , m_currentRoundStage{RoundStageEnum::SinglesSelection}
-{
-    DOLT(this)
+{TRM; DOLTV(SAPF("%s, %p",
+               [&](){
+                   std::string t = "[";
+                   for(int i=0;i<teams.size();i++)
+                       t += SAPF("%p, ", teams[i].data()).toStdString();
+                   if(!teams.empty()) t.resize(t.size() - 2);
+                   return t + "]";
+               }().c_str(),
+               parent));
 
 }
 
 Round::~Round()
-{
-    DOLT(this)
+{TRM; DOLT;
 
 }
 
 void Round::onStart()
-{
+{TRM;
     DA(Log::Action::SaveSession, "before round start: %p", this);
 
     this->matchStart();
 }
 
 void Round::onEnd()
-{
+{TRM;
     DA(Log::Action::SaveSession, "after round end: %p", this);
     this->matchEnd();
 }
 
 void Round::initMatches()
-{
+{TRM;
     DA(Log::Action::SaveSession, "init matches: %p", this);
 
     const int teamSize = m_teams.size();
@@ -65,7 +71,7 @@ void Round::initMatches()
 }
 
 QJsonObject Round::serialize() const
-{
+{TRM;
     QJsonObject jRound;
 
     jRound[ SERL_CURRENT_ROUND_STAGE_KEY ] = EnumConvert::RoundStageToQString(m_currentRoundStage);
@@ -96,7 +102,7 @@ QJsonObject Round::serialize() const
 }
 
 void Round::deserialize(const QJsonObject &jRound)
-{
+{TRM;
     this->clear(false);
 
     if(!jRound.contains(SERL_CURRENT_ROUND_STAGE_KEY))
@@ -112,7 +118,7 @@ void Round::deserialize(const QJsonObject &jRound)
 }
 
 void Round::deserializeMatches(const QJsonObject &jRound)
-{
+{TRM;
     if(!jRound.contains( SERL_MATCHES_KEY ))
     {
         E("cannot deserialize matches due to missing key in json: " SERL_MATCHES_KEY);
@@ -141,12 +147,12 @@ void Round::deserializeMatches(const QJsonObject &jRound)
 }
 
 void Round::clear(bool emitting)
-{
+{TRM;
 
 }
 
 bool Round::verify(QString &message) const
-{
+{TRM;
     for(int i=0; i<m_matches.size(); i++)
     {
         if(!(m_matches[i]->verify(message)))
@@ -159,13 +165,13 @@ bool Round::verify(QString &message) const
 }
 
 bool Round::hasNext() const
-{
+{TRM;
     // should be called before goToNextRoundStage
     return (m_currentRoundStage != RoundStageEnum::RoundSummary);
 }
 
 void Round::goToNext()
-{
+{TRM;
     matchEnd();
 
     m_currentRoundStage = static_cast<RoundStageEnum>(m_currentRoundStage+1);
@@ -175,20 +181,20 @@ void Round::goToNext()
 }
 
 void Round::assignExampleData()
-{
+{TRM;
     /// for all matches
     for(auto &matchPtr : m_matches)
         matchPtr->assignExampleData();
 }
 
 void Round::matchStart()
-{
+{TRM;
     for(auto &match : m_matches)
         match->onStart();
 }
 
 void Round::matchEnd()
-{
+{TRM;
     for(auto &match : m_matches)
         match->onEnd();
 }
@@ -199,18 +205,18 @@ RoundStageEnum Round::getCurrentRoundStage() const
 }
 
 QString Round::getCurrentName() const
-{
+{TRM;
     return EnumConvert::RoundStageToQString(m_currentRoundStage);
 }
 
 QString Round::getNextName() const
-{
+{TRM;
     return EnumConvert::RoundStageToQString(
         static_cast<RoundStageEnum>(m_currentRoundStage +1));
 }
 
 MatchPtrVectorQml Round::getMatchesQml() const
-{
+{TRM;
     MatchPtrVectorQml retVec;
     retVec.reserve(m_matches.size());
     for(const auto &matchPtr : m_matches)
@@ -219,7 +225,7 @@ MatchPtrVectorQml Round::getMatchesQml() const
 }
 
 void Round::setArrangement(const IntPairs &arrangement)
-{
+{TRM;
     m_arrangement = arrangement;
     // D(QAPF("set arrangement for %p Round:", this))
     // for(const auto &pair : m_arrangement)

@@ -6,13 +6,12 @@ Team::Team(QObject *parent)
     : QObject{parent}
     , m_smallPoints{0}
     , m_largePoints{0}
-{TR;
-    DOLT(this)
+{TRM; DOLTV(SAPF("%p", parent));
+
 }
 
 Team::~Team()
-{TR;
-    DOLT(this)
+{TRM; DOLT;
 
     for(auto &playerPtr : m_players)
         playerPtr.clear();
@@ -20,7 +19,7 @@ Team::~Team()
 }
 
 QJsonObject Team::serialize() const
-{TR;
+{TRM;
     QJsonObject jTeam;
     jTeam[ SERL_TEAM_NAME_KEY ] = m_name;
     jTeam[ SERL_TEAM_SMALL_POINTS_KEY ] = m_smallPoints;
@@ -37,7 +36,7 @@ QJsonObject Team::serialize() const
 }
 
 void Team::deserialize(const QJsonObject &jTeam)
-{TR;
+{TRM;
     this->clear(false);
 
     m_name = jTeam[ SERL_TEAM_NAME_KEY ].toString();
@@ -63,7 +62,7 @@ void Team::deserialize(const QJsonObject &jTeam)
 }
 
 void Team::clear(bool emitting)
-{TR;
+{TRM;
     m_name.clear();
     if(emitting) emit this->nameChanged();
 
@@ -81,7 +80,7 @@ void Team::clear(bool emitting)
 }
 
 void Team::createDetachedPlayer()
-{TR;
+{TRM;
     if(!m_detachedPlayer.isNull())
     {
         W("creating new detached Player, while old wasn't deleted");
@@ -92,7 +91,7 @@ void Team::createDetachedPlayer()
 }
 
 void Team::deleteDetachedPlayer()
-{TR;
+{TRM;
     if(m_detachedPlayer.isNull())
     {
         E("trying to delete aleady deleted detached Player");
@@ -104,7 +103,7 @@ void Team::deleteDetachedPlayer()
 }
 
 void Team::validateDetachedPlayer()
-{TR;
+{TRM;
     if(m_detachedPlayer.isNull())
     {
         const char *message = "Detached Player not exist";
@@ -144,7 +143,7 @@ void Team::validateDetachedPlayer()
 }
 
 void Team::addDetachedPlayer()
-{TR;
+{TRM;
     if(m_detachedPlayer.isNull())
     {
         E("cannot add not existing detached player to list");
@@ -159,7 +158,7 @@ void Team::addDetachedPlayer()
 }
 
 void Team::deletePlayer(int index)
-{TR;
+{TRM;
     if(m_players.size() <= index)
     {
         QString sSize = QString::number(m_players.size());
@@ -173,7 +172,7 @@ void Team::deletePlayer(int index)
 }
 
 void Team::assignExampleData(const QJsonObject &jTeam)
-{TR;
+{TRM;
     m_name = jTeam["name"].toString();
 
     QJsonArray jPlayers = jTeam["players"].toArray();
@@ -189,38 +188,38 @@ void Team::assignExampleData(const QJsonObject &jTeam)
 }
 
 void Team::uncheckAllLeaders()
-{TR;
+{TRM;
     for(auto &playerPtr : m_players)
         playerPtr->setIsTeamLeader(false);
 }
 
 const QString &Team::getName() const
-{TR;
+{TRM;
     return m_name;
 }
 
 const PlayerPtr &Team::getDetachedPlayer() const
-{TR;
+{TRM;
     return m_detachedPlayer;
 }
 
 const PlayerPtrList &Team::getPlayers() const
-{TR;
+{TRM;
     return m_players;
 }
 
 int Team::getSmallPoints() const
-{TR;
+{TRM;
     return m_smallPoints;
 }
 
 int Team::getLargePoints() const
-{TR;
+{TRM;
     return m_largePoints;
 }
 
 void Team::setName(const QString &name)
-{TR;
+{TRM;
     if(m_name == name)
         return;
     m_name = name;
@@ -228,7 +227,7 @@ void Team::setName(const QString &name)
 }
 
 void Team::setSmallPoints(int smallPoints)
-{TR;
+{TRM;
     if(m_smallPoints == smallPoints)
         return;
 
@@ -237,7 +236,7 @@ void Team::setSmallPoints(int smallPoints)
 }
 
 void Team::setLargePoints(int largePoints)
-{TR;
+{TRM;
     if(m_largePoints == largePoints)
         return;
 
@@ -246,7 +245,7 @@ void Team::setLargePoints(int largePoints)
 }
 
 void Team::addSmallPoints(int smallPoints)
-{TR;
+{TRM;
     if(smallPoints <= 0)
         return;
 
@@ -255,7 +254,7 @@ void Team::addSmallPoints(int smallPoints)
 }
 
 void Team::addLargePoints(int largePoints)
-{TR;
+{TRM;
     if(largePoints <= 0)
         return;
 
@@ -264,12 +263,12 @@ void Team::addLargePoints(int largePoints)
 }
 
 Player *Team::getDetachedPlayerQml() const
-{TR;
+{TRM;
     return m_detachedPlayer.data();
 }
 
 QmlPlayerPtrVector Team::getPlayersQml() const
-{TR;
+{TRM;
     QmlPlayerPtrVector retVec;
     retVec.reserve( m_players.size() );
     for(const auto &playerPtr : m_players)

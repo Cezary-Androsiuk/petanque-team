@@ -19,6 +19,7 @@ class NetworkManager : public QObject
 
 public:
     explicit NetworkManager(QObject *parent = nullptr);
+    ~NetworkManager();
 
 public slots:
     void authenticateCredentials(QString login, QString passwordHash);

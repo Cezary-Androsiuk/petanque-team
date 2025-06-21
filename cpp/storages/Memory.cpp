@@ -4,20 +4,18 @@
 
 Memory::Memory(QObject *parent)
     : QObject{parent}
-{TR;
-    DOLT(this)
+{TRM; DOLTV(SAPF("%p", parent));
 #if DELETE_MEMORY_AT_START
     D("removed memory file at start with status: " + BOOL_TO_STR(QFile::remove(MEMORY_FILE)));
 #endif
 }
 
 Memory::~Memory()
-{TR;
-    DOLT(this)
+{TRM; DOLT;
 }
 
 void Memory::setSerializablePtr(const QSharedPointer<Serializable> &serializablePtr)
-{TR;
+{TRM;
     if(!m_serializablePtr.isNull())
         W("overwriting serializable object");
 
@@ -25,7 +23,7 @@ void Memory::setSerializablePtr(const QSharedPointer<Serializable> &serializable
 }
 
 void Memory::load()
-{TR;
+{TRM;
     if(!QFileInfo::exists( MEMORY_FILE ))
     {
         I("Memory file not exist");
@@ -76,7 +74,7 @@ void Memory::load()
 }
 
 void Memory::save()
-{TR;
+{TRM;
     if(m_serializablePtr.isNull())
     {
         W("cannot save memory from non existing serializable object");
@@ -104,13 +102,13 @@ void Memory::save()
 }
 
 bool Memory::debugMemoryFileExist()
-{TR;
+{TRM;
     QString memoryFile( MEMORY_FILE );
     return QFileInfo::exists(memoryFile);
 }
 
 void Memory::debugDeleteMemory()
-{TR;
+{TRM;
     QString memoryFile( MEMORY_FILE );
     QFile::remove(memoryFile);
 }

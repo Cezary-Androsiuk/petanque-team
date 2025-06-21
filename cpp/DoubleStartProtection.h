@@ -16,6 +16,7 @@ public:
     DoubleStartProtection(      DoubleStartProtection &&) = delete; // rm move constructor
     DoubleStartProtection& operator=(const DoubleStartProtection &) = delete; // rm copy operator
     DoubleStartProtection& operator=(      DoubleStartProtection &&) = delete; // rm move operator (y = std::move(x))
+    ~DoubleStartProtection();
 
 public slots:
     static DoubleStartProtection *const getInstance() noexcept;

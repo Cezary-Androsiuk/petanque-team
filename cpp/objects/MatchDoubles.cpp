@@ -7,12 +7,11 @@ MatchDoubles::MatchDoubles(const TeamWPtr &tl, const TeamWPtr &tr, QObject *pare
                     DOUBLES_GROUPS_COUNT,
                     DOUBLES_MIN_PLAYERS_IN_GROUP,
                     DOUBLES_MAX_PLAYERS_IN_GROUP, parent)
-{
-    DOLT(this)
+{TRM; DOLTV(SAPF("%p, %p, %p", tl.lock().data(), tr.lock().data(), parent));
 
 }
 
-    MatchDoubles::~MatchDoubles()
-{
-    DOLT(this)
+MatchDoubles::~MatchDoubles()
+{TRM; DOLT;
+
 }

@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 {
     std::unique_ptr<SingletonManager> sm =
         std::make_unique<SingletonManager>();
-    TR;
+    TRF;
 
     std::unique_ptr<QGuiApplication> app =
         std::make_unique<QGuiApplication>(argc, argv);

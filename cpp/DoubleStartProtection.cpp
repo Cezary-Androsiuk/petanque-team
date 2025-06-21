@@ -4,18 +4,23 @@
 
 DoubleStartProtection::DoubleStartProtection(QObject *parent)
     : QObject{parent}
-{TR;
+{TRM; DOLTV(SAPF("%p", parent));
+
+}
+
+DoubleStartProtection::~DoubleStartProtection()
+{TRM; DOLT;
 
 }
 
 DoubleStartProtection * const DoubleStartProtection::getInstance() noexcept
-{TR;
+{TRF;
     static DoubleStartProtection i;
     return &i;
 }
 
 void DoubleStartProtection::verify() noexcept
-{TR;
+{TRM;
     /// test shared memory
     if(!DoubleStartProtection::testIfApplicationAlreadyRunning())
     {
@@ -29,7 +34,7 @@ void DoubleStartProtection::verify() noexcept
 }
 
 bool DoubleStartProtection::testIfApplicationAlreadyRunning() noexcept
-{TR;
+{TRF;
     D("testing IfApplicationAlreadyRunning");
     static QSharedMemory sharedMemory;
     sharedMemory.setKey(UNIQUE_KEY_PREVENT_DOUBLE_RUN);

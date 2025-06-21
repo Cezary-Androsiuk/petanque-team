@@ -7,28 +7,27 @@ GroupSelection::GroupSelection(int groupsCount, int minPlayersInGroup, int maxPl
     , m_groupsCount{groupsCount}
     , m_minPlayersInGroup{minPlayersInGroup}
     , m_maxPlayersInGroup{maxPlayersInGroup}
-{
-    DOLT(this);
+{TRM; DOLTV(SAPF("%d, %d, %d, %p", groupsCount, minPlayersInGroup, maxPlayersInGroup, parent));
     // QObject::connect(this, &GroupSelection::playerSelectionsChanged, [&](){D("changed player selections")});
 }
 
 GroupSelection::~GroupSelection()
-{
-    DOLT(this);
+{TRM; DOLT;
+
 }
 
 void GroupSelection::onStart()
-{
+{TRM;
     DA(Log::Action::SaveSession, "before groupSelection start: %p", this);
 }
 
 void GroupSelection::onEnd()
-{
+{TRM;
     DA(Log::Action::SaveSession, "after groupSelection end: %p", this);
 }
 
 QJsonObject GroupSelection::serialize() const
-{
+{TRM;
     QJsonObject jGroupSelection;
 
     jGroupSelection[SERL_GROUP_SELECTION_GROUPS_COUNT_KEY] = m_groupsCount;
@@ -57,7 +56,7 @@ QJsonObject GroupSelection::serialize() const
 }
 
 void GroupSelection::deserialize(const QJsonObject &jGroupSelection)
-{
+{TRM;
     /// groups count don't need to be deserialized
     /// min players in group don't need to be deserialized
     /// max players in group don't need to be deserialized
@@ -73,7 +72,7 @@ void GroupSelection::deserialize(const QJsonObject &jGroupSelection)
 }
 
 bool GroupSelection::verify(QString &message)
-{
+{TRM;
     /// check for each group if it contains enough declared players
     for(int i=0; i<m_groupsCount; i++)
     {
@@ -102,7 +101,7 @@ bool GroupSelection::verify(QString &message)
 }
 
 void GroupSelection::setSelectionSize(qsizetype size)
-{
+{TRM;
     if(!m_playerSelections.isEmpty() && size > m_playerSelections.size())
     {
         I("resizing selection size");
@@ -121,7 +120,7 @@ void GroupSelection::setSelectionSize(qsizetype size)
 }
 
 void GroupSelection::assignExampleData()
-{
+{TRM;
     /// uncheck all
     for(int &group : m_playerSelections)
         group = GroupSelection::defaultSelectionValue;
@@ -163,7 +162,7 @@ void GroupSelection::assignExampleData()
 }
 
 void GroupSelection::setPlayerGroup(int playerIndex, int groupIndex)
-{
+{TRM;
     /// input value protection (always use protection)
     if(playerIndex >= m_playerSelections.size())
     {
@@ -190,22 +189,22 @@ void GroupSelection::setPlayerGroup(int playerIndex, int groupIndex)
 }
 
 int GroupSelection::getGroupsCount() const
-{
+{TRM;
     return m_groupsCount;
 }
 
 const IntList &GroupSelection::getPlayerSelections() const
-{
+{TRM;
     return m_playerSelections;
 }
 
 const Team *GroupSelection::getTeamQml() const
-{
+{TRM;
     return m_team.data();
 }
 
 QStringList GroupSelection::getComboBoxModel() const
-{
+{TRM;
     if(m_groupsCount < 0)
     {
         W("cannot create comboBoxModel");
@@ -223,7 +222,7 @@ QStringList GroupSelection::getComboBoxModel() const
 }
 
 void GroupSelection::setTeam(TeamPtr team)
-{
+{TRM;
     m_team = team.toWeakRef();
     emit this->teamChanged();
 }

@@ -6,29 +6,29 @@ SubPhase::SubPhase(int roundsCount, QObject *parent)
     : QObject{parent}
     , m_currentRoundIndex{0}
     , m_rounds(roundsCount, RoundPtr())
-{TR;
-    DOLTV(this, QString::number(roundsCount));
+{TRM; DOLTV(SAPF("%d, %p", roundsCount, parent));
+
 }
 
 SubPhase::~SubPhase()
-{TR;
-    DOLT(this)
+{TRM; DOLT;
+
 }
 
 void SubPhase::onStart()
-{TR;
+{TRM;
     DA(Log::Action::SaveSession, "before subPhase start: %p", this);
     this->roundStart();
 }
 
 void SubPhase::onEnd()
-{TR;
+{TRM;
     DA(Log::Action::SaveSession, "after subPhase end: %p", this);
     this->roundEnd();
 }
 
 void SubPhase::initRounds(QJsonArray jArrangements)
-{TR;
+{TRM;
     DA(Log::Action::SaveSession, "init rounds: %p", this);
 
     int roundsCount = m_rounds.size() > jArrangements.size() ? jArrangements.size() : m_rounds.size();
@@ -61,7 +61,7 @@ void SubPhase::initRounds(QJsonArray jArrangements)
 }
 
 QJsonObject SubPhase::serialize() const
-{TR;
+{TRM;
     QJsonObject jSubPhase;
 
     jSubPhase[ SERL_SUB_PHASE_NAME_KEY ] = m_name;
@@ -83,7 +83,7 @@ QJsonObject SubPhase::serialize() const
 }
 
 void SubPhase::deserialize(const QJsonObject &jSubPhase)
-{TR;
+{TRM;
     this->clear(false);
 
     if(!jSubPhase.contains(SERL_SUB_PHASE_NAME_KEY))
@@ -109,7 +109,7 @@ void SubPhase::deserialize(const QJsonObject &jSubPhase)
 }
 
 void SubPhase::deserializeRounds(const QJsonObject &jSubPhase)
-{TR;
+{TRM;
     if(!jSubPhase.contains(SERL_ROUNDS_KEY))
     {
         E("cannot deserialize rounds due to missing key in json: " SERL_ROUNDS_KEY);

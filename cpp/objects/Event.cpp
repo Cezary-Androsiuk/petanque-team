@@ -6,15 +6,13 @@
 Event::Event(QObject *parent)
     : QObject{parent}
     , m_phases(2, PhasePtr())
-{
-    DOLT(this)
+{TRM; DOLTV(SAPF("%p", parent));
 
     this->initialize();
 }
 
 Event::~Event()
-{
-    DOLT(this)
+{TRM; DOLT;
 
     for(auto &teamPtr : m_teams)
         teamPtr.clear();
@@ -26,13 +24,13 @@ Event::~Event()
 }
 
 void Event::initialize()
-{
+{TRM;
     m_currentPhase = PhaseEnum::First;
     m_currentStage = StageEnum::None;
 }
 
 QJsonObject Event::serialize() const
-{
+{TRM;
     QJsonObject jEvent;
     jEvent[ SERL_EVENT_NAME_KEY ] = m_name;
     int currentPhaseInt = static_cast<int>(m_currentPhase);
@@ -69,7 +67,7 @@ QJsonObject Event::serialize() const
 }
 
 void Event::deserialize(const QJsonObject &jEvent)
-{
+{TRM;
     this->clear(false);
     // D("cleared to deserialize");
 
@@ -148,7 +146,7 @@ void Event::deserialize(const QJsonObject &jEvent)
 }
 
 void Event::clear(bool emitting)
-{
+{TRM;
     m_name.clear();
     if(emitting) { emit this->nameChanged(); }
 
@@ -160,7 +158,7 @@ void Event::clear(bool emitting)
 }
 
 void Event::goToNextStage()
-{
+{TRM;
     if(m_currentStage >= lastStageEnum)
     {
         W("trying to exceed the highest stage!");
@@ -182,7 +180,7 @@ void Event::goToNextStage()
 }
 
 void Event::goToPrevStage()
-{
+{TRM;
     if(m_currentStage <= firstStageEnum)
     {
         W("trying to exceed the lowest stage!");
@@ -193,18 +191,18 @@ void Event::goToPrevStage()
 }
 
 void Event::startFinishStage()
-{
+{TRM;
     D("start finish stage");
     this->goToNextStage();
 }
 
 bool Event::hasNextPhase() const
-{
+{TRM;
     return m_currentPhase == PhaseEnum::First;
 }
 
 void Event::startFirstPhase()
-{
+{TRM;
     D("start first phase");
 
     TeamPtrList teams1;
@@ -220,7 +218,7 @@ void Event::startFirstPhase()
 }
 
 void Event::startSecondPhase()
-{
+{TRM;
     m_phases[PhaseEnum::First]->onEnd();
 
     D("start second phase");
@@ -241,7 +239,7 @@ void Event::startSecondPhase()
 }
 
 void Event::createDetachedTeam()
-{
+{TRM;
     // I("Creating detached Team")
     if(!m_detachedTeam.isNull())
     {
@@ -253,7 +251,7 @@ void Event::createDetachedTeam()
 }
 
 void Event::deleteDetachedTeam()
-{
+{TRM;
     // I("Deleting detached Team")
     if(m_detachedTeam.isNull())
     {
@@ -266,7 +264,7 @@ void Event::deleteDetachedTeam()
 }
 
 void Event::validateDetachedTeam()
-{
+{TRM;
     if(m_detachedTeam.isNull())
     {
         const char *message = "Detached Team not exist";
@@ -296,7 +294,7 @@ void Event::validateDetachedTeam()
 }
 
 void Event::addDetachedTeam()
-{
+{TRM;
     // I("Adding detached Team to Event")
     if(m_detachedTeam.isNull())
     {
@@ -312,7 +310,7 @@ void Event::addDetachedTeam()
 }
 
 void Event::deleteTeam(int index)
-{
+{TRM;
     if(m_teams.size() <= index)
     {
         QString sSize = QString::number(m_teams.size());
@@ -326,7 +324,7 @@ void Event::deleteTeam(int index)
 }
 
 void Event::validateEvent()
-{
+{TRM;
     Personalization *p = Personalization::getInstance();
 
     /// check if required amount of teams was registered
@@ -434,7 +432,7 @@ void Event::validateEvent()
 }
 
 void Event::assignExampleData()
-{
+{TRM;
     QJsonObject jEvent = Personalization::getInstance()->getExampleData();
 
     this->setName(jEvent["name"].toString());
@@ -458,24 +456,24 @@ void Event::assignExampleData()
 }
 
 void Event::firstPhaseStart()
-{
+{TRM;
     m_phases[PhaseEnum::First]->onStart();
 }
 
 void Event::secondPhaseEnd()
-{
+{TRM;
     m_phases[PhaseEnum::Second]->onEnd();
 }
 
 void Event::createListForFirstPhase(TeamPtrList &teams1) const
-{
+{TRM;
     teams1.clear();
     for(const auto &team : m_teams)
         teams1.append(team);
 }
 
 void Event::createListForSecondPhase(TeamPtrList &teams2a, TeamPtrList &teams2b) const
-{
+{TRM;
     teams2a.clear();
     teams2b.clear();
 
@@ -496,37 +494,37 @@ void Event::createListForSecondPhase(TeamPtrList &teams2a, TeamPtrList &teams2b)
 }
 
 const QString &Event::getName() const
-{
+{TRM;
     return m_name;
 }
 
 PhaseEnum Event::getCurrentPhase() const
-{
+{TRM;
     return m_currentPhase;
 }
 
 StageEnum Event::getCurrentStage() const
-{
+{TRM;
     return m_currentStage;
 }
 
 const PhasePtrVector &Event::getPhases() const
-{
+{TRM;
     return m_phases;
 }
 
 const TeamPtr &Event::getDetachedTeam() const
-{
+{TRM;
     return m_detachedTeam;
 }
 
 const TeamPtrList &Event::getTeams() const
-{
+{TRM;
     return m_teams;
 }
 
 QString Event::getConfirmNextPopupTextFrom() const
-{
+{TRM;
     /// returned right before changing Round or RoundStage
     if(m_phases[m_currentPhase]->hasNext())
     {
@@ -544,7 +542,7 @@ QString Event::getConfirmNextPopupTextFrom() const
 }
 
 QString Event::getConfirmNextPopupTextTo() const
-{
+{TRM;
     /// returned right before changing Round or RoundStage
     if(m_phases[m_currentPhase]->hasNext())
     {
@@ -563,7 +561,7 @@ QString Event::getConfirmNextPopupTextTo() const
 }
 
 QmlPhasePtrVector Event::getPhasesQml() const
-{
+{TRM;
     QmlPhasePtrVector retVec;
     retVec.reserve( m_phases.size() );
     for(const auto &phasePtr : m_phases)
@@ -572,12 +570,12 @@ QmlPhasePtrVector Event::getPhasesQml() const
 }
 
 Team *Event::getDetachedTeamQml() const
-{
+{TRM;
     return m_detachedTeam.data();
 }
 
 QmlTeamPtrVector Event::getTeamsQml() const
-{
+{TRM;
     QmlTeamPtrVector retVec;
     retVec.reserve( m_teams.size() );
     for(const auto &teamPtr : m_teams)
@@ -586,7 +584,7 @@ QmlTeamPtrVector Event::getTeamsQml() const
 }
 
 void Event::setName(const QString &name)
-{
+{TRM;
     if (m_name == name)
         return;
     m_name = name;

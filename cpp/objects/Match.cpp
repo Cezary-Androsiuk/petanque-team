@@ -9,18 +9,17 @@ Match::Match(RoundStageEnumRPtr roundStageRef, QObject *parent)
     : QObject{parent}
     , m_matchTypes(3, MatchTypeBasePtr())
     , m_currentRoundStage{roundStageRef}
-{
-    DOLT(this)
+{TRM; DOLTV(SAPF("%s, %p", EnumConvert::RoundStageToQString(*roundStageRef).toStdString().c_str(), parent));
 
 }
 
 Match::~Match()
-{
-    DOLT(this)
+{TRM; DOLT;
+
 }
 
 void Match::onStart()
-{
+{TRM;
     DA(Log::Action::SaveSession, "before match start: %p", this);
 
     if(*m_currentRoundStage == RoundStageEnum::RoundSummary)
@@ -42,7 +41,7 @@ void Match::onStart()
 }
 
 void Match::onEnd()
-{
+{TRM;
     DA(Log::Action::SaveSession, "after match end: %p", this);
 
     if(*m_currentRoundStage == RoundStageEnum::RoundSummary)
@@ -64,7 +63,7 @@ void Match::onEnd()
 }
 
 void Match::initMatchesTypes()
-{
+{TRM;
     DA(Log::Action::SaveSession, "init matchTypes: %p", this);
 
     m_matchTypes[0] = MatchSinglesPtr::create(m_teamLeft, m_teamRight);
@@ -75,7 +74,7 @@ void Match::initMatchesTypes()
 }
 
 QJsonObject Match::serialize() const
-{
+{TRM;
     QJsonObject jMatch;
 
     jMatch[ SERL_MATCH_TEAM_LEFT_NAME_KEY ] = this->serializeTeam(m_teamLeft);
@@ -91,7 +90,7 @@ QJsonObject Match::serialize() const
 }
 
 void Match::deserialize(const QJsonObject &jMatch)
-{
+{TRM;
     this->clear(false);
 
     /// m_teamLeft - don't need to be deserialized
@@ -104,12 +103,12 @@ void Match::deserialize(const QJsonObject &jMatch)
 }
 
 void Match::clear(bool emitting)
-{
+{TRM;
 
 }
 
 QString Match::serializeTeam(const TeamWPtr &teamWPtr) const
-{
+{TRM;
     if(teamWPtr.isNull())
     {
         W("cannot serialize team in match due to not existing team");
@@ -121,7 +120,7 @@ QString Match::serializeTeam(const TeamWPtr &teamWPtr) const
 }
 
 QJsonObject Match::serializeMatchType(int matchTypeIndex) const
-{
+{TRM;
     if(m_matchTypes.size() <= matchTypeIndex)
     {
         E("matchTypeIndex is %d, but m_matchTypes.size() is %lld",
@@ -139,7 +138,7 @@ QJsonObject Match::serializeMatchType(int matchTypeIndex) const
 }
 
 void Match::deserializeMatchTypes(const QJsonObject &jMatch)
-{
+{TRM;
     if(!jMatch.contains( SERL_MATCH_TYPES_KEY ))
     {
         E("cannot deserialize match types due to missing key: " SERL_MATCH_TYPES_KEY);
@@ -173,7 +172,7 @@ void Match::deserializeMatchTypes(const QJsonObject &jMatch)
 }
 
 bool Match::verify(QString &message) const
-{
+{TRM;
     if(*m_currentRoundStage == RoundStageEnum::RoundSummary)
         return true;
 
@@ -203,7 +202,7 @@ bool Match::verify(QString &message) const
 }
 
 void Match::assignExampleData()
-{
+{TRM;
     if(*m_currentRoundStage == RoundStageEnum::RoundSummary)
         return;
 
@@ -218,26 +217,26 @@ void Match::assignExampleData()
 }
 
 Team *Match::getTeamLeft() const
-{
+{TRM;
     return m_teamLeft.data();
 }
 
 Team *Match::getTeamRight() const
-{
+{TRM;
     return m_teamRight.data();
 }
 
 MatchTypeBase *Match::getCurrentMatchType() const
-{
+{TRM;
     return m_matchTypes[(*m_currentRoundStage)/2].data();
 }
 
 void Match::setTeamLeft(const TeamPtr &team)
-{
+{TRM;
     m_teamLeft = team;
 }
 
 void Match::setTeamRight(const TeamPtr &team)
-{
+{TRM;
     m_teamRight = team;
 }

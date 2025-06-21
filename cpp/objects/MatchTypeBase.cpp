@@ -12,19 +12,17 @@ MatchTypeBase::MatchTypeBase(TeamPtr teamL, TeamPtr teamR, int groupsCount, int 
     , m_maxPlayersInGroup{maxPlayersInGroup}
     , m_selectionInitialized{false}
     , m_matchInitialized{false}
-{
-    DOLT(this)
+{TRM; DOLTV(SAPF("%p, %p, %d, %d, %d, %p", teamL.data(), teamR.data(), groupsCount, minPlayersInGroup, maxPlayersInGroup, parent));
 
 }
 
 MatchTypeBase::~MatchTypeBase()
-{
-    DOLT(this)
+{TRM; DOLT;
 
 }
 
 void MatchTypeBase::onSelectionStart()
-{
+{TRM;
     DA(Log::Action::SaveSession, "before matchTypeBase selection start: %p", this);
 
     this->initSelection();
@@ -46,7 +44,7 @@ void MatchTypeBase::onSelectionStart()
 }
 
 void MatchTypeBase::onSelectionEnd()
-{
+{TRM;
     DA(Log::Action::SaveSession, "after matchTypeBase selection end: %p", this);
 
     if(m_groupSelectionLeft.isNull())
@@ -66,7 +64,7 @@ void MatchTypeBase::onSelectionEnd()
 }
 
 void MatchTypeBase::onMatchStart()
-{
+{TRM;
     DA(Log::Action::SaveSession, "before matchTypeBase match start: %p", this);
 
     this->initMatch();
@@ -88,7 +86,7 @@ void MatchTypeBase::onMatchStart()
 }
 
 void MatchTypeBase::onMatchEnd()
-{
+{TRM;
     DA(Log::Action::SaveSession, "after matchTypeBase match end: %p", this);
 
     if(m_groupMatchLeft.isNull())
@@ -110,7 +108,7 @@ void MatchTypeBase::onMatchEnd()
 }
 
 void MatchTypeBase::initSelection()
-{
+{TRM;
     DA(Log::Action::SaveSession, "init selection: %p", this);
 
     if(m_selectionInitialized)
@@ -152,7 +150,7 @@ void MatchTypeBase::initSelection()
 }
 
 void MatchTypeBase::initMatch()
-{
+{TRM;
     DA(Log::Action::SaveSession, "init match: %p", this);
 
     if(m_matchInitialized)
@@ -206,7 +204,7 @@ void MatchTypeBase::initMatch()
 }
 
 void MatchTypeBase::addPoints()
-{
+{TRM;
     DA(Log::Action::SaveSession, "adding points after match");
 
     this->addPointsForTeams();
@@ -215,7 +213,7 @@ void MatchTypeBase::addPoints()
 }
 
 void MatchTypeBase::addPointsForTeams()
-{
+{TRM;
     int size;
     IntList leftPoints = m_groupMatchLeft->getMatchPoints();
     IntList rightPoints = m_groupMatchRight->getMatchPoints();
@@ -253,7 +251,7 @@ void MatchTypeBase::addPointsForTeams()
 }
 
 void MatchTypeBase::addPointsForPlayers()
-{
+{TRM;
     int size;
     QList<PlayerPtrList> leftGroupsOfPlayers = m_groupMatchLeft->getGroupsOfPlayers();
     IntList leftPoints = m_groupMatchLeft->getMatchPoints();
@@ -313,7 +311,7 @@ void MatchTypeBase::addPointsForPlayers()
 }
 
 QJsonObject MatchTypeBase::serialize() const
-{
+{TRM;
     QJsonObject jMatchTypeBase;
 
     jMatchTypeBase[SERL_MATCH_TYPE_TEAM_LEFT_NAME_KEY] = this->serializeTeam(m_teamLeft);
@@ -360,7 +358,7 @@ QJsonObject MatchTypeBase::serialize() const
 }
 
 void MatchTypeBase::deserialize(const QJsonObject &jMatchTypeBase)
-{
+{TRM;
     this->clear(false);
 
     /// team left don't need to be deserialized
@@ -416,12 +414,12 @@ void MatchTypeBase::deserialize(const QJsonObject &jMatchTypeBase)
 }
 
 void MatchTypeBase::clear(bool emitting)
-{
+{TRM;
 
 }
 
 QString MatchTypeBase::serializeTeam(cTeamWPtr wteam) const
-{
+{TRM;
     if(wteam.isNull())
     {
         W("team is null");
@@ -431,7 +429,7 @@ QString MatchTypeBase::serializeTeam(cTeamWPtr wteam) const
 }
 
 bool MatchTypeBase::verifySelection(QString &message)
-{
+{TRM;
     if(m_groupSelectionLeft.isNull())
     {
         E("cannot verify, due to not exising left selection pointer");
@@ -460,7 +458,7 @@ bool MatchTypeBase::verifySelection(QString &message)
 }
 
 bool MatchTypeBase::verifyMatch(QString &message)
-{
+{TRM;
     if(m_groupMatchLeft.isNull())
     {
         E("cannot verify, due to not exising left match pointer");
@@ -515,7 +513,7 @@ bool MatchTypeBase::verifyMatch(QString &message)
 }
 
 QList<PlayerPtrList> MatchTypeBase::makeGroupsOfPlayersList(const PlayerPtrList &players, const IntList &selection) const
-{
+{TRM;
     QList<PlayerPtrList> groupsOfPlayers(m_groupsCount);
 
     if(players.size() != selection.size())
@@ -546,13 +544,13 @@ QList<PlayerPtrList> MatchTypeBase::makeGroupsOfPlayersList(const PlayerPtrList 
 }
 
 void MatchTypeBase::assignSelectionExampleData()
-{
+{TRM;
     m_groupSelectionLeft->assignExampleData();
     m_groupSelectionRight->assignExampleData();
 }
 
 void MatchTypeBase::assignMatchExampleData()
-{
+{TRM;
     if(m_groupMatchLeft.isNull())
     {
         E("cannot assign example data, due to not exising left match pointer");
@@ -594,7 +592,7 @@ void MatchTypeBase::assignMatchExampleData()
 }
 
 void MatchTypeBase::generateTwoRandomValues(int &v1, int &v2, int max)
-{
+{TRF;
     auto rnd = QRandomGenerator::global();
     int mod = max + 1;
     int randomPoint1 = rnd->bounded(0, mod); // r1 = [0, 13]
@@ -622,31 +620,31 @@ void MatchTypeBase::generateTwoRandomValues(int &v1, int &v2, int max)
 }
 
 Team *MatchTypeBase::getTeamLeftQml() const
-{
+{TRM;
     return m_teamLeft.data();
 }
 
 Team *MatchTypeBase::getTeamRightQml() const
-{
+{TRM;
     return m_teamRight.data();
 }
 
 GroupSelection *MatchTypeBase::getSelectionLeft() const
-{
+{TRM;
     return m_groupSelectionLeft.data();
 }
 
 GroupSelection *MatchTypeBase::getSelectionRight() const
-{
+{TRM;
     return m_groupSelectionRight.data();
 }
 
 GroupMatch *MatchTypeBase::getMatchLeft() const
-{
+{TRM;
     return m_groupMatchLeft.data();
 }
 
 GroupMatch *MatchTypeBase::getMatchRight() const
-{
+{TRM;
     return m_groupMatchRight.data();
 }

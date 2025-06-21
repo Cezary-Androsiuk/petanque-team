@@ -8,27 +8,27 @@ GroupMatch::GroupMatch(QObject *parent)
     , m_groupsCount{0}
     , m_defaultPlayersCountInGroup{0}
     , m_maxPointsInMatch{Personalization::getInstance()->getMaxPointsInMatch()}
-{
-    DOLT(this)
+{TRM; DOLTV(SAPF("%p", parent));
+
 }
 
 GroupMatch::~GroupMatch()
-{
-    DOLT(this)
+{TRM; DOLT;
+
 }
 
 void GroupMatch::onStart()
-{
+{TRM;
     DA(Log::Action::SaveSession, "before groupMatch start: %p", this);
 }
 
 void GroupMatch::onEnd()
-{
+{TRM;
     DA(Log::Action::SaveSession, "after groupMatch end: %p", this);
 }
 
 QJsonObject GroupMatch::serialize() const
-{
+{TRM;
     QJsonObject jGroupMatch;
 
     jGroupMatch[SERL_GROUP_MATCH_GROUPS_COUNT_KEY] = m_groupsCount;
@@ -57,7 +57,7 @@ QJsonObject GroupMatch::serialize() const
 }
 
 void GroupMatch::deserialize(const QJsonObject &jGroupMatch)
-{
+{TRM;
     /// groups count don't need to be deserialized
     /// default players count in group don't need to be deserialized
     /// groups of players don't need to be deserialized
@@ -72,7 +72,7 @@ void GroupMatch::deserialize(const QJsonObject &jGroupMatch)
 }
 
 QJsonArray GroupMatch::serializeGroupsOfPlayers() const
-{
+{TRM;
     QJsonArray jGroupsOfPlayers;
 
     for(int i=0; i<m_groupsOfPlayers.size(); i++)
@@ -91,7 +91,7 @@ QJsonArray GroupMatch::serializeGroupsOfPlayers() const
 }
 
 void GroupMatch::setGroupPoints(int group, int points)
-{
+{TRM;
     if(group >= m_matchPoints.size() || group < 0)
     {
         W("trying to assign points to a non-existing group");
@@ -111,7 +111,7 @@ void GroupMatch::setGroupPoints(int group, int points)
 // }
 
 void GroupMatch::assignExampleData(const IntList &data)
-{
+{TRM;
     if(m_matchPoints.empty())
     {
         for(int value : data)
@@ -132,22 +132,22 @@ void GroupMatch::assignExampleData(const IntList &data)
 }
 
 int GroupMatch::getGroupsCount() const
-{
+{TRM;
     return m_groupsCount;
 }
 
 int GroupMatch::getDefaultPlayersCountInGroup() const
-{
+{TRM;
     return m_defaultPlayersCountInGroup;
 }
 
 const QList<PlayerPtrList> &GroupMatch::getGroupsOfPlayers() const
-{
+{TRM;
     return m_groupsOfPlayers;
 }
 
 QmlVecOfPlayersVec GroupMatch::getGroupsOfPlayersQml() const
-{
+{TRM;
     QmlVecOfPlayersVec ret;
     ret.resize(m_groupsOfPlayers.size());
     for(int i=0; i<ret.size(); i++)
@@ -160,22 +160,22 @@ QmlVecOfPlayersVec GroupMatch::getGroupsOfPlayersQml() const
 }
 
 const IntList &GroupMatch::getMatchPoints() const
-{
+{TRM;
     return m_matchPoints;
 }
 
 const Team *GroupMatch::getTeamQml() const
-{
+{TRM;
     return m_team.data();
 }
 
 int GroupMatch::getMaxPointsInMatch() const
-{
+{TRM;
     return GroupMatch::m_maxPointsInMatch;
 }
 
 void GroupMatch::setGroupsCount(int groupsCount)
-{
+{TRM;
     if(m_groupsCount == groupsCount)
         return;
 
@@ -184,7 +184,7 @@ void GroupMatch::setGroupsCount(int groupsCount)
 }
 
 void GroupMatch::setDefaultPlayersCountInGroup(int defaultPlayersCountInGroup)
-{
+{TRM;
     if(m_defaultPlayersCountInGroup == defaultPlayersCountInGroup)
         return;
 
@@ -193,13 +193,13 @@ void GroupMatch::setDefaultPlayersCountInGroup(int defaultPlayersCountInGroup)
 }
 
 void GroupMatch::setGroupsOfPlayers(const QList<PlayerPtrList> &groupsOfPlayers)
-{
+{TRM;
     m_groupsOfPlayers = groupsOfPlayers;
     emit this->groupsOfPlayersChanged();
 }
 
 void GroupMatch::setMatchPointsSize(int matchPointsSize)
-{
+{TRM;
     if(!m_matchPoints.empty())
     {
         I("resizing matchPoints list");
@@ -215,7 +215,7 @@ void GroupMatch::setMatchPointsSize(int matchPointsSize)
 }
 
 void GroupMatch::setTeam(TeamPtr team)
-{
+{TRM;
     m_team = team.toWeakRef();
     emit this->teamChanged();
 }
