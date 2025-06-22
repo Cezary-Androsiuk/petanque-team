@@ -62,7 +62,10 @@ signals:
     void verificationFailed(QString message);
 
 private:
+    /// This object phase - First or Second - is set while creation
     const PhaseEnum m_phase;
+    /// if Phase is First then subphases vector contains one subphase
+    /// if Phase is Second then subphases vector contains two subphases
     SubPhasePtrVector m_subPhases; /// const, but cant be marked as const :/ due to way this is initialized and serialization
 };
 

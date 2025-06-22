@@ -477,6 +477,8 @@ void Event::createListForSecondPhase(TeamPtrList &teams2a, TeamPtrList &teams2b)
     teams2a.clear();
     teams2b.clear();
 
+    E("Lists for the second subphase are not devided properly yet");
+
     /// take first and last 4 for now
     /// later sort then by points or something
 

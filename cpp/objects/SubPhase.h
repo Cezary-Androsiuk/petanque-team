@@ -74,9 +74,21 @@ signals:
     void teamsChanged();
 
 private:
+    /// describe name of the subphase -
+    /// if Phase is First then name is "1" if Phase is Second then name is "2a" or "2b"
     QString m_name; /// should be constant - set within initialization by setter
+
+    /// current round  - rounds holds round stages (for egzample "Singles Selection" or "Singles Match")
+    /// when Phase is First then range is in range [0,6] (displayed [1, 7])
+    /// when Phase is Second then range is in range [0,6] (displayed [1, 7])
     int m_currentRoundIndex;
+
+    /// Rounds list - rounds holds round stages (for egzample "Singles Selection" or "Singles Match")
     RoundPtrVector m_rounds; /// const list, and created while initialization by initRounds
+
+    /// Teams used in this subphase
+    /// when Phase is First then size of teams is 8
+    /// when Phase is Second then size of teams is 4 (because there are two subphases)
     TeamPtrList m_teams;
 };
 

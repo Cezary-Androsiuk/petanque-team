@@ -120,14 +120,20 @@ signals:
     void detachedTeamValidationFailed(QString message);
 
 private:
+    /// Event details
     QString m_name;
 
-    PhaseEnum m_currentPhase;
+    /// Current Stage - None, Configure, Play, Finish
     StageEnum m_currentStage;
 
+    /// Current Phase - First or Second (used in Play stage)
+    PhaseEnum m_currentPhase;
+    /// Phases - First Phase and the Second one
     PhasePtrVector m_phases;
 
+    /// Team Temporary Handler
     TeamPtr m_detachedTeam;
+    /// Teams in Event
     TeamPtrList m_teams;
 };
 
