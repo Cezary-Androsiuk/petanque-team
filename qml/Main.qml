@@ -44,9 +44,41 @@ ApplicationWindow {
         }
     }
 
+    function getStackTrace() {
+        try {
+            // Rzucamy i łapiemy błąd, aby uzyskać stack trace
+            throw new Error("Stack trace capture");
+        } catch (error) {
+            return error.stack;
+        }
+    }
+
+    function test(){
+        console.log("vvvvvvvvvvvvvvvvv")
+        // console.trace();
+        var t = getStackTrace();
+        console.log(t);
+        console.log(typeof(t))
+        console.log("=================")
+        for(var i=0; i<t.length; i++)
+            console.log(i, ": '", t[i], "', ", t[i].charCodeAt(0))
+        console.log("=================")
+
+
+        console.log("^^^^^^^^^^^^^^^^^")
+    }
+
     Connections{
         target: Backend.login
         function onAuthenticated(){
+            // console.log("vvvvvvvvvvvvvvvvv")
+            // // console.trace();
+            // var t = getStackTrace();
+            // console.log(t);
+            // console.log(typeof(t))
+            // test();
+            // console.log("^^^^^^^^^^^^^^^^^")
+            // exit(1);
             log.i("authenticated login" , "Main.qml -> onAuthenticated")
             Backend.memory.load()
         }
