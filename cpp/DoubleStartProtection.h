@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QSharedMemory>
+#include "SingletonManager.h"
 
 #define UNIQUE_KEY_PREVENT_DOUBLE_RUN "PetanqueTeam-IsRunning-mt9n8MSxmKiEUZo1"
 
@@ -30,6 +31,10 @@ signals:
     void verified(); /// positive end
 
     void applicationIsAlreadyRunning(); /// negative end
+
+private:
+    static DoubleStartProtection* instance;
+    friend class SingletonManager;
 };
 
 #endif // DOUBLESTARTPROTECTION_H

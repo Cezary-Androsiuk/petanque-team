@@ -2,6 +2,8 @@
 
 #include "support/Log.h"
 
+DoubleStartProtection *DoubleStartProtection::instance = nullptr;
+
 DoubleStartProtection::DoubleStartProtection(QObject *parent)
     : QObject{parent}
 {TRM; DOLTV(SAPF("%p", parent));
@@ -15,8 +17,8 @@ DoubleStartProtection::~DoubleStartProtection()
 
 DoubleStartProtection * const DoubleStartProtection::getInstance() noexcept
 {TRF;
-    static DoubleStartProtection i;
-    return &i;
+    // static DoubleStartProtection i;
+    return instance;
 }
 
 void DoubleStartProtection::verify() noexcept
