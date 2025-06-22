@@ -6,7 +6,7 @@ Item {
     anchors.fill: parent
 
     property int targetWidth: 230
-    property int targetHeight: 260
+    property int targetHeight: 310
 
     readonly property string emptyDebugLogin: "example login"
     readonly property string emptyDebugPassword: "example password"
@@ -112,6 +112,20 @@ Item {
             onCheckedChanged: {
                 passwordTextField.echoMode =
                         checked ? TextInput.Normal : TextInput.Password;
+            }
+        }
+
+        CheckBox{
+            id: useExternalServerCheckBox
+            anchors{
+                top: showPasswordCheckBox.bottom
+                left: showPasswordCheckBox.left
+            }
+
+            checked: Personalization.useExternalServer
+            text: qsTr("Use External Server")
+            onCheckedChanged: {
+                Personalization.useExternalServer = checked;
             }
         }
 

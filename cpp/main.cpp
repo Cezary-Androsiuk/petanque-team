@@ -7,6 +7,7 @@
 
 #include "SingletonManager.h"
 #include "DoubleStartProtection.h"
+#include "storages/Personalization.h"
 #include "Backend.h"
 #include "support/LogQML.h"
 
@@ -27,6 +28,7 @@ int main(int argc, char *argv[])
     QPointer<LogQML> logQML(new LogQML(app.get()));
 
     engine->rootContext()->setContextProperty("DoubleStartProtection", DoubleStartProtection::getInstance());
+    engine->rootContext()->setContextProperty("Personalization", Personalization::getInstance());
     engine->rootContext()->setContextProperty("Backend", backend);
     engine->rootContext()->setContextProperty("log", logQML);
 

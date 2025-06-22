@@ -40,6 +40,10 @@
 class Personalization : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(bool useExternalServer
+                   READ getUseExternalServer
+                       WRITE setUseExternalServer
+                           NOTIFY useExternalServerChanged)
 
 private:
     explicit Personalization(QObject *parent = nullptr);
@@ -73,11 +77,17 @@ public:
     const QString &getServerAddress() const;
     bool getUseExternalServer() const;
 
+    /// Setters
+    void setUseExternalServer(bool useExternalServer);
+
 signals:
     void loaded();
     void saved();
     void loadFailed();
     void saveFailed();
+
+    /// Notifiers
+    void useExternalServerChanged();
 
 private:
     int m_minimumPlayersInTeam;

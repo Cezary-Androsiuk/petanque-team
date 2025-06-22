@@ -118,6 +118,9 @@ void Personalization::load()
     if(jp.contains(key)) m_useExternalServer = jp[key].toBool();
     else KEY_NOT_FOUND_MESSAGE;
 
+
+    emit this->useExternalServerChanged();
+
     I("personalization data loaded");
 
     emit this->loaded();
@@ -205,5 +208,13 @@ const QString &Personalization::getServerAddress() const
 bool Personalization::getUseExternalServer() const
 {TRM;
     return m_useExternalServer;
+}
+
+void Personalization::setUseExternalServer(bool useExternalServer)
+{TRM;
+    if(m_useExternalServer == useExternalServer)
+        return;
+    m_useExternalServer = useExternalServer;
+    emit this->useExternalServerChanged();
 }
 
