@@ -67,10 +67,21 @@ signals:
     void currentRoundStageChanged();
 
 private:
+    /// holds left team used in this match
     TeamPtr m_teamLeft; /// const assigned while creation of object
+    /// holds right team used in this match
     TeamPtr m_teamRight; /// const assigned while creation of object
 
+    /// holds constant reference to current round stage from Round
+    /// is used to extract information what type that match is, for example:
+    /// SinglesSelection, SinglesMatch -> Singles
+    /// DoublesSelection, DoublesMatch -> Doubles
+    /// TriplesSelection, TriplesMatch -> Triples
+    /// RoundSummary is not used
     RoundStageEnumRPtr m_currentRoundStage;
+
+    /// stores 3 MatchTypeBase types - class is abstract and holds:
+    /// MatchSingles, MatchDoubles, MatchTriples objects
     MatchTypeBasePtrVector m_matchTypes;
 };
 
