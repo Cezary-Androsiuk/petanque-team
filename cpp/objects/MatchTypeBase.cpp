@@ -328,13 +328,15 @@ QJsonObject MatchTypeBase::serialize() const
     else if(m_groupSelectionLeft.isNull())
     {
         /// both selection are null
-        // I("group selection not created, then not be serialized")
+        I("group selection not created, then not be serialized");
     }
     else
     {
         /// both selection are pointers
-        jMatchTypeBase[SERL_GROUP_SELECTION_LEFT_KEY] = this->m_groupSelectionLeft->serialize();
-        jMatchTypeBase[SERL_GROUP_SELECTION_RIGHT_KEY] = this->m_groupSelectionRight->serialize();
+        jMatchTypeBase[SERL_GROUP_SELECTION_LEFT_KEY] =
+            this->m_groupSelectionLeft->serialize();
+        jMatchTypeBase[SERL_GROUP_SELECTION_RIGHT_KEY] =
+            this->m_groupSelectionRight->serialize();
     }
 
     if(m_groupMatchLeft.isNull() != m_groupMatchRight.isNull())
@@ -345,13 +347,16 @@ QJsonObject MatchTypeBase::serialize() const
     else if(m_groupMatchLeft.isNull())
     {
         /// both selection are null
-        // I("group match not created, then not be serialized")
+        I("group match not created, then not be serialized");
     }
     else
     {
+        I("======================================================================");
         /// both selection are pointers
-        jMatchTypeBase[SERL_GROUP_MATCH_LEFT_KEY] = this->m_groupMatchLeft->serialize();
-        jMatchTypeBase[SERL_GROUP_MATCH_RIGHT_KEY] = this->m_groupMatchRight->serialize();
+        jMatchTypeBase[SERL_GROUP_MATCH_LEFT_KEY] =
+            this->m_groupMatchLeft->serialize();
+        jMatchTypeBase[SERL_GROUP_MATCH_RIGHT_KEY] =
+            this->m_groupMatchRight->serialize();
     }
 
     return jMatchTypeBase;
@@ -367,7 +372,6 @@ void MatchTypeBase::deserialize(const QJsonObject &jMatchTypeBase)
     /// minPlayersInGroup don't need to be deserialized
     /// maxPlayersInGroup don't need to be deserialized
 
-    QJsonObject obj;
     bool csl, csr, cml, cmr; // contains [selection/match] [left/right]
     csl = jMatchTypeBase.contains(SERL_GROUP_SELECTION_LEFT_KEY);
     csr = jMatchTypeBase.contains(SERL_GROUP_SELECTION_RIGHT_KEY);
@@ -387,10 +391,10 @@ void MatchTypeBase::deserialize(const QJsonObject &jMatchTypeBase)
     else
     {
         this->initSelection();
-        obj = jMatchTypeBase[SERL_GROUP_SELECTION_LEFT_KEY].toObject();
-        m_groupSelectionLeft->deserialize( obj );
-        obj = jMatchTypeBase[SERL_GROUP_SELECTION_RIGHT_KEY].toObject();
-        m_groupSelectionRight->deserialize( obj );
+        m_groupSelectionLeft->deserialize(
+            jMatchTypeBase[SERL_GROUP_SELECTION_LEFT_KEY].toObject());
+        m_groupSelectionRight->deserialize(
+            jMatchTypeBase[SERL_GROUP_SELECTION_RIGHT_KEY].toObject());
     }
 
     if(cml != cmr)
@@ -401,15 +405,16 @@ void MatchTypeBase::deserialize(const QJsonObject &jMatchTypeBase)
     else if(!cml)
     {
         /// both selection are null
-        IA(Log::Action::Save, "group match not created, then not be deserialized");
+        // IA(Log::Action::Save, "group match not created, then not be deserialized");
+        I("group match not created, then not be deserialized");
     }
     else
     {
         this->initMatch();
-        obj = jMatchTypeBase[SERL_GROUP_MATCH_LEFT_KEY].toObject();
-        m_groupMatchLeft->deserialize( obj );
-        obj = jMatchTypeBase[SERL_GROUP_MATCH_RIGHT_KEY].toObject();
-        m_groupMatchRight->deserialize( obj );
+        m_groupMatchLeft->deserialize(
+            jMatchTypeBase[SERL_GROUP_MATCH_LEFT_KEY].toObject());
+        m_groupMatchRight->deserialize(
+            jMatchTypeBase[SERL_GROUP_MATCH_RIGHT_KEY].toObject());
     }
 }
 
