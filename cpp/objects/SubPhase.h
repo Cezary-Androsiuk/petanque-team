@@ -78,12 +78,16 @@ private:
     /// if Phase is First then name is "1" if Phase is Second then name is "2a" or "2b"
     QString m_name; /// should be constant - set within initialization by setter
 
-    /// current round  - rounds holds round stages (for egzample "Singles Selection" or "Singles Match")
+    /// current round
+    /// (each round contains 7 round stages from "Singles Selection" to "Round Summary")
     /// when Phase is First then range is in range [0,6] (displayed [1, 7])
-    /// when Phase is Second then range is in range [0,6] (displayed [1, 7])
+    /// when Phase is Second then range is in range [0,2] (displayed [1, 3])
     int m_currentRoundIndex;
 
-    /// Rounds list - rounds holds round stages (for egzample "Singles Selection" or "Singles Match")
+    /// Rounds list
+    /// (each round contains 7 round stages from "Singles Selection" to "Round Summary")
+    /// when Phase is First then vector contains 7 items
+    /// when Phase is Second then vector contains 3 items
     RoundPtrVector m_rounds; /// const list, and created while initialization by initRounds
 
     /// Teams used in this subphase

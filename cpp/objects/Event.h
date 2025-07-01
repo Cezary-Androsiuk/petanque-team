@@ -128,7 +128,7 @@ private:
 
     /// Current Phase - First or Second (used in Play stage)
     PhaseEnum m_currentPhase;
-    /// Phases - First Phase and the Second one
+    /// Phases - First Phase and the Second one (both are stored in memory)
     PhasePtrVector m_phases;
 
     /// Team Temporary Handler

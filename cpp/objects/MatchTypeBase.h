@@ -97,11 +97,36 @@ signals:
     void matchChanged();
 
 private:
+    /// holds information how much groups are in this round stage
+    /// Singles = 6
+    /// Doubles = 3
+    /// Triples = 2
     const int m_groupsCount;
+
+    /// holds min players in the group
+    /// Singles = 1
+    /// Doubles = 2
+    /// Triples = 3
     const int m_minPlayersInGroup;
+
+    /// holds max players in the group
+    /// Singles = 1
+    /// Doubles = 3
+    /// Triples = 4
     const int m_maxPlayersInGroup;
+
+    ///         | groups | min | max |
+    /// ==============================
+    /// Singles |    6   |  1  |  1  |
+    /// Doubles |    3   |  2  |  3  |
+    /// Triples |    2   |  3  |  4  |
+
+
+    /// left team that is used in this match
     TeamPtr m_teamLeft;
+    /// right team that is used in this match
     TeamPtr m_teamRight;
+
 
     bool m_selectionInitialized;
     GroupSelectionPtr m_groupSelectionLeft;
