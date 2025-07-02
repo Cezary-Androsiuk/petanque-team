@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
+import "../../Trace.js" as Trace
+
 Item {
     id: infoField
     height: childrenRect.height + 20
@@ -18,7 +20,7 @@ Item {
 
         placeholderText: qsTr("Event name")
         text: (!event)?null: event.name
-        onTextEdited: {
+        onTextEdited: { Trace.t();
             console.log("Backend: ", Backend)
             console.log("Backend.event: ", Backend.event)
             console.log("Backend.event.name: ", Backend.event.name)

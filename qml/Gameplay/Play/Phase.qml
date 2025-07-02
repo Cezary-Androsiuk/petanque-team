@@ -2,6 +2,8 @@ import QtQuick 2.15
 import QtQuick.Controls.Material
 import QtQuick.Layouts
 
+import "../../Trace.js" as Trace
+
 import "../../Popups"
 
 Item {
@@ -21,7 +23,7 @@ Item {
         id: confirmNextPopup
         fromMessage: "?"
         toMessage: "?"
-        onConfirmed: {
+        onConfirmed: { Trace.t();
             if(phaseVar.hasNext())
             {
                 phaseVar.goToNext();
@@ -38,14 +40,14 @@ Item {
 
     Connections{
         target: phaseVar
-        function onVerified(){
+        function onVerified(){ Trace.t();
             confirmNextPopup.title = "Are you sure to move on?"
             confirmNextPopup.fromMessage = Backend.event.getConfirmNextPopupTextFrom();
             confirmNextPopup.toMessage = Backend.event.getConfirmNextPopupTextTo();
             confirmNextPopup.fOpen();
         }
 
-        function onVerificationFailed(message){
+        function onVerificationFailed(message){ Trace.t(message);
             infoPopup.title = "Phase data are not valid!";
             infoPopup.splitText = true;
             infoPopup.message = message;
@@ -91,7 +93,7 @@ Item {
                                 text: qsTr("Phase ") + modelData.name
                                 font.pixelSize: 22
                                 checkable: false
-                                onClicked: {
+                                onClicked: { Trace.t();
                                     stackLayout.currentIndex = index
                                 }
                             }
@@ -162,7 +164,7 @@ Item {
             }
             // width: 2*height
             text: "Settings"
-            onClicked: {
+            onClicked: { Trace.t();
                 playStackView.push(settingsComponent.createObject(playStackView));
             }
         }
@@ -201,7 +203,7 @@ Item {
                 verticalCenter: parent.verticalCenter
             }
             text: "Next"
-            onClicked: {
+            onClicked: { Trace.t();
                 log.i("next pressed",
                       "Phase.qml -> nextButton -> onClicked",
                       log.toAction("save session"))
@@ -218,7 +220,7 @@ Item {
             }
             text: "Set Example Data"
             visible: Backend.isDebugMode
-            onClicked:{
+            onClicked:{ Trace.t();
                 phase.phaseVar.assignExampleData();
             }
         }
@@ -232,7 +234,7 @@ Item {
             }
             text: "Set Example Data And Go Next"
             visible: Backend.isDebugMode
-            onClicked:{
+            onClicked:{ Trace.t();
                 exampleDataButton.clicked();
                 nextButton.clicked();
             }

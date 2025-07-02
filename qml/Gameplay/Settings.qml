@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
+import "../Trace.js" as Trace
+
 Item {
     id: settings
 
@@ -28,7 +30,7 @@ Item {
                 leftMargin: 5
             }
             text: "Back"
-            onClicked: {
+            onClicked: { Trace.t();
                 playStackView.pop();
             }
         }
@@ -41,7 +43,7 @@ Item {
         }
         // width: 2*height
         text: "Restart event"
-        onClicked: {
+        onClicked: { Trace.t();
             rootLoader.source = "";
             Backend.restartEvent();
         }

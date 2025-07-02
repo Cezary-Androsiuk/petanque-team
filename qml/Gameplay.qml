@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Controls.Material
 
+import "Trace.js" as Trace
+
 Item {
     id: gameplay
     anchors.fill: parent
@@ -31,7 +33,7 @@ Item {
         }
     }
 
-    Component.onDestruction: {
+    Component.onDestruction: { Trace.t();
         Backend.memory.save();
     }
 

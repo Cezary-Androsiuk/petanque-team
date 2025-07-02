@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
+import "../../Trace.js" as Trace
+
 Item {
     id: match
     width: parent.width
@@ -20,7 +22,7 @@ Item {
                 "Match/GroupMatch.qml";
         }
     }
-    onCurrentMatchTypeFileChanged: {
+    onCurrentMatchTypeFileChanged: { Trace.t();
         var param = {
             matchVar: match.matchVar
         }

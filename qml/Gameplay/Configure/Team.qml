@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
+import "../../Trace.js" as Trace
+
 import "../../Popups"
 
 Item {
@@ -19,12 +21,12 @@ Item {
         log.w("now while editing existing team his name can be changed to the invalid one", "Team.qml -> onCompleted")
     }
 
-    function randomNumber(topRange){
+    function randomNumber(topRange){ Trace.t(topRange);
         // [0, topRange) - topRange value is not included
         return Math.floor(Math.random() * topRange);
     }
 
-    function generateRandomTeamName(prefix, length) {
+    function generateRandomTeamName(prefix, length) { Trace.t(prefix, length);
         /// Claude AI stuff
         // const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -39,13 +41,13 @@ Item {
         return prefix + result;
     }
 
-    function setExampleTeamDataIfNeeded(){
+    function setExampleTeamDataIfNeeded(){ Trace.t();
         if(team.name === "")
             team.name = generateRandomTeamName("Team Nr=", 7) // 3521614606208 options
             // I am 250,000 times more likely to win the Lotto than to have the license number repeated here.
     }
 
-    function addNewPlayer(){
+    function addNewPlayer(){ Trace.t();
         configureTeam.team.createDetachedPlayer();
         const args = {
             parentStackView: configureTeam.parentStackView,
@@ -55,33 +57,33 @@ Item {
         parentStackView.push("Player.qml", args)
     }
 
-    function goBack(){
+    function goBack(){ Trace.t();
         parentStackView.pop();
     }
 
-    function cancelAddingTeam(){
+    function cancelAddingTeam(){ Trace.t();
         parentStackView.pop();
         event.deleteDetachedTeam();
     }
 
-    function saveAddedTeamAuto(){
+    function saveAddedTeamAuto(){ Trace.t();
         setExampleTeamDataIfNeeded();
 
         event.validateDetachedTeam();
     }
 
-    function saveAddedTeam(){
+    function saveAddedTeam(){ Trace.t();
         event.validateDetachedTeam();
     }
 
     Connections{
         target: event
-        function onDetachedTeamIsValid(){
+        function onDetachedTeamIsValid(){ Trace.t();
             parentStackView.pop();
             event.addDetachedTeam();
         }
 
-        function onDetachedTeamValidationFailed(message){
+        function onDetachedTeamValidationFailed(message){ Trace.t();
             log.i(message, "Team.qml->onDetachedTeamValidationFailed")
         }
     }
@@ -155,7 +157,7 @@ Item {
                     Button{
                         anchors.fill: parent
                         text: qsTr("Add new player")
-                        onClicked: {
+                        onClicked: { Trace.t();
                             configureTeam.addNewPlayer()
                         }
                     }
@@ -201,7 +203,7 @@ Item {
 
                 placeholderText: qsTr("Team Name")
                 text: (!configureTeam.team)?text: configureTeam.team.name
-                onTextEdited: {
+                onTextEdited: { Trace.t();
                     if(configureTeam.team)
                     {
                         configureTeam.team.name = text
@@ -234,7 +236,7 @@ Item {
             text: "back"
 
             visible: configureTeam.edit
-            onClicked: {
+            onClicked: { Trace.t();
                 configureTeam.goBack();
             }
         }
@@ -260,7 +262,7 @@ Item {
                     verticalCenter: parent.verticalCenter
                 }
                 text: "cancel"
-                onClicked: {
+                onClicked: { Trace.t();
                     configureTeam.cancelAddingTeam();
                 }
             }
@@ -278,7 +280,7 @@ Item {
                     verticalCenter: parent.verticalCenter
                 }
                 text: "save team"
-                onClicked: {
+                onClicked: { Trace.t();
                     configureTeam.saveAddedTeam();
                 }
             }
@@ -290,7 +292,7 @@ Item {
                 }
                 text: "save team auto"
                 visible: Backend.isDebugMode
-                onClicked: {
+                onClicked: { Trace.t();
                     configureTeam.saveAddedTeamAuto();
                 }
             }

@@ -95,6 +95,7 @@ qt_add_qml_module(${PROJECT_NAME}
 
 
     RESOURCES icons/appIcon/PetanqueTeam.png
+    QML_FILES qml/Trace.js
 
 )
 

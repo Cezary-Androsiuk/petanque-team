@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
+import "../Trace.js" as Trace
+
 Item {
     id: finish
     anchors.fill: parent
@@ -45,7 +47,7 @@ Item {
             anchors.centerIn: parent
 
             text: "end event"
-            onClicked: {
+            onClicked: { Trace.t();
                 rootLoader.source = "";
                 Backend.restartEvent();
             }

@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
+import "../Trace.js" as Trace
+
 Popup {
     id: confirmNextPopup
     parent: rootWindowCenterPopupAnchor
@@ -9,17 +11,17 @@ Popup {
 
     property bool openedByFOpen: false
 
-    onAboutToShow: {
+    onAboutToShow: { Trace.t();
         if(!openedByFOpen)
             log.e("popup opened by open(), not fOpen()!", "ConfirmNextPopup.qml")
         rootWindowPopupDimmer.show();
     }
 
-    onAboutToHide: {
+    onAboutToHide: { Trace.t();
         rootWindowPopupDimmer.hide();
     }
 
-    function fOpen(){
+    function fOpen(){ Trace.t();
         openedByFOpen = true;
         if(!Backend.enabledPopups)
         {
@@ -30,7 +32,7 @@ Popup {
         confirmNextPopup.open();
     }
 
-    function fClose(){
+    function fClose(){ Trace.t();
         openedByFOpen = false;
         confirmNextPopup.close();
     }
@@ -155,7 +157,7 @@ Popup {
                     anchors.verticalCenter: parent.verticalCenter
                     x: popupBody.spaceBeetweenButtons
                     width: popupBody.buttonWidth
-                    onClicked:{
+                    onClicked:{ Trace.t();
                         confirmNextPopup.fClose();
                     }
                 }
@@ -166,7 +168,7 @@ Popup {
                     anchors.verticalCenter: parent.verticalCenter
                     x: popupBody.spaceBeetweenButtons *2 + popupBody.buttonWidth
                     width: popupBody.buttonWidth
-                    onClicked:{
+                    onClicked:{ Trace.t();
                         confirmNextPopup.fClose();
                         confirmNextPopup.confirmed();
                     }

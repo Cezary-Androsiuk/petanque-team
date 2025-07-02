@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
+import "../../Trace.js" as Trace
+
 import "../../Popups"
 
 Item{
@@ -16,7 +18,7 @@ Item{
 
     clip: true
 
-    function editTeam(){
+    function editTeam(){ Trace.t();
         const args = {
             edit: true,
             parentStackView: teamDelegate.parentStackView,
@@ -25,7 +27,7 @@ Item{
         parentStackView.push("Team.qml", args)
     }
 
-    function addNewPlayer(){
+    function addNewPlayer(){ Trace.t();
         teamDelegate.team.createDetachedPlayer();
         const args = {
             parentStackView: teamDelegate.parentStackView,
@@ -35,17 +37,17 @@ Item{
         parentStackView.push("Player.qml", args)
     }
 
-    function deleteTeam(){
+    function deleteTeam(){ Trace.t();
         Backend.event.deleteTeam(team);
     }
 
-    function extendTeam(){
+    function extendTeam(){ Trace.t();
         extended = !extended
     }
 
     AskPopup{
         id: askDeleteTeamPopup
-        onConfirmed: {
+        onConfirmed: { Trace.t();
             teamDelegate.deleteTeam()
         }
     }
@@ -102,7 +104,7 @@ Item{
 
                 text: "delete"
 
-                onClicked:{
+                onClicked:{ Trace.t();
                     askDeleteTeamPopup.title = "Are you sure to delete Team?"
                     askDeleteTeamPopup.fOpen()
                 }
@@ -119,7 +121,7 @@ Item{
 
                 text: "edit"
 
-                onClicked: {
+                onClicked: { Trace.t();
                     teamDelegate.editTeam()
                 }
             }
@@ -135,7 +137,7 @@ Item{
 
                 text: teamDelegate.extended ? "^" : "v"
 
-                onClicked: {
+                onClicked: { Trace.t();
                     teamDelegate.extendTeam()
                 }
             }
@@ -192,7 +194,7 @@ Item{
                     Button{
                         anchors.fill: parent
                         text: qsTr("Add new player")
-                        onClicked: {
+                        onClicked: { Trace.t();
                             teamDelegate.addNewPlayer()
                         }
                     }

@@ -1,13 +1,15 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
+import "../../Trace.js" as Trace
+
 Item {
     id: teamsList
 
     required property var parentStackView
     readonly property int delegateHeight: 50
 
-    function addNewTeam(){
+    function addNewTeam(){ Trace.t();
         Backend.event.createDetachedTeam()
         const args = {
             parentStackView: teamsList.parentStackView,
@@ -53,7 +55,7 @@ Item {
             Button{
                 anchors.fill: parent
                 text: qsTr("Add new team")
-                onClicked: {
+                onClicked: { Trace.t();
                     teamsList.addNewTeam();
                 }
             }

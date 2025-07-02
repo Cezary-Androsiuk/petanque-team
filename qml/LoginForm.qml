@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Controls.Material
 
+import "Trace.js" as Trace
+
 Item {
     id: loginForm
     anchors.fill: parent
@@ -13,14 +15,14 @@ Item {
 
     property bool youSpinMeRound: false
 
-    Component.onCompleted: {
+    Component.onCompleted: { Trace.t();
         rootWindow.minimumWidth = targetWidth + 50;
         rootWindow.minimumHeight = targetHeight + 50;
     }
 
     Connections{
         target: Backend.login
-        function onAuthenticationFailed(message){
+        function onAuthenticationFailed(message){ Trace.t();
             log.i("Received failed authentication signal: " + message)
             errorInfoLabel.visible = true
             errorInfoLabel.text = message
@@ -29,7 +31,7 @@ Item {
     }
 
     function authenticate(login, password)
-    {
+    { Trace.t();
         errorInfoLabel.visible = false
 
         if(Backend.isDebugMode)
@@ -58,7 +60,7 @@ Item {
     MouseArea{
         id: looseFocus
         anchors.fill: parent
-        onClicked:{
+        onClicked:{ Trace.t();
             loginForm.focus = true
         }
     }
@@ -109,7 +111,7 @@ Item {
 
             checked: false
             text: qsTr("Show Password")
-            onCheckedChanged: {
+            onCheckedChanged: { Trace.t();
                 passwordTextField.echoMode =
                         checked ? TextInput.Normal : TextInput.Password;
             }
@@ -124,7 +126,7 @@ Item {
 
             checked: Personalization.useExternalServer
             text: qsTr("Use External Server")
-            onCheckedChanged: {
+            onCheckedChanged: { Trace.t();
                 Personalization.useExternalServer = checked;
             }
         }
@@ -151,7 +153,7 @@ Item {
             height: 60
 
             text: qsTr("Login")
-            onClicked:{
+            onClicked:{ Trace.t();
                 authenticate(loginTextField.text, passwordTextField.text);
             }
         }

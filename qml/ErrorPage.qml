@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Controls.Material
 
+import "Trace.js" as Trace
+
 Item {
     id: errorPage
     anchors.fill: parent
@@ -8,7 +10,7 @@ Item {
     required property string pageTitle;
     required property string pageMessage;
 
-    Component.onCompleted: {
+    Component.onCompleted: { Trace.t();
         rootWindow.minimumWidth = titleLabel.width + 50;
         rootWindow.minimumHeight = 400;
     }
@@ -83,7 +85,7 @@ Item {
         }
         text: "Refresh"
 
-        onClicked:{
+        onClicked:{ Trace.t();
             textArea.text = "";
             textArea.text = log.sessionLogs;
         }

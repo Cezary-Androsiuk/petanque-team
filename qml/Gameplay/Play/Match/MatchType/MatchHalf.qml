@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
+import "../../../../Trace.js" as Trace
+
 Item {
     id: matchHalf
 
@@ -82,7 +84,7 @@ Item {
                             matchHalf.matchVar.matchPoints[index]
                         }
 
-                        onValueChanged: {
+                        onValueChanged: { Trace.t();
                             matchHalf.matchVar.setGroupPoints(index, value);
                             focus = false; // prevents keeping spinbox constantly selected
                         }

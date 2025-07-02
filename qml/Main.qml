@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Controls.Material
 
+import "Trace.js" as Trace
+
 ApplicationWindow {
     id: rootWindow
 
@@ -35,50 +37,19 @@ ApplicationWindow {
 
     Connections{
         target: DoubleStartProtection
-        function onApplicationIsAlreadyRunning(){
+        function onApplicationIsAlreadyRunning(){ Trace.t();
             rootLoader.source = "AppAlreadyRunning.qml" // sets own min height/width
         }
 
-        function onVerified(){
+        function onVerified(){ Trace.t();
+            log.t("Main.qml", "onVerified()", 44)
             rootLoader.source = "LoginForm.qml" // sets own min height/width
         }
     }
 
-    function getStackTrace() {
-        try {
-            // Rzucamy i łapiemy błąd, aby uzyskać stack trace
-            throw new Error("Stack trace capture");
-        } catch (error) {
-            return error.stack;
-        }
-    }
-
-    function test(){
-        console.log("vvvvvvvvvvvvvvvvv")
-        // console.trace();
-        var t = getStackTrace();
-        console.log(t);
-        console.log(typeof(t))
-        console.log("=================")
-        for(var i=0; i<t.length; i++)
-            console.log(i, ": '", t[i], "', ", t[i].charCodeAt(0))
-        console.log("=================")
-
-
-        console.log("^^^^^^^^^^^^^^^^^")
-    }
-
     Connections{
         target: Backend.login
-        function onAuthenticated(){
-            // console.log("vvvvvvvvvvvvvvvvv")
-            // // console.trace();
-            // var t = getStackTrace();
-            // console.log(t);
-            // console.log(typeof(t))
-            // test();
-            // console.log("^^^^^^^^^^^^^^^^^")
-            // exit(1);
+        function onAuthenticated(){ Trace.t();
             log.i("authenticated login" , "Main.qml -> onAuthenticated")
             Backend.memory.load()
         }
@@ -86,7 +57,7 @@ ApplicationWindow {
 
     Connections{
         target: Backend
-        function onRestartedEvent(){
+        function onRestartedEvent(){ Trace.t();
             Backend.event.goToNextStage() // from Stage None to Configure
             rootLoader.source = "Gameplay.qml"
         }
@@ -94,27 +65,27 @@ ApplicationWindow {
 
     Connections{
         target: Backend.memory
-        function onMemoryFileNotExist(){
+        function onMemoryFileNotExist(){ Trace.t();
             Backend.event.goToNextStage(); // from Stage None to Configure
             rootLoader.source = "Gameplay.qml";
         }
 
-        function onMemoryLoaded(){
+        function onMemoryLoaded(){ Trace.t();
             rootLoader.source = "Gameplay.qml"
         }
 
-        function onMemoryLoadError(message){
+        function onMemoryLoadError(message){ Trace.t(message);
             // open page with "cannot start application" and display current session from Logs
             let title = "Error while loading Memory!"
             rootLoader.setSource("ErrorPage.qml", { pageTitle: title, pageMessage: message })
             log.e("error occur while loading memory: " + message, this.target.toString() + " onMemoryLoadError")
         }
 
-        function onMemorySaved(){
+        function onMemorySaved(){ Trace.t();
             // send to server
         }
 
-        function onMemorySaveError(message){
+        function onMemorySaveError(message){ Trace.t(message);
             log.w("error occur while saving memory: " + message)
         }
     }
@@ -123,7 +94,7 @@ ApplicationWindow {
     Loader{
         id: rootLoader
         anchors.fill: parent
-        onLoaded: {
+        onLoaded: { Trace.t();
             rootWindow.visible = true
         }
     }
@@ -136,10 +107,10 @@ ApplicationWindow {
 
         readonly property double dimmerOpacity: 0.8
 
-        function show(){
+        function show(){ Trace.t();
             opacity = dimmerOpacity;
         }
-        function hide(){
+        function hide(){ Trace.t();
             opacity = 0;
         }
 

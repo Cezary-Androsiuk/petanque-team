@@ -1,11 +1,13 @@
 import QtQuick
 import QtQuick.Controls.Material
 
+import "Trace.js" as Trace
+
 Item {
     id: applicationIsAlreadyRunning
     anchors.fill: parent
 
-    Component.onCompleted: {
+    Component.onCompleted: { Trace.t();
         rootWindow.minimumWidth = label.width + 50;
         rootWindow.minimumHeight = label.height + 50;
     }

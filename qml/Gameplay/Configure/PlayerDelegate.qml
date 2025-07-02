@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
+import "../../Trace.js" as Trace
+
 import "../../Popups"
 
 Item{
@@ -12,7 +14,7 @@ Item{
 
     clip: true
 
-    function editPlayer(){
+    function editPlayer(){ Trace.t();
         const args = {
             edit: true,
             parentStackView: playerDelegate.parentStackView,
@@ -24,7 +26,7 @@ Item{
 
     AskPopup{
         id: askDeletePlayerPopup
-        onConfirmed: {
+        onConfirmed: { Trace.t();
             console.log("onConfirmed", player)
             playerDelegate.team.deletePlayer(playerDelegate.player);
         }
@@ -78,7 +80,7 @@ Item{
 
             text: "delete"
 
-            onClicked:{
+            onClicked:{ Trace.t();
                 console.log("onClicked ",player)
                 askDeletePlayerPopup.title = "Are you sure to delete Player?"
                 askDeletePlayerPopup.fOpen();
@@ -96,7 +98,7 @@ Item{
 
             text: "edit"
 
-            onClicked: {
+            onClicked: { Trace.t();
                 playerDelegate.editPlayer();
             }
         }

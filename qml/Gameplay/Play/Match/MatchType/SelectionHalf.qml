@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
+import "../../../../Trace.js" as Trace
+
 Item {
     id: selectionHalf
 
@@ -73,7 +75,7 @@ Item {
                         currentIndex: selectionHalf.selectionVar.playerSelections[index]+1
                         model: selectionHalf.selectionVar.comboBoxModel
 
-                        onCurrentIndexChanged: {
+                        onCurrentIndexChanged: { Trace.t();
                             selectionHalf.selectionVar.setPlayerGroup(index, currentIndex-1)
                         }
                     }

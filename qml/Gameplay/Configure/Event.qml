@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
+import "../../Trace.js" as Trace
+
 import "../../Popups"
 
 Item {
@@ -13,14 +15,14 @@ Item {
 
     Connections{
         target: Backend.event
-        function onEventValid(){
+        function onEventValid(){ Trace.t();
             confirmNextRoundStagePopup.fromMessage = "Configure"
             confirmNextRoundStagePopup.toMessage = "Play"
             confirmNextRoundStagePopup.title = "Are you sure to move on?"
             confirmNextRoundStagePopup.fOpen();
         }
 
-        function onEventValidationFailed(description){
+        function onEventValidationFailed(description){ Trace.t(description);
             failedEventCreationInfoPopup.title = "Event data are not valid!";
             failedEventCreationInfoPopup.splitText = true;
             failedEventCreationInfoPopup.message = description;
@@ -30,7 +32,7 @@ Item {
 
     ConfirmNextPopup{
         id: confirmNextRoundStagePopup
-        onConfirmed: {
+        onConfirmed: { Trace.t();
             Backend.memory.save(); // saves data
             Backend.event.startFirstPhase();
             Backend.event.goToNextStage() // changes stage from Configure to Play(Continue)
@@ -179,7 +181,7 @@ Item {
             }
 
             text: "start event"
-            onClicked: {
+            onClicked: { Trace.t();
                 Backend.event.validateEvent();
             }
         }
@@ -192,7 +194,7 @@ Item {
                 verticalCenter: parent.verticalCenter
             }
             text: "create example data"
-            onClicked:{
+            onClicked:{ Trace.t();
                 Backend.event.assignExampleData();
             }
         }

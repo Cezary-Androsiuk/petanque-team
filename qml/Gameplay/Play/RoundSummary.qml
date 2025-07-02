@@ -2,6 +2,8 @@ import QtQuick 2.15
 import QtQuick.Controls.Material
 import QtQuick.Layouts
 
+import "../../Trace.js" as Trace
+
 import "RoundSummary"
 
 Item {
@@ -37,7 +39,7 @@ Item {
                         text: qsTr("Summary")
                         font.pixelSize: 22
                         checkable: false
-                        onClicked: {
+                        onClicked: { Trace.t();
                             stackLayout.currentIndex = 0
                         }
                     }
@@ -59,7 +61,7 @@ Item {
                         text: qsTr("Ranking")
                         font.pixelSize: 22
                         checkable: false
-                        onClicked: {
+                        onClicked: { Trace.t();
                             stackLayout.currentIndex = 1
                         }
                     }

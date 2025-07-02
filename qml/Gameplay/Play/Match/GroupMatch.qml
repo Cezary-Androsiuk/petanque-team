@@ -1,5 +1,7 @@
 import QtQuick 2.15
 
+import "../../../Trace.js" as Trace
+
 import "MatchType"
 
 Item {
@@ -11,7 +13,7 @@ Item {
     width: parent.width
     height: (leftHalf.height > rightHalf.height) ? leftHalf.height : rightHalf.height
 
-    Component.onCompleted: {
+    Component.onCompleted: { Trace.t();
         curMatchType.initMatch()
     }
 

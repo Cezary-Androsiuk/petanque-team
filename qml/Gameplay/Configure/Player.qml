@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls.Material
 
+import "../../Trace.js" as Trace
+
 import "../../Popups"
 
 Item {
@@ -15,16 +17,16 @@ Item {
     property int footerHeight: 70
     property int delegateHeight: 50
 
-    Component.onCompleted: {
+    Component.onCompleted: { Trace.t();
         log.w("now while editing existing player his license, and other values can be changed to the invalid one", "Player.qml -> onCompleted")
     }
 
-    function randomNumber(topRange){
+    function randomNumber(topRange){ Trace.t(topRange);
         // [0, topRange) - topRange value is not included
         return Math.floor(Math.random() * topRange);
     }
 
-    function generateRandomLicense(length) {
+    function generateRandomLicense(length) { Trace.t(length);
         /// Claude AI stuff
         // const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -39,7 +41,7 @@ Item {
         return result;
     }
 
-    function setExamplePlayerDataIfNeeded(){
+    function setExamplePlayerDataIfNeeded(){ Trace.t();
         var allImportantFieldsWereEmpty = true;
         if(player.firstName === "")
             player.firstName = "Jan"
@@ -67,33 +69,33 @@ Item {
         }
     }
 
-    function goBack(){
+    function goBack(){ Trace.t();
         parentStackView.pop();
     }
 
-    function cancelAddingPlayer(){
+    function cancelAddingPlayer(){ Trace.t();
         parentStackView.pop();
         team.deleteDetachedPlayer();
     }
 
-    function saveAddedPlayerAuto(){
+    function saveAddedPlayerAuto(){ Trace.t();
         setExamplePlayerDataIfNeeded();
 
         team.validateDetachedPlayer();
     }
 
-    function saveAddedPlayer(){
+    function saveAddedPlayer(){ Trace.t();
         team.validateDetachedPlayer();
     }
 
     Connections{
         target: team
-        function onDetachedPlayerIsValid(){
+        function onDetachedPlayerIsValid(){ Trace.t();
             parentStackView.pop();
             team.addDetachedPlayer();
         }
 
-        function onDetachedPlayerValidationFailed(message){
+        function onDetachedPlayerValidationFailed(message){ Trace.t();
             log.i(message, "Player.qml->onDetachedPlayerValidationFailed")
         }
     }
@@ -137,7 +139,7 @@ Item {
 
             placeholderText: qsTr("First Name")
             text: (!configurePlayer.player)?text: configurePlayer.player.firstName
-            onTextEdited: {
+            onTextEdited: { Trace.t();
                 if(configurePlayer.player)
                     configurePlayer.player.firstName = text
             }
@@ -154,7 +156,7 @@ Item {
 
             placeholderText: qsTr("Last Name")
             text: (!configurePlayer.player)?text: configurePlayer.player.lastName
-            onTextEdited: {
+            onTextEdited: { Trace.t();
                 if(configurePlayer.player)
                     configurePlayer.player.lastName = text
             }
@@ -171,7 +173,7 @@ Item {
 
             placeholderText: qsTr("License")
             text: (!configurePlayer.player)?text: configurePlayer.player.license
-            onTextEdited: {
+            onTextEdited: { Trace.t();
                 if(configurePlayer.player)
                     configurePlayer.player.license = text
             }
@@ -186,7 +188,7 @@ Item {
             model: ["Junior", "Youth", "Senior", "Veteran"]
             currentIndex: (!configurePlayer.player)?currentIndex: configurePlayer.player.ageGroup
 
-            onCurrentIndexChanged: {
+            onCurrentIndexChanged: { Trace.t();
                 if(configurePlayer.player)
                     configurePlayer.player.ageGroup = currentIndex
             }
@@ -201,7 +203,7 @@ Item {
             model: ["Male", "Female"]
             currentIndex: (!configurePlayer.player)?currentIndex: configurePlayer.player.gender
 
-            onCurrentIndexChanged: {
+            onCurrentIndexChanged: { Trace.t();
                 if(configurePlayer.player)
                     configurePlayer.player.gender = currentIndex
             }
@@ -214,7 +216,7 @@ Item {
                 topMargin: 10
             }
             checked: (!configurePlayer.player)?checked: configurePlayer.player.isTeamLeader
-            onCheckedChanged: {
+            onCheckedChanged: { Trace.t();
                 if(configurePlayer.player)
                 {
                     if(checked === configurePlayer.player.isTeamLeader)
@@ -255,7 +257,7 @@ Item {
             }
             text: "back"
             visible: configurePlayer.edit
-            onClicked: {
+            onClicked: { Trace.t();
                 configurePlayer.goBack();
             }
         }
@@ -281,7 +283,7 @@ Item {
                     verticalCenter: parent.verticalCenter
                 }
                 text: "cancel"
-                onClicked: {
+                onClicked: { Trace.t();
                     configurePlayer.cancelAddingPlayer();
                 }
             }
@@ -299,7 +301,7 @@ Item {
                     verticalCenter: parent.verticalCenter
                 }
                 text: "save player"
-                onClicked: {
+                onClicked: { Trace.t();
                     configurePlayer.saveAddedPlayer();
                 }
             }
@@ -312,7 +314,7 @@ Item {
                 }
                 text: "save player auto"
                 visible: Backend.isDebugMode
-                onClicked: {
+                onClicked: { Trace.t();
                     configurePlayer.saveAddedPlayerAuto();
                 }
             }
