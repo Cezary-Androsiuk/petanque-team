@@ -240,6 +240,12 @@ public:
     void raw(cstr func, cestr log, Action action = Action(Action::All));
 
     void trace(cstr file, cstr func, int line, const void *ptr, cestr args);
+#if USE_QT_SUPPORT
+    void traceQML(cstr file, cstr func, int line, cestr args);
+#endif
+private:
+    void _trace(cstr file, cstr func, int line, const void *ptr, cestr args, bool isQMLTrace);
+public:
 
     static estr asprintf(const char *text, ...);
     static estr asprintf(cestr text, ...);

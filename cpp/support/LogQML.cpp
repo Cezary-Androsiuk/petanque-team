@@ -73,6 +73,11 @@ void LogQML::d(cQS log, QString func, Log::Action action)
     Log::getInstance()->debug( QML_LOG_PREFIX(func), log, action );
 }
 
+void LogQML::t(cQS file, cQS func, int line, cQS funcArgs)
+{
+    Log::getInstance()->traceQML(file.toStdString(), func.toStdString(), line, funcArgs);
+}
+
 QString LogQML::getCurrentSession()
 {
     return Log::getInstance()->getCurrentSession().c_str();

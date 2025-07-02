@@ -8,7 +8,7 @@
 #include <cstring>
 #include <filesystem>
 
-const char *version = "v1.10.1";
+const char *version = "v1.11.1";
 #if SPLIT_DEBUG_AND_TRACE_LOGS
 const char *debugLogsOutputDirectory = "logs/debug/";
 const char *traceLogsOutputDirectory = "logs/trace/";
@@ -169,6 +169,17 @@ void Log::raw(cstr func, cestr log, Action action)
 
 void Log::trace(cstr file, cstr func, int line, const void *ptr, cestr args)
 {
+    Log::_trace(file, func, line, ptr, args, false);
+}
+#if USE_QT_SUPPORT
+void Log::traceQML(cstr file, cstr func, int line, cestr args)
+{
+    Log::_trace(file, func, line, nullptr, args, true);
+}
+#endif
+
+void Log::_trace(cstr file, cstr func, int line, const void *ptr, cestr args, bool isQMLTrace)
+{
     std::string time;
 
     try{
@@ -184,7 +195,13 @@ void Log::trace(cstr file, cstr func, int line, const void *ptr, cestr args)
     static constexpr int fileLen = MAX_FILES_IN_PROJECT_COUNT_NUMBER_LENGTH;
     const std::string lineFormat = "%" + std::to_string(lineLen) + "d";
     const std::string fileFormat = "%" + std::to_string(fileLen) + "d";
-    std::string format = "T " +fileFormat+ "|" +lineFormat+ "|%p|%s|[%s]";
+    std::string format;
+    if(isQMLTrace)
+        /// assert that pointers has this duration "000001c8c42ed340"
+        /// at start this can be easy computed and stored in variable
+        format = "T " +fileFormat+ "|" +lineFormat+ "|       QML      |%s|[%s]";
+    else
+        format = "T " +fileFormat+ "|" +lineFormat+ "|%p|%s|[%s]";
 
     /// compute index from file name - save space in trace file
     int filePathIndex = 0;
@@ -207,11 +224,20 @@ void Log::trace(cstr file, cstr func, int line, const void *ptr, cestr args)
     }
 
     /// create trace line
-    std::string traceLine = asprintf(format.c_str(), filePathIndex, line, ptr, func.c_str(),
+    std::string traceLine;
+    if(isQMLTrace)
+        traceLine = asprintf(format.c_str(), filePathIndex, line, func.c_str(),
 #if USE_QT_SUPPORT
-                                     args.toStdString().c_str()).toStdString();
+                             args.toStdString().c_str()).toStdString();
 #else
-                                     args.c_str());
+                             args.c_str());
+#endif /// USE_QT_SUPPORT
+    else
+        traceLine = asprintf(format.c_str(), filePathIndex, line, ptr, func.c_str(),
+#if USE_QT_SUPPORT
+                             args.toStdString().c_str()).toStdString();
+#else
+                             args.c_str());
 #endif /// USE_QT_SUPPORT
 
     try{

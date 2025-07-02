@@ -24,7 +24,7 @@ public slots:
     void w(cQS log, QString func = "", Log::Action action = Log::Action::All);
     void e(cQS log, QString func = "", Log::Action action = Log::Action::All);
     void d(cQS log, QString func = "", Log::Action action = Log::Action::All);
-    // void t(cQS log, QString func = "", Log::Action action = Log::Action::All);
+    void t(cQS file, cQS func, int line = 0, cQS funcArgs = "");
 
     QString getCurrentSession();
 
