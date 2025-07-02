@@ -69,14 +69,14 @@ signals:
     void matchesChanged();
 
 private:
-    /// holds current round stage (SinglesSelection, SinglesMatch, ...)
+    /// holds current round stage (SinglesSelection, SinglesMatch, ..., RoundSummary)
     RoundStageEnum m_currentRoundStage;
 
     /// arrangement - which team will fight with which
     /// 4 pairs when phase is First, and 2 pairs in each when phase is Second
     IntPairs m_arrangement; /// const list, set while creating object by setter
 
-    /// holds list of matches (count coresponds to arrangement size)
+    /// holds list of matches (count coresponds to m_arrangement size)
     MatchPtrList m_matches; /// const list, created while creating object by initMatches (before setting arrangement)
 
     /// reference teams list from subphases - used to pass reference single teams to matches
