@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.16)
 project(PetanqueTeam VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/assets/icons/appIcon/appicon.rc")
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
 
@@ -10,6 +11,7 @@ qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(${PROJECT_NAME}
     cpp/main.cpp
+    ${APP_ICON_RESOURCE_WINDOWS}
 )
 
 include_directories(${CMAKE_SOURCE_DIR}/cpp)
@@ -94,7 +96,7 @@ qt_add_qml_module(${PROJECT_NAME}
 
 
 
-    RESOURCES icons/appIcon/PetanqueTeam.png
+    RESOURCES assets/icons/appIcon/appicon.rc
     QML_FILES qml/Trace.js
 
 )
@@ -104,6 +106,7 @@ qt_add_qml_module(${PROJECT_NAME}
 # explicit, fixed bundle identifier manually though.
 set_target_properties(${PROJECT_NAME} PROPERTIES
 #    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.${PROJECT_NAME}
+    OUTPUT_NAME "Petanque Team"
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE

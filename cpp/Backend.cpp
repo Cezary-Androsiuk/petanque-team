@@ -3,6 +3,8 @@
 #include "support/Log.h"
 #include "DebugConstraints.h"
 
+const char *version = "v0.1.0";
+
 Backend::Backend(QObject *parent)
     : QObject{parent}
     , m_loginPtr(QSharedPointer<Login>::create(nullptr))

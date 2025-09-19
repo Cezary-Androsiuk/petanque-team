@@ -90,7 +90,6 @@ DOLTV_F(...)    - MyClass(int c, int b, int a){DOLTV_F("1, 2, 3") or DOLTV_F("1,
 
 // #include "LogSession.h"
 
-extern const char *version;
 #if SPLIT_DEBUG_AND_TRACE_LOGS
 extern const char *debugLogsOutputDirectory;
 extern const char *traceLogsOutputDirectory;
@@ -199,7 +198,8 @@ estr f_name(__FUNCTION__);                                              \
 
 
 class Log
-{
+{    
+static const char *version;
 public:
     enum class Type{
         Info,

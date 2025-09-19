@@ -8,7 +8,7 @@
 #include <cstring>
 #include <filesystem>
 
-const char *version = "v1.11.1";
+const char *Log::version = "v1.11.1";
 #if SPLIT_DEBUG_AND_TRACE_LOGS
 const char *debugLogsOutputDirectory = "logs/debug/";
 const char *traceLogsOutputDirectory = "logs/trace/";
@@ -337,12 +337,12 @@ void Log::logInfoAboutLogProperties()
     if(!m_debugLogFile.is_open())
         return;
 
-    m_debugLogFile << "> " << version << " # version\n\n";
+    m_debugLogFile << "> " << Log::version << " # version\n\n";
 #else
     if(!m_logFile.is_open())
         return;
 
-    m_logFile << "> " << version << " # version\n"
+    m_logFile << "> " << Log::version << " # version\n"
               << "> " << MAX_LINE_INDEX_NUMBER_LENGTH_IN_TRACE_LOG
               << " # MAX_LINE_INDEX_NUMBER_LENGTH_IN_TRACE_LOG\n"
               << "> " << MAX_FILES_IN_PROJECT_COUNT_NUMBER_LENGTH
@@ -356,7 +356,7 @@ void Log::logInfoAboutTraceProperties()
     if(!m_traceLogFile.is_open())
         return;
 
-    m_traceLogFile << "> " << version << " # version\n"
+    m_traceLogFile << "> " << Log::version << " # version\n"
                    << "> " << MAX_LINE_INDEX_NUMBER_LENGTH_IN_TRACE_LOG
                    << " # MAX_LINE_INDEX_NUMBER_LENGTH_IN_TRACE_LOG\n"
                    << "> " << MAX_FILES_IN_PROJECT_COUNT_NUMBER_LENGTH

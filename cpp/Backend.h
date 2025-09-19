@@ -9,6 +9,8 @@
 #include "objects/Event.h"
 #include "storages/Memory.h"
 
+extern const char *version;
+
 class Backend : public QObject
 {
     Q_OBJECT

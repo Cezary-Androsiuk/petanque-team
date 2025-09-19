@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     std::unique_ptr<QQmlApplicationEngine> engine =
         std::make_unique<QQmlApplicationEngine>();
 
-    app->setWindowIcon(QIcon("./PetanqueTeam/icons/appIcon/PetanqueTeam.png"));
+    app->setApplicationDisplayName(QString("Petanque Team ") + version);
 
     QPointer<Backend> backend(new Backend(app.get()));
     QPointer<LogQML> logQML(new LogQML(app.get()));
