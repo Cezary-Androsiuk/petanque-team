@@ -10,13 +10,6 @@ ApplicationWindow {
     height: 720
     visible: false
 
-    // onWidthChanged: {
-    //     console.log("w:" + width + " h:" + height)
-    // }
-    // onHeightChanged: {
-    //     console.log("w:" + width + " h:" + height)
-    // }
-
     Material.theme: Material.Dark
 
     /// Focus tracker START
@@ -42,7 +35,6 @@ ApplicationWindow {
         }
 
         function onVerified(){ Trace.t();
-            log.t("Main.qml", "onVerified()", 44)
             rootLoader.source = "LoginForm.qml" // sets own min height/width
         }
     }
@@ -95,7 +87,8 @@ ApplicationWindow {
         id: rootLoader
         anchors.fill: parent
         onLoaded: { Trace.t();
-            rootWindow.visible = true
+            // rootWindow.visible = true
+            rootWindow.showMaximized();
         }
     }
 

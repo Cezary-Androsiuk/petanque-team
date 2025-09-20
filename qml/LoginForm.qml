@@ -3,6 +3,8 @@ import QtQuick.Controls.Material
 
 import "Trace.js" as Trace
 
+import "Popups"
+
 Item {
     id: loginForm
     anchors.fill: parent
@@ -57,6 +59,14 @@ Item {
         Backend.login.authenticate(login, password)
     }
 
+    AskPopup{
+        id: askAboutExternalServer
+        title: "Without using external server all data will stay on local machine.\nContinue?"
+        onConfirmed: {
+            authenticate(loginTextField.text, passwordTextField.text);
+        }
+    }
+
     MouseArea{
         id: looseFocus
         anchors.fill: parent
@@ -83,6 +93,7 @@ Item {
                 left: parent.left
                 right: parent.right
             }
+
             height: 60
 
             placeholderText: qsTr("Login")
@@ -96,6 +107,7 @@ Item {
                 left: parent.left
                 right: parent.right
             }
+
             height: 60
 
             placeholderText: qsTr("Password")
@@ -154,7 +166,10 @@ Item {
 
             text: qsTr("Login")
             onClicked:{ Trace.t();
-                authenticate(loginTextField.text, passwordTextField.text);
+                if(!Personalization.useExternalServer)
+                    askAboutExternalServer.fOpen()
+                else
+                    authenticate(loginTextField.text, passwordTextField.text);
             }
         }
 
