@@ -24,12 +24,14 @@ Item {
         fromMessage: "?"
         toMessage: "?"
         onConfirmed: { Trace.t();
+            // if current phase (or any element under it) has next then go next
             if(phaseVar.hasNext())
             {
                 phaseVar.goToNext();
             }
             else
             {
+                // else change event phase from first phase or set finish stage
                 if(event.hasNextPhase())
                     event.startSecondPhase();
                 else
