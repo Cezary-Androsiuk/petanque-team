@@ -69,7 +69,7 @@ DOLTV_F(...)    - MyClass(int c, int b, int a){DOLTV_F("1, 2, 3") or DOLTV_F("1,
 #define CONTENT_SPACE_CHARACTER ' ' /// characters that fills space between function name and content
 #define SPACE_BETWEEN_CONTENT_SPACE_AND_CONTENT true /// creates spaces between space: "x ........ y" instead of "x........y"
 #define DISPLAY_OBJECT_LIFE_TIME true /// decides if Display Object Life Time (DOLT) is enabled
-#define ENABLE_TRACE_LOGGING true /// decides if trace logging is enabled and functions names will be saved to logs
+#define ENABLE_TRACE_LOGGING false /// decides if trace logging is enabled and functions names will be saved to logs
 #define MAX_LINE_INDEX_NUMBER_LENGTH_IN_TRACE_LOG 7 /// to keep logs pretty - assert that max lines count in any file is 9'999'999
 #define MAX_FILES_IN_PROJECT_COUNT_NUMBER_LENGTH 4 /// to keep logs pretty - assert that max count of files in project is 9'999
 
