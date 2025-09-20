@@ -32,7 +32,20 @@ void Event::initialize()
 QJsonObject Event::serialize() const
 {TRM;
     QJsonObject jEvent;
-    jEvent[ SERL_EVENT_NAME_KEY ] = m_name;
+
+    /// serialize event details
+    QJsonObject jEventDetails;
+    jEventDetails[ SERL_EVENT_NAME_KEY ] = m_name;
+    jEventDetails[ SERL_EVENT_FIRST_PHASE_DATE_KEY ] = m_firstPhaseDate;
+    jEventDetails[ SERL_EVENT_SECOND_PHASE_DATE_KEY ] = m_secondPhaseDate;
+    jEventDetails[ SERL_EVENT_COMPETITION_ORGANIZER_KEY ] = m_competitionOrganizer;
+    jEventDetails[ SERL_EVENT_FIRST_PHASE_PLACE_KEY ] = m_firstPhasePlace;
+    jEventDetails[ SERL_EVENT_SECOND_PHASE_PLACE_KEY ] = m_secondPhasePlace;
+    jEventDetails[ SERL_EVENT_JUDGES_KEY ] = QJsonArray::fromStringList(m_judges);
+    jEventDetails[ SERL_EVENT_UNION_DELEGATE_KEY ] = m_unionDelegate;
+
+    jEvent[ SERL_EVENT_DETAILS_KEY ] = jEventDetails;
+
     int currentPhaseInt = static_cast<int>(m_currentPhase);
     jEvent[ SERL_CURRENT_PHASE_KEY ] = currentPhaseInt;
     int currentStageInt = static_cast<int>(m_currentStage);
@@ -71,8 +84,23 @@ void Event::deserialize(const QJsonObject &jEvent)
     this->clear(false);
     // D("cleared to deserialize");
 
-    m_name = jEvent[ SERL_EVENT_NAME_KEY ].toString();
-    emit this->nameChanged();
+    /// deserialize event details
+    const QJsonObject jEventDetails = jEvent[ SERL_EVENT_DETAILS_KEY ].toObject();
+    this->setName( jEventDetails[ SERL_EVENT_NAME_KEY ].toString() );
+    this->setFirstPhaseDate( jEventDetails[ SERL_EVENT_FIRST_PHASE_DATE_KEY ].toString() );
+    this->setSecondPhaseDate( jEventDetails[ SERL_EVENT_SECOND_PHASE_DATE_KEY ].toString() );
+    this->setCompetitionOrganizer( jEventDetails[ SERL_EVENT_COMPETITION_ORGANIZER_KEY ].toString() );
+    this->setFirstPhasePlace( jEventDetails[ SERL_EVENT_FIRST_PHASE_PLACE_KEY ].toString() );
+    this->setSecondPhasePlace( jEventDetails[ SERL_EVENT_SECOND_PHASE_PLACE_KEY ].toString() );
+    const QJsonArray jsonJudges = jEventDetails[ SERL_EVENT_JUDGES_KEY ].toArray();
+    m_judges.clear();
+    m_judges.reserve(jsonJudges.size());
+    for(int i=0; i<jsonJudges.size(); i++)
+    {
+        m_judges.append(jsonJudges[i].toString());
+    }
+    emit this->judgesChanged();
+    this->setUnionDelegate( jEventDetails[ SERL_EVENT_UNION_DELEGATE_KEY ].toString() );
 
     int currentPhaseInt = jEvent[ SERL_CURRENT_PHASE_KEY ].toInt();
     m_currentPhase = static_cast<PhaseEnum>(currentPhaseInt);

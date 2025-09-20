@@ -13,7 +13,16 @@
 #include "enums/StageEnum.h"
 
 /// KEYS FOR JSON - SERIALIZE AND DESERIALIZE PURPOSES
-#define SERL_EVENT_NAME_KEY     "name"
+#define SERL_EVENT_DETAILS_KEY                  "event details"
+#define SERL_EVENT_NAME_KEY                     "event name"
+#define SERL_EVENT_FIRST_PHASE_DATE_KEY         "event first phase date"
+#define SERL_EVENT_SECOND_PHASE_DATE_KEY        "event second phase date"
+#define SERL_EVENT_COMPETITION_ORGANIZER_KEY    "event competition organizer"
+#define SERL_EVENT_FIRST_PHASE_PLACE_KEY        "event first phase place"
+#define SERL_EVENT_SECOND_PHASE_PLACE_KEY       "event second phase place"
+#define SERL_EVENT_JUDGES_KEY                   "event judges"
+#define SERL_EVENT_UNION_DELEGATE_KEY           "event union delegate"
+
 #define SERL_CURRENT_PHASE_KEY  "current phase"
 #define SERL_CURRENT_STAGE_KEY  "current stage"
 #define SERL_PHASE_FIRST_KEY    "phase first"
