@@ -5,61 +5,87 @@ import "../../Trace.js" as Trace
 
 Item {
     id: infoField
-    height: childrenRect.height + 20
+    height: column.implicitHeight
 
-   readonly property var event: Backend.event
+    // MouseArea{
+    //     id: looseFocus
+    //     anchors.fill: parent
+    //     onClicked:{
+    //         infoField.focus = true
+    //     }
+    // }
 
-    TextField{
-        id: eventNameTextField
+    Item{
         anchors{
-            top: parent.top
-            topMargin: 10
+            fill: parent
+            margins: 16
         }
-        height: 60
-        width: 230
 
-        placeholderText: qsTr("Event name")
-        text: (!event)?null: event.name
-        onTextEdited: { Trace.t();
-            console.log("Backend: ", Backend)
-            console.log("Backend.event: ", Backend.event)
-            console.log("Backend.event.name: ", Backend.event.name)
-            Backend.event.name = text // what you mean read-only object?
+        Column{
+            id: column
+            width: parent.width
+            spacing: 10
+
+            TextField{
+                id: eventNameTextField
+                height: 60
+                width: 230
+
+                placeholderText: qsTr("Event name")
+                text: (!event)?null: event.name
+                onTextEdited: { Trace.t();
+                    Backend.event.name = text // what you mean read-only object?
+                }
+            }
+
+            Row{
+                id: date1Item
+                height: childrenRect.height
+                width: childrenRect.width
+                spacing: 10
+
+                TextField{
+                    id: date1TextField
+                    height: 60
+                    width: 230
+
+                    placeholderText: qsTr("First phase date")
+                    text: ""//(!event)?null: event.date
+                    onTextEdited: {
+                        event.date = text
+                    }
+                }
+
+                Button{
+                    id: setTodayDateButton
+                    anchors.verticalCenter: date1TextField.verticalCenter
+
+                    text: qsTr("Todays Date")
+                    onClicked: {
+                        var now = new Date();
+                        var todaysDate = now.toISOString().slice(0, 10); // Gemini
+
+                        date1TextField.focus = true
+                        date1TextField.text = todaysDate;
+                        event.date = todaysDate
+                    }
+                }
+
+                Label{
+                    anchors.verticalCenter: date1TextField.verticalCenter
+                    text: "Format: YYYY-MM-DD"
+                    opacity: 0.4
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                }
+            }
+
         }
     }
 
-    // TextField{
-    //     id: dateTextField
-    //     anchors{
-    //         top: eventNameTextField.bottom
-    //         topMargin: 10
-    //     }
-    //     height: 60
-    //     width: 230
 
-    //     placeholderText: qsTr("First phase date (YYYY-MM-DD)")
-    //     text: (!event)?null: event.date
-    //     onTextEdited: {
-    //         event.date = text
-    //     }
-    // }
-    // Button{
-    //     id: setTodayDateButton
-    //     anchors{
-    //         left: dateTextField.right
-    //         top: dateTextField.top
-    //         bottom: dateTextField.bottom
-    //         leftMargin: 10
-    //     }
-    //     text: qsTr("Todays Date")
-    //     onClicked: {
-    //         var now = new Date();
-    //         var todaysDate = now.toISOString().slice(0, 10); // Gemini
 
-    //         dateTextField.text = todaysDate;
-    //         event.date = todaysDate
-    //     }
-    // }
+
 
     // TextField{
     //     id: competitionOrganizerTextField

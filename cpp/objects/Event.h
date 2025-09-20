@@ -23,7 +23,15 @@
 class Event : public QObject, public Serializable
 {
     Q_OBJECT
-    Q_PROPERTY(QString name READ getName WRITE setName NOTIFY nameChanged FINAL)
+    Q_PROPERTY(QString name                 READ getName                    WRITE setName                   NOTIFY nameChanged FINAL)
+    Q_PROPERTY(QString firstPhaseDate       READ getFirstPhaseDate          WRITE setFirstPhaseDate         NOTIFY firstPhaseDateChanged FINAL)
+    Q_PROPERTY(QString secondPhaseDate      READ getSecondPhaseDate         WRITE setSecondPhaseDate        NOTIFY secondPhaseDateChanged FINAL)
+    Q_PROPERTY(QString competitionOrganizer READ getCompetitionOrganizer    WRITE setCompetitionOrganizer   NOTIFY competitionOrganizerChanged FINAL)
+    Q_PROPERTY(QString firstPhasePlace      READ getFirstPhasePlace         WRITE setFirstPhasePlace        NOTIFY firstPhasePlaceChanged FINAL)
+    Q_PROPERTY(QString secondPhasePlace     READ getSecondPhasePlace        WRITE setSecondPhasePlace       NOTIFY secondPhasePlaceChanged FINAL)
+    Q_PROPERTY(QStringList judges           READ getJudges                  WRITE setJudges                 NOTIFY judgesChanged FINAL)
+    Q_PROPERTY(QString unionDelegate        READ getUnionDelegate           WRITE setUnionDelegate          NOTIFY unionDelegateChanged FINAL)
+
     Q_PROPERTY(PhaseEnum currentPhase READ getCurrentPhase NOTIFY currentPhaseChanged FINAL)
     Q_PROPERTY(StageEnum currentStage READ getCurrentStage NOTIFY currentStageChanged FINAL)
     Q_PROPERTY(QmlPhasePtrVector phases READ getPhasesQml NOTIFY phasesChanged FINAL)
@@ -67,6 +75,7 @@ public slots:
 
     /// VERIFICATION
     void validateEvent();
+    bool validateEventDetails();
 
     /// EXAMPLE
     void assignExampleData();
@@ -79,7 +88,15 @@ private:
 
 public:
     /// GETTERS
-    const QString &getName() const;
+    QString getName() const;
+    QString getFirstPhaseDate() const;
+    QString getSecondPhaseDate() const;
+    QString getCompetitionOrganizer() const;
+    QString getFirstPhasePlace() const;
+    QString getSecondPhasePlace() const;
+    QStringList getJudges() const;
+    QString getUnionDelegate() const;
+
     PhaseEnum getCurrentPhase() const;
     StageEnum getCurrentStage() const;
 
@@ -98,11 +115,31 @@ public:
     QmlTeamPtrVector getTeamsQml() const;
 
     /// SETTERS
-    void setName(const QString &name);
+    void setName(QString name);
+    void setFirstPhaseDate(QString firstPhaseDate);
+    void setSecondPhaseDate(QString secondPhaseDate);
+    void setCompetitionOrganizer(QString competitionOrganizer);
+    void setFirstPhasePlace(QString firstPhasePlace);
+    void setSecondPhasePlace(QString secondPhasePlace);
+    void setJudges(QStringList );
+    void setUnionDelegate(QString unionDelegate);
+
+    /// MODIFIERS
+    Q_INVOKABLE void addJudge();
+    Q_INVOKABLE void deleteJudge(int index);
+    Q_INVOKABLE void setJudge(int index, QString judge);
     
 signals:
     /// VARIABLE SIGNALS
     void nameChanged();
+    void firstPhaseDateChanged();
+    void secondPhaseDateChanged();
+    void competitionOrganizerChanged();
+    void firstPhasePlaceChanged();
+    void secondPhasePlaceChanged();
+    void judgesChanged();
+    void unionDelegateChanged();
+
     void currentPhaseChanged();
     void currentStageChanged();
 
@@ -122,6 +159,13 @@ signals:
 private:
     /// Event details
     QString m_name;
+    QString m_firstPhaseDate;
+    QString m_secondPhaseDate;
+    QString m_competitionOrganizer;
+    QString m_firstPhasePlace;
+    QString m_secondPhasePlace;
+    QStringList m_judges;
+    QString m_unionDelegate;
 
     /// Current Stage - None, Configure, Play, Finish
     StageEnum m_currentStage;

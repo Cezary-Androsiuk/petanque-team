@@ -36,6 +36,7 @@ ApplicationWindow {
 
         function onVerified(){ Trace.t();
             rootLoader.source = "LoginForm.qml" // sets own min height/width
+            // rootWindow.showMaximized();
         }
     }
 
@@ -87,8 +88,7 @@ ApplicationWindow {
         id: rootLoader
         anchors.fill: parent
         onLoaded: { Trace.t();
-            // rootWindow.visible = true
-            rootWindow.showMaximized();
+            rootWindow.visible = true
         }
     }
 

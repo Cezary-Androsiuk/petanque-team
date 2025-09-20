@@ -327,6 +327,13 @@ void Event::validateEvent()
 {TRM;
     Personalization *p = Personalization::getInstance();
 
+    /// check event details
+    if(!this->validateEventDetails())
+    {
+        /// signals emited in method
+        return;
+    }
+
     /// check if required amount of teams was registered
     if(m_teams.size() != p->getRequiredTeamsCount())
     {
@@ -431,6 +438,12 @@ void Event::validateEvent()
     emit this->eventValid();
 }
 
+bool Event::validateEventDetails()
+{
+    // if(m)
+    return true;
+}
+
 void Event::assignExampleData()
 {TRM;
     QJsonObject jEvent = Personalization::getInstance()->getExampleData();
@@ -495,9 +508,44 @@ void Event::createListForSecondPhase(TeamPtrList &teams2a, TeamPtrList &teams2b)
 
 }
 
-const QString &Event::getName() const
+QString Event::getName() const
 {TRM;
     return m_name;
+}
+
+QString Event::getFirstPhaseDate() const
+{TRM;
+    return m_firstPhaseDate;
+}
+
+QString Event::getSecondPhaseDate() const
+{TRM;
+    return m_secondPhaseDate;
+}
+
+QString Event::getCompetitionOrganizer() const
+{TRM;
+    return m_competitionOrganizer;
+}
+
+QString Event::getFirstPhasePlace() const
+{TRM;
+    return m_firstPhasePlace;
+}
+
+QString Event::getSecondPhasePlace() const
+{TRM;
+    return m_secondPhasePlace;
+}
+
+QStringList Event::getJudges() const
+{TRM;
+    return m_judges;
+}
+
+QString Event::getUnionDelegate() const
+{TRM;
+    return m_unionDelegate;
 }
 
 PhaseEnum Event::getCurrentPhase() const
@@ -585,10 +633,96 @@ QmlTeamPtrVector Event::getTeamsQml() const
     return retVec;
 }
 
-void Event::setName(const QString &name)
+void Event::setName(QString name)
 {TRM;
     if (m_name == name)
         return;
     m_name = name;
     emit nameChanged();
+}
+
+void Event::setFirstPhaseDate(QString firstPhaseDate)
+{TRM;
+    if (m_firstPhaseDate == firstPhaseDate)
+        return;
+    m_firstPhaseDate = firstPhaseDate;
+    emit firstPhaseDateChanged();
+}
+
+void Event::setSecondPhaseDate(QString secondPhaseDate)
+{TRM;
+    if (m_secondPhaseDate == secondPhaseDate)
+        return;
+    m_secondPhaseDate = secondPhaseDate;
+    emit secondPhaseDateChanged();
+}
+
+void Event::setCompetitionOrganizer(QString competitionOrganizer)
+{TRM;
+    if (m_competitionOrganizer == competitionOrganizer)
+        return;
+    m_competitionOrganizer = competitionOrganizer;
+    emit competitionOrganizerChanged();
+}
+
+void Event::setFirstPhasePlace(QString firstPhasePlace)
+{TRM;
+    if (m_firstPhasePlace == firstPhasePlace)
+        return;
+    m_firstPhasePlace = firstPhasePlace;
+    emit firstPhasePlaceChanged();
+}
+
+void Event::setSecondPhasePlace(QString secondPhasePlace)
+{TRM;
+    if (m_secondPhasePlace == secondPhasePlace)
+        return;
+    m_secondPhasePlace = secondPhasePlace;
+    emit secondPhasePlaceChanged();
+}
+
+void Event::setJudges(QStringList judges)
+{TRM;
+    if (m_judges == judges)
+        return;
+    m_judges = judges;
+    emit judgesChanged();
+}
+
+void Event::setUnionDelegate(QString unionDelegate)
+{TRM;
+    if (m_unionDelegate == unionDelegate)
+        return;
+    m_unionDelegate = unionDelegate;
+    emit unionDelegateChanged();
+}
+
+void Event::addJudge()
+{TRM;
+    m_judges.append("");
+    emit this->judgesChanged();
+}
+
+void Event::deleteJudge(int index)
+{TRM;
+    if(index >= m_judges.size())
+    {
+        W("trying to delete not existing judge");
+        return;
+    }
+
+    m_judges.remove(index);
+    emit this->judgesChanged();
+}
+
+void Event::setJudge(int index, QString judge)
+{TRM;
+    if(index >= m_judges.size())
+    {
+        W("trying to acces not existing judge");
+        return;
+    }
+
+    m_judges[index] = judge;
+    emit this->judgesChanged();
 }
