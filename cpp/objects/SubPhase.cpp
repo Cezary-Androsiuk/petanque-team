@@ -164,6 +164,30 @@ bool SubPhase::hasNext() const
 
 void SubPhase::goToNext()
 {
+    D("SubPhase %p", this);
+    QString points;
+    // D("Points before 'goToNext()':");
+    // for(int i=0; i<m_teams.size(); i++)
+    // {
+    //     auto team = m_teams[i];
+    //     points += SAPF("'%s': { ", team->getName().toStdString().c_str());
+    //     points += SAPF("'small points': %d, ", team->getSmallPoints());
+    //     points += SAPF("'large points': %d,\n", team->getLargePoints());
+    //     auto players = team->getPlayers();
+    //     for(int j=0; j<players.size(); j++)
+    //     {
+    //         auto player = players[j];
+    //         points += SAPF("    ""'%s %s':{ ",
+    //                        player->getFirstName().toStdString().c_str(),
+    //                        player->getLastName().toStdString().c_str());
+    //         points += SAPF("'small points': %d, ", player->getSmallPoints());
+    //         points += SAPF("'large points': %d ", player->getLargePoints());
+    //         points += "},\n";
+    //     }
+    //     points += "}\n";
+    // }
+    // R(points);
+
     // should be called only if hasNextRound return true
     RoundPtr &currentRound = m_rounds[m_currentRoundIndex];
     if(currentRound->hasNext())
@@ -181,6 +205,29 @@ void SubPhase::goToNext()
 
         this->roundStart();
     }
+
+
+    D("Points after 'goToNext()':");
+    for(int i=0; i<m_teams.size(); i++)
+    {
+        auto team = m_teams[i];
+        points += SAPF("'%s': { ", team->getName().toStdString().c_str());
+        points += SAPF("'small points': %d, ", team->getSmallPoints());
+        points += SAPF("'large points': %d,\n", team->getLargePoints());
+        auto players = team->getPlayers();
+        for(int j=0; j<players.size(); j++)
+        {
+            auto player = players[j];
+            points += SAPF("    ""'%s %s':{ ",
+                           player->getFirstName().toStdString().c_str(),
+                           player->getLastName().toStdString().c_str());
+            points += SAPF("'small points': %d, ", player->getSmallPoints());
+            points += SAPF("'large points': %d ", player->getLargePoints());
+            points += "},\n";
+        }
+        points += "}\n";
+    }
+    R(points);
 }
 
 void SubPhase::assignExampleData()

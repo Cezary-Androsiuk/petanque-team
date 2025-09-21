@@ -492,6 +492,11 @@ bool Event::validateEventDetails()
         emit this->eventValidationFailed(message);
         return false;
     }
+
+
+    /// WHAT IS NECCESSARY AND WHAT MIGHT BE NOT
+
+
     return true;
 }
 
