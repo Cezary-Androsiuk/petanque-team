@@ -151,11 +151,13 @@ Item {
                     if(previousContentHeight === 0)
                         previousContentHeight = contentHeight
 
+                    /// check if new content height is larger than previous one
                     let contentIsGrowing = previousContentHeight < contentHeight
                     previousContentHeight = contentHeight
 
+
                     // react on inner list extension
-                    if(contentIsGrowing && contentHeight > height)
+                    if(infoField.elementCompleted && contentIsGrowing && contentHeight > height)
                         contentY = contentHeight - height
                 }
 
@@ -204,7 +206,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
-            text: qsTr("Team Selection")
+            text: qsTr("Configure Event")
             font.pixelSize: 30
         }
     }

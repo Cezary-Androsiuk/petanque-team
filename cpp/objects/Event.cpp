@@ -752,5 +752,7 @@ void Event::setJudge(int index, QString judge)
     }
 
     m_judges[index] = judge;
-    emit this->judgesChanged();
+    /// do not emit here, it cause entire list to reload
+    /// and user lose focus
+    // emit this->judgesChanged();
 }

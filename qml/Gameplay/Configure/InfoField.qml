@@ -5,7 +5,7 @@ import "../../Trace.js" as Trace
 
 Item {
     id: infoField
-    width: column.implicitWidth
+    width: column.implicitWidth + 35 // 35 is a right margin
     height: column.implicitHeight + 30 // 30 is a bootom margin
 
     // MouseArea{
@@ -17,6 +17,10 @@ Item {
     // }
 
     readonly property var event: Backend.event
+    property bool elementCompleted: false
+    Component.onCompleted: {
+        infoField.elementCompleted = true;
+    }
 
     Item{
         anchors{
@@ -232,7 +236,7 @@ Item {
                             }
                             width: 300
                             height: 60
-                            placeholderText: qsTr("Judge " + index)
+                            placeholderText: qsTr("Judge")
                             text: modelData
                             onTextEdited: {
                                 event.setJudge(index, text);
@@ -262,24 +266,4 @@ Item {
     }
 
 
-
-
-
-
-
-    // TextField{
-    //     id: unionDelegateTextField
-    //     anchors{
-    //         top: judgesItem.bottom
-    //         topMargin: 10
-    //     }
-    //     height: 60
-    //     width: 230
-
-    //     placeholderText: qsTr("Union delegate")
-    //     text: (!event)?null: event.unionDelegate
-    //     onTextEdited: {
-    //         event.unionDelegate = text
-    //     }
-    // }
 }
