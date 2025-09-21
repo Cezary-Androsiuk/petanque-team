@@ -71,7 +71,20 @@ R"(
 const char *defaultExampleData =
 R"(
 {
-    "name": "Mistrzostwa Polski",
+    "event details": {
+        "event name": "Mistrzostwa Polski",
+        "event first phase date": "2025-06-18",
+        "event second phase date": "2025-08-23",
+        "event competition organizer": "Jan Kowalski",
+        "event second phase place": "Warszawa",
+        "event first phase place": "Kraków",
+        "event union delegate": "Tomasz Karolak",
+        "event judges": [
+            "Sędzia 1",
+            "Sędzia zapasowy",
+            "Marcin Dodatek"
+        ]
+    },
     "teams": [
         {
             "name": "Boule Masters",

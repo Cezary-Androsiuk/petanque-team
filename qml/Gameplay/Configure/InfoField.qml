@@ -32,7 +32,7 @@ Item {
             id: column
             // width: parent.width
             width: childrenRect.width
-            spacing: 5
+            spacing: 7
 
             TextField{
                 id: eventNameTextField
@@ -75,8 +75,8 @@ Item {
                         var todaysDate = now.toISOString().slice(0, 10); // Gemini
 
                         firstPhaseDateTextField.focus = true
-                        firstPhaseDateTextField.text = todaysDate;
-                        firstPhaseDateTextField.textEdited();
+                        event.firstPhaseDate = todaysDate
+
                     }
                 }
 
@@ -118,8 +118,7 @@ Item {
                         var todaysDate = now.toISOString().slice(0, 10); // Gemini
 
                         secondPhaseDateTextField.focus = true
-                        secondPhaseDateTextField.text = todaysDate;
-                        secondPhaseDateTextField.textEdited();
+                        event.secondPhaseDate = todaysDate
                     }
                 }
 
@@ -194,7 +193,7 @@ Item {
                 width: parent.width
                 anchors.horizontalCenter: parent.horizontalCenter
 
-                readonly property int judgeHeight: 80
+                readonly property int judgeHeight: 60 + column.spacing
 
                 Rectangle{
                     anchors.fill: parent
@@ -231,8 +230,8 @@ Item {
                             id: judgeTextField
                             anchors{
                                 left: parent.left
-                                verticalCenter: parent.verticalCenter
-                                margins: 5
+                                bottom: parent.bottom
+                                leftMargin: 5
                             }
                             width: 300
                             height: 60
@@ -249,7 +248,7 @@ Item {
                                 top: parent.top
                                 right: parent.right
                                 bottom: parent.bottom
-                                margins: 15
+                                margins: 8
                             }
                             width: height
                             text: "X"

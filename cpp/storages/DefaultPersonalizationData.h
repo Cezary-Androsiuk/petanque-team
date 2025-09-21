@@ -1,7 +1,7 @@
 #ifndef DEFAULTEXAMPLEDATA_H
 #define DEFAULTEXAMPLEDATA_H
 
-constexpr int personalizationVersion = 4;
+constexpr int personalizationVersion = 5;
 
 constexpr int defaultRequiredTeamsCount = 8;
 constexpr int defaultMinimumPlayersInTeam = 6;

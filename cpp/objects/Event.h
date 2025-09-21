@@ -20,8 +20,8 @@
 #define SERL_EVENT_COMPETITION_ORGANIZER_KEY    "event competition organizer"
 #define SERL_EVENT_FIRST_PHASE_PLACE_KEY        "event first phase place"
 #define SERL_EVENT_SECOND_PHASE_PLACE_KEY       "event second phase place"
-#define SERL_EVENT_JUDGES_KEY                   "event judges"
 #define SERL_EVENT_UNION_DELEGATE_KEY           "event union delegate"
+#define SERL_EVENT_JUDGES_KEY                   "event judges"
 
 #define SERL_CURRENT_PHASE_KEY  "current phase"
 #define SERL_CURRENT_STAGE_KEY  "current stage"
@@ -103,8 +103,8 @@ public:
     QString getCompetitionOrganizer() const;
     QString getFirstPhasePlace() const;
     QString getSecondPhasePlace() const;
-    QStringList getJudges() const;
     QString getUnionDelegate() const;
+    QStringList getJudges() const;
 
     PhaseEnum getCurrentPhase() const;
     StageEnum getCurrentStage() const;
@@ -130,8 +130,8 @@ public:
     void setCompetitionOrganizer(QString competitionOrganizer);
     void setFirstPhasePlace(QString firstPhasePlace);
     void setSecondPhasePlace(QString secondPhasePlace);
-    void setJudges(QStringList );
     void setUnionDelegate(QString unionDelegate);
+    void setJudges(QStringList judges);
 
     /// MODIFIERS
     Q_INVOKABLE void addJudge();
@@ -146,8 +146,8 @@ signals:
     void competitionOrganizerChanged();
     void firstPhasePlaceChanged();
     void secondPhasePlaceChanged();
-    void judgesChanged();
     void unionDelegateChanged();
+    void judgesChanged();
 
     void currentPhaseChanged();
     void currentStageChanged();
@@ -173,8 +173,8 @@ private:
     QString m_competitionOrganizer;
     QString m_firstPhasePlace;
     QString m_secondPhasePlace;
-    QStringList m_judges;
     QString m_unionDelegate;
+    QStringList m_judges;
 
     /// Current Stage - None, Configure, Play, Finish
     StageEnum m_currentStage;

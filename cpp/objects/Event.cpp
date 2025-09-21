@@ -2,6 +2,7 @@
 
 #include "support/Log.h"
 #include "storages/Personalization.h"
+#include "support/Utilities.h"
 
 Event::Event(QObject *parent)
     : QObject{parent}
@@ -92,6 +93,7 @@ void Event::deserialize(const QJsonObject &jEvent)
     this->setCompetitionOrganizer( jEventDetails[ SERL_EVENT_COMPETITION_ORGANIZER_KEY ].toString() );
     this->setFirstPhasePlace( jEventDetails[ SERL_EVENT_FIRST_PHASE_PLACE_KEY ].toString() );
     this->setSecondPhasePlace( jEventDetails[ SERL_EVENT_SECOND_PHASE_PLACE_KEY ].toString() );
+    this->setUnionDelegate( jEventDetails[ SERL_EVENT_UNION_DELEGATE_KEY ].toString() );
     const QJsonArray jsonJudges = jEventDetails[ SERL_EVENT_JUDGES_KEY ].toArray();
     m_judges.clear();
     m_judges.reserve(jsonJudges.size());
@@ -100,7 +102,6 @@ void Event::deserialize(const QJsonObject &jEvent)
         m_judges.append(jsonJudges[i].toString());
     }
     emit this->judgesChanged();
-    this->setUnionDelegate( jEventDetails[ SERL_EVENT_UNION_DELEGATE_KEY ].toString() );
 
     int currentPhaseInt = jEvent[ SERL_CURRENT_PHASE_KEY ].toInt();
     m_currentPhase = static_cast<PhaseEnum>(currentPhaseInt);
@@ -468,7 +469,29 @@ void Event::validateEvent()
 
 bool Event::validateEventDetails()
 {
-    // if(m)
+    if(m_name.isEmpty())
+    {
+        QString message = tr("Event Name can't be empty");
+        I(message);
+        emit this->eventValidationFailed(message);
+        return false;
+    }
+    if(!Utilities::isDateValid(m_firstPhaseDate, "yyyy-MM-dd"))
+    {
+        QString message = tr("First phase date is invalid!"
+                             "Correct format is 'YYYY-MM-DD'");
+        I(message);
+        emit this->eventValidationFailed(message);
+        return false;
+    }
+    if(!Utilities::isDateValid(m_secondPhaseDate, "yyyy-MM-dd"))
+    {
+        QString message = tr("Second phase date is invalid!"
+                             "Correct format is 'YYYY-MM-DD'");
+        I(message);
+        emit this->eventValidationFailed(message);
+        return false;
+    }
     return true;
 }
 
@@ -476,10 +499,22 @@ void Event::assignExampleData()
 {TRM;
     QJsonObject jEvent = Personalization::getInstance()->getExampleData();
 
-    this->setName(jEvent["name"].toString());
-    /// judges
-    /// place
-    /// etc.
+    QJsonObject jEventDetails = jEvent["event details"].toObject();
+    this->setName(jEventDetails["event name"].toString());
+    this->setFirstPhaseDate( jEventDetails[ "event first phase date" ].toString() );
+    this->setSecondPhaseDate( jEventDetails[ "event second phase date" ].toString() );
+    this->setCompetitionOrganizer( jEventDetails[ "event competition organizer" ].toString() );
+    this->setFirstPhasePlace( jEventDetails[ "event first phase place" ].toString() );
+    this->setSecondPhasePlace( jEventDetails[ "event second phase place" ].toString() );
+    this->setUnionDelegate( jEventDetails[ "event union delegate" ].toString() );
+    const QJsonArray jsonJudges = jEventDetails[ "event judges" ].toArray();
+    m_judges.clear();
+    m_judges.reserve(jsonJudges.size());
+    for(int i=0; i<jsonJudges.size(); i++)
+    {
+        m_judges.append(jsonJudges[i].toString());
+    }
+    emit this->judgesChanged();
 
     QJsonArray jTeams = jEvent["teams"].toArray();
     m_teams.clear();
@@ -566,14 +601,14 @@ QString Event::getSecondPhasePlace() const
     return m_secondPhasePlace;
 }
 
-QStringList Event::getJudges() const
-{TRM;
-    return m_judges;
-}
-
 QString Event::getUnionDelegate() const
 {TRM;
     return m_unionDelegate;
+}
+
+QStringList Event::getJudges() const
+{TRM;
+    return m_judges;
 }
 
 PhaseEnum Event::getCurrentPhase() const
@@ -709,20 +744,20 @@ void Event::setSecondPhasePlace(QString secondPhasePlace)
     emit secondPhasePlaceChanged();
 }
 
-void Event::setJudges(QStringList judges)
-{TRM;
-    if (m_judges == judges)
-        return;
-    m_judges = judges;
-    emit judgesChanged();
-}
-
 void Event::setUnionDelegate(QString unionDelegate)
 {TRM;
     if (m_unionDelegate == unionDelegate)
         return;
     m_unionDelegate = unionDelegate;
     emit unionDelegateChanged();
+}
+
+void Event::setJudges(QStringList judges)
+{TRM;
+    if (m_judges == judges)
+        return;
+    m_judges = judges;
+    emit judgesChanged();
 }
 
 void Event::addJudge()
