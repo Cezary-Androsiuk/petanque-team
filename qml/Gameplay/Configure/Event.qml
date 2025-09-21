@@ -110,24 +110,70 @@ Item {
             Flickable{
                 id: infoFieldFlickable
                 anchors.fill: parent
-                contentWidth: parent.width
+                contentWidth: infoField.width
                 contentHeight: infoField.height
                 boundsBehavior: Flickable.StopAtBounds
 
-                onHeightChanged: { // keep visible, as long as content is larger than flickable area
+
+                function updateVerticalScrollBar(){
+                    // keep visible, as long as content is larger than flickable area
                     // console.log("CH: " + infoFieldFlickable.contentHeight + ", H:" + infoFieldFlickable.height)
-                    ScrollBar.vertical.policy =
-                            infoFieldFlickable.contentHeight > infoFieldFlickable.height ?
-                                ScrollBar.AlwaysOn : ScrollBar.AlwaysOff
+                    let isContentGreater = infoFieldFlickable.contentHeight > infoFieldFlickable.height;
+                    ScrollBar.vertical.policy = isContentGreater ? ScrollBar.AlwaysOn : ScrollBar.AlwaysOff
+                }
+                function updateHorizontalScrollBar(){
+                    // console.log("CW: " + infoFieldFlickable.contentWidth + ", W:" + infoFieldFlickable.width)
+                    let isContentGreater = infoFieldFlickable.contentWidth > infoFieldFlickable.width;
+                    ScrollBar.horizontal.policy = isContentGreater ? ScrollBar.AlwaysOn : ScrollBar.AlwaysOff
+                }
+
+                Component.onCompleted: {
+                    updateVerticalScrollBar();
+                    updateHorizontalScrollBar();
+                }
+
+                onHeightChanged: {
+                    updateVerticalScrollBar();
+                }
+                onWidthChanged: {
+                    updateHorizontalScrollBar();
+
+                    /// move element to the center
+                    infoField.x = (width > infoField.width) ? (width - infoField.width)/2 : 0
+                }
+
+                property double previousContentHeight: 0
+                onContentHeightChanged: {
+                    updateVerticalScrollBar();
+
+                    // check if it is first time called and init with value,
+                    // to avoid scrolling at the end, right after content was loaded
+                    if(previousContentHeight === 0)
+                        previousContentHeight = contentHeight
+
+                    let contentIsGrowing = previousContentHeight < contentHeight
+                    previousContentHeight = contentHeight
+
+                    // react on inner list extension
+                    if(contentIsGrowing && contentHeight > height)
+                        contentY = contentHeight - height
+                }
+
+                onContentWidthChanged: {
+                    updateHorizontalScrollBar();
                 }
 
                 ScrollBar.vertical: ScrollBar{
                     policy: ScrollBar.AsNeeded
                 }
+                ScrollBar.horizontal: ScrollBar{
+                    policy: ScrollBar.AsNeeded
+                }
 
                 InfoField{
                     id: infoField
-                    width: parent.width
+                    /// move element to the center (moved to onWidthChanged in parent)
+                    // x: (parent.width > width) ? (parent.width - width)/2 : 0
                 }
             }
         }
