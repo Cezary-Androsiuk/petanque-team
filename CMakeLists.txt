@@ -99,6 +99,8 @@ qt_add_qml_module(${PROJECT_NAME}
     RESOURCES assets/icons/appIcon/appicon.rc
     QML_FILES qml/Trace.js
     SOURCES cpp/support/Utilities.h cpp/support/Utilities.cpp
+    SOURCES cpp/objects/RoundSummaryScoreCounter.h cpp/objects/RoundSummaryScoreCounter.cpp
+    SOURCES cpp/objects/TeamScore.h cpp/objects/TeamScore.cpp
 
 )
 

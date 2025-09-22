@@ -6,9 +6,12 @@ import "../../Trace.js" as Trace
 
 import "RoundSummary"
 
+import com.petanque.roundsummaryscorecounter 1.0
+
 Item {
     id: roundSummary
 
+    required property RoundSummarySC roundSummarySC;
     property var roundVar
     property int headerHeight
     property int footerHeight
@@ -36,7 +39,7 @@ Item {
 
                     TabButton{
                         anchors.fill: parent
-                        text: qsTr("Summary")
+                        text: qsTr("Summary " + roundSummarySC.data)
                         font.pixelSize: 22
                         checkable: false
                         onClicked: { Trace.t();

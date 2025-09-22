@@ -10,6 +10,7 @@
 #include "storages/Personalization.h"
 #include "Backend.h"
 #include "support/LogQML.h"
+#include "objects/RoundSummaryScoreCounter.h"
 
 int main(int argc, char *argv[])
 {
@@ -19,6 +20,9 @@ int main(int argc, char *argv[])
 
     std::unique_ptr<QGuiApplication> app =
         std::make_unique<QGuiApplication>(argc, argv);
+
+    qmlRegisterType<RoundSummaryScoreCounter>("com.petanque.roundsummaryscorecounter", 1, 0, "RoundSummarySC");
+
     std::unique_ptr<QQmlApplicationEngine> engine =
         std::make_unique<QQmlApplicationEngine>();
 

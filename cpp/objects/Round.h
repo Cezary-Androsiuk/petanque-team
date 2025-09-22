@@ -28,6 +28,7 @@ public:
     explicit Round(TeamPtrList &teams, QObject *parent = nullptr);
     ~Round();
 
+    /// methods called by parent at start/end
     void onStart();
     void onEnd();
 

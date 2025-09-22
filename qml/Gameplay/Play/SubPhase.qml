@@ -3,6 +3,8 @@ import QtQuick.Controls.Material
 
 import "../../Trace.js" as Trace
 
+import com.petanque.roundsummaryscorecounter 1.0
+
 Item {
     id: subPhase
 
@@ -83,12 +85,12 @@ Item {
 
 
         Loader{
-            id: matchesOrRoundSummeryLoader
+            id: matchesOrRoundSummaryLoader
             anchors.fill: parent
             sourceComponent: {
                 var crs = roundVar.currentRoundStage;
                 if(crs >= 0 && crs <= 5) matchesComponent;
-                else if(crs === 6) roundSummeryComponent;
+                else if(crs === 6) roundSummaryComponent;
                 else
                 {
                     log.e("unknown round stage("+crs+")", "SubPage.qml -> matchesOrRoundSummaryLoader")
@@ -110,15 +112,22 @@ Item {
         }
 
         Component{
-            id: roundSummeryComponent
+            id: roundSummaryComponent
             Item{
+
+                RoundSummarySC{ // RoundSummaryScoreCounter
+                    id: roundSummaryScoreCounter
+                    subPhasePtr: subPhaseVar
+                    Component.onCompleted: buildRankings();
+                }
+
                 RoundSummary{
                     anchors.fill: parent
+                    roundSummarySC: roundSummaryScoreCounter
                     roundVar: subPhase.roundVar
                     headerHeight: subPhase.headerHeight
                     footerHeight: subPhase.footerHeight
                 }
-
             }
         }
 
