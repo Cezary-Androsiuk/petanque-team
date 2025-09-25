@@ -6,35 +6,36 @@
 #include "SubPhase.h"
 #include "TeamScore.h"
 
+/// Class registered as a QML type and created by QML (inside SubPhase.qml), but
+///     only when RoundSummary is about to show
 class RoundSummaryScoreCounter : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(SubPhase *subPhasePtr READ getSubPhasePtr WRITE setSubPhasePtr NOTIFY subPhasePtrChanged FINAL)
+    Q_PROPERTY(TeamPtrScores *teamScores READ getTeamScores NOTIFY teamScoresChanged FINAL)
+
 public:
     explicit RoundSummaryScoreCounter(QObject *parent = nullptr);
     ~RoundSummaryScoreCounter();
 
     SubPhase *getSubPhasePtr() const;
-    void setSubPhasePtr(SubPhase *subPhasePtr);
+    TeamPtrScores getTeamScores() const;
 
-    QString getData() const;
-    void setData(const QString &newData);
+    void setSubPhasePtr(SubPhase *subPhasePtr);
 
 signals:
     void subPhasePtrChanged();
-
-    void dataChanged();
+    void teamScoresChanged();
 
 public slots:
     void buildRankings();
 
 private:
+    /// Pointer to the subPhase, given by QML while initialization
     SubPhase *m_subPhasePtr;
 
-    TeamScores m_teamScores;
-
-    QString m_data;
-    Q_PROPERTY(QString data READ getData WRITE setData NOTIFY dataChanged FINAL)
+    /// Objects list for storing scored for each team, and displaying them in QML
+    TeamPtrScores m_teamScores;
 };
 
 #endif // ROUNDSUMMARYSCORECOUNTER_H

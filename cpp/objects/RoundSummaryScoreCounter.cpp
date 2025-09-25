@@ -5,50 +5,38 @@
 RoundSummaryScoreCounter::RoundSummaryScoreCounter(QObject *parent)
     : QObject{parent}
     , m_subPhasePtr{nullptr}
-{
-    D("round summary SC created");
+{TRM; DOLTV("%p", parent);
+
 }
 
 RoundSummaryScoreCounter::~RoundSummaryScoreCounter()
-{
-    D("round summary destroyed");
+{TRM; DOLT;
+
 }
 
 SubPhase *RoundSummaryScoreCounter::getSubPhasePtr() const
-{
+{TRM;
     return m_subPhasePtr;
 }
 
+TeamPtrScores RoundSummaryScoreCounter::getTeamScores() const
+{TRM;
+    return m_teamScores;
+}
+
 void RoundSummaryScoreCounter::setSubPhasePtr(SubPhase *subPhasePtr)
-{
-    D("sub phase set");
+{TRM;
     m_subPhasePtr = subPhasePtr;
 }
 
-QString RoundSummaryScoreCounter::getData() const
-{
-    D("data get: " + m_data);
-    return m_data;
-}
-
-void RoundSummaryScoreCounter::setData(const QString &newData)
-{
-    D("data set");
-    if (m_data == newData)
-        return;
-    m_data = newData;
-    emit dataChanged();
-}
-
 void RoundSummaryScoreCounter::buildRankings()
-{
-    D("init");
+{TRM;
     if(!m_subPhasePtr)
     {
         E("subPhasePtr is null!: %p", m_subPhasePtr);
+        I("Can't build rankings!");
         return;
     }
 
     QString data = SAPF("rounds: %lld", m_subPhasePtr->getRoundsQml().size());
-    this->setData(data);
 }

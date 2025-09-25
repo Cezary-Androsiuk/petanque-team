@@ -3,12 +3,16 @@ import QtQuick.Controls.Material
 
 import "../../../Trace.js" as Trace
 
+import com.petanque.roundsummaryscorecounter 1.0
+
 Item {
     id: summary
     anchors.fill: parent
 
-    Label{
-        anchors.centerIn: parent
-        text: "summary"
+    required property RoundSummarySC roundSummarySC;
+
+    ListView{
+
     }
+
 }

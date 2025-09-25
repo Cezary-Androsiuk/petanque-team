@@ -77,8 +77,8 @@ Item {
             width: parent.width
             height: parent.height-tabBar.height
 
-            Item{ Summary{} }
-            Item{ Ranking{} }
+            Item{ Summary{ roundSummarySC: roundSummary.roundSummarySC } }
+            Item{ Ranking{ roundSummarySC: roundSummary.roundSummarySC } }
         }
     }
 }

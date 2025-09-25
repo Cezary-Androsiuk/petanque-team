@@ -126,6 +126,6 @@ private:
 
 };
 
-typedef QList<TeamScore> TeamScores;
+typedef QList<TeamScore*> TeamPtrScores;
 
 #endif // TEAMSCORE_H
