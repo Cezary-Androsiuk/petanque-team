@@ -118,7 +118,6 @@ Item {
                 RoundSummarySC{ // RoundSummaryScoreCounter
                     id: roundSummaryScoreCounter
                     subPhasePtr: subPhaseVar
-                    Component.onCompleted: buildRankings();
                 }
 
                 RoundSummary{

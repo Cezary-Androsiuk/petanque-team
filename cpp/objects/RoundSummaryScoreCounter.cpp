@@ -14,6 +14,30 @@ RoundSummaryScoreCounter::~RoundSummaryScoreCounter()
 
 }
 
+void RoundSummaryScoreCounter::componentComplete()
+{TRM;
+    if(!m_subPhasePtr)
+    {
+        E("subPhasePtr is null!: %p", m_subPhasePtr);
+        I("Can't build rankings!");
+        return;
+    }
+
+    Q_ASSERT(m_teamScores.size() == 0);
+
+    TeamScore *ts = new TeamScore(this);
+    ts->setTeamName("example testing value");
+    m_teamScores.append(ts);
+    emit this->teamScoresChanged();
+
+    // QString data = SAPF("rounds: %lld", m_subPhasePtr->getRoundsQml().size());
+}
+
+void RoundSummaryScoreCounter::classBegin()
+{TRM;
+
+}
+
 SubPhase *RoundSummaryScoreCounter::getSubPhasePtr() const
 {TRM;
     return m_subPhasePtr;
@@ -27,16 +51,4 @@ TeamPtrScores RoundSummaryScoreCounter::getTeamScores() const
 void RoundSummaryScoreCounter::setSubPhasePtr(SubPhase *subPhasePtr)
 {TRM;
     m_subPhasePtr = subPhasePtr;
-}
-
-void RoundSummaryScoreCounter::buildRankings()
-{TRM;
-    if(!m_subPhasePtr)
-    {
-        E("subPhasePtr is null!: %p", m_subPhasePtr);
-        I("Can't build rankings!");
-        return;
-    }
-
-    QString data = SAPF("rounds: %lld", m_subPhasePtr->getRoundsQml().size());
 }
