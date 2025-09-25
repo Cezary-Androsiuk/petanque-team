@@ -55,6 +55,7 @@ public:
     QString getName() const;
     int getCurrentRoundIndex() const;
     const RoundPtrVector &getRounds() const;
+    const TeamPtrList &getTeams() const;
 
     QString getCurrentName() const;
     QString getNextName() const;

@@ -25,6 +25,8 @@ class TeamScore : public QObject
     Q_PROPERTY(int lostSmallPointsInSingles READ getLostSmallPointsInSingles WRITE setLostSmallPointsInSingles NOTIFY lostSmallPointsInSinglesChanged FINAL)
     Q_PROPERTY(int diffSmallPointsInSingles READ getDiffSmallPointsInSingles WRITE setDiffSmallPointsInSingles NOTIFY diffSmallPointsInSinglesChanged FINAL)
 
+    Q_PROPERTY(const QList<int *> allParametersList READ getAllParametersList CONSTANT)
+
 public:
     explicit TeamScore(QObject *parent = nullptr);
 
@@ -46,6 +48,8 @@ public:
     int getGainedSmallPointsInSingles() const;
     int getLostSmallPointsInSingles() const;
     int getDiffSmallPointsInSingles() const;
+
+    const QList<int *> getAllParametersList() const;
 
 
     /// SETTERS
@@ -123,6 +127,9 @@ private:
     SmallPoints m_smallPointsDoubles;
     /// (PZS), (PSS), (RS)
     SmallPoints m_smallPointsSingles;
+
+    /// all parameters combained in to one vector
+    const QList<int *> m_allParametersList;
 
 };
 

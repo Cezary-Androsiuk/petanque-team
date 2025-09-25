@@ -118,6 +118,8 @@ Item {
                 RoundSummarySC{ // RoundSummaryScoreCounter
                     id: roundSummaryScoreCounter
                     subPhasePtr: subPhaseVar
+                    // onInitComplete: {}
+                    // onInitError: {}
                 }
 
                 RoundSummary{

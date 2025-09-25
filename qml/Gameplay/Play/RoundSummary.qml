@@ -39,7 +39,7 @@ Item {
 
                     TabButton{
                         anchors.fill: parent
-                        text: qsTr("Summary " + (roundSummarySC.teamScores[0] ? roundSummarySC.teamScores[0].teamName : "-"))
+                        text: qsTr("Summary")
                         font.pixelSize: 22
                         checkable: false
                         onClicked: { Trace.t();

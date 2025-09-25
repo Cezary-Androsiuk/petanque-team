@@ -2,6 +2,23 @@
 
 TeamScore::TeamScore(QObject *parent)
     : QObject{parent}
+    , m_allParametersList{
+        &m_wins,
+        &m_gainedMatchPoints,
+        &m_competitionsWon,
+        &m_wonTriples,
+        &m_wonDoubles,
+        &m_wonSingles,
+        &m_smallPointsTriples.gained,
+        &m_smallPointsTriples.lost,
+        &m_smallPointsTriples.diff,
+        &m_smallPointsDoubles.gained,
+        &m_smallPointsDoubles.lost,
+        &m_smallPointsDoubles.diff,
+        &m_smallPointsSingles.gained,
+        &m_smallPointsSingles.lost,
+        &m_smallPointsSingles.diff
+    }
 {}
 
 QString TeamScore::getTeamName() const
@@ -82,6 +99,11 @@ int TeamScore::getLostSmallPointsInSingles() const
 int TeamScore::getDiffSmallPointsInSingles() const
 {
     return m_smallPointsSingles.diff;
+}
+
+const QList<int *> TeamScore::getAllParametersList() const
+{
+    return m_allParametersList;
 }
 
 void TeamScore::setTeamName(const QString &teamName)

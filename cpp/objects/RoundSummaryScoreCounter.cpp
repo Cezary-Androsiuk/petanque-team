@@ -18,19 +18,25 @@ void RoundSummaryScoreCounter::componentComplete()
 {TRM;
     if(!m_subPhasePtr)
     {
-        E("subPhasePtr is null!: %p", m_subPhasePtr);
+        E("subPhasePtr is a null!: %p", m_subPhasePtr);
         I("Can't build rankings!");
+        emit this->initError("subPhasePtr is a null!");
         return;
     }
 
-    Q_ASSERT(m_teamScores.size() == 0);
+    Q_ASSERT(m_teamScoresSummary.size() == 0);
 
-    TeamScore *ts = new TeamScore(this);
-    ts->setTeamName("example testing value");
-    m_teamScores.append(ts);
-    emit this->teamScoresChanged();
+    const TeamPtrList &teams = m_subPhasePtr->getTeams();
+    for(int i=0; i<teams.size(); i++)
+    {
+        const QSharedPointer<Team> &team = teams[i];
+        TeamScore *ts = new TeamScore(this);
+        ts->setTeamName(team->getName());
+        m_teamScoresSummary.append(ts);
+    }
+    emit this->teamScoresSummaryChanged();
 
-    // QString data = SAPF("rounds: %lld", m_subPhasePtr->getRoundsQml().size());
+    emit this->initComplete();
 }
 
 void RoundSummaryScoreCounter::classBegin()
@@ -43,9 +49,14 @@ SubPhase *RoundSummaryScoreCounter::getSubPhasePtr() const
     return m_subPhasePtr;
 }
 
-TeamPtrScores RoundSummaryScoreCounter::getTeamScores() const
+TeamPtrScores RoundSummaryScoreCounter::getTeamScoresSummary() const
 {TRM;
-    return m_teamScores;
+    return m_teamScoresSummary;
+}
+
+TeamPtrScores RoundSummaryScoreCounter::getTeamScoresRanking() const
+{TRM;
+    return m_teamScoresRanking;
 }
 
 void RoundSummaryScoreCounter::setSubPhasePtr(SubPhase *subPhasePtr)

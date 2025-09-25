@@ -266,6 +266,11 @@ const RoundPtrVector &SubPhase::getRounds() const
     return m_rounds;
 }
 
+const TeamPtrList &SubPhase::getTeams() const
+{
+    return m_teams;
+}
+
 QString SubPhase::getCurrentName() const
 {
     if(m_rounds[m_currentRoundIndex]->hasNext())
