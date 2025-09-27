@@ -114,7 +114,6 @@ Item {
                 contentHeight: infoField.height
                 boundsBehavior: Flickable.StopAtBounds
 
-
                 function updateVerticalScrollBar(){
                     // keep visible, as long as content is larger than flickable area
                     // console.log("CH: " + infoFieldFlickable.contentHeight + ", H:" + infoFieldFlickable.height)
