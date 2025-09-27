@@ -101,6 +101,7 @@ qt_add_qml_module(${PROJECT_NAME}
     SOURCES cpp/support/Utilities.h cpp/support/Utilities.cpp
     SOURCES cpp/objects/RoundSummaryScoreCounter.h cpp/objects/RoundSummaryScoreCounter.cpp
     SOURCES cpp/objects/TeamScore.h cpp/objects/TeamScore.cpp
+    QML_FILES qml/Gameplay/Play/RoundSummary/TeamScoresLabelsModel.qml
 
 )
 

@@ -19,7 +19,24 @@ TeamScore::TeamScore(QObject *parent)
         &m_smallPointsSingles.lost,
         &m_smallPointsSingles.diff
     }
-{}
+{
+    /// Connect all parameters with parametesListChanged signal
+    QObject::connect(this, &TeamScore::winsChanged, this, &TeamScore::parametersChanged);
+    QObject::connect(this, &TeamScore::gainedMatchPointsChanged, this, &TeamScore::parametersChanged);
+    QObject::connect(this, &TeamScore::competitionsWonChanged, this, &TeamScore::parametersChanged);
+    QObject::connect(this, &TeamScore::wonTriplesChanged, this, &TeamScore::parametersChanged);
+    QObject::connect(this, &TeamScore::wonDoublesChanged, this, &TeamScore::parametersChanged);
+    QObject::connect(this, &TeamScore::wonSinglesChanged, this, &TeamScore::parametersChanged);
+    QObject::connect(this, &TeamScore::gainedSmallPointsInTriplesChanged, this, &TeamScore::parametersChanged);
+    QObject::connect(this, &TeamScore::lostSmallPointsInTriplesChanged, this, &TeamScore::parametersChanged);
+    QObject::connect(this, &TeamScore::diffSmallPointsInTriplesChanged, this, &TeamScore::parametersChanged);
+    QObject::connect(this, &TeamScore::gainedSmallPointsInDoublesChanged, this, &TeamScore::parametersChanged);
+    QObject::connect(this, &TeamScore::lostSmallPointsInDoublesChanged, this, &TeamScore::parametersChanged);
+    QObject::connect(this, &TeamScore::diffSmallPointsInDoublesChanged, this, &TeamScore::parametersChanged);
+    QObject::connect(this, &TeamScore::gainedSmallPointsInSinglesChanged, this, &TeamScore::parametersChanged);
+    QObject::connect(this, &TeamScore::lostSmallPointsInSinglesChanged, this, &TeamScore::parametersChanged);
+    QObject::connect(this, &TeamScore::diffSmallPointsInSinglesChanged, this, &TeamScore::parametersChanged);
+}
 
 QString TeamScore::getTeamName() const
 {
@@ -101,9 +118,13 @@ int TeamScore::getDiffSmallPointsInSingles() const
     return m_smallPointsSingles.diff;
 }
 
-const QList<int *> TeamScore::getAllParametersList() const
+QList<int> TeamScore::getAllParametersList() const
 {
-    return m_allParametersList;
+    QList<int> l;
+    l.reserve(m_allParametersList.size());
+    for(int i=0; i<m_allParametersList.size(); i++)
+        l.append(*m_allParametersList[i]);
+    return l;
 }
 
 void TeamScore::setTeamName(const QString &teamName)
