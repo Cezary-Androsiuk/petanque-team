@@ -328,7 +328,7 @@ QJsonObject MatchTypeBase::serialize() const
     else if(m_groupSelectionLeft.isNull())
     {
         /// both selection are null
-        I("group selection not created, then not be serialized");
+        // I("group selection not created, then not be serialized");
     }
     else
     {
@@ -347,11 +347,11 @@ QJsonObject MatchTypeBase::serialize() const
     else if(m_groupMatchLeft.isNull())
     {
         /// both selection are null
-        I("group match not created, then not be serialized");
+        // I("group match not created, then not be serialized");
     }
     else
     {
-        I("======================================================================");
+        // I("======================================================================");
         /// both selection are pointers
         jMatchTypeBase[SERL_GROUP_MATCH_LEFT_KEY] =
             this->m_groupMatchLeft->serialize();
@@ -386,7 +386,7 @@ void MatchTypeBase::deserialize(const QJsonObject &jMatchTypeBase)
     else if(!csl)
     {
         /// both selection are null
-        I("group selection not created, then not be deserialized", Log::Action::Save);
+        // I("group selection not created, then not be deserialized", Log::Action::Save);
     }
     else
     {
@@ -406,7 +406,7 @@ void MatchTypeBase::deserialize(const QJsonObject &jMatchTypeBase)
     {
         /// both selection are null
         // IA(Log::Action::Save, "group match not created, then not be deserialized");
-        I("group match not created, then not be deserialized");
+        // I("group match not created, then not be deserialized");
     }
     else
     {
