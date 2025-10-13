@@ -6,11 +6,25 @@ import "../../../Trace.js" as Trace
 import com.petanque.roundsummaryscorecounter 1.0
 
 Item {
-    id: summary
+    id: table
     anchors.fill: parent
 
+    required property string type;
+    onTypeChanged: {
+        if(type !== "summary" && type !== "ranking"){
+            console.assert(false, 'Table.qml "type" need to be "summary" or "ranking", got "'+type+'"')
+            return;
+        }
+    }
+
+
     required property RoundSummarySC roundSummarySC;
-    readonly property var teamScoresList: roundSummarySC.teamScoresSummary
+    readonly property var teamScoresList: {
+        if(type === "summary")
+            roundSummarySC.teamScoresSummary
+        else if(type === "ranking")
+            roundSummarySC.teamScoresRanking
+    }
 
 
     Item{
@@ -54,7 +68,7 @@ Item {
                 id: lvContainer
                 width: dynamicWidth
                 height: lvContainer.headerRowDelegateHeight +
-                        lvContainer.elementRowDelegateHeight * summary.teamScoresList.length
+                        lvContainer.elementRowDelegateHeight * table.teamScoresList.length
 
                 readonly property int fontSize: 22
 
@@ -70,7 +84,7 @@ Item {
 
                     let tempLabel = null;
                     try {
-                        tempLabel = Qt.createQmlObject(qmlString, summary);
+                        tempLabel = Qt.createQmlObject(qmlString, table);
                         if (tempLabel === null) {
                             return -1;
                         }
@@ -111,9 +125,20 @@ Item {
                 property double widestTeamNameLabel
                 Connections{
                     target: roundSummarySC
+                    /// called when lists are changed to find widest element
+                    ///     only once, separated to, two to avoid calling it twice,
+                    ///     minor advantage but prevent table flickering if that happend
                     function onTeamScoresSummaryChanged(){
-                        lvContainer.widestTeamNameLabel =
-                                lvContainer.findWidestTeamNameLabel() + 5
+                        if(table.type === "summary"){
+                            lvContainer.widestTeamNameLabel =
+                                    lvContainer.findWidestTeamNameLabel() + 5
+                        }
+                    }
+                    function onTeamScoresRankingChanged(){
+                        if(table.type === "ranking"){
+                            lvContainer.widestTeamNameLabel =
+                                    lvContainer.findWidestTeamNameLabel() + 5
+                        }
                     }
                 }
 
@@ -139,7 +164,7 @@ Item {
                     id: teamScoresListViewRows
                     anchors.fill: parent
 
-                    model: summary.teamScoresList
+                    model: table.teamScoresList
                     interactive: false
                     clip: true
 

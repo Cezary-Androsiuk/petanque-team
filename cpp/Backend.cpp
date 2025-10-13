@@ -3,7 +3,7 @@
 #include "support/Log.h"
 #include "DebugConstraints.h"
 
-const char *version = "v0.5.5";
+const char *version = "v0.5.6";
 
 Backend::Backend(QObject *parent)
     : QObject{parent}

@@ -115,7 +115,7 @@ Item {
             id: roundSummaryComponent
             Item{
 
-                RoundSummarySC{ // RoundSummaryScoreCounter
+                RoundSummarySC{ // RoundSummaryScoreCounter C++
                     id: roundSummaryScoreCounter
                     subPhasePtr: subPhaseVar
                     // onInitComplete: {}

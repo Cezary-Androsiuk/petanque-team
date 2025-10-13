@@ -24,8 +24,6 @@ void RoundSummaryScoreCounter::componentComplete()
         return;
     }
 
-    Q_ASSERT(m_teamScoresSummary.size() == 0);
-
     const TeamPtrList &teams = m_subPhasePtr->getTeams();
     for(int i=0; i<teams.size(); i++)
     {
@@ -39,10 +37,7 @@ void RoundSummaryScoreCounter::componentComplete()
     emit this->initComplete();
 }
 
-void RoundSummaryScoreCounter::classBegin()
-{TRM;
-
-}
+void RoundSummaryScoreCounter::classBegin(){}
 
 SubPhase *RoundSummaryScoreCounter::getSubPhasePtr() const
 {TRM;

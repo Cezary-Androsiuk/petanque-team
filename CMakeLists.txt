@@ -88,8 +88,6 @@ qt_add_qml_module(${PROJECT_NAME}
     QML_FILES qml/Gameplay/Play/Match/MatchType/SelectionHalf.qml
     QML_FILES qml/Gameplay/Play/Match/MatchType/MatchHalf.qml
     QML_FILES qml/Gameplay/Play/RoundSummary.qml
-    QML_FILES qml/Gameplay/Play/RoundSummary/Summary.qml
-    QML_FILES qml/Gameplay/Play/RoundSummary/Ranking.qml
     ################################ Finish
     QML_FILES qml/Gameplay/Finish.qml
     QML_FILES qml/Popups/AskPopup.qml
@@ -102,6 +100,7 @@ qt_add_qml_module(${PROJECT_NAME}
     SOURCES cpp/objects/RoundSummaryScoreCounter.h cpp/objects/RoundSummaryScoreCounter.cpp
     SOURCES cpp/objects/TeamScore.h cpp/objects/TeamScore.cpp
     QML_FILES qml/Gameplay/Play/RoundSummary/TeamScoresLabelsModel.qml
+    QML_FILES qml/Gameplay/Play/RoundSummary/Table.qml
 
 )
 
