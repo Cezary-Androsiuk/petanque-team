@@ -27,6 +27,9 @@ Item {
     }
 
 
+    readonly property string teamNameColumnName: "Team Name"
+
+
     Item{
         id: flickableContainer
         anchors{
@@ -107,12 +110,12 @@ Item {
                 function findWidestTeamNameLabel(){
 
                     let list = teamScoresList;
-                    let largestTeamLabelWidth = 0;
+                    let largestTeamLabelWidth =
+                        getTextLabelWidth(table.teamNameColumnName);
 
-                    let i = 1;
+                    // process rest of elements
                     for(const element of list){
                         const labelWidth = getTextLabelWidth(element.teamName)
-                        // console.log(`labelWidth ${i++}: ${labelWidth}`)
                         if(labelWidth === -1){
                             continue;
                         }
@@ -122,6 +125,7 @@ Item {
                     }
                     return largestTeamLabelWidth;
                 }
+
                 property double widestTeamNameLabel
                 Connections{
                     target: roundSummarySC
@@ -211,7 +215,7 @@ Item {
                                         rightMargin: lvContainer.teamNameSideMargin
                                     }
                                     verticalAlignment: Text.AlignVCenter
-                                    text: "Team Name"
+                                    text: table.teamNameColumnName
                                     font.pixelSize: lvContainer.fontSize
                                 }
                             }

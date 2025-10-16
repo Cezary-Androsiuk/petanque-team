@@ -25,14 +25,34 @@ void RoundSummaryScoreCounter::componentComplete()
     }
 
     const TeamPtrList &teams = m_subPhasePtr->getTeams();
+
+
+
+    /// create summary here
     for(int i=0; i<teams.size(); i++)
     {
         const QSharedPointer<Team> &team = teams[i];
         TeamScore *ts = new TeamScore(this);
         ts->setTeamName(team->getName());
+
         m_teamScoresSummary.append(ts);
     }
     emit this->teamScoresSummaryChanged();
+
+
+
+    /// create rankings here
+    for(int i=0; i<teams.size(); i++)
+    {
+        const QSharedPointer<Team> &team = teams[i];
+        TeamScore *ts = new TeamScore(this);
+        ts->setTeamName(team->getName());
+
+        m_teamScoresRanking.append(ts);
+    }
+    emit this->teamScoresRankingChanged();
+
+
 
     emit this->initComplete();
 }
