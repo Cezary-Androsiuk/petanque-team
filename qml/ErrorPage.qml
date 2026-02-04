@@ -83,7 +83,7 @@ Item {
             top: content.bottom
             horizontalCenter: parent.horizontalCenter
         }
-        text: "Refresh"
+        text: "Odśwież"
 
         onClicked:{ Trace.t();
             textArea.text = "";

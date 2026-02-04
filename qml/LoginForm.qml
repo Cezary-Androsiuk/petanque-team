@@ -45,13 +45,13 @@ Item {
         if(login === "")
         {
             errorInfoLabel.visible = true
-            errorInfoLabel.text = "Login field is empty!"
+            errorInfoLabel.text = "Login nie może być pusty!"
             return;
         }
         if(password === "")
         {
             errorInfoLabel.visible = true
-            errorInfoLabel.text = "Password field is empty!"
+            errorInfoLabel.text = "Hasło nie może być puste!"
             return;
         }
 
@@ -61,7 +61,7 @@ Item {
 
     AskPopup{
         id: askAboutExternalServer
-        title: "Without using external server all data will stay on local machine.\nContinue?"
+        title: "Bez używania zewnętrznego serwera wszystkie dane zostaną lokalnie na maszynie.\nKontynuować?"
         onConfirmed: {
             authenticate(loginTextField.text, passwordTextField.text);
         }
@@ -110,7 +110,7 @@ Item {
 
             height: 60
 
-            placeholderText: qsTr("Password")
+            placeholderText: qsTr("Hasło")
             echoMode: TextInput.Password
         }
 
@@ -122,7 +122,7 @@ Item {
             }
 
             checked: false
-            text: qsTr("Show Password")
+            text: qsTr("Pokaż Hasło")
             onCheckedChanged: { Trace.t();
                 passwordTextField.echoMode =
                         checked ? TextInput.Normal : TextInput.Password;
@@ -137,7 +137,7 @@ Item {
             }
 
             checked: Personalization.useExternalServer
-            text: qsTr("Use External Server")
+            text: qsTr("Używaj zewnętrznego serwera")
             onCheckedChanged: { Trace.t();
                 Personalization.useExternalServer = checked;
             }
@@ -164,7 +164,7 @@ Item {
             width: 150
             height: 60
 
-            text: qsTr("Login")
+            text: qsTr("Zaloguj")
             onClicked:{ Trace.t();
                 if(!Personalization.useExternalServer)
                     askAboutExternalServer.fOpen()
@@ -205,7 +205,7 @@ Item {
                     false;
             }
 
-            text: qsTr("Login No Memory")
+            text: qsTr("Zaloguj - bez pamięci")
             onClicked:{
                 Backend.memory.debugDeleteMemory();
                 authenticate(loginTextField.text, passwordTextField.text);
@@ -222,10 +222,10 @@ Item {
             opacity: 0.4
             font.pixelSize: 20
             font.bold: true
-            text: "Application works in debug mode\n\n" +
-                  "Debug Credentials\n" +
-                  "Empty login: '" + emptyDebugLogin + "'\n" +
-                  "Empty password: '" + emptyDebugPassword + "'"
+            text: "Applikacja działa w trybie testowym\n\n" +
+                  "Testowe dane uwieżytelniania\n" +
+                  "Pusty login: '" + emptyDebugLogin + "'\n" +
+                  "Puste hasło: '" + emptyDebugPassword + "'"
 
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter

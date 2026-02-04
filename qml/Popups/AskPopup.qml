@@ -38,8 +38,8 @@ Popup {
     }
 
     property string title
-    property string lButtonText: "Cancel"
-    property string rButtonText: "Yes"
+    property string lButtonText: "Anuluj"
+    property string rButtonText: "Tak"
 
     signal confirmed();
 

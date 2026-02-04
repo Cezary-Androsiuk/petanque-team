@@ -138,7 +138,7 @@ void Phase::verify()
         QString message;
         if(!m_subPhases[i]->verify(message))
         {
-            QString prefix( "In "+ m_subPhases[i]->getName() +" phase: " );
+            QString prefix( "W "+ m_subPhases[i]->getName() +" fazie: " );
             emit this->verificationFailed(prefix + message);
             return;
         }

@@ -29,14 +29,14 @@ void Login::authenticate(QString login, QString password)
     if(login.isEmpty())
     {
         I("Login is empty!");
-        emit this->authenticationFailed(tr("Login cannot be empty!"));
+        emit this->authenticationFailed(tr("Login jest wymagany!"));
         return;
     }
 
     if(password.isEmpty())
     {
         I("Password is empty!");
-        emit this->authenticationFailed(tr("Password field cannot be empty!"));
+        emit this->authenticationFailed(tr("Hasło jest wymagane!"));
         return;
     }
 
@@ -56,10 +56,10 @@ void Login::onCredentialsCorrect()
 
 void Login::onCredentialsInvalid()
 {TRM;
-    emit this->authenticationFailed(tr("Invalid credentials!"));
+    emit this->authenticationFailed(tr("Niepoprawne dane!"));
 }
 
 void Login::onAuthenticationFailed(QString details)
 {TRM;
-    emit this->authenticationFailed(tr("Server connection failed!")/* + " " + details*/);
+    emit this->authenticationFailed(tr("Nie można połączyć się z serwerem!")/* + " " + details*/);
 }

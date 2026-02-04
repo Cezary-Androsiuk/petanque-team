@@ -37,7 +37,7 @@ Popup {
         confirmNextPopup.close();
     }
 
-    property string title: "Are you sure to move on to\nthe next stage?"
+    property string title: "Na pewno przejść do następnego etapu?\nTego nie można cofnąć."
     property string fromMessage
     property string toMessage
 
@@ -119,9 +119,9 @@ Popup {
                         if(bothFieldsAreSet)
                             confirmNextPopup.fromMessage + "  ➤  " + confirmNextPopup.toMessage;
                         else if(fromFieldIsSet)
-                            "from " + confirmNextPopup.fromMessage;
+                            "z " + confirmNextPopup.fromMessage;
                         else if(toFieldIsSet)
-                            "to " + confirmNextPopup.toMessage;
+                            "do " + confirmNextPopup.toMessage;
                         else
                             "";
                     }
@@ -153,7 +153,7 @@ Popup {
 
                 Button{
                     id: cancelButton
-                    text: "Cancel"
+                    text: "Anuluj"
                     anchors.verticalCenter: parent.verticalCenter
                     x: popupBody.spaceBeetweenButtons
                     width: popupBody.buttonWidth
@@ -164,7 +164,7 @@ Popup {
 
                 Button{
                     id: nextButton
-                    text: "Next"
+                    text: "Kontynuuj"
                     anchors.verticalCenter: parent.verticalCenter
                     x: popupBody.spaceBeetweenButtons *2 + popupBody.buttonWidth
                     width: popupBody.buttonWidth

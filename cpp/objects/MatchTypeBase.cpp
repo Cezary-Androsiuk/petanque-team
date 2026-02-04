@@ -449,13 +449,13 @@ bool MatchTypeBase::verifySelection(QString &message)
 
     if(!m_groupSelectionLeft->verify(message))
     {
-        message = "in left: " + message;
+        message = "w lewym: " + message;
         return false;
     }
 
     if(!m_groupSelectionRight->verify(message))
     {
-        message = "in right: " + message;
+        message = "w prawym: " + message;
         return false;
     }
 
@@ -494,21 +494,21 @@ bool MatchTypeBase::verifyMatch(QString &message)
 
         if(lValue > maxPointsInMatch)
         {
-            message = SAPF("in group %d, the left points are %d, but cannot be larger than %d",
+            message = SAPF("w grupie %d, punkty po lewej wynoszą %d, ale nie mogą być większe niż %d",
                            i+1, lValue, maxPointsInMatch);
             return false;
         }
 
         if(rValue > maxPointsInMatch)
         {
-            message = SAPF("in group %d, the right points are %d, but cannot be larger than %d",
+            message = SAPF("w grupie %d, punkty po prawej wynoszą %d, ale nie mogą być większe niż %d",
                            i+1, rValue, maxPointsInMatch);
             return false;
         }
 
         if(lValue == rValue)
         {
-            message = SAPF("in group %d, the left and right points are equal (value: %d), but they should not be",
+            message = SAPF("w grupie %d, punkty po lewej i prawej są takie same (wynoszą: %d), ale nie powinny być",
                            i+1, lValue);
             return false;
         }

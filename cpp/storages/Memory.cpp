@@ -40,9 +40,8 @@ void Memory::load()
     QFile file( MEMORY_FILE );
     if(!file.open(QIODevice::OpenModeFlag::ReadOnly | QIODevice::OpenModeFlag::Text))
     {
-        QString message = "Failed to create memory file: " + file.errorString();
-        E(message);
-        emit this->memoryLoadError(message);
+        E("Failed to create memory file: " + file.errorString());
+        emit this->memoryLoadError("Nie można utworzyć pliku 'memory': " + file.errorString());
         return;
     }
 
@@ -52,16 +51,14 @@ void Memory::load()
 
     if(jsonParseError.error != QJsonParseError::ParseError::NoError)
     {
-        QString message = "Failed to parse file to json: " + jsonParseError.errorString();
-        E(message);
-        emit this->memoryLoadError(message);
+        E("Failed to parse file to json: " + jsonParseError.errorString());
+        emit this->memoryLoadError("Parsowanie JSON nie powiodło się: " + jsonParseError.errorString());
         return;
     }
 
     if(!jsonDocument.isObject()){
-        QString message = "Json in file is not a json object";
-        E(message);
-        emit this->memoryLoadError(message);
+        E("Json in file is not a json object");
+        emit this->memoryLoadError("JSON nie jest obiektem");
         return;
     }
 
@@ -84,9 +81,8 @@ void Memory::save()
     QFile file( MEMORY_FILE );
     if(!file.open(QIODevice::OpenModeFlag::WriteOnly | QIODevice::OpenModeFlag::Text))
     {
-        QString message = "Failed to create memory file: " + file.errorString();
-        E(message);
-        emit this->memorySaveError(message);
+        E("Failed to create memory file: " + file.errorString());
+        emit this->memorySaveError("Tworzenie pliku 'memory' nie powiodło się: " + file.errorString());
         return;
     }
 

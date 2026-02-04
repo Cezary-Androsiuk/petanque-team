@@ -144,7 +144,7 @@ bool SubPhase::verify(QString &message) const
 {
     if( !(m_rounds[m_currentRoundIndex]->verify(message)) )
     {
-        message = "in round "+QString::number(m_currentRoundIndex+1)+": " + message;
+        message = "w rundzie "+QString::number(m_currentRoundIndex+1)+": " + message;
         return false;
     }
     return true;
@@ -277,7 +277,7 @@ QString SubPhase::getCurrentName() const
     {
         return m_rounds[m_currentRoundIndex]->getCurrentName();
     }
-    return "Round " + QString::number(m_currentRoundIndex+1);
+    return "Runda " + QString::number(m_currentRoundIndex+1);
 }
 
 QString SubPhase::getNextName() const
@@ -286,7 +286,7 @@ QString SubPhase::getNextName() const
     {
         return m_rounds[m_currentRoundIndex]->getNextName();
     }
-    return "Round " + QString::number(m_currentRoundIndex+2);
+    return "Runda " + QString::number(m_currentRoundIndex+2);
 }
 
 Round *SubPhase::getCurrentRound() const

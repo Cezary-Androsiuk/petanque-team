@@ -69,7 +69,7 @@ ApplicationWindow {
 
         function onMemoryLoadError(message){ Trace.t(message);
             // open page with "cannot start application" and display current session from Logs
-            let title = "Error while loading Memory!"
+            let title = "Błąd ładowania pamięci!"
             rootLoader.setSource("ErrorPage.qml", { pageTitle: title, pageMessage: message })
             log.e("error occur while loading memory: " + message, this.target.toString() + " onMemoryLoadError")
         }

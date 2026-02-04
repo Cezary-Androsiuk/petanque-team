@@ -123,7 +123,7 @@ void NetworkManager::handleAuthenticationResponse()
     if(!m_reply)
     {
         D("reply not exist");
-        emit this->credentialsVerificationFailed("Reply does not exist!");
+        emit this->credentialsVerificationFailed("Nie otrzymano odpowiedzi!");
         return;
     }
 
@@ -144,7 +144,7 @@ void NetworkManager::handleAuthenticationResponse()
             R(QString(jsonDocument.toJson()));
         }
 
-        emit this->credentialsVerificationFailed(m_reply->errorString());
+        emit this->credentialsVerificationFailed("Błąd: " + m_reply->errorString());
         return;
     }
 
@@ -155,7 +155,7 @@ void NetworkManager::handleAuthenticationResponse()
     {
         /// can't read non JSON response
         D("Can't read JSON from response");
-        emit this->credentialsVerificationFailed("Can't read JSON from response");
+        emit this->credentialsVerificationFailed("Nie można odczytać odpowiedzi");
         return;
     }
 
@@ -167,7 +167,7 @@ void NetworkManager::handleAuthenticationResponse()
     if(status.isNull())
     {
         D("Can't read status from JSON");
-        emit this->credentialsVerificationFailed("Can't read status from JSON");
+        emit this->credentialsVerificationFailed("Nie można odczytać statusu z odpowiedzi");
         return;
     }
 
@@ -182,7 +182,7 @@ void NetworkManager::handleAuthenticationResponse()
     else
     {
         D("Unknown status: " + status);
-        emit this->credentialsVerificationFailed("Unknown status: " + status);
+        emit this->credentialsVerificationFailed("Nieobsługiwany status: " + status);
         return;
     }
 }

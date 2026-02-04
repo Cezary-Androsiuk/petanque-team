@@ -89,9 +89,9 @@ bool GroupSelection::verify(QString &message)
 
         QString difference = (m_minPlayersInGroup == m_maxPlayersInGroup) ?
                                  SAPF("%d", m_minPlayersInGroup) :
-                                 SAPF("%d or %d", m_minPlayersInGroup, m_maxPlayersInGroup);
+                                 SAPF("%d lub %d", m_minPlayersInGroup, m_maxPlayersInGroup);
 
-        message = SAPF("in group %d, %d players were selected, but %s were expected",
+        message = SAPF("w grupie %d, wybrano %d graczy, ale oczekiwano %s",
                        i+1, foundPlayersInGroup, difference.toStdString().c_str());
 
         return false;
@@ -216,7 +216,7 @@ QStringList GroupSelection::getComboBoxModel() const
     // model[0] = "None";
     model[0] = "---";
     for(int i=1; i<model.size(); i++)
-        model[i] = "Group " + QString::number(i-1);
+        model[i] = "Grupa " + QString::number(i-1);
 
     return model;
 }

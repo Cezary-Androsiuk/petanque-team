@@ -184,7 +184,7 @@ bool Match::verify(QString &message) const
         if(!currentMatchType->verifySelection(message))
         {
             QString roundStage = EnumConvert::RoundStageToQString(*m_currentRoundStage);
-            message = "in roundStage " + roundStage + ": " + message;
+            message = "w etapie rundy " + roundStage + ": " + message;
             return false;
         }
     }
@@ -193,7 +193,7 @@ bool Match::verify(QString &message) const
         if(!currentMatchType->verifyMatch(message))
         {
             QString roundStage = EnumConvert::RoundStageToQString(*m_currentRoundStage);
-            message = "in roundStage " + roundStage + ": " + message;
+            message = "w etapie rundy " + roundStage + ": " + message;
             return false;
         }
     }

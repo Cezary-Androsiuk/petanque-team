@@ -106,26 +106,25 @@ void Team::validateDetachedPlayer()
 {TRM;
     if(m_detachedPlayer.isNull())
     {
-        const char *message = "Detached Player not exist";
-        E(message);
-        emit this->detachedPlayerValidationFailed(message);
+        E("Detached Player not exist");
+        emit this->detachedPlayerValidationFailed("Odczepiony Player nie istnieje");
         return;
     }
 
     /// Check if the fields are empty
     if(m_detachedPlayer->getFirstName().isEmpty())
     {
-        emit this->detachedPlayerValidationFailed("Player required first name");
+        emit this->detachedPlayerValidationFailed("Imię jest wymagane");
         return;
     }
     if(m_detachedPlayer->getLastName().isEmpty())
     {
-        emit this->detachedPlayerValidationFailed("Player required last name");
+        emit this->detachedPlayerValidationFailed("Nazwisko jest wymagane");
         return;
     }
     if(m_detachedPlayer->getLicense().isEmpty())
     {
-        emit this->detachedPlayerValidationFailed("Player required license");
+        emit this->detachedPlayerValidationFailed("Licencja jest wymagana");
         return;
     }
 
@@ -134,7 +133,7 @@ void Team::validateDetachedPlayer()
     {
         if(m_detachedPlayer->getLicense() == m_players[i]->getLicense())
         {
-            emit this->detachedPlayerValidationFailed("Player's license is not unique in this team!");
+            emit this->detachedPlayerValidationFailed("Licencje graczy muszą być unikalne w obrębie drużyny!");
             return;
         }
     }

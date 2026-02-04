@@ -296,16 +296,15 @@ void Event::validateDetachedTeam()
 {TRM;
     if(m_detachedTeam.isNull())
     {
-        const char *message = "Detached Team not exist";
-        E(message);
-        emit this->detachedTeamValidationFailed(message);
+        E("Detached Team not exist");
+        emit this->detachedTeamValidationFailed("Tymczasowa drużyna nie istnieje");
         return;
     }
 
     /// Check if the fields are empty
     if(m_detachedTeam->getName().isEmpty())
     {
-        emit this->detachedTeamValidationFailed("Team required name");
+        emit this->detachedTeamValidationFailed("Nazwa drużyny jest wymagana");
         return;
     }
 
@@ -314,7 +313,7 @@ void Event::validateDetachedTeam()
     {
         if(m_detachedTeam->getName() == m_teams[i]->getName())
         {
-            emit this->detachedTeamValidationFailed("Team name is not unique in this event!");
+            emit this->detachedTeamValidationFailed("Nazwa drużyny musi być unikalna!");
             return;
         }
     }
@@ -344,7 +343,7 @@ void Event::deleteTeam(int index)
     {
         QString sSize = QString::number(m_teams.size());
         QString sIndex = QString::number(index);
-        E("trying to delete not existing team("+sIndex+") from list("+sSize+")");
+        E("Próba usunięcia nie istniejącej drużyny (indeks: "+sIndex+") z listy (rozmiar: "+sSize+")");
         return;
     }
 
@@ -366,7 +365,7 @@ void Event::validateEvent()
     /// check if required amount of teams was registered
     if(m_teams.size() != p->getRequiredTeamsCount())
     {
-        QString message = tr("Event requires %1 teams").arg(p->getRequiredTeamsCount());
+        QString message = tr("Wydarzenie wymaga %1 drużyn").arg(p->getRequiredTeamsCount());
         I(message);
         emit this->eventValidationFailed(message);
         return;
@@ -382,7 +381,7 @@ void Event::validateEvent()
         if(players.size() < p->getMinimumPlayersInTeam())
         {
             /// team has least than 6 players
-            QString message = tr("Team %1 has less than %2 players")
+            QString message = tr("Drużyna %1 ma mniej niż %2 graczy")
                                   .arg(teamName)
                                   .arg(p->getMinimumPlayersInTeam());
             I(message);
@@ -404,7 +403,7 @@ void Event::validateEvent()
         if(!foundMale || !foundFemale)
         {
             /// one gender is missing in team
-            QString message = tr("Team %1 doesn't contain players of either gender")
+            QString message = tr("Drużyna %1 nie posiada graczy obu płci")
                                   .arg(teamName);
             I(message);
             emit this->eventValidationFailed(message);
@@ -427,7 +426,7 @@ void Event::validateEvent()
             if(!foundJunior)
             {
                 /// junior player is missing in team
-                QString message = tr("Team %1 doesn't contain any junior player")
+                QString message = tr("Drużyna %1 nie posiada gracza typu junior")
                                       .arg(teamName);
                 I(message);
                 emit this->eventValidationFailed(message);
@@ -446,7 +445,7 @@ void Event::validateEvent()
         if(foundLeaders == 0)
         {
             /// team has no leader
-            QString message = tr("In team %1, no leader was selected (each team requires leader)")
+            QString message = tr("W drużynie %1 nie wybrano lidera")
                                   .arg(teamName);
             I(message);
             emit this->eventValidationFailed(message);
@@ -455,7 +454,7 @@ void Event::validateEvent()
         else if(foundLeaders > 1)
         {
             /// team contains few leaders
-            QString message = tr("Team %1 has %2 leaders, but should be only one")
+            QString message = tr("Drużyna %1 posiada %2 liderów, a powinien być tylko jeden")
                                   .arg(teamName)
                                   .arg(foundLeaders);
             I(message);
@@ -471,25 +470,20 @@ bool Event::validateEventDetails()
 {
     if(m_name.isEmpty())
     {
-        QString message = tr("Event Name can't be empty");
-        I(message);
-        emit this->eventValidationFailed(message);
+        I("Event name can't be empty");
+        emit this->eventValidationFailed("Wydarzenie musi posiadać nazwę");
         return false;
     }
     if(!Utilities::isDateValid(m_firstPhaseDate, "yyyy-MM-dd"))
     {
-        QString message = tr("First phase date is invalid!"
-                             "Correct format is 'YYYY-MM-DD'");
-        I(message);
-        emit this->eventValidationFailed(message);
+        I("First phase date is invalid! Correct format is 'YYYY-MM-DD'");
+        emit this->eventValidationFailed("Data pierwszej fazy jest niepoprawa! Poprawny format to 'YYYY-MM-DD'");
         return false;
     }
     if(!Utilities::isDateValid(m_secondPhaseDate, "yyyy-MM-dd"))
     {
-        QString message = tr("Second phase date is invalid!"
-                             "Correct format is 'YYYY-MM-DD'");
-        I(message);
-        emit this->eventValidationFailed(message);
+        I("Second phase date is invalid! Correct format is 'YYYY-MM-DD'");
+        emit this->eventValidationFailed("Data drugiej fazy jest niepoprawna! Poprawny format to 'YYYY-MM-DD'");
         return false;
     }
 
