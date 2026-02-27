@@ -1,7 +1,7 @@
 #ifndef DEBUGCONSTRAINTS_H
 #define DEBUGCONSTRAINTS_H
 
-#define DEBUG_MODE true
+#define DEBUG_MODE false
 #define ENABLE_POPUPS false
 
 #endif // DEBUGCONSTRAINTS_H

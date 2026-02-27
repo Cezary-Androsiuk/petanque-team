@@ -31,7 +31,7 @@ Item {
                 horizontalCenter: parent.horizontalCenter
             }
 
-            text: "Round " + (subPhaseVar.currentRoundIndex+1);
+            text: "Runda " + (subPhaseVar.currentRoundIndex+1);
             font.pixelSize: 26
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -47,10 +47,10 @@ Item {
 
             text: {
                 var crs = roundVar.currentRoundStage;
-                if(crs === 0 || crs === 1) "Singles"; else
-                if(crs === 2 || crs === 3) "Doubles";  else
-                if(crs === 4 || crs === 5) "Triples"; else
-                if(crs === 6) "Round Summary";  else
+                if(crs === 0 || crs === 1) "Singlety"; else
+                if(crs === 2 || crs === 3) "Dublety";  else
+                if(crs === 4 || crs === 5) "Triplety"; else
+                if(crs === 6) "Podsumowanie rundy";  else
                 {
                     log.e("unknown round stage("+crs+")", "SubPage.qml -> headerRoundStageLabel")
                     return "?";

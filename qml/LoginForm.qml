@@ -93,6 +93,7 @@ Item {
                 left: parent.left
                 right: parent.right
             }
+            visible: useExternalServerCheckBox.checked
 
             height: 60
 
@@ -107,6 +108,7 @@ Item {
                 left: parent.left
                 right: parent.right
             }
+            visible: useExternalServerCheckBox.checked
 
             height: 60
 
@@ -230,7 +232,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
-
+            visible: Backend.isDebugMode
         }
 
     }

@@ -154,8 +154,8 @@ void GroupSelection::assignExampleData()
 
     /// shuffle list
     for (int i = lSize - 1; i > 0; --i) {
-        int j = random->bounded(i + 1);                         // Losowy indeks od 0 do i
-        qSwap(m_playerSelections[i], m_playerSelections[j]);    // Zamiana elementów
+        int j = random->bounded(i + 1);
+        qSwap(m_playerSelections[i], m_playerSelections[j]);
     }
 
     emit this->playerSelectionsChanged();

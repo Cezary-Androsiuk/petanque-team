@@ -1,4 +1,4 @@
-import QtQuick 2.15n
+import QtQuick 2.15
 import QtQuick.Controls.Material
 
 import "../Trace.js" as Trace

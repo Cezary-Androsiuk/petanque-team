@@ -115,6 +115,8 @@ private:
     /// Triples = 4
     const int m_maxPlayersInGroup;
 
+    /// values as table:
+    ///
     ///         | groups | min | max |
     /// ==============================
     /// Singles |    6   |  1  |  1  |
@@ -128,10 +130,30 @@ private:
     TeamPtr m_teamRight;
 
 
+
+
+    /// These flags ensure the structure is initialized across different entry points.
+    /// Necessary because app restarts, and QML navigation ("Next" button)
+    /// involve separate data flows that require synchronized initialization.
+
+    /// Prevents redundant selection initialization.
+    /// Ensures pointers are correctly re-linked after deserialization
+    /// or when re-entering any Selection Stage.
     bool m_selectionInitialized;
+
+    /// holds what players were selected in each team
     GroupSelectionPtr m_groupSelectionLeft;
     GroupSelectionPtr m_groupSelectionRight;
+
+
+    /// match initialization is based on selection
+
+    /// Prevents redundant metch initialization.
+    /// Ensures pointers are correctly re-linked after deserialization
+    /// or when re-entering any Match Stage.
     bool m_matchInitialized;
+
+    /// holds how much points were scored by teams (by what player)
     GroupMatchPtr m_groupMatchLeft;
     GroupMatchPtr m_groupMatchRight;
 };

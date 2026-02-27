@@ -1,0 +1,86 @@
+Event
+    Stage
+        None
+        Configure
+        Play
+            Phase
+                First
+                    SubPhase - all subphases are performed simultaneously (in this case only one subphase)
+                        1
+                            Round x7
+                                Singles Selection - all slection matches are performed simultaneously
+                                    Selection 0 - players selection for future match
+                                    Selection 1 - players selection for future match
+                                    Selection 2 - players selection for future match
+                                    Selection 3 - players selection for future match
+                                Singles Match
+                                    Match 0 - match between two teams
+                                    Match 1 - match between two teams
+                                    Match 2 - match between two teams
+                                    Match 3 - match between two teams
+                                Doubles Selection - all slection matches are performed simultaneously 
+                                    Selection 0 - players selection for future match
+                                    Selection 1 - players selection for future match
+                                    Selection 2 - players selection for future match
+                                    Selection 3 - players selection for future match
+                                Doubles Match - all matches are performed simultaneously 
+                                    Match 0 - match between two teams
+                                    Match 1 - match between two teams
+                                    Match 2 - match between two teams
+                                    Match 3 - match between two teams
+                                Triples Selection - all slection matches are performed simultaneously 
+                                    Selection 0 - players selection for future match
+                                    Selection 1 - players selection for future match
+                                    Selection 2 - players selection for future match
+                                    Selection 3 - players selection for future match
+                                Triples Match - all matches are performed simultaneously 
+                                    Match 0 - match between two teams
+                                    Match 1 - match between two teams
+                                    Match 2 - match between two teams
+                                    Match 3 - match between two teams
+                                Round Summary
+                Second
+                    SubPhase - all subphases are performed simultaneously (2a and 2b)
+                        2a
+                            Round x3
+                                Singles Selection - all slection matches are performed simultaneously 
+                                    Selection 0 - players selection for future match
+                                    Selection 1 - players selection for future match
+                                Singles Match - all matches are performed simultaneously 
+                                    Match 0 - match between two teams
+                                    Match 1 - match between two teams
+                                Doubles Selection - all slection matches are performed simultaneously 
+                                    Selection 0 - players selection for future match
+                                    Selection 1 - players selection for future match
+                                Doubles Match - all matches are performed simultaneously 
+                                    Match 0 - match between two teams
+                                    Match 1 - match between two teams
+                                Triples Selection - all slection matches are performed simultaneously 
+                                    Selection 0 - players selection for future match
+                                    Selection 1 - players selection for future match
+                                Triples Match - all matches are performed simultaneously 
+                                    Match 0 - match between two teams
+                                    Match 1 - match between two teams
+                                Round Summary
+                        2b
+                            Round x3
+                                Singles Selection - all slection matches are performed simultaneously
+                                    Selection 0 - players selection for future match
+                                    Selection 1 - players selection for future match
+                                Singles Match
+                                    Match 0 - match between two teams
+                                    Match 1 - match between two teams
+                                Doubles Selection - all slection matches are performed simultaneously 
+                                    Selection 0 - players selection for future match
+                                    Selection 1 - players selection for future match
+                                Doubles Match - all matches are performed simultaneously 
+                                    Match 0 - match between two teams
+                                    Match 1 - match between two teams
+                                Triples Selection - all slection matches are performed simultaneously 
+                                    Selection 0 - players selection for future match
+                                    Selection 1 - players selection for future match
+                                Triples Match - all matches are performed simultaneously 
+                                    Match 0 - match between two teams
+                                    Match 1 - match between two teams
+                                Round Summary
+        Finish

@@ -29,7 +29,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
-            text: qsTr("Event Summary")
+            text: qsTr("Podsumowanie wydarzenia")
             font.pixelSize: 30
         }
     }
@@ -46,7 +46,7 @@ Item {
         Button{
             anchors.centerIn: parent
 
-            text: "end event"
+            text: "Zakończ wydarzenie"
             onClicked: { Trace.t();
                 rootLoader.source = "";
                 Backend.restartEvent();
