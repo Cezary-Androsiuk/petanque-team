@@ -216,7 +216,7 @@ QStringList GroupSelection::getComboBoxModel() const
     // model[0] = "None";
     model[0] = "---";
     for(int i=1; i<model.size(); i++)
-        model[i] = "Grupa " + QString::number(i-1);
+        model[i] = "Grupa " + QString::number(i);
 
     return model;
 }
