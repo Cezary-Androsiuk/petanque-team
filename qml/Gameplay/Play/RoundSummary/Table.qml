@@ -27,7 +27,7 @@ Item {
     }
 
 
-    readonly property string teamNameColumnName: "Team Name"
+    readonly property string teamNameColumnName: "Nazwa drużyny"
 
 
     Item{

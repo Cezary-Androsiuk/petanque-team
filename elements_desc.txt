@@ -8,17 +8,17 @@ Event
                     SubPhase - all subphases are performed simultaneously (in this case only one subphase)
                         1
                             Round x7
-                                Singles Selection - all slection matches are performed simultaneously
+                                Singles Selection - all slection for matches are performed simultaneously
                                     Selection 0 - players selection for future match
                                     Selection 1 - players selection for future match
                                     Selection 2 - players selection for future match
                                     Selection 3 - players selection for future match
-                                Singles Match
+                                Singles Match - all matches are performed simultaneously 
                                     Match 0 - match between two teams
                                     Match 1 - match between two teams
                                     Match 2 - match between two teams
                                     Match 3 - match between two teams
-                                Doubles Selection - all slection matches are performed simultaneously 
+                                Doubles Selection - all slection for matches are performed simultaneously 
                                     Selection 0 - players selection for future match
                                     Selection 1 - players selection for future match
                                     Selection 2 - players selection for future match
@@ -28,7 +28,7 @@ Event
                                     Match 1 - match between two teams
                                     Match 2 - match between two teams
                                     Match 3 - match between two teams
-                                Triples Selection - all slection matches are performed simultaneously 
+                                Triples Selection - all slection for matches are performed simultaneously 
                                     Selection 0 - players selection for future match
                                     Selection 1 - players selection for future match
                                     Selection 2 - players selection for future match
@@ -43,19 +43,19 @@ Event
                     SubPhase - all subphases are performed simultaneously (2a and 2b)
                         2a
                             Round x3
-                                Singles Selection - all slection matches are performed simultaneously 
+                                Singles Selection - all slection for matches are performed simultaneously 
                                     Selection 0 - players selection for future match
                                     Selection 1 - players selection for future match
                                 Singles Match - all matches are performed simultaneously 
                                     Match 0 - match between two teams
                                     Match 1 - match between two teams
-                                Doubles Selection - all slection matches are performed simultaneously 
+                                Doubles Selection - all slection for matches are performed simultaneously 
                                     Selection 0 - players selection for future match
                                     Selection 1 - players selection for future match
                                 Doubles Match - all matches are performed simultaneously 
                                     Match 0 - match between two teams
                                     Match 1 - match between two teams
-                                Triples Selection - all slection matches are performed simultaneously 
+                                Triples Selection - all slection for matches are performed simultaneously 
                                     Selection 0 - players selection for future match
                                     Selection 1 - players selection for future match
                                 Triples Match - all matches are performed simultaneously 
@@ -64,19 +64,19 @@ Event
                                 Round Summary
                         2b
                             Round x3
-                                Singles Selection - all slection matches are performed simultaneously
+                                Singles Selection - all slection for matches are performed simultaneously
                                     Selection 0 - players selection for future match
                                     Selection 1 - players selection for future match
-                                Singles Match
+                                Singles Match - all matches are performed simultaneously 
                                     Match 0 - match between two teams
                                     Match 1 - match between two teams
-                                Doubles Selection - all slection matches are performed simultaneously 
+                                Doubles Selection - all slection for matches are performed simultaneously 
                                     Selection 0 - players selection for future match
                                     Selection 1 - players selection for future match
                                 Doubles Match - all matches are performed simultaneously 
                                     Match 0 - match between two teams
                                     Match 1 - match between two teams
-                                Triples Selection - all slection matches are performed simultaneously 
+                                Triples Selection - all slection for matches are performed simultaneously 
                                     Selection 0 - players selection for future match
                                     Selection 1 - players selection for future match
                                 Triples Match - all matches are performed simultaneously 
@@ -84,3 +84,91 @@ Event
                                     Match 1 - match between two teams
                                 Round Summary
         Finish
+
+
+Wydarzenie
+    Etap
+        Brak
+        Konfiguracja
+        Rozgrywka
+            Faza 
+                Pierwsza
+                    Podfaza - wszystkie podfazy są rozgrywane równocześnie (w tym wypadku tylko jedna podfaza)
+                        1
+                            Runda x7
+                                Singlety Selekcja - wszystkie selekcje dla spotkań są rozgrywane równocześnie
+                                    Selekcja 0 - Selekcja graczy do przyszłego spotkania
+                                    Selekcja 1 - Selekcja graczy do przyszłego spotkania
+                                    Selekcja 2 - Selekcja graczy do przyszłego spotkania
+                                    Selekcja 3 - Selekcja graczy do przyszłego spotkania
+                                Singlety Spotkanie - wszystkie spoktanie są rozgrywane równocześnie
+                                    Spotkanie 0 - Spotkanie między dwoma drużynami
+                                    Spotkanie 1 - Spotkanie między dwoma drużynami
+                                    Spotkanie 2 - Spotkanie między dwoma drużynami
+                                    Spotkanie 3 - Spotkanie między dwoma drużynami
+                                Dublety Selekcja - wszystkie selekcje dla spotkań są rozgrywane równocześnie
+                                    Selekcja 0 - Selekcja graczy do przyszłego spotkania
+                                    Selekcja 1 - Selekcja graczy do przyszłego spotkania
+                                    Selekcja 2 - Selekcja graczy do przyszłego spotkania
+                                    Selekcja 3 - Selekcja graczy do przyszłego spotkania
+                                Dublety Spotkanie - wszystkie spoktanie są rozgrywane równocześnie
+                                    Spotkanie 0 - Spotkanie między dwoma drużynami
+                                    Spotkanie 1 - Spotkanie między dwoma drużynami
+                                    Spotkanie 2 - Spotkanie między dwoma drużynami
+                                    Spotkanie 3 - Spotkanie między dwoma drużynami
+                                Triplety Selekcja - wszystkie selekcje dla spotkań są rozgrywane równocześnie
+                                    Selekcja 0 - Selekcja graczy do przyszłego spotkania
+                                    Selekcja 1 - Selekcja graczy do przyszłego spotkania
+                                    Selekcja 2 - Selekcja graczy do przyszłego spotkania
+                                    Selekcja 3 - Selekcja graczy do przyszłego spotkania
+                                Triplety Spotkanie - wszystkie spoktanie są rozgrywane równocześnie
+                                    Spotkanie 0 - Spotkanie między dwoma drużynami
+                                    Spotkanie 1 - Spotkanie między dwoma drużynami
+                                    Spotkanie 2 - Spotkanie między dwoma drużynami
+                                    Spotkanie 3 - Spotkanie między dwoma drużynami
+                                Round Summary
+                Druga
+                    Podfaza - wszystkie podfazy są rozgrywane równocześnie (w tym wypadku podfazy 2a i 2b)
+                        2a
+                            Runda x3
+                                Singlety Selekcja - wszystkie selekcje dla spotkań są rozgrywane równocześnie
+                                    Selekcja 0 - Selekcja graczy do przyszłego spotkania
+                                    Selekcja 1 - Selekcja graczy do przyszłego spotkania
+                                Singlety Spotkanie - wszystkie spoktanie są rozgrywane równocześnie
+                                    Spotkanie 0 - Spotkanie między dwoma drużynami
+                                    Spotkanie 1 - Spotkanie między dwoma drużynami
+                                Dublety Selekcja - wszystkie selekcje dla spotkań są rozgrywane równocześnie
+                                    Selekcja 0 - Selekcja graczy do przyszłego spotkania
+                                    Selekcja 1 - Selekcja graczy do przyszłego spotkania
+                                Dublety Spotkanie - wszystkie spoktanie są rozgrywane równocześnie
+                                    Spotkanie 0 - Spotkanie między dwoma drużynami
+                                    Spotkanie 1 - Spotkanie między dwoma drużynami
+                                Triplety Selekcja - wszystkie selekcje dla spotkań są rozgrywane równocześnie
+                                    Selekcja 0 - Selekcja graczy do przyszłego spotkania
+                                    Selekcja 1 - Selekcja graczy do przyszłego spotkania
+                                Triplety Spotkanie - wszystkie spoktanie są rozgrywane równocześnie
+                                    Spotkanie 0 - Spotkanie między dwoma drużynami
+                                    Spotkanie 1 - Spotkanie między dwoma drużynami
+                                Round Summary
+                        2b
+                            Runda x3
+                                Singlety Selekcja - wszystkie selekcje dla spotkań są rozgrywane równocześnie
+                                    Selekcja 0 - Selekcja graczy do przyszłego spotkania
+                                    Selekcja 1 - Selekcja graczy do przyszłego spotkania
+                                Singlety Spotkanie - wszystkie spoktanie są rozgrywane równocześnie
+                                    Spotkanie 0 - Spotkanie między dwoma drużynami
+                                    Spotkanie 1 - Spotkanie między dwoma drużynami
+                                Dublety Selekcja - wszystkie selekcje dla spotkań są rozgrywane równocześnie
+                                    Selekcja 0 - Selekcja graczy do przyszłego spotkania
+                                    Selekcja 1 - Selekcja graczy do przyszłego spotkania
+                                Dublety Spotkanie - wszystkie spoktanie są rozgrywane równocześnie
+                                    Spotkanie 0 - Spotkanie między dwoma drużynami
+                                    Spotkanie 1 - Spotkanie między dwoma drużynami
+                                Triplety Selekcja - wszystkie selekcje dla spotkań są rozgrywane równocześnie
+                                    Selekcja 0 - Selekcja graczy do przyszłego spotkania
+                                    Selekcja 1 - Selekcja graczy do przyszłego spotkania
+                                Triplety Spotkanie - wszystkie spoktanie są rozgrywane równocześnie
+                                    Spotkanie 0 - Spotkanie między dwoma drużynami
+                                    Spotkanie 1 - Spotkanie między dwoma drużynami
+                                Round Summary
+        Zakończenie

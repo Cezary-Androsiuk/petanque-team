@@ -156,7 +156,7 @@ Item {
 
                     Button{
                         anchors.fill: parent
-                        text: qsTr("Add new player")
+                        text: qsTr("Dodaj gracza")
                         onClicked: { Trace.t();
                             configureTeam.addNewPlayer()
                         }
@@ -201,7 +201,7 @@ Item {
                 height: 60
                 width: 230
 
-                placeholderText: qsTr("Team Name")
+                placeholderText: qsTr("Nazwa drużyny")
                 text: (!configureTeam.team)?text: configureTeam.team.name
                 onTextEdited: { Trace.t();
                     if(configureTeam.team)
@@ -233,7 +233,7 @@ Item {
                 verticalCenter: parent.verticalCenter
             }
 
-            text: "back"
+            text: "Wróć"
 
             visible: configureTeam.edit
             onClicked: { Trace.t();
@@ -261,7 +261,7 @@ Item {
                     right: centerPoint.left
                     verticalCenter: parent.verticalCenter
                 }
-                text: "cancel"
+                text: "Anuluj"
                 onClicked: { Trace.t();
                     configureTeam.cancelAddingTeam();
                 }
@@ -279,7 +279,7 @@ Item {
                     left: centerPoint.right
                     verticalCenter: parent.verticalCenter
                 }
-                text: "save team"
+                text: "Zapisz"
                 onClicked: { Trace.t();
                     configureTeam.saveAddedTeam();
                 }
@@ -290,7 +290,7 @@ Item {
                     leftMargin: 10
                     verticalCenter: parent.verticalCenter
                 }
-                text: "save team auto"
+                text: "Zapisz (przykładowe dane)"
                 visible: Backend.isDebugMode
                 onClicked: { Trace.t();
                     configureTeam.saveAddedTeamAuto();

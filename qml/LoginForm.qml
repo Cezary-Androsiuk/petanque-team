@@ -122,6 +122,7 @@ Item {
                 top: passwordTextField.bottom
                 left: passwordTextField.left
             }
+            visible: useExternalServerCheckBox.checked
 
             checked: false
             text: qsTr("Pokaż Hasło")
@@ -166,7 +167,8 @@ Item {
             width: 150
             height: 60
 
-            text: qsTr("Zaloguj")
+            text: useExternalServerCheckBox.checked ? qsTr("Zaloguj") : qsTr("Wejdź")
+
             onClicked:{ Trace.t();
                 if(!Personalization.useExternalServer)
                     askAboutExternalServer.fOpen()
@@ -192,7 +194,7 @@ Item {
                 topMargin: 10
                 horizontalCenter: parent.horizontalCenter
             }
-            width: 180
+            width: 200
             height: 60
 
             visible: {
@@ -207,7 +209,7 @@ Item {
                     false;
             }
 
-            text: qsTr("Zaloguj - bez pamięci")
+            text: useExternalServerCheckBox.checked ? qsTr("Zaloguj - bez pamięci") : qsTr("Wejdź - bez pamięci")
             onClicked:{
                 Backend.memory.debugDeleteMemory();
                 authenticate(loginTextField.text, passwordTextField.text);
@@ -225,7 +227,7 @@ Item {
             font.pixelSize: 20
             font.bold: true
             text: "Applikacja działa w trybie testowym\n\n" +
-                  "Testowe dane uwieżytelniania\n" +
+                  "Testowe dane uwierzytelniania\n" +
                   "Pusty login: '" + emptyDebugLogin + "'\n" +
                   "Puste hasło: '" + emptyDebugPassword + "'"
 

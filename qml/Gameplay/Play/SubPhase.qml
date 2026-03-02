@@ -47,9 +47,15 @@ Item {
 
             text: {
                 var crs = roundVar.currentRoundStage;
-                if(crs === 0 || crs === 1) "Singlety"; else
-                if(crs === 2 || crs === 3) "Dublety";  else
-                if(crs === 4 || crs === 5) "Triplety"; else
+                // if(crs === 0 || crs === 1) "Singlety"; else
+                // if(crs === 2 || crs === 3) "Dublety";  else
+                // if(crs === 4 || crs === 5) "Triplety"; else
+                if(crs === 0) "Singlety Selekcja"; else
+                if(crs === 1) "Singlety Spotkanie"; else
+                if(crs === 2) "Dublety Selekcja";  else
+                if(crs === 3) "Dublety Spotkanie";  else
+                if(crs === 4) "Triplety Selekcja"; else
+                if(crs === 5) "Triplety Spotkanie"; else
                 if(crs === 6) "Podsumowanie rundy";  else
                 {
                     log.e("unknown round stage("+crs+")", "SubPage.qml -> headerRoundStageLabel")

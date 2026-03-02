@@ -61,7 +61,7 @@ Item{
                     let lastName = player.lastName;
                     let license = "[" + player.license + "]";
                     let ageGroup = "("+ player.ageGroup +")";
-                    let gender = player.gender ? "F" : "M";
+                    let gender = player.gender ? "K" : "M";
                     let isTeamLeader = player.isTeamLeader ? " 👑" : "";
 
                     firstName + " " + lastName + "    " + license + " " + ageGroup + " " + gender + " " + isTeamLeader;
@@ -78,11 +78,11 @@ Item{
             height: playerDelegate.height
             width: height * 2
 
-            text: "delete"
+            text: "Usuń"
 
             onClicked:{ Trace.t();
                 console.log("onClicked ",player)
-                askDeletePlayerPopup.title = "Are you sure to delete Player?"
+                askDeletePlayerPopup.title = "Jesteś pewien by usunąć gracza?"
                 askDeletePlayerPopup.fOpen();
             }
         }
@@ -96,7 +96,7 @@ Item{
             height: playerDelegate.height
             width: height * 2
 
-            text: "edit"
+            text: "Edytuj"
 
             onClicked: { Trace.t();
                 playerDelegate.editPlayer();

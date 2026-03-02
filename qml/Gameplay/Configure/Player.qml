@@ -137,7 +137,7 @@ Item {
             height: 60
             width: 230
 
-            placeholderText: qsTr("First Name")
+            placeholderText: qsTr("Imię")
             text: (!configurePlayer.player)?text: configurePlayer.player.firstName
             onTextEdited: { Trace.t();
                 if(configurePlayer.player)
@@ -154,7 +154,7 @@ Item {
             height: 60
             width: 230
 
-            placeholderText: qsTr("Last Name")
+            placeholderText: qsTr("Nazwisko")
             text: (!configurePlayer.player)?text: configurePlayer.player.lastName
             onTextEdited: { Trace.t();
                 if(configurePlayer.player)
@@ -171,7 +171,7 @@ Item {
             height: 60
             width: 230
 
-            placeholderText: qsTr("License")
+            placeholderText: qsTr("Licencja")
             text: (!configurePlayer.player)?text: configurePlayer.player.license
             onTextEdited: { Trace.t();
                 if(configurePlayer.player)
@@ -185,7 +185,8 @@ Item {
                 top: licenseTextField.bottom
                 topMargin: 10
             }
-            model: ["Junior", "Youth", "Senior", "Veteran"]
+            width: 200
+            model: ["Junior", "Młodzież", "Senior", "Weteran"]
             currentIndex: (!configurePlayer.player)?currentIndex: configurePlayer.player.ageGroup
 
             onCurrentIndexChanged: { Trace.t();
@@ -200,7 +201,8 @@ Item {
                 top: ageGroupComboBox.bottom
                 topMargin: 10
             }
-            model: ["Male", "Female"]
+            width: 200
+            model: ["Mężczyzna", "Kobieta"]
             currentIndex: (!configurePlayer.player)?currentIndex: configurePlayer.player.gender
 
             onCurrentIndexChanged: { Trace.t();
@@ -229,7 +231,7 @@ Item {
                 }
 
             }
-            text: "Is Team Leader"
+            text: "Lider drużyny"
         }
 
 
@@ -255,7 +257,7 @@ Item {
                 leftMargin: 10
                 verticalCenter: parent.verticalCenter
             }
-            text: "back"
+            text: "Wróć"
             visible: configurePlayer.edit
             onClicked: { Trace.t();
                 configurePlayer.goBack();
@@ -282,7 +284,7 @@ Item {
                     right: centerPoint.left
                     verticalCenter: parent.verticalCenter
                 }
-                text: "cancel"
+                text: "Anuluj"
                 onClicked: { Trace.t();
                     configurePlayer.cancelAddingPlayer();
                 }
@@ -300,7 +302,7 @@ Item {
                     left: centerPoint.right
                     verticalCenter: parent.verticalCenter
                 }
-                text: "save player"
+                text: "Zapisz"
                 onClicked: { Trace.t();
                     configurePlayer.saveAddedPlayer();
                 }
@@ -312,7 +314,7 @@ Item {
                     leftMargin: 10
                     verticalCenter: parent.verticalCenter
                 }
-                text: "save player auto"
+                text: "Zapisz (przykładowe dane)"
                 visible: Backend.isDebugMode
                 onClicked: { Trace.t();
                     configurePlayer.saveAddedPlayerAuto();

@@ -16,14 +16,14 @@ Item {
     Connections{
         target: Backend.event
         function onEventValid(){ Trace.t();
-            confirmNextRoundStagePopup.fromMessage = "Configure"
-            confirmNextRoundStagePopup.toMessage = "Play"
-            confirmNextRoundStagePopup.title = "Are you sure to move on?"
+            confirmNextRoundStagePopup.fromMessage = "Konfiguracja"
+            confirmNextRoundStagePopup.toMessage = "Rozgrywka"
+            confirmNextRoundStagePopup.title = "Kontynuować?"
             confirmNextRoundStagePopup.fOpen();
         }
 
         function onEventValidationFailed(description){ Trace.t(description);
-            failedEventCreationInfoPopup.title = "Event data are not valid!";
+            failedEventCreationInfoPopup.title = "Dane wydarzenia nie są poprawne!";
             failedEventCreationInfoPopup.splitText = true;
             failedEventCreationInfoPopup.message = description;
             failedEventCreationInfoPopup.fOpen();
@@ -205,7 +205,7 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
-            text: qsTr("Configure Event")
+            text: qsTr("Konfiguracja Wydarzenia")
             font.pixelSize: 30
         }
     }
@@ -227,7 +227,7 @@ Item {
                 verticalCenter: parent.verticalCenter
             }
 
-            text: "start event"
+            text: "Rozpocznij wydarzenie"
             onClicked: { Trace.t();
                 Backend.event.validateEvent();
             }
@@ -240,7 +240,7 @@ Item {
                 leftMargin: 20
                 verticalCenter: parent.verticalCenter
             }
-            text: "create example data"
+            text: "Ustaw przykładowe dane"
             onClicked:{ Trace.t();
                 Backend.event.assignExampleData();
             }

@@ -39,7 +39,7 @@ Item {
                 height: 60
                 width: 400
 
-                placeholderText: qsTr("Event name")
+                placeholderText: qsTr("Nazwa wydarzenia")
                 text: (!event)?null: event.name
                 onTextEdited: { Trace.t();
                     event.name = text
@@ -58,7 +58,7 @@ Item {
                     height: 60
                     width: 230
 
-                    placeholderText: qsTr("First phase date")
+                    placeholderText: qsTr("Data pierwszej fazy")
                     text: (!event)?null: event.firstPhaseDate
                     onTextEdited: {
                         event.firstPhaseDate = text
@@ -69,7 +69,7 @@ Item {
                     // id: setTodaysDateButton
                     anchors.verticalCenter: firstPhaseDateTextField.verticalCenter
 
-                    text: qsTr("Todays Date")
+                    text: qsTr("Dzisiaj")
                     onClicked: {
                         var now = new Date();
                         var todaysDate = now.toISOString().slice(0, 10); // Gemini
@@ -101,7 +101,7 @@ Item {
                     height: 60
                     width: 230
 
-                    placeholderText: qsTr("Second phase date")
+                    placeholderText: qsTr("Data drugiej fazy")
                     text: (!event)?null: event.secondPhaseDate
                     onTextEdited: {
                         event.secondPhaseDate = text
@@ -112,7 +112,7 @@ Item {
                     // id: setTodayDateButton
                     anchors.verticalCenter: secondPhaseDateTextField.verticalCenter
 
-                    text: qsTr("Todays Date")
+                    text: qsTr("Dzisiaj")
                     onClicked: {
                         var now = new Date();
                         var todaysDate = now.toISOString().slice(0, 10); // Gemini
@@ -137,7 +137,7 @@ Item {
                 height: 60
                 width: 400
 
-                placeholderText: qsTr("Competition Organizer")
+                placeholderText: qsTr("Organizator")
                 text: (!event)?null: event.competitionOrganizer
                 onTextEdited: { Trace.t();
                     event.competitionOrganizer = text
@@ -150,7 +150,7 @@ Item {
                 height: 60
                 width: 500
 
-                placeholderText: qsTr("First phase place")
+                placeholderText: qsTr("Lokalizacja pierwszej fazy")
                 text: (!event)?null: event.firstPhasePlace
                 onTextEdited: { Trace.t();
                     event.firstPhasePlace = text
@@ -163,7 +163,7 @@ Item {
                 height: 60
                 width: 500
 
-                placeholderText: qsTr("Second phase place")
+                placeholderText: qsTr("Lokalizacja drugiej fazy")
                 text: (!event)?null: event.secondPhasePlace
                 onTextEdited: { Trace.t();
                     event.secondPhasePlace = text
@@ -176,7 +176,7 @@ Item {
                 height: 60
                 width: 400
 
-                placeholderText: qsTr("Union delegate")
+                placeholderText: qsTr("Delegat unii")
                 text: (!event)?null: event.unionDelegate
                 onTextEdited: { Trace.t();
                     event.unionDelegate = text
@@ -216,7 +216,7 @@ Item {
                             id: addJudgeButton
                             anchors.centerIn: parent
 
-                            text: qsTr("Add judge")
+                            text: qsTr("Dodaj sędziego")
                             onClicked: {
                                 event.addJudge();
                             }
@@ -235,7 +235,7 @@ Item {
                             }
                             width: 300
                             height: 60
-                            placeholderText: qsTr("Judge")
+                            placeholderText: qsTr("Sędzia")
                             text: modelData
                             onTextEdited: {
                                 event.setJudge(index, text);

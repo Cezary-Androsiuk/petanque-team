@@ -43,14 +43,14 @@ Item {
     Connections{
         target: phaseVar
         function onVerified(){ Trace.t();
-            confirmNextPopup.title = "Are you sure to move on?"
+            confirmNextPopup.title = "Na pewno chcesz przejść dalej?"
             confirmNextPopup.fromMessage = Backend.event.getConfirmNextPopupTextFrom();
             confirmNextPopup.toMessage = Backend.event.getConfirmNextPopupTextTo();
             confirmNextPopup.fOpen();
         }
 
         function onVerificationFailed(message){ Trace.t(message);
-            infoPopup.title = "Phase data are not valid!";
+            infoPopup.title = "Dane aktualnej fazy nie są poprawne!";
             infoPopup.splitText = true;
             infoPopup.message = message;
             infoPopup.fOpen();
@@ -92,7 +92,7 @@ Item {
 
                             TabButton{
                                 anchors.fill: parent
-                                text: qsTr("Phase ") + modelData.name
+                                text: qsTr("Faza ") + modelData.name
                                 font.pixelSize: 22
                                 checkable: false
                                 onClicked: { Trace.t();
@@ -165,7 +165,7 @@ Item {
                 bottom: parent.bottom
             }
             // width: 2*height
-            text: "Settings"
+            text: "Ustawienia"
             onClicked: { Trace.t();
                 playStackView.push(settingsComponent.createObject(playStackView));
             }
@@ -204,7 +204,7 @@ Item {
                 leftMargin: 5
                 verticalCenter: parent.verticalCenter
             }
-            text: "Next"
+            text: "Dalej"
             onClicked: { Trace.t();
                 log.i("next pressed",
                       "Phase.qml -> nextButton -> onClicked",
@@ -220,7 +220,7 @@ Item {
                 leftMargin: 30
                 verticalCenter: parent.verticalCenter
             }
-            text: "Set Example Data"
+            text: "Wstaw przykładowe dane"
             visible: Backend.isDebugMode
             onClicked:{ Trace.t();
                 phase.phaseVar.assignExampleData();
@@ -234,7 +234,7 @@ Item {
                 leftMargin: 30
                 verticalCenter: parent.verticalCenter
             }
-            text: "Set Example Data And Go Next"
+            text: "Wstaw przykładowe dane i Dalej"
             visible: Backend.isDebugMode
             onClicked:{ Trace.t();
                 exampleDataButton.clicked();

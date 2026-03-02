@@ -54,7 +54,7 @@ Item {
 
             Button{
                 anchors.fill: parent
-                text: qsTr("Add new team")
+                text: qsTr("Dodaj drużynę")
                 onClicked: { Trace.t();
                     teamsList.addNewTeam();
                 }

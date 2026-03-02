@@ -102,10 +102,10 @@ Item{
                 height: defaultHeight
                 width: height * 2
 
-                text: "delete"
+                text: "Usuń"
 
                 onClicked:{ Trace.t();
-                    askDeleteTeamPopup.title = "Are you sure to delete Team?"
+                    askDeleteTeamPopup.title = "Jesteś pewien by usunąć drużynę?"
                     askDeleteTeamPopup.fOpen()
                 }
             }
@@ -119,7 +119,7 @@ Item{
                 height: defaultHeight
                 width: height * 2
 
-                text: "edit"
+                text: "Edytuj"
 
                 onClicked: { Trace.t();
                     teamDelegate.editTeam()
@@ -193,7 +193,7 @@ Item{
 
                     Button{
                         anchors.fill: parent
-                        text: qsTr("Add new player")
+                        text: qsTr("Dodaj gracza")
                         onClicked: { Trace.t();
                             teamDelegate.addNewPlayer()
                         }
