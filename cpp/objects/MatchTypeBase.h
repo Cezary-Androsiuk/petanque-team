@@ -133,7 +133,7 @@ private:
 
 
     /// These flags ensure the structure is initialized across different entry points.
-    /// Necessary because app restarts, and QML navigation ("Next" button)
+    /// Necessary because app restarts (deserialization), and QML navigation ("Next" button)
     /// involve separate data flows that require synchronized initialization.
 
     /// Prevents redundant selection initialization.
