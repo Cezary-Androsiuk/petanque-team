@@ -77,7 +77,7 @@ public slots:
     /// TEAM STUFF
     void createDetachedTeam();
     void deleteDetachedTeam();
-    void validateDetachedTeam();
+    void validateDetachedTeam(int index=-1);
     void addDetachedTeam();
     void replaceWithDetachedTeam(int index);
 

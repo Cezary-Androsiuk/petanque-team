@@ -10,7 +10,6 @@ function t(usedArgs = "") {
     } catch (error) {
         var trace = error.stack
         var traceElements = trace.split('\n')
-        console.log(traceElements)
 
         if(traceElements.length < 2)
         {
@@ -18,7 +17,7 @@ function t(usedArgs = "") {
             return
         }
 
-        // traceElements.reverse();
+        traceElements.reverse();
 
         const itf = false; // includeTraceFunction
 

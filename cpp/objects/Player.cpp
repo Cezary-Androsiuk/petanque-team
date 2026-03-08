@@ -93,30 +93,36 @@ void Player::clear(bool emitting)
     if(emitting) emit this->largePointsChanged();
 }
 
-void Player::copyFromOtherPlayer(const Player &sourcePlayer)
+void Player::copyFromOtherPlayer(Player *sourcePlayer)
 {TRM;
-    if(this == &sourcePlayer)
+    if(this == sourcePlayer)
     {
         W("trying to copy data from itself");
         return;
     }
 
-    m_firstName = sourcePlayer.m_firstName;
-    m_lastName = sourcePlayer.m_lastName;
-    m_license = sourcePlayer.m_license;
-    m_ageGroup = sourcePlayer.m_ageGroup;
-    m_gender = sourcePlayer.m_gender;
-    m_isTeamLeader = sourcePlayer.m_isTeamLeader;
-    m_smallPoints = sourcePlayer.m_smallPoints;
-    m_largePoints = sourcePlayer.m_largePoints;
-
+    m_firstName = sourcePlayer->m_firstName;
     emit this->firstNameChanged();
+
+    m_lastName = sourcePlayer->m_lastName;
     emit this->lastNameChanged();
+
+    m_license = sourcePlayer->m_license;
     emit this->licenseChanged();
+
+    m_ageGroup = sourcePlayer->m_ageGroup;
     emit this->ageGroupChanged();
+
+    m_gender = sourcePlayer->m_gender;
     emit this->genderChanged();
+
+    m_isTeamLeader = sourcePlayer->m_isTeamLeader;
     emit this->isTeamLeaderChanged();
+
+    m_smallPoints = sourcePlayer->m_smallPoints;
     emit this->smallPointsChanged();
+
+    m_largePoints = sourcePlayer->m_largePoints;
     emit this->largePointsChanged();
 }
 

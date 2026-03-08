@@ -40,7 +40,7 @@ public:
 
     void clear(bool emitting = true);
 
-    void copyFromOtherPlayer(const Player &sourcePlayer);
+    Q_INVOKABLE void copyFromOtherPlayer(Player *sourcePlayer);
 
 public slots:
     /// EXAMPLE

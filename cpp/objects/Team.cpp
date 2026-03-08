@@ -79,7 +79,7 @@ void Team::clear(bool emitting)
     if(emitting) emit this->playersChanged();
 }
 
-void Team::assign(const Team *otherTeam)
+void Team::copyFromOtherTeam(const Team *otherTeam)
 {
     this->clear(false);
 
@@ -122,7 +122,7 @@ void Team::deleteDetachedPlayer()
     emit this->detachedPlayerChanged();
 }
 
-void Team::validateDetachedPlayer()
+void Team::validateDetachedPlayer(int index)
 {TRM;
     if(m_detachedPlayer.isNull())
     {
@@ -151,6 +151,11 @@ void Team::validateDetachedPlayer()
     /// Check unique parameter
     for(int i=0; i<m_players.size(); i++)
     {
+        /// while editing player, ignore player that is edited (it is comparing with detached player)
+        /// if validation is performed on a new player, index is -1 and following code doesn't affect the method
+        if(index == i)
+            continue;
+
         if(m_detachedPlayer->getLicense() == m_players[i]->getLicense())
         {
             emit this->detachedPlayerValidationFailed("Licencje graczy muszą być unikalne w obrębie drużyny!");
@@ -176,13 +181,37 @@ void Team::addDetachedPlayer()
     emit this->detachedPlayerChanged();
 }
 
+void Team::replaceWithDetachedPlayer(int index)
+{TRM;
+    if(m_detachedPlayer.isNull())
+    {
+        E("cannot replace player with not existing detached player");
+        return;
+    }
+
+    if(m_players.size() <= index)
+    {
+        QString sSize = QString::number(m_players.size());
+        QString sIndex = QString::number(index);
+        E("trying to replace not existing player(index: "+sIndex+") from list(size: "+sSize+")");
+        return;
+    }
+
+    m_players[index] = m_detachedPlayer;
+    emit this->playersChanged();
+
+    m_detachedPlayer.clear();
+    emit this->detachedPlayerChanged();
+
+}
+
 void Team::deletePlayer(int index)
 {TRM;
     if(m_players.size() <= index)
     {
         QString sSize = QString::number(m_players.size());
         QString sIndex = QString::number(index);
-        E("trying to delete not existing player("+sIndex+") from list("+sSize+")");
+        E("trying to delete not existing player(index: "+sIndex+") from list(size: "+sSize+")");
         return;
     }
 

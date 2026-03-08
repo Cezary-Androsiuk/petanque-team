@@ -292,7 +292,7 @@ void Event::deleteDetachedTeam()
     // emit this->detachedTeamChanged();
 }
 
-void Event::validateDetachedTeam()
+void Event::validateDetachedTeam(int index)
 {TRM;
     if(m_detachedTeam.isNull())
     {
@@ -311,6 +311,11 @@ void Event::validateDetachedTeam()
     /// Check unique parameter
     for(int i=0; i<m_teams.size(); i++)
     {
+        /// while editing team, ignore team that is edited (it is comparing with detached team)
+        /// if validation is performed on a new team, index is -1 and following code doesn't affect the method
+        if(index == i)
+            continue;
+
         if(m_detachedTeam->getName() == m_teams[i]->getName())
         {
             emit this->detachedTeamValidationFailed("Nazwa drużyny musi być unikalna!");
@@ -338,7 +343,7 @@ void Event::addDetachedTeam()
 }
 
 void Event::replaceWithDetachedTeam(int index)
-{
+{TRM;
     // I("Adding detached Team to Event")
     if(m_detachedTeam.isNull())
     {
@@ -350,7 +355,7 @@ void Event::replaceWithDetachedTeam(int index)
     {
         QString sSize = QString::number(m_teams.size());
         QString sIndex = QString::number(index);
-        E("Próba nadpisania nie istniejącej drużyny (indeks: "+sIndex+") z listy (rozmiar: "+sSize+")");
+        E("trying to replace not existing team(index: "+sIndex+") from list(size: "+sSize+")");
         return;
     }
 
@@ -367,7 +372,7 @@ void Event::deleteTeam(int index)
     {
         QString sSize = QString::number(m_teams.size());
         QString sIndex = QString::number(index);
-        E("Próba usunięcia nie istniejącej drużyny (indeks: "+sIndex+") z listy (rozmiar: "+sSize+")");
+        E("trying to delete not existing team(index: "+sIndex+") from list(size: "+sSize+")");
         return;
     }
 

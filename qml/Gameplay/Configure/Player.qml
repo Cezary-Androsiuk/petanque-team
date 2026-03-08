@@ -11,14 +11,25 @@ Item {
     required property var parentStackView
     required property var team
     required property var player
-    property bool edit: false
+
+    property bool playerEdited: false
+    property int playerIndex: -1
 
     property int headerHeight: 70
     property int footerHeight: 70
     property int delegateHeight: 50
 
     Component.onCompleted: { Trace.t();
-        log.w("now while editing existing player his license, and other values can be changed to the invalid one", "Player.qml -> onCompleted")
+        if(playerEdited)
+        {
+            log.i("creating detached player for edit purposes")
+            // copy data from exising player to detachedPlayer
+            team.createDetachedPlayer()
+            var tmpDetachedPlayer = team.detachedPlayer
+            tmpDetachedPlayer.copyFromOtherPlayer(player)
+            player = tmpDetachedPlayer;
+            log.d("detached player created")
+        }
     }
 
     function randomNumber(topRange){ Trace.t(topRange);
@@ -73,26 +84,33 @@ Item {
         parentStackView.pop();
     }
 
-    function cancelAddingPlayer(){ Trace.t();
+    function cancelPlayerForm(){ Trace.t();
         parentStackView.pop();
         team.deleteDetachedPlayer();
     }
 
-    function saveAddedPlayerAuto(){ Trace.t();
+    function savePlayerFormAuto(){ Trace.t();
         setExamplePlayerDataIfNeeded();
 
-        team.validateDetachedPlayer();
+        team.validateDetachedPlayer(configurePlayer.playerIndex);
     }
 
-    function saveAddedPlayer(){ Trace.t();
-        team.validateDetachedPlayer();
+    function savePlayerForm(){ Trace.t();
+        team.validateDetachedPlayer(configurePlayer.playerIndex);
     }
 
     Connections{
         target: team
         function onDetachedPlayerIsValid(){ Trace.t();
             parentStackView.pop();
-            team.addDetachedPlayer();
+            if(configurePlayer.playerEdited)
+            {
+                team.replaceWithDetachedPlayer(configurePlayer.playerIndex)
+            }
+            else
+            {
+                team.addDetachedPlayer();
+            }
         }
 
         function onDetachedPlayerValidationFailed(message){ Trace.t();
@@ -250,19 +268,6 @@ Item {
             top: parent.top
         }
         height: configurePlayer.headerHeight
-
-        Button{
-            anchors{
-                left: parent.left
-                leftMargin: 10
-                verticalCenter: parent.verticalCenter
-            }
-            text: "Wróć"
-            visible: configurePlayer.edit
-            onClicked: { Trace.t();
-                configurePlayer.goBack();
-            }
-        }
     }
 
     Item{
@@ -277,7 +282,6 @@ Item {
         Item{
             id: footerButtons
             anchors.fill: parent
-            visible: !configurePlayer.edit
 
             Button{
                 anchors{
@@ -286,7 +290,7 @@ Item {
                 }
                 text: "Anuluj"
                 onClicked: { Trace.t();
-                    configurePlayer.cancelAddingPlayer();
+                    configurePlayer.cancelPlayerForm();
                 }
             }
 
@@ -304,7 +308,7 @@ Item {
                 }
                 text: "Zapisz"
                 onClicked: { Trace.t();
-                    configurePlayer.saveAddedPlayer();
+                    configurePlayer.savePlayerForm();
                 }
             }
 
@@ -317,7 +321,7 @@ Item {
                 text: "Zapisz (przykładowe dane)"
                 visible: Backend.isDebugMode
                 onClicked: { Trace.t();
-                    configurePlayer.saveAddedPlayerAuto();
+                    configurePlayer.savePlayerFormAuto();
                 }
             }
         }

@@ -185,6 +185,8 @@ Item{
                         anchors.fill: parent
 
                         player: teamDelegate.team.players[index]
+                        playerIndex: index
+
                         parentStackView: teamDelegate.parentStackView
                         team: teamDelegate.team
                     }

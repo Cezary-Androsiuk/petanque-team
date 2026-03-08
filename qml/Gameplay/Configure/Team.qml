@@ -20,15 +20,16 @@ Item {
     property int footerHeight: 70
     property int delegateHeight: 50
 
-    Component.onCompleted: {
+    Component.onCompleted: { Trace.t();
         if(teamEdited)
         {
+            log.i("creating detached team for edit purposes")
             // copy data from exising team to detachedTeam
             Backend.event.createDetachedTeam()
             var tmpDetachedTeam = Backend.event.detachedTeam
-            tmpDetachedTeam.assign(team)
+            tmpDetachedTeam.copyFromOtherTeam(team)
             team = tmpDetachedTeam;
-
+            log.d("detached team created")
         }
 
     }
@@ -77,18 +78,18 @@ Item {
     function saveTeamFormAuto(){ Trace.t();
         setExampleTeamDataIfNeeded();
 
-        event.validateDetachedTeam();
+        event.validateDetachedTeam(configureTeam.teamIndex);
     }
 
     function saveTeamForm(){ Trace.t();
-        event.validateDetachedTeam();
+        event.validateDetachedTeam(configureTeam.teamIndex);
     }
 
     Connections{
         target: event
         function onDetachedTeamIsValid(){ Trace.t();
             parentStackView.pop();
-            if(teamEdited)
+            if(configureTeam.teamEdited)
             {
                 event.replaceWithDetachedTeam(configureTeam.teamIndex)
             }
@@ -160,6 +161,7 @@ Item {
 
                         team: configureTeam.team
                         player: configureTeam.team.players[index]
+                        playerIndex: index
                         parentStackView: configureTeam.parentStackView
                     }
                 }

@@ -11,12 +11,14 @@ Item{
     required property var player
     required property var team
     required property var parentStackView
+    required property int playerIndex
 
     clip: true
 
     function editPlayer(){ Trace.t();
         const args = {
-            edit: true,
+            playerEdited: true,
+            playerIndex: playerDelegate.playerIndex,
             parentStackView: playerDelegate.parentStackView,
             player: playerDelegate.player,
             team: playerDelegate.team
