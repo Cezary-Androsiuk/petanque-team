@@ -8,7 +8,7 @@
 #include <cstring>
 #include <filesystem>
 
-const char *Log::version = "v1.11.1";
+const char *Log::version = "v1.12.0";
 #if SPLIT_DEBUG_AND_TRACE_LOGS
 const char *debugLogsOutputDirectory = "logs/debug/";
 const char *traceLogsOutputDirectory = "logs/trace/";
@@ -167,18 +167,18 @@ void Log::raw(cstr func, cestr log, Action action)
 #endif /// USE_QT_SUPPORT
 }
 
-void Log::trace(cstr file, cstr func, int line, const void *ptr, cestr args)
+void Log::trace(cstr filePath, cstr func, int line, const void *ptr, cestr args)
 {
-    Log::_trace(file, func, line, ptr, args, false);
+    Log::_trace(filePath, "", func, line, ptr, args, 0, 0, false);
 }
 #if USE_QT_SUPPORT
-void Log::traceQML(cstr file, cstr func, int line, cestr args)
+void Log::traceQML(cstr filePath, cstr fileName, cstr func, int line, int callStackElementIndex, int callStackElementCount, cestr args)
 {
-    Log::_trace(file, func, line, nullptr, args, true);
+    Log::_trace(filePath, fileName, func, line, nullptr, args, callStackElementIndex, callStackElementCount, true);
 }
 #endif
 
-void Log::_trace(cstr file, cstr func, int line, const void *ptr, cestr args, bool isQMLTrace)
+void Log::_trace(cstr filePath, cstr fileName, cstr func, int line, const void *ptr, cestr args, int qmlCallStackElementIndex, int qmlCallStackElementCount, bool isQMLTrace)
 {
     std::string time;
 
@@ -193,20 +193,29 @@ void Log::_trace(cstr file, cstr func, int line, const void *ptr, cestr args, bo
     /// create displayed format
     static constexpr int lineLen = MAX_LINE_INDEX_NUMBER_LENGTH_IN_TRACE_LOG;
     static constexpr int fileLen = MAX_FILES_IN_PROJECT_COUNT_NUMBER_LENGTH;
+    static constexpr int fileNameLen = MAX_FILE_NAME_IN_PROJECT_LENGTH;
     const std::string lineFormat = "%" + std::to_string(lineLen) + "d";
     const std::string fileFormat = "%" + std::to_string(fileLen) + "d";
+    const std::string fileNamePrefixFill = std::string(fileNameLen - fileName.size(), ' ');
     std::string format;
     if(isQMLTrace)
+    {
+        const std::string callStackElementIndex = std::to_string(qmlCallStackElementIndex) + "/" +
+            std::to_string(qmlCallStackElementCount);
         /// assert that pointers has this duration "000001c8c42ed340"
         /// at start this can be easy computed and stored in variable
-        format = "T " +fileFormat+ "|" +lineFormat+ "|       QML      |%s|[%s]";
+        format = "T " +fileFormat+ "|" +fileNamePrefixFill+ "%s|" +lineFormat+ "|       QML      |" + callStackElementIndex + "|%s|[%s]";
+
+        if(qmlCallStackElementIndex == qmlCallStackElementCount)
+            format += "\n";
+    }
     else
-        format = "T " +fileFormat+ "|" +lineFormat+ "|%p|%s|[%s]";
+        format = "T " +fileFormat+ "|" +fileNamePrefixFill+ "%s|" +lineFormat+ "|%p|%s|[%s]";
 
     /// compute index from file name - save space in trace file
     int filePathIndex = 0;
     std::string newFilePathInfo;
-    auto fIt = m_filesPaths.find(file);
+    auto fIt = m_filesPaths.find(filePath);
     if(fIt != m_filesPaths.end())
     {
         filePathIndex = fIt->second;
@@ -214,9 +223,9 @@ void Log::_trace(cstr file, cstr func, int line, const void *ptr, cestr args, bo
     else
     {
         filePathIndex = m_filesPaths.size() +1;
-        m_filesPaths[file] = filePathIndex;
+        m_filesPaths[filePath] = filePathIndex;
 
-        newFilePathInfo = asprintf(("> " + fileFormat + "|%s\n").c_str(), filePathIndex, file.c_str())
+        newFilePathInfo = asprintf(("> " + fileFormat + "|%s\n").c_str(), filePathIndex, filePath.c_str())
 #if USE_QT_SUPPORT
                               .toStdString()
 #endif /// USE_QT_SUPPORT
@@ -226,14 +235,14 @@ void Log::_trace(cstr file, cstr func, int line, const void *ptr, cestr args, bo
     /// create trace line
     std::string traceLine;
     if(isQMLTrace)
-        traceLine = asprintf(format.c_str(), filePathIndex, line, func.c_str(),
+        traceLine = asprintf(format.c_str(), filePathIndex, fileName.c_str(), line, func.c_str(),
 #if USE_QT_SUPPORT
                              args.toStdString().c_str()).toStdString();
 #else
                              args.c_str());
 #endif /// USE_QT_SUPPORT
     else
-        traceLine = asprintf(format.c_str(), filePathIndex, line, ptr, func.c_str(),
+        traceLine = asprintf(format.c_str(), filePathIndex, fileName.c_str(), line, ptr, func.c_str(),
 #if USE_QT_SUPPORT
                              args.toStdString().c_str()).toStdString();
 #else
@@ -346,7 +355,37 @@ void Log::logInfoAboutLogProperties()
               << "> " << MAX_LINE_INDEX_NUMBER_LENGTH_IN_TRACE_LOG
               << " # MAX_LINE_INDEX_NUMBER_LENGTH_IN_TRACE_LOG\n"
               << "> " << MAX_FILES_IN_PROJECT_COUNT_NUMBER_LENGTH
-              << " # MAX_FILES_IN_PROJECT_COUNT_NUMBER_LENGTH\n\n";
+              << " # MAX_FILES_IN_PROJECT_COUNT_NUMBER_LENGTH\n"
+              << "> " << MAX_FILE_NAME_IN_PROJECT_LENGTH
+              << " # MAX_FILE_NAME_IN_PROJECT_LENGTH\n";
+
+
+
+    m_logFile << "\n";
+
+    m_logFile << "# message format: [<log time>] <type> <method name> <message>\n";
+
+    /// cpp trace format for cpp code was not implemented yet - should be similar to qml
+    m_logFile << "# CPP trace format: ---\n";
+
+#if USE_QT_SUPPORT
+    m_logFile << "# QML trace format: [<log time>] <type> <file index>|<line>|<qml indicator>|<stack info>|<method name>|[<arguments>]\n";
+#endif
+
+
+
+    m_logFile << "\n";
+
+    m_logFile << "# <file index> - can be replaced with path to the file. When new file was logged, then new file index is created.\n"
+                 "# Log looks like:\n"
+                 "# > <file index>|<file path>\n\n";
+
+    m_logFile << "# <stack info> - tells index of record in the stack log, methods are called by methods and this shows how much methods was called for this record\n";
+
+
+
+    m_logFile << "\n";
+
 #endif /// SPLIT_DEBUG_AND_TRACE_LOGS
 }
 

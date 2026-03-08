@@ -10,7 +10,7 @@ function t(usedArgs = "") {
     } catch (error) {
         var trace = error.stack
         var traceElements = trace.split('\n')
-
+        console.log(traceElements)
 
         if(traceElements.length < 2)
         {
@@ -18,14 +18,21 @@ function t(usedArgs = "") {
             return
         }
 
-        for(var i=traceElements.length-1; i>=0; i--) // might skip first element (t() function)
+        // traceElements.reverse();
+
+        const itf = false; // includeTraceFunction
+
+        for(var i=itf?0:1; i<traceElements.length; i++)
         {
             var traceElementParts = splitTraceElement(traceElements[i]);
             if(traceElementParts)
             {
                 log.t(traceElementParts.filePath,
+                      traceElementParts.fileName,
                       traceElementParts.functionName,
                       traceElementParts.lineNumber,
+                      i,
+                      traceElements.length-1,
                       usedArgs)
             }
             else
@@ -39,23 +46,34 @@ function t(usedArgs = "") {
 function splitTraceElement(stackTraceString) {
     const parts = {};
 
-    const atIndex = stackTraceString.indexOf('@');
-    if (atIndex === -1) {
-        log.e("@ sign in " + stackTraceString + " not found", "Trace.js -> splitTraceElement()");
+    const atSignIndex = stackTraceString.indexOf('@');
+    if (atSignIndex === -1) {
+        log.e("'@' sign in " + stackTraceString + " not found", "Trace.js -> splitTraceElement()");
         return null;
     }
-    parts.functionName = stackTraceString.substring(0, atIndex);
+    parts.functionName = stackTraceString.substring(0, atSignIndex);
 
-    const remainingString = stackTraceString.substring(atIndex + 1);
+    const remainingString = stackTraceString.substring(atSignIndex + 1);
 
     const lastColonIndex = remainingString.lastIndexOf(':');
     if (lastColonIndex === -1) {
-        log.e(": sign in " + stackTraceString + "(trimmed: " + remainingString +
+        log.e("':' sign in " + stackTraceString + "(trimmed: " + remainingString +
               ") not found", "Trace.js -> splitTraceElement()");
         return null;
     }
 
-    parts.filePath = remainingString.substring(0, lastColonIndex);
+    const filePath = remainingString.substring(0, lastColonIndex);
+    parts.filePath = filePath;
+
+    const lastSlashInFilePath = filePath.lastIndexOf('/');
+    if (lastSlashInFilePath === -1) {
+        log.e("'/' sign in " + stackTraceString + "(trimmed: " + filePath +
+              ") not found", "Trace.js -> splitTraceElement()");
+        return null;
+    }
+    parts.fileName = filePath.substring(lastSlashInFilePath + 1);
+
+
     const lineNumberStr = remainingString.substring(lastColonIndex + 1);
 
     parts.lineNumber = parseInt(lineNumberStr, 10);

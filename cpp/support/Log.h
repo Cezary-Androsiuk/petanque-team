@@ -72,6 +72,7 @@ DOLTV_F(...)    - MyClass(int c, int b, int a){DOLTV_F("1, 2, 3") or DOLTV_F("1,
 #define ENABLE_TRACE_LOGGING false /// decides if trace logging is enabled and functions names will be saved to logs
 #define MAX_LINE_INDEX_NUMBER_LENGTH_IN_TRACE_LOG 7 /// to keep logs pretty - assert that max lines count in any file is 9'999'999
 #define MAX_FILES_IN_PROJECT_COUNT_NUMBER_LENGTH 4 /// to keep logs pretty - assert that max count of files in project is 9'999
+#define MAX_FILE_NAME_IN_PROJECT_LENGTH 20 /// to keep logs pretty - assert that max length of file name has 30 characters
 
 #include <cstdio>
 
@@ -239,12 +240,12 @@ public:
     void debug(cstr func, cestr log, Action action = Action(Action::All));
     void raw(cstr func, cestr log, Action action = Action(Action::All));
 
-    void trace(cstr file, cstr func, int line, const void *ptr, cestr args);
+    void trace(cstr filePath, cstr func, int line, const void *ptr, cestr args);
 #if USE_QT_SUPPORT
-    void traceQML(cstr file, cstr func, int line, cestr args);
+    void traceQML(cstr filePath, cstr fileName, cstr func, int line, int callStackElementIndex, int qmlCallStackElementCount, cestr args);
 #endif
 private:
-    void _trace(cstr file, cstr func, int line, const void *ptr, cestr args, bool isQMLTrace);
+    void _trace(cstr filePath, cstr fileName, cstr func, int line, const void *ptr, cestr args, int qmlCallStackElementIndex, int qmlCallStackElementCount, bool isQMLTrace);
 public:
 
     static estr asprintf(const char *text, ...);
