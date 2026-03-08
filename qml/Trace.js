@@ -19,9 +19,7 @@ function t(usedArgs = "") {
 
         traceElements.reverse();
 
-        const itf = false; // includeTraceFunction
-
-        for(var i=itf?0:1; i<traceElements.length; i++)
+        for(var i=0; i<traceElements.length-1; i++)
         {
             var traceElementParts = splitTraceElement(traceElements[i]);
             if(traceElementParts)
@@ -30,7 +28,7 @@ function t(usedArgs = "") {
                       traceElementParts.fileName,
                       traceElementParts.functionName,
                       traceElementParts.lineNumber,
-                      i,
+                      i+1,
                       traceElements.length-1,
                       usedArgs)
             }
