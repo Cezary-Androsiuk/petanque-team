@@ -33,6 +33,7 @@ public:
     void deserialize(const QJsonObject &jTeam) override;
 
     void clear(bool emitting = true);
+    Q_INVOKABLE void assign(const Team *otherTeam);
 
 public slots:
     void createDetachedPlayer();

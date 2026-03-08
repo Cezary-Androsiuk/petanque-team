@@ -11,6 +11,7 @@ Item{
     required property double defaultHeight
     required property var team
     required property var parentStackView
+    required property int teamIndex
 
     property bool extended: false
     readonly property double extendedHeight: defaultHeight * 1.5 + playersInfo.height
@@ -20,7 +21,8 @@ Item{
 
     function editTeam(){ Trace.t();
         const args = {
-            edit: true,
+            teamEdited: true,
+            teamIndex: teamDelegate.teamIndex,
             parentStackView: teamDelegate.parentStackView,
             team: teamDelegate.team
         }
@@ -105,7 +107,8 @@ Item{
                 text: "Usuń"
 
                 onClicked:{ Trace.t();
-                    askDeleteTeamPopup.title = "Jesteś pewien by usunąć drużynę?"
+                    askDeleteTeamPopup.title = "Na pewno usunąć drużynę \"" +
+                            teamDelegate.team.name + "\"?"
                     askDeleteTeamPopup.fOpen()
                 }
             }

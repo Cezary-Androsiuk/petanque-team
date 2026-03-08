@@ -337,6 +337,30 @@ void Event::addDetachedTeam()
     emit this->detachedTeamChanged();
 }
 
+void Event::replaceWithDetachedTeam(int index)
+{
+    // I("Adding detached Team to Event")
+    if(m_detachedTeam.isNull())
+    {
+        E("cannot replace team with not existing detached team");
+        return;
+    }
+
+    if(m_teams.size() <= index)
+    {
+        QString sSize = QString::number(m_teams.size());
+        QString sIndex = QString::number(index);
+        E("Próba nadpisania nie istniejącej drużyny (indeks: "+sIndex+") z listy (rozmiar: "+sSize+")");
+        return;
+    }
+
+    m_teams[index] = m_detachedTeam;
+    emit this->teamsChanged();
+
+    m_detachedTeam.clear();
+    emit this->detachedTeamChanged();
+}
+
 void Event::deleteTeam(int index)
 {TRM;
     if(m_teams.size() <= index)

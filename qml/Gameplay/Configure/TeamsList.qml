@@ -42,6 +42,7 @@ Item {
 
                 defaultHeight: teamsList.delegateHeight
                 team: Backend.event.teams[index]
+                teamIndex: index
 
                 parentStackView: teamsList.parentStackView
             }

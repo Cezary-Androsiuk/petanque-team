@@ -10,7 +10,10 @@ Item {
 
     required property var parentStackView
     required property var team
-    property bool edit: false
+
+    // edit team values
+    property bool teamEdited: false
+    property int teamIndex: -1
 
     property var event: Backend.event
     property int headerHeight: 70
@@ -18,7 +21,16 @@ Item {
     property int delegateHeight: 50
 
     Component.onCompleted: {
-        log.w("now while editing existing team his name can be changed to the invalid one", "Team.qml -> onCompleted")
+        if(teamEdited)
+        {
+            // copy data from exising team to detachedTeam
+            Backend.event.createDetachedTeam()
+            var tmpDetachedTeam = Backend.event.detachedTeam
+            tmpDetachedTeam.assign(team)
+            team = tmpDetachedTeam;
+
+        }
+
     }
 
     function randomNumber(topRange){ Trace.t(topRange);
@@ -57,22 +69,18 @@ Item {
         parentStackView.push("Player.qml", args)
     }
 
-    function goBack(){ Trace.t();
-        parentStackView.pop();
-    }
-
-    function cancelAddingTeam(){ Trace.t();
+    function cancelTeamForm(){ Trace.t();
         parentStackView.pop();
         event.deleteDetachedTeam();
     }
 
-    function saveAddedTeamAuto(){ Trace.t();
+    function saveTeamFormAuto(){ Trace.t();
         setExampleTeamDataIfNeeded();
 
         event.validateDetachedTeam();
     }
 
-    function saveAddedTeam(){ Trace.t();
+    function saveTeamForm(){ Trace.t();
         event.validateDetachedTeam();
     }
 
@@ -80,7 +88,14 @@ Item {
         target: event
         function onDetachedTeamIsValid(){ Trace.t();
             parentStackView.pop();
-            event.addDetachedTeam();
+            if(teamEdited)
+            {
+                event.replaceWithDetachedTeam(configureTeam.teamIndex)
+            }
+            else
+            {
+                event.addDetachedTeam();
+            }
         }
 
         function onDetachedTeamValidationFailed(message){ Trace.t();
@@ -225,21 +240,6 @@ Item {
             top: parent.top
         }
         height: configureTeam.headerHeight
-
-        Button{
-            anchors{
-                left: parent.left
-                leftMargin: 10
-                verticalCenter: parent.verticalCenter
-            }
-
-            text: "Wróć"
-
-            visible: configureTeam.edit
-            onClicked: { Trace.t();
-                configureTeam.goBack();
-            }
-        }
     }
 
     Item{
@@ -254,7 +254,6 @@ Item {
         Item{
             id: footerButtons
             anchors.fill: parent
-            visible: !configureTeam.edit
 
             Button{
                 anchors{
@@ -263,7 +262,7 @@ Item {
                 }
                 text: "Anuluj"
                 onClicked: { Trace.t();
-                    configureTeam.cancelAddingTeam();
+                    configureTeam.cancelTeamForm();
                 }
             }
 
@@ -281,7 +280,7 @@ Item {
                 }
                 text: "Zapisz"
                 onClicked: { Trace.t();
-                    configureTeam.saveAddedTeam();
+                    configureTeam.saveTeamForm();
                 }
             }
             Button{
@@ -293,7 +292,7 @@ Item {
                 text: "Zapisz (przykładowe dane)"
                 visible: Backend.isDebugMode
                 onClicked: { Trace.t();
-                    configureTeam.saveAddedTeamAuto();
+                    configureTeam.saveTeamFormAuto();
                 }
             }
         }

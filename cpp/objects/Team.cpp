@@ -79,6 +79,26 @@ void Team::clear(bool emitting)
     if(emitting) emit this->playersChanged();
 }
 
+void Team::assign(const Team *otherTeam)
+{
+    this->clear(false);
+
+    m_name = otherTeam->m_name;
+    emit this->nameChanged();
+
+    m_smallPoints = otherTeam->m_smallPoints;
+    emit this->smallPointsChanged();
+
+    m_largePoints = otherTeam->m_largePoints;
+    emit this->largePointsChanged();
+
+    m_detachedPlayer = otherTeam->m_detachedPlayer;
+    emit this->detachedPlayerChanged();
+
+    m_players = otherTeam->getPlayers();
+    emit this->playersChanged();
+}
+
 void Team::createDetachedPlayer()
 {TRM;
     if(!m_detachedPlayer.isNull())
