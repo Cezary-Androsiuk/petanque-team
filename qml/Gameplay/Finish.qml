@@ -48,6 +48,9 @@ Item {
 
             text: "Zakończ wydarzenie"
             onClicked: { Trace.t();
+                // save data before restarting event
+                Backend.memory.save();
+
                 rootLoader.source = "";
                 Backend.restartEvent();
             }

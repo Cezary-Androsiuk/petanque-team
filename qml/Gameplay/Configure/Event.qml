@@ -33,10 +33,15 @@ Item {
     ConfirmNextPopup{
         id: confirmNextRoundStagePopup
         onConfirmed: { Trace.t();
-            Backend.memory.save(); // saves data
+            // save data before changing stage
+            Backend.memory.save();
+
+            // change stage
             Backend.event.startFirstPhase();
             Backend.event.goToNextStage() // changes stage from Configure to Play(Continue)
-            // Backend.memory.save(); // saves changed stage // exiting doing it as well // and timer will be
+
+            // save data after changing stage
+            Backend.memory.save();
         }
     }
 

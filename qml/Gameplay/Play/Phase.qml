@@ -24,6 +24,9 @@ Item {
         fromMessage: "?"
         toMessage: "?"
         onConfirmed: { Trace.t();
+            // save data before changing stage
+            Backend.memory.save();
+
             // if current phase (or any element under it) has next then go next
             if(phaseVar.hasNext())
             {
@@ -37,6 +40,9 @@ Item {
                 else
                     event.startFinishStage();
             }
+
+            // save data after changing stage
+            Backend.memory.save();
         }
     }
 

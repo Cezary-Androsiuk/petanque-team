@@ -136,7 +136,7 @@ Popup {
 
 
             property int buttonsAreaHeight: 70
-            property int buttonWidth: 90
+            property int buttonWidth: 100
 
             property double spaceBeetweenButtons:
                 (buttonsItem.width - cancelButton.width - nextButton.width)/3
@@ -167,7 +167,7 @@ Popup {
                     text: "Kontynuuj"
                     anchors.verticalCenter: parent.verticalCenter
                     x: popupBody.spaceBeetweenButtons *2 + popupBody.buttonWidth
-                    width: popupBody.buttonWidth
+                    width: popupBody.buttonWidth+15
                     onClicked:{ Trace.t();
                         confirmNextPopup.fClose();
                         confirmNextPopup.confirmed();

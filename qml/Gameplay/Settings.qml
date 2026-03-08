@@ -54,7 +54,7 @@ Item {
         // width: 2*height
         text: "Restartuj wydarzenie"
         onClicked: { Trace.t();
-
+            askAboutRestartingEvent.fOpen();
         }
     }
 }

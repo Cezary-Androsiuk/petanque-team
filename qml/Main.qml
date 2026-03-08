@@ -75,7 +75,7 @@ ApplicationWindow {
         }
 
         function onMemorySaved(){ Trace.t();
-            // send to server
+            // send to server if current stage is not 0 (StageEnum::None) nor 1 (StageEnum::Configure)
         }
 
         function onMemorySaveError(message){ Trace.t(message);
