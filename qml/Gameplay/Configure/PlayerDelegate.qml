@@ -83,8 +83,8 @@ Item{
             text: "Usuń"
 
             onClicked:{ Trace.t();
-                console.log("onClicked ",player)
-                askDeletePlayerPopup.title = "Jesteś pewien by usunąć gracza?"
+                askDeletePlayerPopup.title = "Na pewno usunąć gracza \"" +
+                        player.firstName + " " + player.lastName + "\"?"
                 askDeletePlayerPopup.fOpen();
             }
         }

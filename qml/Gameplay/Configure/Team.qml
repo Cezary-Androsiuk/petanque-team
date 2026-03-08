@@ -99,8 +99,12 @@ Item {
             }
         }
 
-        function onDetachedTeamValidationFailed(message){ Trace.t();
-            log.i(message, "Team.qml->onDetachedTeamValidationFailed")
+        function onDetachedTeamValidationFailed(message){ Trace.t(message);
+
+            failedTeamCreationInfoPopup.title = "Dane drużyny nie są poprawne!";
+            failedTeamCreationInfoPopup.splitText = true;
+            failedTeamCreationInfoPopup.message = message;
+            failedTeamCreationInfoPopup.fOpen();
         }
     }
 

@@ -113,8 +113,12 @@ Item {
             }
         }
 
-        function onDetachedPlayerValidationFailed(message){ Trace.t();
-            log.i(message, "Player.qml->onDetachedPlayerValidationFailed")
+        function onDetachedPlayerValidationFailed(message){ Trace.t(message);
+
+            failedPlayerCreationInfoPopup.title = "Dane gracza nie są poprawne!";
+            failedPlayerCreationInfoPopup.splitText = true;
+            failedPlayerCreationInfoPopup.message = message;
+            failedPlayerCreationInfoPopup.fOpen();
         }
     }
 

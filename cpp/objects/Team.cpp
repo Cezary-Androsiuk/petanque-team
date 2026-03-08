@@ -158,7 +158,8 @@ void Team::validateDetachedPlayer(int index)
 
         if(m_detachedPlayer->getLicense() == m_players[i]->getLicense())
         {
-            emit this->detachedPlayerValidationFailed("Licencje graczy muszą być unikalne w obrębie drużyny!");
+            emit this->detachedPlayerValidationFailed("Licencje graczy muszą być unikalne w obrębie drużyny!\n"
+                                                      "Już istnieje gracz z taką licencją");
             return;
         }
     }

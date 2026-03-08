@@ -318,7 +318,8 @@ void Event::validateDetachedTeam(int index)
 
         if(m_detachedTeam->getName() == m_teams[i]->getName())
         {
-            emit this->detachedTeamValidationFailed("Nazwa drużyny musi być unikalna!");
+            emit this->detachedTeamValidationFailed("Nazwa drużyny musi być unikalna w wydarzeniu!\n"
+                                                    "Już istnieje drużyna z taką nazwą.");
             return;
         }
     }
