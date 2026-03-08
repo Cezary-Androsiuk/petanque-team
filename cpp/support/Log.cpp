@@ -8,7 +8,7 @@
 #include <cstring>
 #include <filesystem>
 
-const char *Log::version = "v1.12.0";
+const char *Log::version = "v1.12.1";
 #if SPLIT_DEBUG_AND_TRACE_LOGS
 const char *debugLogsOutputDirectory = "logs/debug/";
 const char *traceLogsOutputDirectory = "logs/trace/";
@@ -369,7 +369,7 @@ void Log::logInfoAboutLogProperties()
     m_logFile << "# CPP trace format: ---\n";
 
 #if USE_QT_SUPPORT
-    m_logFile << "# QML trace format: [<log time>] <type> <file index>|<line>|<qml indicator>|<stack info>|<method name>|[<arguments>]\n";
+    m_logFile << "# QML trace format: [<log time>] <type> <file path index>|<file name>|<line>|<qml indicator>|<stack info>|<method name>|[<arguments>]\n";
 #endif
 
 
